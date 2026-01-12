@@ -10,16 +10,27 @@ function goHome() {
     }, 600);
 
     // Navigate to index page instead of #home
-    window.location.href = '/';
+    goTo('/');
+}
+
+function goTo(path) {
+  // Ensure path starts with a slash
+  if (!path.startsWith('/')) {
+    path = '/' + path;
+  }
+  // Build absolute URL from site root
+  const absoluteUrl = window.location.origin + path;
+  window.location.href = absoluteUrl; // or .assign() / .replace()
 }
 
 function aboutPage() {
-    window.location.href = '/about';
+  goTo('about'); // works even without leading slash
 }
 
 function newsPage() {
-    window.location.href = '/articles';
+  goTo('articles');
 }
+
 
 // Hamburger Menu Functionality
 function toggleMenu() {
