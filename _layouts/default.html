@@ -48,7 +48,9 @@
     {% endif %}
 </head>
 <body>
-    <h1 style="display: none;">{{ page.title }} | {{ site.title }</h1>
+    {% if page.layout != "news" %}
+    <h1 style="display: none;">{{ page.title }} | {{ site.title }}</h1>
+    {% endif %}
     {% include header.html %}
     <main>
         {{ content }}
