@@ -13,15 +13,19 @@ function goHome() {
     goTo('/');
 }
 
-function goTo(path) {
+function goToAbsolute(path) {
   // Ensure path starts with a slash
   if (!path.startsWith('/')) {
     path = '/' + path;
   }
-  // Build absolute URL from site root
-  const absoluteUrl = window.location.origin + path;
-  window.location.href = absoluteUrl; // or .assign() / .replace()
+
+  // Build a full absolute URL
+  const absoluteUrl = `${window.location.protocol}//${window.location.host}${path}`;
+
+  // Force a hard reload from the server (bypasses SPA routing & <base> tag)
+  window.location.replace(absoluteUrl);
 }
+
 
 function aboutPage() {
   goTo('about'); // works even without leading slash
