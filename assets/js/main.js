@@ -10,16 +10,16 @@ function goHome() {
     }, 600);
 
     // Navigate to index page instead of #home
-    window.location.href = 'https://pwindows.qzz.io/';
+    window.location.href = 'https://www.pwindows.qzz.io/';
 }
 
 
 function aboutPage() {
-  window.location.href = 'https://pwindows.qzz.io/about';
+  window.location.href = 'https://www.pwindows.qzz.io/about';
 }
 
 function newsPage() {
-  window.location.href = 'https://pwindows.qzz.io/articles';
+  window.location.href = 'https://www.pwindows.qzz.io/articles';
 }
 
 
