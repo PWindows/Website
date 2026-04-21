@@ -163,40 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Hero card hover effects (optimized with transform only)
-  const heroCard = document.querySelector(".hero-card");
-  if (heroCard) {
-    heroCard.addEventListener("mouseenter", function () {
-      this.style.transform = "translateY(-5px)";
-    });
-
-    heroCard.addEventListener("mouseleave", function () {
-      this.style.transform = "translateY(0)";
-    });
-  }
+  // removed for more efficient css code
 
   // Scroll animations (optimized with IntersectionObserver)
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
-          observer.unobserve(entry.target); // Stop observing once animated
-        }
-      });
-    },
-    {
-      threshold: 0.1,
-      rootMargin: "50px",
-    },
-  );
-
-  document
-    .querySelectorAll(".hero-card, .server-info, .launch-btn")
-    .forEach((el) => {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(20px)";
-      el.style.transition = "opacity 0.6s ease-out, transform 0.6s ease-out";
-      observer.observe(el);
-    });
 });
