@@ -5,119 +5,164 @@ title: Home
 
 <!-- Landing Section -->
 <section class="landing" id="home">
-    <div class="landing-content">
-        <!-- Hero Card -->
-        <div class="hero-card">
-            <div class="hero-heading">
-                <div class="hero-line-1">Not just a</div>
-                <div class="hero-line-2">
-                    <div class="animated-word">
-                        <div class="word-container">
-                            <div class="words-list">
-                                <span class="word">Minecraft Server</span>
-                                <span class="word">Roblox Studio</span>
-                                <span class="word">Community</span>
-                                <span class="word">Minecraft Server</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="landing-content">
+    <!-- Hero Card -->
+    <div class="hero-card">
+      <div class="hero-heading">
+        <div class="hero-line-1">Not just a</div>
+        <div class="hero-line-2">
+          <div class="animated-word">
+            <div class="word-container">
+              <div class="words-list">
+                <span class="word">Minecraft Server</span>
+                <span class="word">Roblox Studio</span>
+                <span class="word">Community</span>
+                <span class="word">Minecraft Server</span>
+              </div>
             </div>
+          </div>
         </div>
-
-        <!-- Bottom Content -->
-        <div class="bottom-content">
-            <button class="server-info" onclick="copyIP()" aria-label="Copy server IP">
-                IP: Play.PWindows.qzz.io
-            </button>
-
-            <a href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io" class="launch-btn" aria-label="Launch Minecraft Bedrock">
-                Launch from Minecraft Bedrock
-            </a>
-        </div>
+      </div>
     </div>
+
+    <!-- Bottom Content -->
+    <div class="bottom-content">
+      <button
+        class="server-info"
+        onclick="copyIP()"
+        aria-label="Copy server IP"
+      >
+        IP: play.pwindows.qzz.io
+      </button>
+
+      <a
+        href="#howtojoin"
+        class="launch-btn"
+        aria-label="Launch Minecraft Bedrock"
+      >
+        Join
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- Transition Section -->
 <section class="transition-section"></section>
 
 <section class="howtojoin" id="howtojoin">
-    <div class="howtojoin-heading">How to join</div>
+  <div class="howtojoin-heading">How to join</div>
+  <div class="howtojoin-footnote">*Applies to minecraft server only</div>
 
-    <div class="howtojoin-cards">
-        <!-- Card 1: Minecraft Java & Bedrock - Copy IP -->
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <div class="flip-card-icon">
-                        <img src="./assets/mojang/svg/icons/color-grass-block.svg" alt="Minecraft Grass Block" loading="lazy" style="width: 4rem; height: 4rem; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));">
-                    </div>
-                    <div class="flip-card-title">Minecraft Server</div>
-                    <div class="flip-card-subtitle">Java & Bedrock Edition</div>
-                </div>
-                <div class="flip-card-back">
-                    <div class="flip-card-back-content">
-                        <div class="flip-card-back-title">Server Address</div>
-                        <div class="flip-card-back-text">
-                            Copy the server IP and add it<br>to your Minecraft server list
-                        </div>
-                        <button class="flip-card-button" onclick="copyServerIP(this)" aria-label="Copy server IP">
-                            Play.PWindows.qzz.io
-                        </button>
-                    </div>
-                </div>
-            </div>
+  <div class="howtojoin-cards">
+    <!-- Card 1: Minecraft Java & Bedrock - Copy IP -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-icon">
+            <img
+              src="./assets/mojang/svg/icons/color-grass-block.png"
+              alt="Minecraft Grass Block"
+              loading="lazy"
+              style="
+                width: 4rem;
+                height: 4rem;
+                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+              "
+            />
+          </div>
+          <div class="flip-card-title">Minecraft Server</div>
+          <div class="flip-card-subtitle">Java & Bedrock Edition</div>
         </div>
-
-        <!-- Card 2: Bedrock Direct Launch -->
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <div class="flip-card-icon">
-                        <img src="./assets/mojang/svg/icons/color-dungeons-launcher.svg" alt="Bedrock Launcher" loading="lazy" style="width: 4rem; height: 4rem; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));">
-                    </div>
-                    <div class="flip-card-title">Quick Launch</div>
-                    <div class="flip-card-subtitle">Bedrock Edition</div>
-                </div>
-                <div class="flip-card-back">
-                    <div class="flip-card-back-content">
-                        <div class="flip-card-back-title">Launch Bedrock</div>
-                        <div class="flip-card-back-text">
-                            Click to open Minecraft Bedrock<br>and join our server instantly
-                        </div>
-                        <a href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io" class="flip-card-button" aria-label="Launch Minecraft Bedrock">
-                            Launch Minecraft
-                        </a>
-                    </div>
-                </div>
+        <div class="flip-card-back">
+          <div class="flip-card-back-content">
+            <div class="flip-card-back-title">Server Address</div>
+            <div class="flip-card-back-text">
+              Copy the server IP and add it<br />to your Minecraft server list
             </div>
+            <button
+              class="flip-card-button"
+              onclick="copyServerIP(this)"
+              aria-label="Copy server IP"
+            >
+              play.pwindows.qzz.io
+            </button>
+          </div>
         </div>
-
-        <!-- Card 3: Bedrock Realms - Coming Soon -->
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <div class="flip-card-icon">
-                        <img src="./assets/mojang/svg/icons/color-two-players.svg" alt="Bedrock Realms" loading="lazy" style="width: 4rem; height: 4rem; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));">
-                    </div>
-                    <div class="flip-card-title">Bedrock Realms</div>
-                    <div class="flip-card-subtitle">Coming Soon</div>
-                </div>
-                <div class="flip-card-back">
-                    <div class="flip-card-back-content">
-                        <div class="flip-card-back-title">Not Ready Yet</div>
-                        <div class="flip-card-back-text">
-                            Our Bedrock Realms join format<br>is currently under development
-                        </div>
-                        <button class="flip-card-button disabled" disabled aria-label="Coming Soon">
-                            Coming Soon
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <!-- Card 2: Bedrock Direct Launch -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-icon">
+            <img
+              src="./assets/mojang/svg/icons/color-dungeons-launcher.svg"
+              alt="Bedrock Launcher"
+              loading="lazy"
+              style="
+                width: 4rem;
+                height: 4rem;
+                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+              "
+            />
+          </div>
+          <div class="flip-card-title">Quick Launch</div>
+          <div class="flip-card-subtitle">Bedrock Edition</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-back-content">
+            <div class="flip-card-back-title">Launch Bedrock</div>
+            <div class="flip-card-back-text">
+              Click to open Minecraft Bedrock<br />and join our server instantly
+            </div>
+            <a
+              href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io"
+              class="flip-card-button"
+              aria-label="Launch Minecraft Bedrock"
+            >
+              Launch Minecraft
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Bedrock Realms - Coming Soon -->
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-icon">
+            <img
+              src="./assets/mojang/svg/icons/color-two-players.svg"
+              alt="Bedrock Realms"
+              loading="lazy"
+              style="
+                width: 4rem;
+                height: 4rem;
+                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+              "
+            />
+          </div>
+          <div class="flip-card-title">Bedrock Realms</div>
+          <div class="flip-card-subtitle">Coming Soon</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-back-content">
+            <div class="flip-card-back-title">Not Ready Yet</div>
+            <div class="flip-card-back-text">
+              Our Bedrock Realms join format<br />is currently under development
+            </div>
+            <button
+              class="flip-card-button disabled"
+              disabled
+              aria-label="Coming Soon"
+            >
+              Coming Soon
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-
-
-

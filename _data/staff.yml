@@ -8,8 +8,17 @@ petermazep:
     github: https://github.com/petermazep
   aboutpage: true
 
+isaacaxolotl:
+  name: Isaac
+  pfp: https://pwindows.qzz.io/assets/staffpfp/staff.png
+  role: Co-Director of Sacred Cubes
+  bio: The co-director of Sacred Cubes, responsible for this website 'cause Peter asked me to change it.
+  socials:
+    twitter: https://twitter.com/windows11create
+    github: https://github.com/ilikecereal1
+  aboutpage: true
+
 staff:
   name: Staff
   pfp: https://pwindows.qzz.io/assets/staffpfp/staff.png
   aboutpage: false
-
