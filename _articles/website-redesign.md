@@ -16,9 +16,9 @@ type: "NEWS"
 featured: true
 ---
 
-PWindows' website is getting updated with a fresh new design! This will ensure a more consistant identity and design across all of our projects.
+PWindows' website is getting updated with a fresh new design! This will ensure a more consistent identity and design across all of our projects.
 
-# So... What's changing?
+## So... What's changing?
 
 We are increasing text contrast and clarifying design throughout the pages. The design will change soon!
 
