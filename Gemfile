@@ -1,13 +1,24 @@
 source "https://rubygems.org"
 
-if Gem.win_platform?
-    gem "jekyll", "~> 4.3"
-    gem "webrick"
-    
-    group :jekyll_plugins do
-        gem "jekyll-sitemap"
-    end
+ruby_version = Gem::Version.new(RUBY_VERSION)
+local_jekyll = Gem.win_platform? || RbConfig::CONFIG["host_os"].include?("darwin")
+
+if local_jekyll
+  # github-pages has native dependencies that lag behind macOS Ruby releases.
+  gem "jekyll", "~> 4.3.0"
+  gem "webrick"
+
+  group :jekyll_plugins do
+    gem "jekyll-sitemap"
+  end
 else
-    gem "github-pages", group: :jekyll_plugins
+  gem "github-pages", group: :jekyll_plugins
 end
-gem "html-proofer", "~> 5.0"
+
+# html-proofer 5 requires Ruby 3.1, while 4.4 still supports Ruby 2.6-3.0.
+# No released html-proofer supports Ruby 4 yet, so keep site builds usable there.
+if ruby_version >= Gem::Version.new("3.1") && ruby_version < Gem::Version.new("4.0")
+  gem "html-proofer", "~> 5.0"
+elsif ruby_version >= Gem::Version.new("2.6") && ruby_version < Gem::Version.new("4.0")
+  gem "html-proofer", "~> 4.4"
+end
