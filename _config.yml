@@ -3,6 +3,7 @@ description: Discover PWindows, not just a Minecraft server
 url: "https://www.pwindows.qzz.io"
 exclude:
   - SearchConsoleMonitor.html
+  - vendor
 collections:
   articles:
     output: true
