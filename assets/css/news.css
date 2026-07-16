@@ -20,26 +20,16 @@ body {
 }
 
 .article-title {
-    font-family: 'Minecraft Ten v2';
     text-transform: uppercase;
     font-size: 2.5rem;
 }
 
-.news-item h1,
-.news-item h2,
-.news-item h3 {
-    font-family: 'Minecraft Ten v2';
+.news-item :is(h1, h2, h3) {
+    font-family: var(--font-display);
     margin-bottom: 10px;
 }
 
-.content > h1,
-.content > h2,
-.content > h3 {
-    margin-bottom: 10px;
-}
-
-.content > h2,
-.content > h3 {
+.content > :is(h2, h3) {
     margin-top: 24px;
 }
 
@@ -51,7 +41,6 @@ body {
     position: relative;
     width: max-content;
     margin: -2.5rem auto 0;
-
     background-color: #171615;
     padding: 12px 20px;
     font-size: 1.2rem;
@@ -75,12 +64,10 @@ body {
 
 .author-pfp {
     display: block; /* default for images */
-    margin: 0 auto;
+    margin: 0 auto 10px;
     max-width: 120px; /* sets a max width */
     height: auto; /* keeps natural aspect ratio */
     object-fit: contain; /* ensures the whole image shows */
-    margin-bottom: 10px;
-    display: block;
 }
 
 .author-name {

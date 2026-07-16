@@ -14,12 +14,27 @@
   --mc-vanilla-coldgrey-4: #4d5466;
   --mc-vanilla-coldgrey-5: #3d4250;
   --mc-vanilla-coldgrey-6: #2c2f3a;
+  --font-display: "Minecraft Ten v2", monospace;
+  --font-pixel: "Minecraft Seven v2", monospace;
+  --font-body: "Noto Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --arrow-shape: polygon(
-        14.29% 0%,   14.29% 28.57%, 71.43% 28.57%, 71.43% 85.71%,
-        100% 85.71%, 100% 0,       14.29% 0%,   14.29% 71.43%,
-        0% 71.43%,   0% 100%,      28.57% 100%, 28.57% 71.43%,
-        57.14% 71.43%, 57.14% 42.86%, 28.57% 42.86%, 28.57% 71.43%,
-        14.29% 71.43%
+    14.29% 0%,
+    14.29% 28.57%,
+    71.43% 28.57%,
+    71.43% 85.71%,
+    100% 85.71%,
+    100% 0,
+    14.29% 0%,
+    14.29% 71.43%,
+    0% 71.43%,
+    0% 100%,
+    28.57% 100%,
+    28.57% 71.43%,
+    57.14% 71.43%,
+    57.14% 42.86%,
+    28.57% 42.86%,
+    28.57% 71.43%,
+    14.29% 71.43%
   );
 }
 
@@ -42,20 +57,22 @@
   font-display: swap;
 }
 
+:is(h1, h2) {
+  font-family: var(--font-display);
+}
+
 h1 {
-  font-family: "Minecraft Ten v2", monospace;
   font-size: 3rem;
 }
 
 h2 {
-  font-family: "Minecraft Ten v2", monospace;
   font-size: 2rem;
 }
 
 a:not(.btn):not(.button):not(.no-icon):not(.logo)::after {
   content: "";
   display: inline-block;
-  width: 0.7em; 
+  width: 0.7em;
   height: 0.7em;
   margin-left: 0.5em;
   background-color: currentColor;
@@ -71,13 +88,8 @@ a:not(.btn):not(.button):not(.no-icon):not(.logo)::after {
 }
 
 body {
-  font-family:
-    "Noto Sans", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
-  background-image: url("../mojang/img/bg-wool-white.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  font-family: var(--font-body);
+  background: url("../mojang/img/bg-wool-white.png") center / cover no-repeat fixed;
   overflow-x: hidden;
 }
 
@@ -202,12 +214,7 @@ button {
 }
 
 .nav-item {
-  background: var(--mc-vanilla-coldgrey-5);
-  box-shadow:
-    inset 0 -6px 0 var(--mc-vanilla-coldgrey-6),
-    inset 0 6px 0 var(--mc-vanilla-coldgrey-4);
-  border: 2px solid var(--mc-vanilla-coldgrey-6);
-  font-family: "Minecraft Seven v2", monospace;
+  font-family: var(--font-pixel);
   width: 100%;
   image-rendering: pixelated;
 }
@@ -219,59 +226,6 @@ button {
   vertical-align: -0.2em;
 }
 
-.nav-item:hover {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    var(--mc-vanilla-coldgrey-5);
-}
-
-.nav-item:active {
-  background: var(--mc-vanilla-coldgrey-6);
-  box-shadow: none;
-  border-color: var(--mc-vanilla-coldgrey-1);
-}
-
-/* Special styling for different nav items */
-.nav-item.primary {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), var(--secondary);
-  box-shadow:
-    inset 0 -6px 0 var(--secondary-darker),
-    inset 0 6px 0 var(--primary);
-  border: 2px solid var(--secondary-darker);
-}
-
-.nav-item.primary:hover {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), var(--secondary);
-}
-
-.nav-item.primary:active {
-  background: var(--secondary-darker);
-  box-shadow: none;
-  border-color: white;
-}
-
-.nav-item.secondary {
-  background: var(--mc-vanilla-green-5);
-  box-shadow:
-    inset 0 -6px 0 var(--mc-vanilla-green-6),
-    inset 0 6px 0 var(--mc-vanilla-green-4);
-  border: 2px solid var(--mc-vanilla-green-6);
-}
-
-.nav-item.secondary:hover {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    var(--mc-vanilla-green-5);
-}
-
-.nav-item.secondary:active {
-  background: var(--mc-vanilla-green-6);
-  box-shadow: none;
-  border-color: white;
-}
-
 /* Menu Footer */
 .menu-footer {
   margin-top: auto;
@@ -281,7 +235,7 @@ button {
 }
 
 .menu-footer p {
-  font-family: "Minecraft Seven v2", monospace;
+  font-family: var(--font-pixel);
   font-size: 0.7rem;
   color: #666;
   margin-bottom: 20px;
@@ -311,7 +265,7 @@ button {
 
 /* Logo with enhanced interactivity */
 .logo {
-  height: 27px;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -332,8 +286,8 @@ button {
 }
 
 .logo-img {
-  max-width: 400%;
-  max-height: 400%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   transition: all 0.3s ease;
 }
@@ -344,53 +298,13 @@ button {
 
 /* About button */
 .about-btn {
-  background: var(--mc-vanilla-coldgrey-5);
-  box-shadow:
-    inset 0 -6px 0 var(--mc-vanilla-coldgrey-6),
-    inset 0 6px 0 var(--mc-vanilla-coldgrey-4);
-  border: 2px solid var(--mc-vanilla-coldgrey-6);
-  font-family: "Minecraft Seven v2", monospace;
-}
-
-.about-btn:hover {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    var(--mc-vanilla-coldgrey-5);
-}
-
-.about-btn:active {
-  background: var(--mc-vanilla-coldgrey-6);
-  box-shadow: none;
-  border-color: var(--mc-vanilla-coldgrey-1);
-}
-
-.about-link {
-  background: var(--mc-vanilla-coldgrey-5);
-  border: 2px solid var(--mc-vanilla-coldgrey-6);
-  box-shadow:
-    inset 0 -6px 0 var(--mc-vanilla-coldgrey-6),
-    inset 0 6px 0 var(--mc-vanilla-coldgrey-4);
-}
-
-.about-link:hover {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    var(--mc-vanilla-coldgrey-5);
-}
-
-.about-link:active {
-  background: var(--mc-vanilla-coldgrey-6);
-  box-shadow: none;
-  border-color: var(--mc-vanilla-coldgrey-1);
+  font-family: var(--font-pixel);
 }
 
 /*Landing Hero*/
 .landing {
   height: 100vh;
-  background-image: url("../mojang/img/bg-grass.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url("../mojang/img/bg-grass.png") center / cover no-repeat;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -403,10 +317,7 @@ button {
 .landing::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(45deg, rgba(255, 206, 2, 0.05), transparent);
   opacity: 0.7;
   z-index: 0;
@@ -427,35 +338,15 @@ button {
 }
 
 .hero-card {
-  transition:
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
-}
-
-.hero-card {
   background: rgba(255, 255, 255, 0);
   /*  backdrop-filter: blur(20px);*/
   padding: 20px 35px 15px 35px;
   /* border: 1px solid rgba(255, 206, 2, 0.3); */
-  /* background-image: url("../mojang/img/bg-wool-white.png"); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
   margin: 0;
   max-width: 850px;
   transition: all 0.3s ease;
-}
-
-.hero-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
 }
 
 /* Animated Heading with text glow */
@@ -466,7 +357,7 @@ button {
   color: #333;
   margin-bottom: 0;
   line-height: 1.4;
-  font-family: "Minecraft Ten v2", monospace;
+  font-family: var(--font-display);
   position: relative;
   z-index: 1;
 }
@@ -504,19 +395,9 @@ button {
   line-height: 1.3em;
   text-align: center;
   padding: 0;
-  font-family: "Minecraft Ten v2", monospace;
+  font-family: var(--font-display);
   text-shadow: 0 4px #967800;
   animation: perfectWordScroll 9s ease-in-out infinite;
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px rgba(128, 102, 0, 0.5);
-  }
-
-  to {
-    text-shadow: 0 0 16px rgba(132, 106, 0, 0.7);
-  }
 }
 
 @keyframes perfectWordScroll {
@@ -579,28 +460,24 @@ button {
 }
 
 .server-info {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), var(--secondary);
-  box-shadow:
-    inset 0 -6px 0 var(--secondary-darker),
-    inset 0 6px 0 var(--primary);
-  border: 2px solid var(--secondary-darker);
   position: relative;
-  text-decoration: none;
-}
-
-.server-info:hover {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), var(--secondary);
-}
-
-.server-info:active {
-  background: var(--secondary-darker);
-  box-shadow: none;
-  border-color: white;
 }
 
 .btn {
+  --btn-bg: var(--mc-vanilla-coldgrey-5);
+  --btn-bottom: var(--mc-vanilla-coldgrey-6);
+  --btn-top: var(--mc-vanilla-coldgrey-4);
+  --btn-active-border: var(--mc-vanilla-coldgrey-1);
+  --btn-idle-shade: rgba(0, 0, 0, 0);
+  --btn-hover-shade: rgba(0, 0, 0, 0.1);
+
+  background:
+    linear-gradient(var(--btn-idle-shade), var(--btn-idle-shade)),
+    var(--btn-bg);
+  border: 2px solid var(--btn-bottom);
+  box-shadow:
+    inset 0 -6px 0 var(--btn-bottom),
+    inset 0 6px 0 var(--btn-top);
   color: white;
   padding: 15px 28px;
   text-transform: uppercase;
@@ -612,88 +489,66 @@ button {
   letter-spacing: 0.03em;
 }
 
-.launch-btn {
-  background: var(--mc-vanilla-green-5);
-  box-shadow:
-    inset 0 -6px 0 var(--mc-vanilla-green-6),
-    inset 0 6px 0 var(--mc-vanilla-green-4);
-  border: 2px solid var(--mc-vanilla-green-6);
-}
-
-.launch-btn:hover {
+.btn:hover {
   background:
-    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    var(--mc-vanilla-green-5);
+    linear-gradient(var(--btn-hover-shade), var(--btn-hover-shade)),
+    var(--btn-bg);
 }
 
-.launch-btn:active {
-  background: var(--mc-vanilla-green-6);
+.btn:active {
+  background: var(--btn-bottom);
+  border-color: var(--btn-active-border);
   box-shadow: none;
-  border-color: white;
+}
+
+.btn-green {
+  --btn-bg: var(--mc-vanilla-green-5);
+  --btn-bottom: var(--mc-vanilla-green-6);
+  --btn-top: var(--mc-vanilla-green-4);
+  --btn-active-border: white;
+}
+
+.btn-gold {
+  --btn-bg: var(--secondary);
+  --btn-bottom: var(--secondary-darker);
+  --btn-top: var(--primary);
+  --btn-active-border: white;
+  --btn-idle-shade: rgba(0, 0, 0, 0.05);
+  --btn-hover-shade: rgba(0, 0, 0, 0.15);
 }
 
 /*About*/
-.transition-section {
+.transition-section,
+.transition-section-reverse {
   min-height: 110px;
-  background-image: url("../mojang/img/bg-wool-white-dark.png");
   image-rendering: pixelated;
   background-size: 1396px;
-  background-position: 0px bottom;
   background-repeat: repeat-x;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+}
+
+.transition-section {
+  background-image: url("../mojang/img/bg-wool-white-dark.png");
+  background-position: 0px bottom;
 }
 
 .transition-section-reverse {
   min-height: 98px;
   background-image: url("../mojang/img/bg-wool-dark-white.png");
-  image-rendering: pixelated;
-  background-size: 1396px;
   background-position: 4px top;
-  background-repeat: repeat-x;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.about-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  color: white;
-}
-
-.about-section h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #ffce02;
-  font-weight: 400;
-  font-family: "Minecraft Ten v2", monospace;
-  text-shadow:
-    0 0 20px rgba(255, 206, 2, 0.5),
-    0 0 40px rgba(255, 206, 2, 0.3);
-}
-
-.about-section p {
-  font-size: 0.9rem;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  opacity: 0.9;
-  font-family: "Minecraft Seven v2", monospace;
 }
 
 /* How to Join Section */
-.howtojoin {
+.howtojoin,
+.news-home-section {
   min-height: 500px;
-  background-image: url("../mojang/img/bg-wool-dark.png");
   image-rendering: pixelated;
   background-size: 800px;
-  background-position: 0px top;
+  background-position: 0 top;
   background-repeat: repeat;
   display: flex;
   justify-content: center;
@@ -702,14 +557,21 @@ button {
   padding: 80px 40px;
 }
 
-.howtojoin-heading {
-  font-family: "Minecraft Ten v2", monospace;
+.howtojoin {
+  background-image: url("../mojang/img/bg-wool-dark.png");
+}
+
+.howtojoin-heading,
+.news-heading {
+  font-family: var(--font-display);
   font-size: clamp(2.5rem, 7vw, 4rem);
   font-weight: 400;
-  color: #ffffff;
   text-align: center;
-  text-shadow:
-    0 4px 0px var(--mc-vanilla-coldgrey-4);
+  text-shadow: 0 4px 0px var(--mc-vanilla-coldgrey-4);
+}
+
+.howtojoin-heading {
+  color: #ffffff;
   padding-right: 20px;
 }
 
@@ -721,7 +583,7 @@ button {
   text-align: center;
   margin-bottom: 60px;
   opacity: 0.8;
-  font-family: "Minecraft Seven v2", monospace;
+  font-family: var(--font-pixel);
 }
 
 .howtojoin-cards {
@@ -803,9 +665,8 @@ button {
 }
 
 .flip-card-title {
-  font-family: "Minecraft Ten v2", monospace;
+  font-family: var(--font-display);
   font-size: 1.5rem;
-  color: #333;
   margin-bottom: 15px;
   text-align: center;
   white-space: nowrap;
@@ -819,27 +680,8 @@ button {
 
 .flip-card-toggle,
 .flip-card-back-toggle {
-  background: var(--mc-vanilla-coldgrey-5);
-  box-shadow:
-    inset 0 -6px 0 var(--mc-vanilla-coldgrey-6),
-    inset 0 6px 0 var(--mc-vanilla-coldgrey-4);
-  border: 2px solid var(--mc-vanilla-coldgrey-6);
   margin-top: 24px;
   padding: 10px 16px;
-}
-
-.flip-card-toggle:hover,
-.flip-card-back-toggle:hover {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    var(--mc-vanilla-coldgrey-5);
-}
-
-.flip-card-toggle:active,
-.flip-card-back-toggle:active {
-  background: var(--mc-vanilla-coldgrey-6);
-  box-shadow: none;
-  border-color: var(--mc-vanilla-coldgrey-1);
 }
 
 .flip-card-back-toggle {
@@ -857,9 +699,8 @@ button {
 }
 
 .flip-card-back-title {
-  font-family: "Minecraft Ten v2", monospace;
+  font-family: var(--font-display);
   font-size: 1.3rem;
-  color: #333;
   margin-bottom: 20px;
 }
 
@@ -870,60 +711,12 @@ button {
   margin-bottom: 25px;
 }
 
-
 .flip-card-button {
-  background: var(--mc-vanilla-green-5);
-  box-shadow:
-    inset 0 -6px 0 var(--mc-vanilla-green-6),
-    inset 0 6px 0 var(--mc-vanilla-green-4);
-  border: 2px solid var(--mc-vanilla-green-6);
-
-  display: flex;
   position: relative;
   max-width: 100%;
   align-items: center;
   justify-content: center;
   text-align: center;
-}
-
-.flip-card-button:hover {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    var(--mc-vanilla-green-5);
-}
-
-.flip-card-button:active {
-  background: var(--mc-vanilla-green-6);
-  box-shadow: none;
-  border-color: white;
-}
-
-.flip-card-button-ip {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), var(--secondary);
-  box-shadow:
-    inset 0 -6px 0 var(--secondary-darker),
-    inset 0 6px 0 var(--primary);
-  border: 2px solid var(--secondary-darker);
-  text-wrap: wrap;
-  display: flex;
-  position: relative;
-  max-width: 100%;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.flip-card-button-ip:hover {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), 
-    var(--secondary);
-}
-
-.flip-card-button-ip:active {
-  background: var(--secondary-darker);
-  box-shadow: none;
-  border-color: white;
 }
 
 .flip-card-button.disabled,
@@ -963,11 +756,14 @@ button {
 .featured-grid,
 .latest-grid {
   margin-top: 10px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 270px));
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   width: 100%;
-  justify-content: center;
+  & > * {
+    flex: 1 1 260px;
+    max-width: 400px;
+  }
 }
 
 .article-grid {
@@ -988,15 +784,12 @@ button {
 }
 
 .article-card img.banner {
-  width: 100%;
-  height: 180px;
   object-fit: cover;
   display: block;
 }
 
 .card-content {
-  padding: 1rem;
-  color: #333; /* dark text for white background */
+  padding: 1rem; /* dark text for white background */
 }
 
 .type-label {
@@ -1020,7 +813,7 @@ button {
 }
 
 .featured-news {
-  margin: 6rem 0 -4rem 2rem;
+  margin: 6rem 2rem -4rem 2rem;
 }
 
 .featured-title {
@@ -1055,7 +848,7 @@ button {
 }
 
 .about-page > h1 {
-  font-family: "Minecraft Ten v2", monospace;
+  font-family: var(--font-display);
   font-size: clamp(2.5rem, 7vw, 4rem);
 }
 
@@ -1082,7 +875,7 @@ button {
 
 .about-grid h2 {
   margin-bottom: 1rem;
-  font-family: "Minecraft Ten v2", monospace;
+  font-family: var(--font-display);
 }
 
 .about-grid p {
@@ -1110,11 +903,17 @@ button {
 
   .howtojoin-cards {
     margin-top: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 
   .howtojoin-cards > .card {
     margin: 0 auto;
+  }
+
+  .btn {
+    font-size: 1rem;
+    word-wrap: break-word;
+    text-align: center;
   }
 }
 
@@ -1125,8 +924,8 @@ button {
   }
 
   .logo {
-    width: 66px;
-    height: 66px;
+    max-width: 200%;
+    max-height: 200%;
   }
 
   .about-btn {
@@ -1167,16 +966,23 @@ button {
   }
 
   .bottom-content {
+    width: 100%;
     margin-top: 16px;
     padding: 0 20px;
     gap: 16px;
   }
 
-  .launch-btn {
-    padding: 16px 32px;
-    font-size: 0.8rem;
+  .bottom-content > .btn {
     width: 100%;
     max-width: 300px;
+  }
+
+  .btn {
+    padding: 16px 4px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+    word-wrap: break-word;
     text-align: center;
   }
 
@@ -1216,8 +1022,16 @@ button {
     font-size: clamp(1.2rem, 10vw, 2rem);
   }
 
+  .btn {
+    font-size: 0.8rem;
+  }
+
   .word-container {
     min-width: 300px;
+  }
+
+  .howtojoin-cards {
+    padding: 0px;
   }
 
   .landing {
@@ -1254,20 +1068,8 @@ button {
 }
 
 .news-home-section {
-  min-height: 500px;
   background-image: url("../mojang/img/bg-wool-white.png");
-  image-rendering: pixelated;
-  background-size: 800px;
-  background-position: 0px top;
-  background-repeat: repeat;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  padding: 80px 40px;
-  display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .news-home-section > div:first-child {
@@ -1275,27 +1077,20 @@ button {
   text-align: center;
 }
 
-.news-heading{
-  font-family: "Minecraft Ten v2", monospace;
-  font-size: clamp(2.5rem, 7vw, 4rem);
-  font-weight: 400;
-  color: #000000;
-  text-align: center;
-  text-shadow:
-    0 4px 0px var(--mc-vanilla-coldgrey-4);
+.news-heading {
+  color: var(--mc-vanilla-coldgrey-6);
 }
 
-.see-news-link{
-  font-family: "Minecraft Seven v2", monospace;
+.see-news-link {
+  font-family: var(--font-pixel);
   font-size: 1rem;
   color: var(--secondary-darker);
   display: inline-block;
 }
 
-.news-link-container{
+.news-link-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin: 10px 0 20px;
 }
