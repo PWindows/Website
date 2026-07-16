@@ -7,3 +7,5 @@ collections:
   articles:
     output: true
     permalink: /article/:name
+plugins:
+  - jekyll-sitemap

@@ -543,7 +543,7 @@ button {
 }
 
 .animated-word {
-  color: var(--secondary);
+  color: var(--primary);
   display: flex;
   justify-content: center;
   position: relative;
@@ -561,7 +561,6 @@ button {
 
 .words-list {
   position: relative;
-  animation: perfectWordScroll 9s ease-in-out infinite;
 }
 
 .word {
@@ -572,6 +571,7 @@ button {
   padding: 0;
   font-family: "Minecraft Ten v2", monospace;
   text-shadow: 0 4px #967800;
+  animation: perfectWordScroll 9s ease-in-out infinite;
 }
 
 @keyframes glow {
