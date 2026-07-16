@@ -559,6 +559,7 @@ button {
 
 .howtojoin {
   background-image: url("../mojang/img/bg-wool-dark.png");
+  scroll-margin-top: 80px;
 }
 
 .howtojoin-heading,
@@ -612,24 +613,17 @@ button {
   transform: rotateY(180deg);
 }
 
-@media (any-hover: hover) and (any-pointer: fine) {
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-  }
+.flip-card.precise-interaction {
+  cursor: default;
+}
 
-  .flip-card-toggle,
-  .flip-card-back-toggle {
-    display: none;
-  }
+.flip-card.precise-interaction :is(.flip-card-toggle, .flip-card-back-toggle) {
+  display: none;
+}
 
-  .flip-card {
-    cursor: default;
-  }
-
-  .flip-card:focus-visible {
-    outline: 3px solid #ffffff;
-    outline-offset: 6px;
-  }
+.flip-card:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 6px;
 }
 
 .flip-card-front,
@@ -688,6 +682,7 @@ button {
   margin-inline: auto;
 }
 
+.flip-card-toggle[hidden],
 .flip-card-back-toggle[hidden] {
   display: none !important;
 }
@@ -914,6 +909,7 @@ button {
     word-wrap: break-word;
     text-align: center;
   }
+
 }
 
 @media (max-width: 768px) {
@@ -981,6 +977,12 @@ button {
     font-size: 1rem;
     width: 100%;
     max-width: 300px;
+  }
+
+  .topbar > .btn {
+    width: auto;
+    min-width: 0;
+    padding-inline: 16px;
   }
 
   .menu-overlay {

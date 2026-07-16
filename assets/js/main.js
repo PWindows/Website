@@ -111,7 +111,15 @@ function setupAnchorScrolling() {
 }
 
 function setupFlipCards() {
-  const precisePointer = window.matchMedia("(any-hover: hover) and (any-pointer: fine)");
+  const hasFinePointer = window.matchMedia("(any-pointer: fine)");
+  let keyboardNavigation = false;
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Tab") keyboardNavigation = true;
+  }, true);
+  document.addEventListener("pointerdown", () => {
+    keyboardNavigation = false;
+  }, true);
 
   document.querySelectorAll("[data-flip-card]").forEach((card) => {
     const front = card.querySelector(".flip-card-front");
@@ -130,57 +138,70 @@ function setupFlipCards() {
       if (moveFocus) (flipped ? closeButton : openButton).focus();
     }
 
-    function configureInteractionMode() {
-      if (precisePointer.matches) {
+    function setPreciseMode(enabled) {
+      card.classList.toggle("precise-interaction", enabled);
+      openButton.disabled = enabled;
+      openButton.hidden = enabled;
+      closeButton.disabled = enabled;
+      closeButton.hidden = enabled;
+      openButton.setAttribute("aria-hidden", String(enabled));
+      closeButton.setAttribute("aria-hidden", String(enabled));
+    }
+
+    function configureKeyboardAccess() {
+      if (hasFinePointer.matches) {
         card.tabIndex = 0;
         card.setAttribute("role", "region");
         card.setAttribute("aria-label", `${cardTitle || "Join option"} details`);
-        closeButton.disabled = true;
-        closeButton.hidden = true;
-        closeButton.setAttribute("aria-hidden", "true");
       } else {
         card.removeAttribute("tabindex");
         card.removeAttribute("role");
         card.removeAttribute("aria-label");
-        closeButton.disabled = false;
-        closeButton.hidden = false;
-        closeButton.removeAttribute("aria-hidden");
       }
+      setPreciseMode(false);
       setFlipped(false);
     }
 
     openButton.addEventListener("click", () => setFlipped(true, true));
     closeButton.addEventListener("click", () => setFlipped(false, true));
 
-    card.addEventListener("pointerenter", () => {
-      if (precisePointer.matches) setFlipped(true);
+    card.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "mouse") {
+        setPreciseMode(true);
+        setFlipped(true);
+      }
     });
 
-    card.addEventListener("pointerleave", () => {
-      if (precisePointer.matches && !card.contains(document.activeElement)) {
+    card.addEventListener("pointerleave", (event) => {
+      if (event.pointerType === "mouse" && !card.contains(document.activeElement)) {
         setFlipped(false);
+        setPreciseMode(false);
       }
     });
 
     card.addEventListener("focusin", () => {
-      if (precisePointer.matches) setFlipped(true);
+      if (keyboardNavigation && hasFinePointer.matches) {
+        setPreciseMode(true);
+        setFlipped(true);
+      }
     });
 
     card.addEventListener("focusout", () => {
       window.requestAnimationFrame(() => {
-        if (precisePointer.matches && !card.contains(document.activeElement)) {
+        if (!card.contains(document.activeElement)) {
           setFlipped(false);
+          setPreciseMode(false);
         }
       });
     });
 
     card.addEventListener("keydown", (event) => {
-      if (precisePointer.matches && event.key === "Escape") {
+      if (card.classList.contains("precise-interaction") && event.key === "Escape") {
         event.preventDefault();
         card.focus();
         setFlipped(false);
       } else if (
-        precisePointer.matches &&
+        card.classList.contains("precise-interaction") &&
         document.activeElement === card &&
         (event.key === "Enter" || event.key === " ")
       ) {
@@ -189,8 +210,8 @@ function setupFlipCards() {
       }
     });
 
-    precisePointer.addEventListener("change", configureInteractionMode);
-    configureInteractionMode();
+    hasFinePointer.addEventListener("change", configureKeyboardAccess);
+    configureKeyboardAccess();
   });
 }
 
