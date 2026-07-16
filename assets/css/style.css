@@ -905,7 +905,7 @@ button {
     inset 0 -6px 0 var(--secondary-darker),
     inset 0 6px 0 var(--primary);
   border: 2px solid var(--secondary-darker);
-
+  text-wrap: wrap;
   display: flex;
   position: relative;
   max-width: 100%;

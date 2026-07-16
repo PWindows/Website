@@ -38,6 +38,15 @@ body {
     margin-bottom: 10px;
 }
 
+.content > h2,
+.content > h3 {
+    margin-top: 24px;
+}
+
+.content > p {
+    margin-bottom: 16px;
+}
+
 .minecraft-box {
     position: relative;
     width: max-content;

@@ -5,7 +5,11 @@ local_jekyll = Gem.win_platform? || RbConfig::CONFIG["host_os"].include?("darwin
 
 if local_jekyll
   # github-pages has native dependencies that lag behind macOS Ruby releases.
-  gem "jekyll", "~> 4.3.0"
+  if ruby_version >= Gem::Version.new("2.7")
+    gem "jekyll", "~> 4.4"
+  else
+    gem "jekyll", "~> 4.3.0"
+  end
   gem "webrick"
 
   group :jekyll_plugins do
