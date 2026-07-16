@@ -13,7 +13,7 @@ permalink: /articles
              data-date="{{ article.date | date: '%Y-%m-%d' }}"
              data-type="{{ article.type }}"
              data-title="{{ article.title }}">
-            <a href="{{ article.url | relative_url }}">
+            <a href="{{ article.url | relative_url }}" class="no-icon">
                 <div class="banner" style="background-image: url('{{ article.banner | relative_url }}');"></div>
                 <div class="card-content">
                     <span class="type-label">{{ article.type }}</span>
@@ -46,7 +46,7 @@ permalink: /articles
              data-date="{{ article.date | date: '%Y-%m-%d' }}"
              data-type="{{ article.type }}"
              data-title="{{ article.title }}">
-            <a href="{{ article.url | relative_url }}">
+            <a href="{{ article.url | relative_url }}" class="no-icon">
                 <div class="banner" style="background-image: url('{{ article.banner | relative_url }}');"></div>
                 <div class="card-content">
                     <span class="type-label">{{ article.type }}</span>
