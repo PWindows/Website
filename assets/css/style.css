@@ -768,12 +768,13 @@ button {
 
 .howtojoin-footnote {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #cccccc;
   margin-top: 10px;
   text-align: center;
   margin-bottom: 60px;
   opacity: 0.8;
+  font-family: "Minecraft Seven v2", monospace;
 }
 
 .howtojoin-cards {
