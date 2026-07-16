@@ -1,10 +1,10 @@
 <!-- Floating particles -->
-<div class="particles" id="particles"></div>
+<div class="particles" id="particles" aria-hidden="true"></div>
 
 <!-- Mobile Menu Overlay -->
-<div class="menu-overlay" id="mobileMenu">
-  <nav class="nav-menu">
-    <a href="/about" class="nav-item btn" onclick="aboutPage()">
+<div class="menu-overlay" id="mobileMenu" aria-hidden="true" inert>
+  <nav class="nav-menu" aria-label="Site menu">
+    <a href="/about" class="nav-item btn">
       <img
         class="nav-item-icon"
         src="/assets/mojang/svg/icons/book.png"
@@ -13,16 +13,19 @@
       />
       About
     </a>
-    <a href="/articles" class="nav-item btn" onclick="newsPage()">
-      📰 Newest News
+    <a href="/articles" class="nav-item btn">
+      <img
+        class="nav-item-icon"
+        src="/assets/mojang/svg/icons/magazine.png"
+        alt="Book icon"
+        aria-hidden="true"
+      />
+      Newest News
     </a>
-    <a href="#server" class="btn nav-item secondary" onclick="closeMenu()">
-      🎮 Join Server
-    </a>
+    <a href="/#howtojoin" class="btn nav-item secondary">🎮 Join Server</a>
     <a
       href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io"
       class="btn nav-item primary"
-      onclick="closeMenu()"
     >
       🚀 Launch Minecraft
     </a>
@@ -31,45 +34,63 @@
   <div class="menu-footer">
     <p>Connect with PWindows</p>
     <div class="social-links">
-      <a href="#" class="social-link" title="Discord"
-        ><img
-          onclick="window.location.href = 'https://discord.pwindows.qzz.io/'"
+      <a
+        href="https://discord.pwindows.qzz.io/"
+        class="social-link"
+        aria-label="PWindows on Discord"
+      >
+        <img
           class="social-link-img"
-          src="/assets/mojang/svg/icons/pixel-close.svg"
-      /></a>
-      <a href="#" class="social-link" title="YouTube"
-        ><img
-          onclick="window.location.href = 'https://www.youtube.com/@PWindows'"
+          src="/assets/mojang/svg/icons/discord.png"
+          alt=""
+        />
+      </a>
+      <a
+        href="https://www.youtube.com/@PWindows"
+        class="social-link"
+        aria-label="PWindows on YouTube"
+      >
+        <img
           class="social-link-img"
           src="/assets/mojang/svg/icons/color-youtube.svg"
-      /></a>
-      <a href="#" class="social-link" title="Twitter"
-        ><img
-          onclick="window.location.href = 'https://x.com/pwindowsz'"
+          alt=""
+        />
+      </a>
+      <a
+        href="https://x.com/pwindowsz"
+        class="social-link"
+        aria-label="PWindows on X"
+      >
+        <img
           class="social-link-img"
           src="/assets/mojang/svg/icons/color-twitter.svg"
-      /></a>
+          alt=""
+        />
+      </a>
     </div>
   </div>
 </div>
 
 <!-- Topbar -->
-<nav class="topbar">
-  <div class="hamburger" id="hamburger">
-    <div>
+<nav class="topbar" aria-label="Primary navigation">
+  <button
+    class="hamburger"
+    id="hamburger"
+    type="button"
+    aria-label="Open site menu"
+    aria-controls="mobileMenu"
+    aria-expanded="false"
+  >
+    <span class="hamburger-lines" aria-hidden="true">
       <span></span>
       <span></span>
       <span></span>
-    </div>
-  </div>
+    </span>
+  </button>
 
-  <div class="logo" id="logo" onclick="goHome()">
-    <img
-      src="https://pwindows.qzz.io/assets/PWindows.png"
-      alt="PWindows Logo"
-      class="logo-img"
-    />
-  </div>
+  <a class="logo" id="logo" href="/" aria-label="PWindows home">
+    <img src="/assets/PWindows.png" alt="PWindows" class="logo-img" />
+  </a>
 
   <a href="/about" class="about-btn btn">About</a>
 </nav>

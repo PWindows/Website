@@ -5,7 +5,7 @@ permalink: /articles
 ---
 
 <section class="featured-news">
-    <h1 class="featured-title">Featured News</h1>
+    <h1 class="featured-title">News</h1>
     <div class="featured-grid">
         {% assign featured_news = site.articles | where: "featured", true | sort: "date" | reverse %}
         {% for article in featured_news %}
@@ -28,7 +28,7 @@ permalink: /articles
 
 <section class="articles-section">
     <div class="articles-header">
-        <h1 class="articles-title">Newest News</h1>
+        <h2 class="articles-title">Newest News</h2>
         <div class="sort-controls">
             <label for="sort-select">Sort by:</label>
             <select id="sort-select">
@@ -58,42 +58,3 @@ permalink: /articles
         {% endfor %}
     </div>
 </section>
-
-<script>
-  document.getElementById('sort-select').addEventListener('change', function () {
-  const sortBy = this.value;
-  const grid = document.getElementById('articleGrid');
-  const cards = Array.from(grid.querySelectorAll('.article-card'));
-
-  let sortedCards = cards;
-
-  if (sortBy === 'date-desc') {
-    sortedCards = cards.sort((a, b) =>
-      b.dataset.date.localeCompare(a.dataset.date)
-    );
-  } else if (sortBy === 'date-asc') {
-    sortedCards = cards.sort((a, b) =>
-      a.dataset.date.localeCompare(b.dataset.date)
-    );
-  } else if (sortBy === 'type') {
-    sortedCards = cards.sort((a, b) =>
-      a.dataset.type.localeCompare(b.dataset.type)
-    );
-  } else if (sortBy === 'title') {
-    sortedCards = cards.sort((a, b) =>
-      a.dataset.title.localeCompare(b.dataset.title)
-    );
-  }
-
-  // Clear and re-append sorted cards
-  grid.innerHTML = '';
-  sortedCards.forEach(card => grid.appendChild(card));
-  });
-</script>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const sortSelect = document.getElementById('sort-select');
-        sortSelect.value = 'date-desc'; // set default to newest first
-        sortSelect.dispatchEvent(new Event('change')); // trigger sorting once
-    });
-</script>

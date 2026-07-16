@@ -2,13 +2,6 @@
 layout: default
 ---
 
-<head>
-  <link
-    rel="stylesheet"
-    href="{{ '/assets/css/news.css?v=' | append: site.github.build_revision | relative_url }}"
-  />
-</head>
-
 <article class="news-item">
   <div class="news-banner">
     {% if page.banner %}
@@ -47,8 +40,24 @@ layout: default
 
     <div class="article">
       <h1 class="article-title">{{ page.title }}</h1>
-      <div class="summary">{{ page.summary }}</div>
+      <p class="summary">{{ page.summary }}</p>
       <div class="content">{{ content }}</div>
     </div>
   </div>
 </article>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": {{ page.title | jsonify }},
+    "description": {{ page.summary | strip_html | jsonify }},
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    "author": {
+      "@type": "Person",
+      "name": {{ person.name | jsonify }}
+    },
+    "image": "{{ page.banner | default: '/assets/PWindows.png' | absolute_url }}",
+    "mainEntityOfPage": "{{ page.url | absolute_url }}"
+  }
+</script>

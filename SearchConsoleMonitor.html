@@ -1,19 +1,19 @@
 ---
-layout: default
-permalink: /scm
+layout: none
 ---
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>Indexed Pages Monitor</title>
-  <!-- Load Google APIs base client (needed for gapi.client.setToken if you want) -->
-  <script src="https://apis.google.com/js/api.js"></script>
   <!-- Load Google Identity Services -->
   <script src="https://accounts.google.com/gsi/client" async defer onload="gisLoaded()"></script>
 </head>
 <body>
   <h1>Indexed Pages Count</h1>
-  <button id="authBtn" onclick="authorizeAndFetch()">Authorize & Fetch</button>
+  <button id="authBtn" type="button">Authorize & Fetch</button>
   <pre id="output"></pre>
 
   <script>
@@ -36,6 +36,11 @@ permalink: /scm
 
     // Trigger authorization
     function authorizeAndFetch() {
+      if (!tokenClient) {
+        document.getElementById('output').innerText =
+          'Google authorization is still loading. Please try again.';
+        return;
+      }
       tokenClient.requestAccessToken();
     }
 
@@ -50,6 +55,10 @@ permalink: /scm
           }
         );
         const data = await resp.json();
+
+        if (!resp.ok) {
+          throw new Error(data.error?.message || `Request failed (${resp.status})`);
+        }
 
         if (data.sitemap && data.sitemap.length > 0) {
           let output = '';
@@ -74,6 +83,10 @@ permalink: /scm
       document.getElementById('output').innerText =
         `${label}: ${JSON.stringify(err, null, 2)}`;
     }
+
+    document
+      .getElementById('authBtn')
+      .addEventListener('click', authorizeAndFetch);
   </script>
 </body>
 </html>

@@ -8,28 +8,28 @@ title: Home
   <div class="landing-content">
     <!-- Hero Card -->
     <div class="hero-card">
-      <div class="hero-heading">
-        <div class="hero-line-1">Not just a</div>
-        <div class="hero-line-2">
-          <div class="animated-word">
-            <div class="word-container">
-              <div class="words-list">
+      <h1 class="hero-heading">
+        <span class="hero-line-1">Not just a</span>
+        <span class="hero-line-2">
+          <span class="animated-word">
+            <span class="word-container">
+              <span class="words-list">
                 <span class="word">Minecraft Server</span>
                 <span class="word">Roblox Studio</span>
                 <span class="word">Community</span>
                 <span class="word">Minecraft Server</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </span>
+            </span>
+          </span>
+        </span>
+      </h1>
     </div>
 
     <!-- Bottom Content -->
     <div class="bottom-content">
       <button
         class="server-info btn"
-        onclick="copyIP()"
+        data-copy-ip
         aria-label="Copy server IP"
       >
         IP: play.pwindows.qzz.io
@@ -47,19 +47,19 @@ title: Home
 </section>
 
 <!-- Transition Section -->
-<section class="transition-section"></section>
+<div class="transition-section" aria-hidden="true"></div>
 
 <section class="howtojoin" id="howtojoin">
   <div>
-    <div class="howtojoin-heading">How to join</div>
+    <h2 class="howtojoin-heading">How to join</h2>
     <div class="howtojoin-footnote">*Applies to Minecraft server only</div>
   </div>
 
   <div class="howtojoin-cards">
     <!-- Card 1: Minecraft Java & Bedrock - Copy IP -->
-    <div class="flip-card">
+    <div class="flip-card" data-flip-card>
       <div class="flip-card-inner">
-        <div class="flip-card-front">
+        <div class="flip-card-front" id="join-java-front">
           <div class="flip-card-icon">
             <img
               src="./assets/mojang/svg/icons/color-grass-block.png"
@@ -74,29 +74,36 @@ title: Home
           </div>
           <div class="flip-card-title">Minecraft Server</div>
           <div class="flip-card-subtitle">Java & Bedrock Edition</div>
+          <button
+            class="flip-card-toggle btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="join-java-back"
+          >View instructions</button>
         </div>
-        <div class="flip-card-back">
+        <div class="flip-card-back" id="join-java-back" inert>
           <div class="flip-card-back-content">
             <div class="flip-card-back-title">Server Address</div>
             <div class="flip-card-back-text">
               Copy the server IP and add it<br />to your Minecraft server list
             </div>
             <button
-              class="flip-card-button"
-              onclick="copyServerIP(this)"
+              class="flip-card-button btn"
+              data-copy-ip
               aria-label="Copy server IP"
             >
               play.pwindows.qzz.io
             </button>
+            <button class="flip-card-back-toggle btn" type="button">Back</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Card 2: Bedrock Direct Launch -->
-    <div class="flip-card">
+    <div class="flip-card" data-flip-card>
       <div class="flip-card-inner">
-        <div class="flip-card-front">
+        <div class="flip-card-front" id="join-bedrock-front">
           <div class="flip-card-icon">
             <img
               src="./assets/mojang/svg/icons/color-dungeons-launcher.svg"
@@ -111,8 +118,14 @@ title: Home
           </div>
           <div class="flip-card-title">Quick Launch</div>
           <div class="flip-card-subtitle">Bedrock Edition</div>
+          <button
+            class="flip-card-toggle btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="join-bedrock-back"
+          >View instructions</button>
         </div>
-        <div class="flip-card-back">
+        <div class="flip-card-back" id="join-bedrock-back" inert>
           <div class="flip-card-back-content">
             <div class="flip-card-back-title">Launch Bedrock</div>
             <div class="flip-card-back-text">
@@ -120,20 +133,21 @@ title: Home
             </div>
             <a
               href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io"
-              class="flip-card-button"
+              class="flip-card-button btn"
               aria-label="Launch Minecraft Bedrock"
             >
               Launch Minecraft
             </a>
+            <button class="flip-card-back-toggle btn" type="button">Back</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Card 3: Bedrock Realms - Coming Soon -->
-    <div class="flip-card">
+    <div class="flip-card" data-flip-card>
       <div class="flip-card-inner">
-        <div class="flip-card-front">
+        <div class="flip-card-front" id="join-realms-front">
           <div class="flip-card-icon">
             <img
               src="./assets/mojang/svg/icons/color-two-players.svg"
@@ -148,20 +162,27 @@ title: Home
           </div>
           <div class="flip-card-title">Bedrock Realms</div>
           <div class="flip-card-subtitle">Coming Soon</div>
+          <button
+            class="flip-card-toggle btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="join-realms-back"
+          >Learn more</button>
         </div>
-        <div class="flip-card-back">
+        <div class="flip-card-back" id="join-realms-back" inert>
           <div class="flip-card-back-content">
             <div class="flip-card-back-title">Not Ready Yet</div>
             <div class="flip-card-back-text">
               Our Bedrock Realms join format<br />is currently under development
             </div>
             <button
-              class="flip-card-button disabled"
+              class="flip-card-button btn disabled"
               disabled
               aria-label="Coming Soon"
             >
               Coming Soon
             </button>
+            <button class="flip-card-back-toggle btn" type="button">Back</button>
           </div>
         </div>
       </div>
