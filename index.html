@@ -192,9 +192,25 @@ title: Home
 <section class="news-home-section" id="news-home-section">
   <div>
     <h1 class="news-heading">Newest News</h1>
-    <p class="news-lead">
-      Stay up to date with the latest news and updates about PWindows, our
-      Minecraft server, and community events.
-    </p>
+    <div class="news-link-container">
+      <a href="/articles" class="see-news-link">See all news</a>
+    </div>
+  </div>
+  <div class="latest-grid">
+    {% assign sorted_articles = site.articles | sort: "date" | reverse %}
+    {% assign latest_articles = sorted_articles | slice: 0, 4 %}
+    
+    {% for article in latest_articles %}
+      <div class="article-card">
+        <a href="{{ article.url | relative_url }}" class="no-icon">
+          <div class="banner" style="background-image: url('{{ article.banner | relative_url }}');"></div>
+          <div class="card-content">
+            <span class="type-label">{{ article.type }}</span>
+            <h2>{{ article.title }}</h2>
+            <p>{{ article.summary | strip_html | truncate: 120 }}</p>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
   </div>
 </section>

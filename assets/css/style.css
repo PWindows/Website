@@ -942,6 +942,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 #sort-select {
@@ -959,15 +960,18 @@ button {
 }
 
 .article-grid,
-.featured-grid {
+.featured-grid,
+.latest-grid {
+  margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 270px));
   gap: 2rem;
+  width: 100%;
+  justify-content: center;
 }
 
 .article-grid {
   justify-content: start;
-  max-width: 1200px;
   padding: 0 2rem;
 }
 
@@ -1261,6 +1265,14 @@ button {
   position: relative;
   overflow: hidden;
   padding: 80px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.news-home-section > div:first-child {
+  flex-basis: 100%;
+  text-align: center;
 }
 
 .news-heading{
@@ -1271,4 +1283,19 @@ button {
   text-align: center;
   text-shadow:
     0 4px 0px var(--mc-vanilla-coldgrey-4);
+}
+
+.see-news-link{
+  font-family: "Minecraft Seven v2", monospace;
+  font-size: 1rem;
+  color: var(--secondary-darker);
+  display: inline-block;
+}
+
+.news-link-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
