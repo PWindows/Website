@@ -46,8 +46,9 @@ title: Home
 
 <!-- Transition Section -->
 <div class="transition-section" aria-hidden="true"></div>
-
-<section class="howtojoin" id="howtojoin">
+<!-- Another section with the id to prevent offsets from navbar -->
+<section id="howtojoin" style="position: relative; bottom: 80px"></section>
+<section class="howtojoin">
   <div>
     <h2 class="howtojoin-heading">How to join</h2>
     <div class="howtojoin-footnote">Applies to Minecraft server only</div>
@@ -76,13 +77,17 @@ title: Home
             type="button"
             aria-expanded="false"
             aria-controls="join-java-back"
-          >View instructions</button>
+          >
+            View instructions
+          </button>
         </div>
         <div class="flip-card-back" id="join-java-back" inert>
           <div class="flip-card-back-content">
             <div class="flip-card-back-title">Server Address</div>
             <div class="flip-card-back-text">
-              Copy the server IP and add it<br />to your Minecraft server list
+              Copy the server IP and add it
+              <br />
+              to your Minecraft server list
             </div>
             <button
               class="flip-card-button-ip btn btn-gold"
@@ -91,7 +96,9 @@ title: Home
             >
               play.pwindows.qzz.io
             </button>
-            <button class="flip-card-back-toggle btn" type="button">Back</button>
+            <button class="flip-card-back-toggle btn" type="button">
+              Back
+            </button>
           </div>
         </div>
       </div>
@@ -120,13 +127,17 @@ title: Home
             type="button"
             aria-expanded="false"
             aria-controls="join-bedrock-back"
-          >View instructions</button>
+          >
+            View instructions
+          </button>
         </div>
         <div class="flip-card-back" id="join-bedrock-back" inert>
           <div class="flip-card-back-content">
             <div class="flip-card-back-title">Launch Bedrock</div>
             <div class="flip-card-back-text">
-              Click to open Minecraft Bedrock<br />and join our server instantly
+              Click to open Minecraft Bedrock
+              <br />
+              and join our server instantly
             </div>
             <a
               href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io"
@@ -135,7 +146,9 @@ title: Home
             >
               Launch Minecraft
             </a>
-            <button class="flip-card-back-toggle btn" type="button">Back</button>
+            <button class="flip-card-back-toggle btn" type="button">
+              Back
+            </button>
           </div>
         </div>
       </div>
@@ -164,13 +177,17 @@ title: Home
             type="button"
             aria-expanded="false"
             aria-controls="join-realms-back"
-          >Learn more</button>
+          >
+            Learn more
+          </button>
         </div>
         <div class="flip-card-back" id="join-realms-back" inert>
           <div class="flip-card-back-content">
             <div class="flip-card-back-title">Not Ready Yet</div>
             <div class="flip-card-back-text">
-              Our Bedrock Realms join format<br />is currently under development
+              Our Bedrock Realms join format
+              <br />
+              is currently under development
             </div>
             <button
               class="flip-card-button btn btn-green disabled"
@@ -179,7 +196,9 @@ title: Home
             >
               Coming Soon
             </button>
-            <button class="flip-card-back-toggle btn" type="button">Back</button>
+            <button class="flip-card-back-toggle btn" type="button">
+              Back
+            </button>
           </div>
         </div>
       </div>
@@ -197,20 +216,22 @@ title: Home
     </div>
   </div>
   <div class="latest-grid">
-    {% assign sorted_articles = site.articles | sort: "date" | reverse %}
-    {% assign latest_articles = sorted_articles | slice: 0, 4 %}
-    
-    {% for article in latest_articles %}
-      <div class="article-card">
-        <a href="{{ article.url | relative_url }}" class="no-icon">
-          <div class="banner" style="background-image: url('{{ article.banner | relative_url }}');"></div>
-          <div class="card-content">
-            <span class="type-label">{{ article.type }}</span>
-            <h2>{{ article.title }}</h2>
-            <p>{{ article.summary | strip_html | truncate: 120 }}</p>
-          </div>
-        </a>
-      </div>
+    {% assign sorted_articles = site.articles | sort: "date" | reverse %} {%
+    assign latest_articles = sorted_articles | slice: 0, 4 %} {% for article in
+    latest_articles %}
+    <div class="article-card">
+      <a href="{{ article.url | relative_url }}" class="no-icon">
+        <div
+          class="banner"
+          style="background-image: url('{{ article.banner | relative_url }}');"
+        ></div>
+        <div class="card-content">
+          <span class="type-label">{{ article.type }}</span>
+          <h2>{{ article.title }}</h2>
+          <p>{{ article.summary | strip_html | truncate: 120 }}</p>
+        </div>
+      </a>
+    </div>
     {% endfor %}
   </div>
 </section>
