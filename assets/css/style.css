@@ -372,6 +372,18 @@ button {
     inset 0 6px 0 var(--mc-vanilla-coldgrey-4);
 }
 
+.about-link:hover {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    var(--mc-vanilla-coldgrey-5);
+}
+
+.about-link:active {
+  background: var(--mc-vanilla-coldgrey-6);
+  box-shadow: none;
+  border-color: var(--mc-vanilla-coldgrey-1);
+}
+
 /*Landing Hero*/
 .landing {
   height: 100vh;
@@ -914,9 +926,11 @@ button {
   border-color: white;
 }
 
-.flip-card-button.disabled {
+.flip-card-button.disabled,
+.flip-card-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  width: 100%;
 }
 
 /* Articles */
