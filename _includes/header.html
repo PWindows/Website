@@ -3,37 +3,73 @@
 
 <!-- Mobile Menu Overlay -->
 <div class="menu-overlay" id="mobileMenu">
-    <nav class="nav-menu">
-        <a href="/about" class="nav-item" onclick="aboutPage()">📖 About</a>
-        <a href="/articles" class="nav-item" onclick="newsPage()">📰 Newest News</a>
-        <a href="#server" class="nav-item secondary" onclick="closeMenu()">🎮 Join Server</a>
-        <a href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io" class="nav-item primary" onclick="closeMenu()">🚀 Launch Minecraft</a>
-    </nav>
-    
-    <div class="menu-footer">
-        <p>Connect with PWindows</p>
-        <div class="social-links">
-            <a href="#" class="social-link" title="Discord">💬</a>
-            <a href="#" class="social-link" title="YouTube">📺</a>
-            <a href="#" class="social-link" title="Twitter">🐦</a>
-        </div>
+  <nav class="nav-menu">
+    <a href="/about" class="nav-item btn" onclick="aboutPage()">
+      <img
+        class="nav-item-icon"
+        src="/assets/mojang/svg/icons/book.png"
+        alt="Book icon"
+        aria-hidden="true"
+      />
+      About
+    </a>
+    <a href="/articles" class="nav-item btn" onclick="newsPage()">
+      📰 Newest News
+    </a>
+    <a href="#server" class="btn nav-item secondary" onclick="closeMenu()">
+      🎮 Join Server
+    </a>
+    <a
+      href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io"
+      class="btn nav-item primary"
+      onclick="closeMenu()"
+    >
+      🚀 Launch Minecraft
+    </a>
+  </nav>
+
+  <div class="menu-footer">
+    <p>Connect with PWindows</p>
+    <div class="social-links">
+      <a href="#" class="social-link" title="Discord"
+        ><img
+          onclick="window.location.href = 'https://discord.pwindows.qzz.io/'"
+          class="social-link-img"
+          src="/assets/mojang/svg/icons/pixel-close.svg"
+      /></a>
+      <a href="#" class="social-link" title="YouTube"
+        ><img
+          onclick="window.location.href = 'https://www.youtube.com/@PWindows'"
+          class="social-link-img"
+          src="/assets/mojang/svg/icons/color-youtube.svg"
+      /></a>
+      <a href="#" class="social-link" title="Twitter"
+        ><img
+          onclick="window.location.href = 'https://x.com/pwindowsz'"
+          class="social-link-img"
+          src="/assets/mojang/svg/icons/color-twitter.svg"
+      /></a>
     </div>
+  </div>
 </div>
 
 <!-- Topbar -->
 <nav class="topbar">
-    <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+  <div class="hamburger" id="hamburger">
+    <div>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+  </div>
 
-    <div class="logo" id="logo" onclick="goHome()">
-        <img src="https://pwindows.qzz.io/assets/PWindows.png" alt="PWindows Logo" class="logo-img">
-    </div>
+  <div class="logo" id="logo" onclick="goHome()">
+    <img
+      src="https://pwindows.qzz.io/assets/PWindows.png"
+      alt="PWindows Logo"
+      class="logo-img"
+    />
+  </div>
 
-    <a href="/about" class="about-btn">About</a>
+  <a href="/about" class="about-btn btn">About</a>
 </nav>
-
-
-

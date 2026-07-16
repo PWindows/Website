@@ -1,3 +1,21 @@
+:root {
+  --primary: #ffce02;
+  --secondary: #ffa93e;
+  --secondary-darker: #c07d2b;
+  --mc-vanilla-green-1: #a0e081;
+  --mc-vanilla-green-2: #86d562;
+  --mc-vanilla-green-3: #6cc349;
+  --mc-vanilla-green-4: #52a535;
+  --mc-vanilla-green-5: #3c8527;
+  --mc-vanilla-green-6: #2a641c;
+  --mc-vanilla-coldgrey-1: #8089a2;
+  --mc-vanilla-coldgrey-2: #6c748c;
+  --mc-vanilla-coldgrey-3: #5d647a;
+  --mc-vanilla-coldgrey-4: #4d5466;
+  --mc-vanilla-coldgrey-5: #3d4250;
+  --mc-vanilla-coldgrey-6: #2c2f3a;
+}
+
 /* Fonts */
 @font-face {
   font-family: "Minecraft Ten v2";
@@ -11,6 +29,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../mojang/fonts/NotoSans-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
 /* Base */
 * {
   margin: 0;
@@ -20,24 +44,22 @@
 
 body {
   font-family:
-    "Minecraft Seven v2", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    "Noto Sans", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
   background-image: url("../mojang/img/bg-wool-white.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  color: #333333;
   overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family:
-    "Minecraft Ten v2", "Impact", "Trebuchet MS", "Segoe UI", sans-serif;
+button {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  overflow: visible;
+  text-transform: none;
 }
 
 /* Header and Navigation */
@@ -54,8 +76,7 @@ h6 {
   justify-content: space-between;
   padding: 0 40px;
   z-index: 1003;
-  border-bottom: 1px solid rgba(255, 206, 2, 0.2);
-  box-shadow: 0 4px 20px rgba(255, 206, 2, 0.1);
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
 }
 
 /* Hamburger Menu Styles */
@@ -69,7 +90,6 @@ h6 {
   cursor: pointer;
   z-index: 1002;
   padding: 8px;
-  border-radius: 8px;
   transform: rotate(0deg);
   transition:
     all 0.4s ease,
@@ -77,28 +97,24 @@ h6 {
 }
 
 .hamburger:hover {
-  background: rgba(255, 206, 2, 0.1);
-  box-shadow: 0 0 20px rgba(255, 206, 2, 0.3);
+  background: #7771;
+  & > span {
+  background: var(--mc-vanilla-coldgrey-6);
+  }
 }
 
 .hamburger span {
   width: 100%;
   height: 3px;
-  background: linear-gradient(45deg, #333, #555);
-  border-radius: 2px;
+  background: var(--mc-vanilla-coldgrey-4);
+  box-shadow: inset -4px 0px 0 var(--mc-vanilla-coldgrey-1);
   transition: all 0.4s ease;
   transform-origin: center;
-  box-shadow: 0 0 6px rgba(255, 206, 2, 0.4);
 }
 
 /* Hamburger Animation - Simple 90 degree rotation, keep all 3 lines */
-.hamburger.active {
+.hamburger.active > span {
   transform: rotate(90deg);
-}
-
-.hamburger.active span {
-  background: linear-gradient(45deg, #ffce02, #e6b800);
-  box-shadow: 0 0 8px rgba(255, 206, 2, 0.6);
 }
 
 /* Mobile Menu Overlay - Desktop sidebar, mobile full screen */
@@ -116,7 +132,6 @@ h6 {
   flex-direction: column;
   padding-top: 100px;
   overflow-y: auto;
-  box-shadow: 0 0 50px rgba(255, 206, 2, 0.2);
 }
 
 .menu-overlay.active {
@@ -136,6 +151,35 @@ h6 {
 }
 
 .nav-item {
+  background: var(--mc-vanilla-coldgrey-5);
+  box-shadow:
+    inset 0 -6px 0 var(--mc-vanilla-coldgrey-6),
+    inset 0 6px 0 var(--mc-vanilla-coldgrey-4);
+  border: 2px solid var(--mc-vanilla-coldgrey-6);
+  font-family: "Minecraft Seven v2", monospace;
+  width: 100%;
+}
+
+.nav-item-icon {
+  width: 1.25em;
+  height: 1.25em;
+  object-fit: contain;
+  vertical-align: -0.2em;
+}
+
+.nav-item:hover {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    var(--mc-vanilla-coldgrey-5);
+}
+
+.nav-item:active {
+  background: var(--mc-vanilla-coldgrey-6);
+  box-shadow: none;
+  border-color: var(--mc-vanilla-coldgrey-1);
+}
+
+/*.nav-item {
   text-decoration: none;
   font-family: "Minecraft Seven v2", monospace;
   font-size: 1.1rem;
@@ -183,10 +227,50 @@ h6 {
 
 .nav-item:active {
   transform: translateY(-1px) scale(1.01);
-}
+}*/
 
 /* Special styling for different nav items */
 .nav-item.primary {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), var(--secondary);
+  box-shadow:
+    inset 0 -6px 0 var(--secondary-darker),
+    inset 0 6px 0 var(--primary);
+  border: 2px solid var(--secondary-darker);
+}
+
+.nav-item.primary:hover {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), var(--secondary);
+}
+
+.nav-item.primary:active {
+  background: var(--secondary-darker);
+  box-shadow: none;
+  border-color: white;
+}
+
+.nav-item.secondary {
+  background: var(--mc-vanilla-green-5);
+  box-shadow:
+    inset 0 -6px 0 var(--mc-vanilla-green-6),
+    inset 0 6px 0 var(--mc-vanilla-green-4);
+  border: 2px solid var(--mc-vanilla-green-6);
+}
+
+.nav-item.secondary:hover {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    var(--mc-vanilla-green-5);
+}
+
+.nav-item.secondary:active {
+  background: var(--mc-vanilla-green-6);
+  box-shadow: none;
+  border-color: white;
+}
+
+/*.nav-item.primary {
   background: linear-gradient(135deg, #ffce02, #ffd93d);
   color: #333;
   border-color: #ffce02;
@@ -223,7 +307,7 @@ h6 {
   box-shadow:
     0 15px 40px rgba(34, 197, 94, 0.2),
     0 0 30px rgba(34, 197, 94, 0.3);
-}
+}*/
 
 /* Menu Footer */
 .menu-footer {
@@ -249,23 +333,16 @@ h6 {
 .social-link {
   width: 45px;
   height: 45px;
-  background: rgba(255, 206, 2, 0.1);
-  border: 1px solid rgba(255, 206, 2, 0.3);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #ffce02;
   font-size: 1.1rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 4px 15px rgba(255, 206, 2, 0.1);
 }
 
-.social-link:hover {
-  background: linear-gradient(135deg, #ffce02, #ffd93d);
-  color: #333;
-  box-shadow: 0 4px 15px rgba(255, 206, 2, 0.3);
+.social-link-img {
+  width: 100%;
+  height: 100%;
 }
 
 /* Logo with enhanced interactivity */
@@ -303,26 +380,24 @@ h6 {
 
 /* About button with glow */
 .about-btn {
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #333, #555);
-  color: white;
-  text-decoration: none;
-  border-radius: 20px;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: none;
-  cursor: pointer;
-  font-size: 12px;
+  background: var(--mc-vanilla-coldgrey-5);
+  box-shadow:
+    inset 0 -6px 0 var(--mc-vanilla-coldgrey-6),
+    inset 0 6px 0 var(--mc-vanilla-coldgrey-4);
+  border: 2px solid var(--mc-vanilla-coldgrey-6);
   font-family: "Minecraft Seven v2", monospace;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .about-btn:hover {
-  background: linear-gradient(135deg, #555, #777);
-  transform: translateY(-2px) scale(1.05);
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(255, 206, 2, 0.2);
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    var(--mc-vanilla-coldgrey-5);
+}
+
+.about-btn:active {
+  background: var(--mc-vanilla-coldgrey-6);
+  box-shadow: none;
+  border-color: var(--mc-vanilla-coldgrey-1);
 }
 
 /*Landing Hero*/
@@ -336,7 +411,6 @@ h6 {
   flex-direction: column;
   position: relative;
   padding-top: 80px;
-  border-radius: 25px;
   margin: 100px 15px 15px;
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.15),
@@ -371,22 +445,21 @@ h6 {
   z-index: 2;
 }
 
-.hero-card .server-info .launch-btn {
+.hero-card {
   transition:
     opacity 0.6s ease-out,
     transform 0.6s ease-out;
 }
 
-.hero-card:hover {
+/*.hero-card:hover {
   transform: translateY(-5px);
-}
+}*/
 
 /* Hero Card with enhanced glow */
 .hero-card {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border-radius: 25px;
-  padding: 30px 35px 5px 35px;
+  padding: 20px 35px 15px 35px;
   box-shadow:
     0 25px 80px rgba(0, 0, 0, 0.15),
     0 0 40px rgba(255, 206, 2, 0.2),
@@ -433,26 +506,16 @@ h6 {
 
 .hero-line-1 {
   display: block;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.hero-line-2 {
-  display: block;
-  color: #ffce02;
-  text-shadow:
-    0 0 20px rgba(255, 206, 2, 0.5),
-    0 0 40px rgba(255, 206, 2, 0.3);
+  text-shadow: #7d7d7d 0 4px;
 }
 
 .animated-word {
-  color: #ffce02;
-  display: block;
+  color: var(--primary);
+  display: flex;
+  justify-content: center;
   position: relative;
   text-align: center;
-  margin-top: 0.2em;
-  text-shadow:
-    0 0 20px rgba(255, 206, 2, 0.5),
-    0 0 40px rgba(255, 206, 2, 0.3);
+  margin: 0.2em 0em;
 }
 
 .word-container {
@@ -475,16 +538,16 @@ h6 {
   text-align: center;
   padding: 0;
   font-family: "Minecraft Ten v2", monospace;
-  animation: glow 2s ease-in-out infinite alternate;
+  text-shadow: 0 4px #967800;
 }
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 10px rgba(255, 206, 2, 0.5);
+    text-shadow: 0 0 10px rgba(128, 102, 0, 0.5);
   }
 
   to {
-    text-shadow: 0 0 20px rgba(255, 206, 2, 0.7);
+    text-shadow: 0 0 16px rgba(132, 106, 0, 0.7);
   }
 }
 
@@ -518,32 +581,11 @@ h6 {
   margin-top: 45px;
 }
 
-.server-info {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
-  border: none;
-  border-radius: 16px;
-  padding: 18px 28px;
-  font-family: "Minecraft Seven v2", monospace;
-  font-size: 0.9rem;
-  color: #bc9700;
-  font-weight: 400;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    0 0 20px rgba(255, 206, 2, 0.2);
-  border: 1px solid rgba(255, 206, 2, 0.3);
-  cursor: pointer;
-  transition:
-    all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform 0.3s ease;
-  position: relative;
-}
-
 .server-info::after,
 .flip-card-button::after {
   content: "Copied!";
   position: absolute;
-  top: -35px;
+  top: -30px;
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(
@@ -568,47 +610,67 @@ h6 {
   transform: translateX(-50%) translateY(-5px);
 }
 
-.server-info:active {
-  transform: translateY(-5px) scale(1.05);
+.server-info {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), var(--secondary);
   box-shadow:
-    0 15px 50px rgba(0, 0, 0, 0.15),
-    0 0 30px rgba(255, 206, 2, 0.3);
+    inset 0 -6px 0 var(--secondary-darker),
+    inset 0 6px 0 var(--primary);
+  border: 2px solid var(--secondary-darker);
+  position: relative;
+  text-decoration: none;
 }
 
-.launch-btn {
-  background: rgba(255, 255, 255, 0.95);
-  color: #22c55e;
-  padding: 18px 36px;
-  border: none;
-  border-radius: 16px;
-  font-size: 0.9rem;
-  font-weight: 500;
+.server-info:hover {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), var(--secondary);
+}
+
+.server-info:active {
+  background: var(--secondary-darker);
+  box-shadow: none;
+  border-color: white;
+}
+
+.btn {
+  color: white;
+  padding: 15px 28px;
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  font-weight: 800;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    0 0 20px rgba(34, 197, 94, 0.2);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  font-family: "Minecraft Seven v2", monospace;
+  letter-spacing: 0.03em;
 }
 
-.launch-btn:hover, .server-info:hover {
-  transform: translateY(-5px);
+.launch-btn {
+  background: var(--mc-vanilla-green-5);
   box-shadow:
-    0 15px 50px rgba(0, 0, 0, 0.2),
-    0 0 30px rgba(34, 197, 94, 0.4);
-  background: rgba(255, 255, 255, 1);
+    inset 0 -6px 0 var(--mc-vanilla-green-6),
+    inset 0 6px 0 var(--mc-vanilla-green-4);
+  border: 2px solid var(--mc-vanilla-green-6);
+}
+
+.launch-btn:hover {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    var(--mc-vanilla-green-5);
+}
+
+.launch-btn:active {
+  background: var(--mc-vanilla-green-6);
+  box-shadow: none;
+  border-color: white;
 }
 
 /*About*/
 .transition-section {
   min-height: 10vh;
   background-image: url("../mojang/img/bg-wool-white-dark.png");
-  background-size: cover;
-  background-position: center;
+  image-rendering: pixelated;
+  background-size: 1396px;
+  background-position: 0px bottom;
   background-repeat: repeat-x;
   display: flex;
   align-items: center;
@@ -647,11 +709,11 @@ h6 {
 .howtojoin {
   min-height: 50vh;
   background-image: url("../mojang/img/bg-wool-dark.png");
-  background-size: cover;
-  background-position: center;
+  image-rendering: pixelated;
+  background-size: 800px;
+  background-position: 0px top;
   background-repeat: repeat;
   display: flex;
-  align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
@@ -665,19 +727,19 @@ h6 {
   color: #ffffff;
   text-align: center;
   text-shadow:
-    0 0 20px rgba(255, 206, 2, 0.5),
-    0 0 40px rgba(255, 206, 2, 0.3);
-  margin-bottom: 60px;
+    0 0 20px rgba(255, 248, 218, 0.5),
+    0 0 40px rgba(255, 243, 195, 0.3),
+    0 4px 0px var(--mc-vanilla-coldgrey-4);
   padding-right: 20px;
 }
 
-.howtojoin-heading::after {
-  content: "Applies to Minecraft server only";
+.howtojoin-footnote {
   display: block;
   font-size: 0.8rem;
   color: #cccccc;
   margin-top: 10px;
-  font-family: "Minecraft Seven v2", monospace;
+  text-align: center;
+  margin-bottom: 60px;
   opacity: 0.8;
 }
 
@@ -693,7 +755,6 @@ h6 {
 .flip-card {
   perspective: 1000px;
   height: 320px;
-  cursor: pointer;
 }
 
 .flip-card-inner {
@@ -748,10 +809,10 @@ h6 {
   color: #333;
   margin-bottom: 15px;
   text-align: center;
+  white-space: nowrap;
 }
 
 .flip-card-subtitle {
-  font-family: "Minecraft Seven v2", monospace;
   font-size: 0.9rem;
   color: #666;
   text-align: center;
@@ -770,7 +831,6 @@ h6 {
 }
 
 .flip-card-back-text {
-  font-family: "Minecraft Seven v2", monospace;
   font-size: 0.85rem;
   color: #333;
   line-height: 1.6;
@@ -933,12 +993,15 @@ h6 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 20px 30px 20px;
   }
 
   .howtojoin-heading {
-    margin-bottom: 20px;
     padding-right: 0;
+  }
+
+  .howtojoin-footnote {
+    margin-bottom: 20px;
   }
 
   .howtojoin-cards {
