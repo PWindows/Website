@@ -1077,7 +1077,7 @@ button {
 .see-news-link {
   font-family: var(--font-pixel);
   font-size: 1rem;
-  color: var(--secondary-darker);
+  color: var(--primary);
   display: inline-block;
 }
 
