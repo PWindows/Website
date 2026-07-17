@@ -92,6 +92,7 @@
     {% include header.html %}
     <div class="sr-only" id="site-status" role="status" aria-live="polite"></div>
     <main>{{ content }}</main>
+    {% include footer.html %}
     <script src="{{ '/assets/js/main.js?v=' | append: site.time | relative_url }}"></script>
   </body>
 </html>

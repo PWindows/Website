@@ -69,7 +69,7 @@ h2 {
   font-size: 2rem;
 }
 
-a:not(.btn):not(.button):not(.no-icon):not(.logo)::after {
+a:not(.btn):not(.button):not(.no-icon):not(.logo):not(.footer-logo)::after {
   content: "";
   display: inline-block;
   width: 0.7em;
@@ -264,7 +264,6 @@ button {
   image-rendering: pixelated;
 }
 
-/* Logo with enhanced interactivity */
 .logo {
   height: 80%;
   display: flex;
@@ -291,10 +290,6 @@ button {
   max-height: 100%;
   object-fit: contain;
   transition: all 0.3s ease;
-}
-
-.logo:hover .logo-img {
-  filter: drop-shadow(0 0 10px rgba(255, 206, 2, 0.6));
 }
 
 /* About button */
@@ -796,6 +791,10 @@ button {
   display: block;
 }
 
+.margin {
+  margin-bottom: 2rem;
+}
+
 .card-content {
   padding: 1rem; /* dark text for white background */
 }
@@ -1165,4 +1164,103 @@ button {
   width: auto;
   padding: 0.75rem 2rem;
   align-self: flex-start;
+}
+
+.footer {
+  background-color: #161514;
+  padding: 4rem 2rem 2rem;
+  image-rendering: pixelated;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 180px;
+}
+
+.footer-column-left {
+  flex: 1.5;
+}
+
+.footer-column-center {
+  flex: 1;
+}
+
+.footer-column-right {
+  flex: 1;
+}
+
+.footer-logo {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.footer-logo img {
+  max-height: 60px;
+  width: auto;
+}
+
+.footer-copy,
+.footer-disclaimer,
+.footer-rules {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.footer-disclaimer {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.footer-rules a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.footer-rules a:hover {
+  text-decoration: underline;
+}
+.footer-heading a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+}
+
+.footer-heading a:hover {
+  color: var(--primary);
+}
+
+.footer-column-right .footer-heading:not(:first-of-type) {
+  margin-top: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+  text-decoration: underline;
 }
