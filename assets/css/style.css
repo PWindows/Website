@@ -264,6 +264,10 @@ button {
   image-rendering: pixelated;
 }
 
+.social-link-img--compact {
+  height: 40px;
+}
+
 .logo {
   height: 80%;
   display: flex;
@@ -292,9 +296,8 @@ button {
   transition: all 0.3s ease;
 }
 
-/* About button */
-.about-btn {
-  font-family: var(--font-pixel);
+.logo:hover .logo-img {
+  filter: drop-shadow(0 0 10px rgba(255, 206, 2, 0.6));
 }
 
 /*Landing Hero*/
@@ -426,9 +429,11 @@ button {
   margin-top: 45px;
 }
 
-.server-info::after,
-.flip-card-button::after,
-.flip-card-button-ip::after {
+.copy-button {
+  position: relative;
+}
+
+.copy-button::after {
   content: "Copied!";
   position: absolute;
   top: -30px;
@@ -448,15 +453,9 @@ button {
   white-space: nowrap;
 }
 
-.server-info.copied::after,
-.flip-card-button.copied::after,
-.flip-card-button-ip.copied::after {
+.copy-button.copied::after {
   opacity: 1;
   transform: translateX(-50%) translateY(-5px);
-}
-
-.server-info {
-  position: relative;
 }
 
 .btn {
@@ -540,8 +539,7 @@ button {
 }
 
 /* How to Join Section */
-.howtojoin,
-.news-home-section {
+.textured-section {
   min-height: 500px;
   image-rendering: pixelated;
   background-size: 800px;
@@ -559,8 +557,7 @@ button {
   scroll-margin-top: 80px;
 }
 
-.howtojoin-heading,
-.news-heading {
+.section-heading {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 7vw, 4rem);
   font-weight: 400;
@@ -649,8 +646,12 @@ button {
 }
 
 .flip-card-icon {
-  font-size: 4rem;
   margin-bottom: 30px;
+}
+
+.flip-card-icon img {
+  width: 4rem;
+  height: 4rem;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
 
@@ -702,29 +703,7 @@ button {
   margin-bottom: 25px;
 }
 
-.flip-card-button {
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.flip-card-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.flip-card-button-ip:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.server-info:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.launch-btn:disabled {
+.btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -738,7 +717,6 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
 }
 
 #sort-select {
@@ -771,7 +749,7 @@ button {
 
 .article-grid {
   justify-content: start;
-  padding: 0 2rem;
+  padding: 0 2rem 10px;
 }
 
 .article-card {
@@ -1061,8 +1039,7 @@ button {
 }
 
 @media (pointer: coarse) {
-  .hero-card:hover,
-  .server-info:hover {
+  .hero-card:hover {
     transform: none;
     box-shadow: none;
   }
