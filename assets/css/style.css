@@ -1015,6 +1015,7 @@ button {
   } 
 
   .footer-logo { 
+    max-width: 80vw;
     width: auto;
   } 
 }
