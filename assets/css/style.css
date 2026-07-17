@@ -30,6 +30,10 @@ body {
   overflow-x: hidden;
 }
 
+html, body {
+  overflow-anchor: none;
+}
+
 h1,
 h2,
 h3,
