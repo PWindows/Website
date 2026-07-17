@@ -112,6 +112,7 @@ function setupAnchorScrolling() {
 
 function setupFlipCards() {
   const hasFinePointer = window.matchMedia("(any-pointer: fine)");
+  const desktopPointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   let keyboardNavigation = false;
 
   document.addEventListener("keydown", (event) => {
@@ -139,13 +140,14 @@ function setupFlipCards() {
     }
 
     function setPreciseMode(enabled) {
+      const hideControls = enabled || desktopPointer.matches;
       card.classList.toggle("precise-interaction", enabled);
-      openButton.disabled = enabled;
-      openButton.hidden = enabled;
-      closeButton.disabled = enabled;
-      closeButton.hidden = enabled;
-      openButton.setAttribute("aria-hidden", String(enabled));
-      closeButton.setAttribute("aria-hidden", String(enabled));
+      openButton.disabled = hideControls;
+      openButton.hidden = hideControls;
+      closeButton.disabled = hideControls;
+      closeButton.hidden = hideControls;
+      openButton.setAttribute("aria-hidden", String(hideControls));
+      closeButton.setAttribute("aria-hidden", String(hideControls));
     }
 
     function configureKeyboardAccess() {
@@ -211,6 +213,7 @@ function setupFlipCards() {
     });
 
     hasFinePointer.addEventListener("change", configureKeyboardAccess);
+    desktopPointer.addEventListener("change", configureKeyboardAccess);
     configureKeyboardAccess();
   });
 }
