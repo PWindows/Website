@@ -72,7 +72,7 @@ h2 {
 a:not(.btn):not(.button):not(.no-icon):not(.logo):not(.footer-logo)::after {
   content: "";
   display: inline-block;
-  width: 0.7em;
+  width: 0.5em;
   height: 0.5em;
   margin-left: 0.5em;
   background-color: currentColor;
@@ -218,6 +218,7 @@ button {
 .nav-item {
   font-family: var(--font-pixel);
   width: 100%;
+  text-align: left;
   image-rendering: pixelated;
 }
 
@@ -226,10 +227,6 @@ button {
   height: 1.25em;
   object-fit: contain;
   vertical-align: -0.2em;
-}
-
-.nav-item-bottom {
-  
 }
 
 /* Menu Footer */
@@ -1012,12 +1009,12 @@ button {
 
   .about-grid p {
     min-height: 0;
-  } 
+  }
 
-  .footer-column{ 
+  .footer-column {
     max-width: 80vw;
     width: auto;
-  } 
+  }
 }
 
 @media (max-width: 480px) {
@@ -1216,10 +1213,14 @@ button {
 .footer-rules a:hover {
   text-decoration: underline;
 }
+
+.footer-heading {
+  margin-bottom: 0.5rem;
+}
+
 .footer-heading a {
   color: #ffffff;
   text-decoration: none;
-  margin-bottom: 0.5rem;
 }
 
 .footer-heading a:hover {
@@ -1261,8 +1262,7 @@ button {
   height: auto;
   padding-top: 2rem;
   border-top: 1px solid #333;
-  padding-left: 1vh;
-  padding-right: 1vh;
+  padding: 4rem 2rem 2rem;
 }
 
 .rules-container {
