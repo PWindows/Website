@@ -182,6 +182,7 @@ GEM
     typhoeus (1.6.0)
       ethon (>= 0.18.0)
     unicode-display_width (2.6.0)
+    wdm (0.2.0)
     webrick (1.9.2)
     yell (2.2.2)
     zeitwerk (2.8.2)
@@ -203,6 +204,7 @@ DEPENDENCIES
   html-proofer (~> 5.0)
   jekyll (~> 4.4)
   jekyll-sitemap
+  wdm (>= 0.1.0)
   webrick
 
 BUNDLED WITH

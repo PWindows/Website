@@ -487,6 +487,8 @@ button {
   text-decoration: none;
   display: inline-block;
   letter-spacing: 0.03em;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .btn:hover {
@@ -707,17 +709,14 @@ button {
 
 .flip-card-button {
   position: relative;
-  max-width: 100%;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 
-.flip-card-button.disabled,
 .flip-card-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  width: 100%;
 }
 
 /* Articles */
@@ -906,10 +905,8 @@ button {
 
   .btn:not(.nav-item) {
     font-size: 1rem;
-    word-wrap: break-word;
     text-align: center;
   }
-
 }
 
 @media (max-width: 768px) {
