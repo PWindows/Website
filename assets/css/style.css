@@ -728,7 +728,6 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
 }
 
 #sort-select {
@@ -761,7 +760,7 @@ button {
 
 .article-grid {
   justify-content: start;
-  padding: 0 2rem;
+  padding: 0 2rem 10px;
 }
 
 .article-card {
