@@ -1,7 +1,7 @@
 <section class="footer">
     <div class="footer-container">
         <div class="footer-column footer-column-left">
-            <a href="/" class="footer-logo">
+            <a href="{{ '/' | relative_url }}" class="footer-logo">
                 <img src="{{ '/assets/PWindows.png' | relative_url }}" alt="PWindows Logo">
             </a>
             <p class="footer-copy">
@@ -11,16 +11,17 @@
                 Not affiliated with Mojang Studios, Microsoft, or Minecraft.
             </p>
             <p class="footer-rules">
-                <a href="/rules">Rules</a>
+                <a href="{{ '/rules' | relative_url }}">Rules</a>
             </p>
         </div>
         <div class="footer-column footer-column-center">
         <h3 class="footer-heading">
-            <a href="/games">Games</a>
+            <a href="{{ '/games' | relative_url }}">Games</a>
         </h3>
         <ul class="footer-links">
-            <li><a href="/games/obby-of-dominance">Obby Of Dominance</a></li>
-            <li><a href="/games/sacred-cubes">Sacred Cubes</a></li>
+            {% for game in site.data.games %}
+            <li><a href="{{ game.path | relative_url }}">{{ game.title }}</a></li>
+            {% endfor %}
         </ul>
         </div>
 
@@ -29,10 +30,10 @@
         <h3 class="footer-heading"><a href="https://shop.pwindows.qzz.io">Shop</a></h3>
         <h3 class="footer-heading"><a href="https://support.pwindows.qzz.io">Support</a></h3>
         <ul class="footer-links">
-            <li><a href="/feedback">Feedback</a></li>
-            <li><a href="/sitemap.xml">Site map</a></li>
-            <li><a href="/contact">Contact us</a></li>
-            <li><a href="/staff">Staff</a></li>
+            <li><a href="{{ '/feedback' | relative_url }}">Feedback</a></li>
+            <li><a href="{{ '/sitemap' | relative_url }}">Site map</a></li>
+            <li><a href="{{ '/contact' | relative_url }}">Contact us</a></li>
+            <li><a href="{{ '/staff' | relative_url }}">Staff</a></li>
         </ul>
         </div>
     </div>

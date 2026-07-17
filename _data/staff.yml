@@ -1,6 +1,6 @@
 petermazep:
   name: PeterMaZep
-  pfp: https://pwindows.qzz.io/assets/staffpfp/PeterMaZep.png
+  pfp: /assets/staffpfp/PeterMaZep.png
   role: Owner of PWindows
   bio: The owner of PWindows, responsible for coding and managing everything.
   socials:
@@ -10,7 +10,7 @@ petermazep:
 
 isaacaxolotl:
   name: Isaac
-  pfp: https://pwindows.qzz.io/assets/staffpfp/staff.png
+  pfp: /assets/staffpfp/staff.png
   role: Co-Director of Sacred Cubes
   bio: The co-director of Sacred Cubes, responsible for this website 'cause Peter asked me to change it.
   socials:
@@ -20,5 +20,5 @@ isaacaxolotl:
 
 staff:
   name: Staff
-  pfp: https://pwindows.qzz.io/assets/staffpfp/staff.png
+  pfp: /assets/staffpfp/staff.png
   aboutpage: false

@@ -3,6 +3,10 @@
   <head>
     {% assign page_description = page.summary | default: page.description | default: site.description %}
     {% assign page_image = page.banner | default: '/assets/PWindows.png' %}
+    {% assign asset_revision = site.github.build_revision %}
+    {% unless asset_revision %}
+      {% assign asset_revision = site.time | date: '%s' %}
+    {% endunless %}
     {% capture page_full_title %}{% if page.url == '/' %}{{ site.title }} — Not just a Minecraft server{% else %}{{ page.title }} | {{ site.title }}{% endif %}{% endcapture %}
     {% if page.url == "/" %} {% include schema-org.html %} {% endif %}
     <meta charset="UTF-8" />
@@ -73,12 +77,12 @@
 
     <link
       rel="stylesheet"
-      href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}"
+      href="{{ '/assets/css/style.css?v=' | append: asset_revision | relative_url }}"
     />
     {% if page.layout == "news" %}
     <link
       rel="stylesheet"
-      href="{{ '/assets/css/news.css?v=' | append: site.github.build_revision | relative_url }}"
+      href="{{ '/assets/css/news.css?v=' | append: asset_revision | relative_url }}"
     />
     {% endif %}
     {{ content_for_head }}
@@ -93,6 +97,6 @@
     <div class="sr-only" id="site-status" role="status" aria-live="polite"></div>
     <main>{{ content }}</main>
     {% include footer.html %}
-    <script src="{{ '/assets/js/main.js?v=' | append: site.time | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js?v=' | append: asset_revision | relative_url }}"></script>
   </body>
 </html>

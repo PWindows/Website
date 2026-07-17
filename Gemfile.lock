@@ -204,6 +204,7 @@ DEPENDENCIES
   html-proofer (~> 5.0)
   jekyll (~> 4.4)
   jekyll-sitemap
+  nokogiri (~> 1.19)
   wdm (>= 0.1.0)
   webrick
 

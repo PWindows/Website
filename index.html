@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Home
+description: Discover PWindows, a Minecraft server, game studio, and community project.
 ---
 
 <section class="landing" id="home">
@@ -59,7 +60,7 @@ title: Home
         <div class="flip-card-front" id="join-java-front">
           <div class="flip-card-icon">
             <img
-              src="./assets/mojang/svg/icons/color-grass-block.png"
+              src="{{ '/assets/mojang/svg/icons/color-grass-block.png' | relative_url }}"
               alt="Minecraft Grass Block"
               loading="lazy"
             />
@@ -105,7 +106,7 @@ title: Home
         <div class="flip-card-front" id="join-bedrock-front">
           <div class="flip-card-icon">
             <img
-              src="./assets/mojang/svg/icons/color-dungeons-launcher.svg"
+              src="{{ '/assets/mojang/svg/icons/color-dungeons-launcher.svg' | relative_url }}"
               alt="Bedrock Launcher"
               loading="lazy"
             />
@@ -150,7 +151,7 @@ title: Home
         <div class="flip-card-front" id="join-realms-front">
           <div class="flip-card-icon">
             <img
-              src="./assets/mojang/svg/icons/color-two-players.svg"
+              src="{{ '/assets/mojang/svg/icons/color-two-players.svg' | relative_url }}"
               alt="Bedrock Realms"
               loading="lazy"
             />
@@ -204,7 +205,7 @@ title: Home
     <div class="latest-content">
       <h2>PWindows is still in development</h2>
       <p>We have nothing to show YET, so here's a very nice picture of snowing in Minecraft. Feel free to check the news section for updates.</p>
-      <a class="btn about-link bottom-button" href="/articles">Read the news</a>
+      <a class="btn about-link bottom-button" href="{{ '/articles' | relative_url }}">Read the news</a>
     </div>
   </div>
 </section>
@@ -214,26 +215,16 @@ title: Home
   <div>
     <h2 class="news-heading section-heading">Newest News</h2>
     <div class="news-link-container">
-      <a href="/articles" class="see-news-link">See all news</a>
+      <a href="{{ '/articles' | relative_url }}" class="see-news-link">See all news</a>
     </div>
   </div>
   <div class="latest-grid">
-    {% assign sorted_articles = site.articles | sort: "date" | reverse %} {%
-    assign latest_articles = sorted_articles | slice: 0, 4 %} {% for article in
-    latest_articles %}
-    <div class="article-card">
-      <a href="{{ article.url | relative_url }}" class="no-icon">
-        <div
-          class="banner"
-          style="background-image: url('{{ article.banner | relative_url }}');"
-        ></div>
-        <div class="card-content">
-          <span class="type-label">{{ article.type }}</span>
-          <h2>{{ article.title }}</h2>
-          <p>{{ article.summary | strip_html | truncate: 120 }}</p>
-        </div>
-      </a>
-    </div>
+    {% assign sorted_articles = site.articles | sort: "date" | reverse %}
+    {% assign latest_articles = sorted_articles | slice: 0, 4 %}
+    {% for article in latest_articles %}
+      {% include article-card.html article=article %}
+    {% else %}
+      <p class="empty-state empty-state--dark">No news has been published yet.</p>
     {% endfor %}
   </div>
 </section>

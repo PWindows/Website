@@ -12,3 +12,4 @@ group :jekyll_plugins do
 end
 
 gem "html-proofer", "~> 5.0"
+gem "nokogiri", "~> 1.19"

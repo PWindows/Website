@@ -1,10 +1,7 @@
-<!-- Floating particles -->
-<div class="particles" id="particles" aria-hidden="true"></div>
-
 <!-- Mobile Menu Overlay -->
 <div class="menu-overlay" id="mobileMenu" aria-hidden="true" inert>
   <nav class="nav-menu" aria-label="Site menu">
-    <a href="/about" class="nav-item btn">
+    <a href="{{ '/about' | relative_url }}" class="nav-item btn">
       <img
         class="nav-item-icon"
         src="/assets/mojang/svg/icons/book.png"
@@ -13,7 +10,7 @@
       />
       About
     </a>
-    <a href="/articles" class="nav-item btn">
+    <a href="{{ '/articles' | relative_url }}" class="nav-item btn">
       <img
         class="nav-item-icon"
         src="/assets/mojang/Invicon_Map.png"
@@ -22,7 +19,7 @@
       />
       Newest News
     </a>
-    <a href="/games" class="nav-item btn">
+    <a href="{{ '/games' | relative_url }}" class="nav-item btn">
       <img
         class="nav-item-icon"
         src="/assets/icons/controller.png"
@@ -31,10 +28,10 @@
       />
       Games
     </a>
-    <button href="/#howtojoin" class="nav-item btn btn-gold disabled nav-bottom" disabled>
+    <button class="nav-item btn btn-gold nav-bottom" disabled>
       Join Server
     </button>
-    <button href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io" class="btn btn-green nav-item nav-item-bottom disabled" disabled>
+    <button class="btn btn-green nav-item nav-item-bottom" disabled>
       Launch Minecraft Bedrock
     </button>
   </nav>
@@ -96,9 +93,9 @@
     </span>
   </button>
 
-  <a class="logo" id="logo" href="/" aria-label="PWindows home">
+  <a class="logo" href="{{ '/' | relative_url }}" aria-label="PWindows home">
     <img src="/assets/PWindows.png" alt="PWindows" class="logo-img" />
   </a>
 
-  <a href="/#howtojoin" class="launch-btn-top btn-green btn">Join</a>
+  <a href="{{ '/#howtojoin' | relative_url }}" class="launch-btn-top btn-green btn">Join</a>
 </nav>

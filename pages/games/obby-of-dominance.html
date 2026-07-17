@@ -1,0 +1,14 @@
+---
+layout: page
+title: Obby of Dominance
+permalink: /games/obby-of-dominance
+description: Development information for Obby of Dominance by PWindows.
+game: obby-of-dominance
+---
+
+{% assign game = site.data.games | where: "slug", page.game | first %}
+<div class="content-card content-card--centered">
+  <span class="status-label">{{ game.status }}</span>
+  <p>{{ game.summary }}</p>
+  <a class="btn" href="{{ '/games' | relative_url }}">Back to games</a>
+</div>

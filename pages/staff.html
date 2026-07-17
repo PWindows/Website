@@ -1,0 +1,35 @@
+---
+layout: page
+title: Staff
+permalink: /staff
+description: Meet the people working on PWindows projects and its community.
+intro: Meet the people currently helping build and manage PWindows.
+---
+
+<div class="staff-grid">
+  {% for staff_entry in site.data.staff %}
+    {% assign person = staff_entry[1] %}
+    {% if person.aboutpage %}
+    <article class="staff-card">
+      <img
+        class="staff-card-image"
+        src="{{ person.pfp | relative_url }}"
+        alt="{{ person.name | escape }} profile picture"
+        loading="lazy"
+      />
+      <div class="staff-card-content">
+        <h2>{{ person.name }}</h2>
+        <p class="staff-role">{{ person.role }}</p>
+        <p>{{ person.bio }}</p>
+        {% if person.socials %}
+        <ul class="staff-socials" aria-label="{{ person.name | escape }} social links">
+          {% for social in person.socials %}
+          <li><a href="{{ social[1] }}">{{ social[0] | capitalize }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </article>
+    {% endif %}
+  {% endfor %}
+</div>

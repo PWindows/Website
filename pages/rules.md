@@ -2,6 +2,8 @@
 layout: rules
 permalink: /rules
 title: Rules
+description: Read the rules for the PWindows Minecraft server and community.
+last_updated: 2026-07-17T16:37:00+08:00
 ---
 
 ## 1. Be Respectful

@@ -1,0 +1,14 @@
+---
+layout: page
+title: Sacred Cubes
+permalink: /games/sacred-cubes
+description: Development information for Sacred Cubes by PWindows.
+game: sacred-cubes
+---
+
+{% assign game = site.data.games | where: "slug", page.game | first %}
+<div class="content-card content-card--centered">
+  <span class="status-label">{{ game.status }}</span>
+  <p>{{ game.summary }}</p>
+  <a class="btn" href="{{ '/games' | relative_url }}">Back to games</a>
+</div>
