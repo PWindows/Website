@@ -93,6 +93,10 @@ body {
   overflow-x: hidden;
 }
 
+html, body {
+  overflow-anchor: none;
+}
+
 button {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
