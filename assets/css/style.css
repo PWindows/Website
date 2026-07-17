@@ -1012,7 +1012,11 @@ button {
 
   .about-grid p {
     min-height: 0;
-  }
+  } 
+
+  .footer-logo { 
+    width: auto;
+  } 
 }
 
 @media (max-width: 480px) {
