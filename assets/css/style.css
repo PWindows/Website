@@ -1241,3 +1241,33 @@ button {
   color: var(--primary);
   text-decoration: underline;
 }
+
+.rules-heading {
+  margin-bottom: 1rem;
+}
+
+.rules-section {
+  margin-top: 1rem;
+  min-height: 100vh;
+  height: auto;
+  padding-top: 2rem;
+  border-top: 1px solid #333;
+  padding-left: 1vh;
+  padding-right: 1vh;
+}
+
+.rules-container {
+  margin-top: 2rem;
+}
+
+.rules-container h2 {
+  margin-top: 2rem;
+}
+
+.rules-container h2:first-of-type {
+  margin-top: 0;
+}
+
+.last-updated-rules {
+  padding-top: 1rem;
+}
