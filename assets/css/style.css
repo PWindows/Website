@@ -719,6 +719,21 @@ button {
   cursor: not-allowed;
 }
 
+.flip-card-button-ip:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.server-info:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.launch-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Articles */
 .articles-title {
   padding: 6rem 2rem 1rem;
