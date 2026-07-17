@@ -1,5 +1,9 @@
 source "https://rubygems.org"
 
+if Gem.win_platform?
+  gem 'wdm', '>= 0.1.0'
+end
+
 gem "jekyll", "~> 4.4"
 gem "webrick"
 
