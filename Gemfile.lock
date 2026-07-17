@@ -33,6 +33,7 @@ GEM
     ffi (1.17.4-arm-linux-gnu)
     ffi (1.17.4-arm-linux-musl)
     ffi (1.17.4-arm64-darwin)
+    ffi (1.17.4-x64-mingw-ucrt)
     ffi (1.17.4-x86_64-darwin)
     ffi (1.17.4-x86_64-linux-gnu)
     ffi (1.17.4-x86_64-linux-musl)
@@ -51,6 +52,9 @@ GEM
       bigdecimal
       rake (~> 13.3)
     google-protobuf (4.35.1-arm64-darwin)
+      bigdecimal
+      rake (~> 13.3)
+    google-protobuf (4.35.1-x64-mingw-ucrt)
       bigdecimal
       rake (~> 13.3)
     google-protobuf (4.35.1-x86_64-darwin)
@@ -125,6 +129,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.4-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.19.4-x64-mingw-ucrt)
+      racc (~> 1.4)
     nokogiri (1.19.4-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.19.4-x86_64-linux-gnu)
@@ -160,6 +166,8 @@ GEM
       google-protobuf (~> 4.31)
     sass-embedded (1.101.0-arm64-darwin)
       google-protobuf (~> 4.31)
+    sass-embedded (1.101.0-x64-mingw-ucrt)
+      google-protobuf (~> 4.31)
     sass-embedded (1.101.0-x86_64-darwin)
       google-protobuf (~> 4.31)
     sass-embedded (1.101.0-x86_64-linux-gnu)
@@ -186,6 +194,7 @@ PLATFORMS
   arm-linux-musl
   arm-linux-musleabihf
   arm64-darwin
+  x64-mingw-ucrt
   x86_64-darwin
   x86_64-linux-gnu
   x86_64-linux-musl
