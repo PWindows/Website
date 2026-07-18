@@ -17,6 +17,11 @@ intro: Follow the games currently being developed by PWindows.
     {% elsif game.status == "Coming Soon" %}
       {% assign status_color = "#5b9ffb" %}
     {% endif %}
+    {% if game.engine == "Unity" %}
+      {% assign engine_color = "#2196F3" %}
+    {% elsif game.engine == "Roblox" %}
+      {% assign engine_color = "#335FFF" %}
+    {% endif %}
     <div class="games-content-part {% if mod == 0 %}games-content-part--even{% else %}games-content-part--odd{% endif %}">
       <div class="game-card-image">
         <img src="{{ game.image | relative_url }}" alt="{{ game.title }}" class="content-image">
@@ -36,6 +41,9 @@ intro: Follow the games currently being developed by PWindows.
         <h2 class="game-title">{{ game.title }}</h2>
         <p class="game-status" style="color: {{ status_color }}; background: {{ status_color }}11;">
           {{ game.status }}
+        </p>
+        <p class="game-status" style="color: {{ engine_color }}; background: {{ engine_color }}11;">
+          {{ game.engine }}
         </p>
         <p class="game-summary">{{ game.summary }}</p>
         <a class="btn btn-green view-game-btn" href="{{ game.path | relative_url }}">View Game</a>
