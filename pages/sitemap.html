@@ -7,22 +7,23 @@ intro: Find your way around PWindows with this automatically updated list of pub
 page_class: sitemap-page
 ---
 
-{% assign public_pages = site.pages | where: "title" | where_exp: "item", "item.sitemap != false" | sort: "title" %}
 {% assign articles = site.articles | sort: "date" | reverse %}
 
 <div class="sitemap-grid">
   <section class="sitemap-section" aria-labelledby="sitemap-pages-heading">
     <h2 id="sitemap-pages-heading">Pages</h2>
     <ul class="sitemap-links">
-      {% for public_page in public_pages %}
-        {% unless public_page.url == '/games' or public_page.url contains '/games/' or public_page.url == '/articles' or public_page.url == page.url %}
-        <li>
-          <a href="{{ public_page.url | relative_url }}">{{ public_page.title | escape }}</a>
-          {% if public_page.description %}
-          <p>{{ public_page.description }}</p>
-          {% endif %}
-        </li>
-        {% endunless %}
+      {% for public_page in site.pages %}
+        {% if public_page.title and public_page.sitemap != false %}
+          {% unless public_page.url == '/games' or public_page.url contains '/games/' or public_page.url == '/articles' or public_page.url == page.url %}
+          <li>
+            <a href="{{ public_page.url | relative_url }}">{{ public_page.title | escape }}</a>
+            {% if public_page.description %}
+            <p>{{ public_page.description }}</p>
+            {% endif %}
+          </li>
+          {% endunless %}
+        {% endif %}
       {% endfor %}
     </ul>
   </section>
