@@ -1474,6 +1474,8 @@ button {
 .footer-logo {
   display: inline-block;
   margin-bottom: 1rem;
+  max-width: 100vw;
+  width: auto;
 }
 
 .footer-logo img {
