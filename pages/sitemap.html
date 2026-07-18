@@ -7,7 +7,7 @@ intro: Find your way around PWindows with this automatically updated list of pub
 page_class: sitemap-page
 ---
 
-{% assign public_pages = site.pages | where_exp: "item", "item.title and item.sitemap != false" | sort: "title" %}
+{% assign public_pages = site.pages | where: "title" | where_exp: "item", "item.sitemap != false" | sort: "title" %}
 {% assign articles = site.articles | sort: "date" | reverse %}
 
 <div class="sitemap-grid">
