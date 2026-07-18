@@ -6,13 +6,40 @@ description: Explore games being developed by PWindows.
 intro: Follow the games currently being developed by PWindows.
 ---
 
-<div class="content-card-grid game-grid">
+
+<div class="games-content-list">
   {% for game in site.data.games %}
-  <article class="content-card game-card">
-    <span class="status-label">{{ game.status }}</span>
-    <h2>{{ game.title }}</h2>
-    <p>{{ game.summary }}</p>
-    <a class="btn" href="{{ game.path | relative_url }}">View game</a>
-  </article>
+    {% assign mod = forloop.index | modulo: 2 %}
+    {% if game.status == "In development" %}
+      {% assign status_color = "#ffce02" %}
+    {% elsif game.status == "Released" %}
+      {% assign status_color = "#6cc349" %}
+    {% elsif game.status == "Coming Soon" %}
+      {% assign status_color = "#5b9ffb" %}
+    {% endif %}
+    <div class="games-content-part {% if mod == 0 %}games-content-part--even{% else %}games-content-part--odd{% endif %}">
+      <div class="game-card-image">
+        <img src="{{ game.image | relative_url }}" alt="{{ game.title }}" class="content-image">
+
+        {% if game.effect and game.debris %}
+          <img
+            src="{{ game.debris.path | relative_url }}"
+            alt=""
+            class="game-debris"
+            data-debris
+            style="transform: scale({{ game.debris.scale | default: 1 }});"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+      <div class="game-card-text">
+        <h2 class="game-title">{{ game.title }}</h2>
+        <p class="game-status" style="color: {{ status_color }}; background: {{ status_color }}11;">
+          {{ game.status }}
+        </p>
+        <p class="game-summary">{{ game.summary }}</p>
+        <a class="btn btn-green view-game-btn" href="{{ game.path | relative_url }}">View Game</a>
+      </div>
+    </div>
   {% endfor %}
 </div>

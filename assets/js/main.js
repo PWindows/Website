@@ -268,3 +268,44 @@ document.addEventListener("DOMContentLoaded", () => {
   setupFlipCards();
   setupArticleSorting();
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const debrisElements = document.querySelectorAll('[data-debris]');
+
+  function updateDebris() {
+    debrisElements.forEach(function(debris) {
+      const card = debris.closest('.games-content-part');
+      if (!card) return;
+
+      const rect = card.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      const progress = Math.min(1, Math.max(0, (windowHeight - rect.top) / (windowHeight + rect.height)));
+
+      const startY = 20;   
+      const endY = -120;   
+      const translateY = startY + (endY - startY) * progress; // = 20 - (progress * 140)
+
+      const scale = parseFloat(debris.dataset.scale) || 1;
+
+      debris.style.transform = `translateY(${translateY}%) scale(${scale})`;
+    });
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateDebris();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll);
+  window.addEventListener('resize', updateDebris);
+  window.addEventListener('load', updateDebris);
+  updateDebris();
+});

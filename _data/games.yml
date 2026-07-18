@@ -1,11 +1,25 @@
-- slug: obby-of-dominance
-  title: Obby of Dominance
-  path: /games/obby-of-dominance
-  status: In development
-  summary: More information about Obby of Dominance will be published as development progresses.
-
 - slug: sacred-cubes
   title: Sacred Cubes
   path: /games/sacred-cubes
   status: In development
   summary: More information about Sacred Cubes will be published as development progresses.
+  image: /assets/img/sacred-cubes.png
+  effect: false
+  debris:
+    path: /assets/img/sacred-cubes-debris.png
+    size: 60
+    travel: 350
+    scale: 1.5
+
+- slug: obby-of-dominance
+  title: Obby of Dominance
+  path: /games/obby-of-dominance
+  status: In development
+  summary: More information about Obby of Dominance will be published as development progresses.
+  image: /assets/img/obby-of-dominance.png
+  effect: false
+  debris:
+    path: /assets/img/obby-of-dominance-debris.png
+    size: 60
+    travel: 350
+    scale: 1.5
