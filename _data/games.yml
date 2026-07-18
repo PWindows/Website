@@ -6,6 +6,7 @@
   image: /assets/img/sacred-cubes.png
   effect: false
   engine: Unity
+  language: C#
   debris:
     path: /assets/img/sacred-cubes-debris.png
     size: 60
@@ -20,6 +21,7 @@
   image: /assets/img/obby-of-dominance.png
   effect: false
   engine: Roblox
+  language: Luau
   debris:
     path: /assets/img/obby-of-dominance-debris.png
     size: 60
