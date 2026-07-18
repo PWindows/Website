@@ -1318,6 +1318,7 @@ button {
   .footer-column {
     max-width: 80vw;
     width: auto;
+    overflow: hidden;
   }
 }
 
@@ -1452,6 +1453,7 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .footer-column {
@@ -1474,14 +1476,14 @@ button {
 .footer-logo {
   display: inline-block;
   margin-bottom: 1rem;
-  max-width: 80vw;
-  width: auto;
+  max-width: 100%;
+  width: 100%;
 }
 
 .footer-logo img {
   max-height: 60px;
-  max-width: 80vw;
   width: auto;
+  max-width: 100%;
 }
 
 .footer-copy,
