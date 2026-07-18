@@ -302,10 +302,6 @@ button {
   transition: all 0.3s ease;
 }
 
-.logo:hover .logo-img {
-  filter: drop-shadow(0 0 10px rgba(255, 206, 2, 0.6));
-}
-
 /*Landing Hero*/
 .landing {
   height: 100vh;
@@ -354,7 +350,6 @@ button {
   transition: all 0.3s ease;
 }
 
-/* Animated Heading with text glow */
 .hero-heading {
   text-align: center;
   font-size: clamp(2rem, 6vw, 3.5rem);
