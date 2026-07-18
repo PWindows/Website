@@ -234,6 +234,11 @@ button {
   vertical-align: -0.2em;
 }
 
+.nav-item-no-icon::before {
+  content: " ";
+  padding-left: 1.5em;
+}
+
 /* Menu Footer */
 .menu-footer {
   margin-top: auto;
@@ -309,7 +314,6 @@ button {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-top: 80px;
   margin: 100px 15px 15px;
   overflow: hidden;
   max-height: 650px;
@@ -328,7 +332,7 @@ button {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 40px 40px 60px;
   max-width: 1200px;
@@ -352,7 +356,7 @@ button {
 
 .hero-heading {
   text-align: center;
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(2rem, 6vw, 5rem);
   font-weight: 400;
   color: #333;
   margin-bottom: 0;
@@ -896,6 +900,7 @@ button {
 .games-content-part p,
 .staff-card p {
   line-height: 1.65;
+    margin-bottom: 16px;
 }
 
 .content-card-grid,
