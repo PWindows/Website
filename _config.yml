@@ -2,6 +2,7 @@ title: PWindows
 description: Discover PWindows, not just a Minecraft server
 url: "https://www.pwindows.qzz.io"
 exclude:
+  - AGENTS.md
   - README.md
   - tools/
   - vendor/

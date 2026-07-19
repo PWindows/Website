@@ -81,6 +81,7 @@ else
 end
 
 forbidden_outputs = [
+  File.join(DESTINATION, "AGENTS.md"),
   File.join(DESTINATION, "README.md"),
   File.join(DESTINATION, "tools")
 ]
