@@ -6,30 +6,25 @@ description: Meet the people working on PWindows projects and its community.
 intro: Meet the people currently helping build and manage PWindows.
 ---
 
-<div class="staff-grid">
-  {% for staff_entry in site.data.staff %}
-    {% assign person = staff_entry[1] %}
-    {% if person.aboutpage %}
-    <article class="staff-card">
-      <img
-        class="staff-card-image"
-        src="{{ person.pfp | relative_url }}"
-        alt="{{ person.name | escape }} profile picture"
-        loading="lazy"
-      />
-      <div class="staff-card-content">
-        <h2>{{ person.name }}</h2>
-        <p class="staff-role">{{ person.role }}</p>
-        <p>{{ person.bio }}</p>
-        {% if person.socials %}
-        <ul class="staff-socials" aria-label="{{ person.name | escape }} social links">
-          {% for social in person.socials %}
-          <li><a href="{{ social[1] }}">{{ social[0] | capitalize }}</a></li>
-          {% endfor %}
-        </ul>
-        {% endif %}
+<div class="staff-container">
+  {% assign owner = site.data.staff | where: "department", "Owner" | first %}
+    {% if owner %}
+      <h2 class="department-heading">Owner</h2>
+      <div class="staff-grid">
+        {% include staff-card.html person=owner %}
       </div>
-    </article>
     {% endif %}
-  {% endfor %}
+
+    {% assign departments = "Minecraft,Unity,Roblox" | split: "," %}
+    {% for department in departments %}
+      {% assign department_members = site.data.staff | where: "department", department %}
+      {% if department_members.size > 0 %}
+        <h2 class="department-heading">{{ department }}</h2>
+        <div class="staff-grid">
+          {% for person in department_members %}
+            {% include staff-card.html person=person %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
 </div>
