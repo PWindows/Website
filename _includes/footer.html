@@ -1,5 +1,6 @@
-<section class="footer">
-  <div class="footer-container">
+<footer class="footer">
+  <nav class="footer-container" aria-labelledby="footer-navigation-heading">
+    <h2 class="sr-only" id="footer-navigation-heading">Footer navigation</h2>
     <div class="footer-column footer-column-left">
       <a href="{{ '/' | relative_url }}" class="footer-logo">
         <img
@@ -50,10 +51,10 @@
     <!-- Shop, Support, Feedback, etc. -->
     <div class="footer-column footer-column-right">
       <h3 class="footer-heading">
-        <a href="https://shop.pwindows.qzz.io">Shop</a>
+        <a href="{{ site.data.site.links.shop | escape }}">Shop</a>
       </h3>
       <h3 class="footer-heading">
-        <a href="https://support.pwindows.qzz.io">Support</a>
+        <a href="{{ site.data.site.links.support | escape }}">Support</a>
       </h3>
       <ul class="footer-links">
         <li><a href="{{ '/feedback' | relative_url }}">Feedback</a></li>
@@ -62,5 +63,5 @@
         <li><a href="{{ '/staff' | relative_url }}">Staff</a></li>
       </ul>
     </div>
-  </div>
-</section>
+  </nav>
+</footer>

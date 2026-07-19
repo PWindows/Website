@@ -8,15 +8,20 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
   <div class="landing-content">
     <div class="hero-card">
       <h1 class="hero-heading">
-        <span class="hero-line-1">Not just a</span>
-        <span class="hero-line-2">
-          <span class="animated-word">
-            <span class="word-container">
-              <span class="words-list">
-                <span class="word">Minecraft Server</span>
-                <span class="word">Game Studio</span>
-                <span class="word">Community</span>
-                <span class="word">Minecraft Server</span>
+        <span class="sr-only">
+          Not just a Minecraft server, game studio, and community.
+        </span>
+        <span aria-hidden="true">
+          <span class="hero-line-1">Not just a</span>
+          <span class="hero-line-2">
+            <span class="animated-word">
+              <span class="word-container">
+                <span class="words-list">
+                  <span class="word">Minecraft Server</span>
+                  <span class="word">Game Studio</span>
+                  <span class="word">Community</span>
+                  <span class="word">Minecraft Server</span>
+                </span>
               </span>
             </span>
           </span>
@@ -28,18 +33,14 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
     <div class="bottom-content">
       <button
         class="copy-button btn btn-gold"
-        data-copy-ip
+        data-copy-ip="{{ site.data.site.server.address | escape }}"
         aria-label="Copy server IP(Coming Soon)"
         disabled
       >
-        IP: play.pwindows.qzz.io
+        IP: {{ site.data.site.server.address }}
       </button>
 
-      <button
-        class="btn btn-green"
-        aria-label="Go to join section"
-        disabled
-      >
+      <button class="btn btn-green" aria-label="Go to join section" disabled>
         Coming Soon
       </button>
     </div>
@@ -86,7 +87,7 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
             </div>
             <button
               class="copy-button btn btn-gold"
-              data-copy-ip
+              data-copy-ip="{{ site.data.site.server.address | escape }}"
               aria-label="Copy server IP(Coming soon)"
               disabled
             >
@@ -175,11 +176,7 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
               <br />
               is currently under development
             </div>
-            <button
-              class="btn btn-green"
-              disabled
-              aria-label="Coming Soon"
-            >
+            <button class="btn btn-green" disabled aria-label="Coming Soon">
               Coming Soon
             </button>
             <button class="flip-card-back-toggle btn" type="button">
@@ -197,15 +194,24 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
 <section class="latest-update" id="latest-update">
   <div class="latest-update-section">
     <div class="latest-image-container">
-      <img 
-        src="{{ '/assets/mojang/img/bg-snow.png' | relative_url }}" 
+      <img
+        src="{{ '/assets/mojang/img/bg-snow.png' | relative_url }}"
         alt="Snow"
-        loading="lazy">
+        loading="lazy"
+      />
     </div>
     <div class="latest-content">
       <h2>PWindows is still in development</h2>
-      <p>We have nothing to show YET, so here's a very nice picture of snowing in Minecraft. Feel free to check the news section for updates.</p>
-      <a class="btn about-link bottom-button" href="{{ '/articles' | relative_url }}">Read the news</a>
+      <p>
+        We have nothing to show YET, so here's a very nice picture of snowing in
+        Minecraft. Feel free to check the news section for updates.
+      </p>
+      <a
+        class="btn about-link bottom-button"
+        href="{{ '/articles' | relative_url }}"
+      >
+        Read the news
+      </a>
     </div>
   </div>
 </section>
@@ -216,18 +222,53 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
   <div>
     <h2 class="projects-heading section-heading">Our projects</h2>
     <div class="projects-link-container">
-      <a href="{{ '/games' | relative_url }}" class="link-yellow">See our games</a>
+      <a href="{{ '/games' | relative_url }}" class="link-yellow">
+        See our games
+      </a>
     </div>
     <div class="projects-grid">
       <article>
         <h2>Minecraft Server</h2>
         <div class="project-image-holder"></div>
-        <p>Our Minecraft server project is still in development. Stay tuned for updates!</p>
+        <p>
+          Our Minecraft server project is still in development. Stay tuned for
+          updates!
+        </p>
       </article>
       <article>
         <h2>Game Studio</h2>
         <div class="project-image-holder"></div>
-        <p>We have been working on many games including Sacred Cubes and Obby Of Dominance. We have many departments including the <a href="{{ '/departments/roblox' | relative_url}}" class="link-yellow-sec">Roblox department</a> and the <a class="link-yellow-sec" href="{{ '/departments/unity' | relative_url}}">Unity department</a>.</p>
+        <p>
+          We have been working on new games as a game studio, such as
+          <a
+            href="{{ '/games/sacred-cubes' | relative_url}}"
+            class="link-yellow-sec"
+          >
+            Sacred Cubes
+          </a>
+          and
+          <a
+            href="{{ '/games/obby-of-dominance' | relative_url}}"
+            class="link-yellow-sec"
+          >
+            Obby Of Dominance
+          </a>
+          . We have many departments including the
+          <a
+            href="{{ '/departments/roblox' | relative_url}}"
+            class="link-yellow-sec"
+          >
+            Roblox department
+          </a>
+          and the
+          <a
+            class="link-yellow-sec"
+            href="{{ '/departments/unity' | relative_url}}"
+          >
+            Unity department
+          </a>
+          .
+        </p>
         <a class="btn" href="{{ '/departments' | relative_url }}">Learn more</a>
       </article>
     </div>
@@ -239,16 +280,17 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
   <div>
     <h2 class="news-heading section-heading">Newest News</h2>
     <div class="news-link-container">
-      <a href="{{ '/articles' | relative_url }}" class="link-yellow-sec">See all news</a>
+      <a href="{{ '/articles' | relative_url }}" class="link-yellow-sec">
+        See all news
+      </a>
     </div>
   </div>
   <div class="latest-grid">
-    {% assign sorted_articles = site.articles | sort: "date" | reverse %}
-    {% assign latest_articles = sorted_articles | slice: 0, 4 %}
-    {% for article in latest_articles %}
-      {% include article-card.html article=article %}
-    {% else %}
-      <p class="empty-state empty-state--dark">No news has been published yet.</p>
+    {% assign sorted_articles = site.articles | sort: "date" | reverse %} {%
+    assign latest_articles = sorted_articles | slice: 0, 4 %} {% for article in
+    latest_articles %} {% include article-card.html article=article %} {% else
+    %}
+    <p class="empty-state empty-state--dark">No news has been published yet.</p>
     {% endfor %}
   </div>
 </section>

@@ -14,8 +14,9 @@ explicitly requires a change.
   `permalink` so reorganizing source files does not change its URL.
 - `_articles/` contains news posts in the `articles` collection.
 - `_layouts/` contains page shells; `_includes/` contains reusable markup.
-- `_data/games.yml`, `_data/departments.yml`, and `_data/staff.yml` are the
-  canonical sources for game, department, and staff information.
+- `_data/games.yml`, `_data/departments.yml`, `_data/staff.yml`, and
+  `_data/site.yml` are the canonical sources for game, department, staff, and
+  shared site-link information.
 - `assets/css/style.css` is the main production stylesheet.
 - `assets/css/news.css` contains article-specific styles.
 - `assets/js/main.js` contains site-wide behavior.
@@ -113,9 +114,15 @@ Game records in `_data/games.yml` require:
 - `path`
 - `status`
 - `summary`
+- `image`
+- `engine`
+- `language`
 
 Game paths must point to real public pages. Keep game lists and game footer
-links data-driven instead of duplicating them in templates.
+links data-driven instead of duplicating them in templates. Optional debris
+effects use `effect: true` with a tracked root-relative `debris.path`; a
+positive `debris.scale` is optional. Disabled effects may retain placeholder
+debris metadata, but the referenced asset must exist before enabling the effect.
 
 Department records in `_data/departments.yml` require:
 
@@ -142,6 +149,10 @@ Articles should use valid staff keys for `author`, retain stable filenames and
 URLs, and provide the front matter required by their layout. Reuse
 `_includes/article-card.html` for article listings and preserve the empty-news
 state.
+
+Shared server and external-link values belong in `_data/site.yml`. Templates
+and JavaScript-facing data attributes must render those values instead of
+duplicating literal URLs or the server address.
 
 ## CSS and responsive behavior
 

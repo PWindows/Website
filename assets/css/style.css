@@ -94,7 +94,6 @@ a:not(.btn):not(.button):not(.no-icon):not(.logo):not(.footer-logo)::after {
 body {
   font-family: var(--font-body);
   background: url("../mojang/img/bg-wool-white.png");
-  overflow-x: hidden;
 }
 
 body.menu-open {
@@ -354,6 +353,7 @@ button {
   position: relative;
   overflow: hidden;
   margin: 0;
+  width: 100%;
   max-width: 850px;
   transition: all 0.3s ease;
 }
@@ -390,7 +390,6 @@ button {
   position: relative;
   height: 1.3em;
   overflow: hidden;
-  min-width: 500px;
 }
 
 .words-list {
@@ -405,6 +404,9 @@ button {
   padding: 0;
   font-family: var(--font-display);
   text-shadow: 0 4px #967800;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
   animation: perfectWordScroll 9s ease-in-out infinite;
 }
 
@@ -733,14 +735,15 @@ button {
   padding: 0.4rem 0.8rem;
   font-size: 1rem;
   border-radius: 6px;
+  background: white;
   border: 1px solid #ccc;
 }
 
 .banner {
   height: 180px;
-  background-size: cover;
-  background-position: center;
   width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .article-grid,
@@ -816,7 +819,7 @@ button {
 .sort-controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 5rem;
   margin-right: 2rem;
 }
@@ -851,7 +854,6 @@ article > p {
 }
 
 .sort-controls select {
-  font-family: "Minecraft Seven v2", sans-serif;
   font-size: 1rem;
   line-height: 1.2; /* tighter line height */
   padding: 6px 10px; /* give vertical breathing room */
@@ -1084,9 +1086,14 @@ article > p {
   pointer-events: none;
   opacity: 0.8;
   z-index: 2;
-  will-change: transform;
   image-rendering: pixelated;
   transform: translateY(20%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .game-debris {
+    will-change: transform;
+  }
 }
 
 .game-status {
@@ -1097,6 +1104,37 @@ article > p {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
+}
+
+.game-status--in-development {
+  color: #5f4c00;
+  background: #fff4b3;
+}
+
+.game-status--released {
+  color: #1b5e20;
+  background: #e8f5e9;
+}
+
+.game-status--coming-soon {
+  color: #1e3a8a;
+  background: #dbeafe;
+}
+
+.game-meta--unity,
+.game-meta--luau {
+  color: #075985;
+  background: #e0f2fe;
+}
+
+.game-meta--roblox {
+  color: #1e3a8a;
+  background: #e0e7ff;
+}
+
+.game-meta--c {
+  color: #68217a;
+  background: #f3e8ff;
 }
 
 .game-summary {
@@ -1360,10 +1398,6 @@ article > p {
     margin-bottom: 0;
   }
 
-  .word-container {
-    min-width: 350px;
-  }
-
   .bottom-content {
     width: 100%;
     margin-top: 16px;
@@ -1457,10 +1491,6 @@ article > p {
 
   .btn {
     font-size: 0.8rem;
-  }
-
-  .word-container {
-    min-width: 300px;
   }
 
   .howtojoin-cards {
@@ -1592,7 +1622,6 @@ article > p {
   max-width: 1200px;
   margin: 0 auto;
   flex-wrap: wrap;
-  overflow: hidden;
 }
 
 .footer-column {
@@ -1750,6 +1779,10 @@ article > p {
 
 .projects-section {
   background-image: url("../mojang/img/bg-wool-dark.png");
+}
+
+.projects-grid {
+  max-width: 1100px;
 }
 
 .projects-heading {

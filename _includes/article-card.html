@@ -6,12 +6,13 @@
   data-title="{{ article.title | escape }}"
 >
   <a href="{{ article.url | relative_url }}" class="no-icon">
-    <div
+    <img
       class="banner"
-      role="img"
-      aria-label="{{ article.title | escape }} banner"
-      style="background-image: url('{{ article.banner | relative_url | escape }}');"
-    ></div>
+      src="{{ article.banner | relative_url }}"
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
     <div class="card-content">
       <span class="type-label">{{ article.type }}</span>
       <h2>{{ article.title }}</h2>

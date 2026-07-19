@@ -52,7 +52,7 @@
     <p>Connect with PWindows</p>
     <div class="social-links">
       <a
-        href="https://discord.pwindows.qzz.io/"
+        href="{{ site.data.site.links.discord | escape }}"
         class="social-link no-icon"
         aria-label="PWindows on Discord"
       >
@@ -63,7 +63,7 @@
         />
       </a>
       <a
-        href="https://www.youtube.com/@PWindows"
+        href="{{ site.data.site.links.youtube | escape }}"
         class="social-link no-icon"
         aria-label="PWindows on YouTube"
       >
@@ -74,7 +74,7 @@
         />
       </a>
       <a
-        href="https://x.com/pwindowsz"
+        href="{{ site.data.site.links.twitter | escape }}"
         class="social-link no-icon"
         aria-label="PWindows on Twitter"
       ><!-- Do not change to X! -->
@@ -106,7 +106,11 @@
   </button>
 
   <a class="logo" href="{{ '/' | relative_url }}" aria-label="PWindows home">
-    <img src="/assets/PWindows.png" alt="PWindows" class="logo-img" />
+    <img
+      src="{{ '/assets/PWindows.png' | relative_url }}"
+      alt="PWindows"
+      class="logo-img"
+    />
   </a>
 
   <a href="{{ '/#howtojoin' | relative_url }}" class="launch-btn-top btn-green btn">Join</a>
