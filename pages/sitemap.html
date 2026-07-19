@@ -2,7 +2,7 @@
 layout: page
 title: Site Map
 permalink: /sitemap
-description: Browse every public page, game, and news article on the PWindows website.
+description: Browse every public page, game, department, and news article on the PWindows website.
 intro: Find your way around PWindows with this automatically updated list of public content.
 page_class: sitemap-page
 ---
@@ -15,7 +15,7 @@ page_class: sitemap-page
     <ul class="sitemap-links">
       {% for public_page in site.pages %}
         {% if public_page.title and public_page.sitemap != false %}
-          {% unless public_page.url == '/games' or public_page.url contains '/games/' or public_page.url == '/articles' or public_page.url == page.url %}
+          {% unless public_page.url == '/games' or public_page.url contains '/games/' or public_page.url == '/departments' or public_page.url contains '/departments/' or public_page.url == '/articles' or public_page.url == page.url %}
           <li>
             <a href="{{ public_page.url | relative_url }}">{{ public_page.title | escape }}</a>
             {% if public_page.description %}
@@ -44,7 +44,24 @@ page_class: sitemap-page
     </ul>
   </section>
 
-  <section class="sitemap-section sitemap-section--wide" aria-labelledby="sitemap-news-heading">
+  <section class="sitemap-section" aria-labelledby="sitemap-departments-heading">
+    <h2 id="sitemap-departments-heading">Departments</h2>
+    <ul class="sitemap-links">
+      <li>
+        <a href="{{ '/departments/' | relative_url }}">All departments</a>
+        <p>Meet the teams responsible for PWindows projects.</p>
+      </li>
+      {% for department_entry in site.data.departments %}
+        {% assign department = department_entry[1] %}
+      <li>
+        <a href="{{ department.path | relative_url }}">{{ department.name | escape }}</a>
+        <p>{{ department.bio }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="sitemap-section" aria-labelledby="sitemap-news-heading">
     <h2 id="sitemap-news-heading">News</h2>
     <ul class="sitemap-links sitemap-links--articles">
       <li>

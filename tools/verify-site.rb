@@ -7,29 +7,48 @@ require "yaml"
 
 ROOT = File.expand_path("..", __dir__)
 DESTINATION = File.expand_path(ARGV.fetch(0, "_site"), ROOT)
-SITE_URL = "https://www.pwindows.qzz.io"
+SITE_URL = "http://localhost:4000"
 
-PUBLIC_ROUTES = {
-  "/" => "index.html",
-  "/404.html" => "404.html",
-  "/about" => "about.html",
-  "/articles" => "articles.html",
-  "/contact" => "contact.html",
-  "/feedback" => "feedback.html",
-  "/games" => "games.html",
-  "/games/obby-of-dominance" => "games/obby-of-dominance.html",
-  "/games/sacred-cubes" => "games/sacred-cubes.html",
-  "/rules" => "rules.html",
-  "/sitemap" => "sitemap.html",
-  "/staff" => "staff.html"
-}.freeze
+PUBLIC_ROUTES = %w[
+  /
+  /404.html
+  /about
+  /articles
+  /contact
+  /departments/
+  /departments/minecraft
+  /departments/roblox
+  /departments/unity
+  /feedback
+  /games
+  /games/obby-of-dominance
+  /games/sacred-cubes
+  /rules
+  /sitemap
+  /staff
+].freeze
+
+def generated_page_path(path)
+  route = path.to_s.delete_prefix("/")
+  relative_file = if route.empty?
+                    "index.html"
+                  elsif route.end_with?("/")
+                    File.join(route, "index.html")
+                  elsif File.extname(route).empty?
+                    "#{route}.html"
+                  else
+                    route
+                  end
+
+  File.join(DESTINATION, relative_file)
+end
 
 errors = []
 
-PUBLIC_ROUTES.each do |route, relative_file|
-  file = File.join(DESTINATION, relative_file)
+PUBLIC_ROUTES.each do |route|
+  file = generated_page_path(route)
   unless File.file?(file)
-    errors << "Missing generated route #{route} (#{relative_file})"
+    errors << "Missing generated route #{route} (#{file.delete_prefix("#{DESTINATION}/")})"
     next
   end
 
@@ -52,7 +71,7 @@ if File.file?(sitemap_file)
   locations = sitemap.xpath("//*[local-name()='loc']").map { |node| URI(node.text).path }
   errors << "Sitemap contains duplicate locations" unless locations.length == locations.uniq.length
 
-  expected_pages = PUBLIC_ROUTES.keys.to_set - ["/404.html"]
+  expected_pages = PUBLIC_ROUTES.to_set - ["/404.html"]
   article_locations = locations.select { |path| path.start_with?("/article/") }
   source_article_count = Dir[File.join(ROOT, "_articles", "*.{md,markdown,html}")].length
   errors << "Sitemap article count does not match _articles" unless article_locations.length == source_article_count
@@ -69,7 +88,7 @@ human_sitemap_file = File.join(DESTINATION, "sitemap.html")
 if File.file?(human_sitemap_file)
   human_sitemap = Nokogiri::HTML5(File.read(human_sitemap_file))
   human_links = human_sitemap.css("main a[href]").map { |link| URI(link["href"]).path }.to_set
-  expected_human_links = (PUBLIC_ROUTES.keys.to_set - ["/404.html", "/sitemap"]) | article_locations.to_set
+  expected_human_links = (PUBLIC_ROUTES.to_set - ["/404.html", "/sitemap"]) | article_locations.to_set
   missing_human_links = expected_human_links - human_links
   errors << "Human-readable site map is missing: #{missing_human_links.to_a.join(', ')}" unless missing_human_links.empty?
 
@@ -100,8 +119,15 @@ games.each do |game|
   %w[slug title path status summary].each do |field|
     errors << "Game #{game['slug'] || '(unknown)'} is missing #{field}" if game[field].to_s.strip.empty?
   end
-  output = File.join(DESTINATION, "#{game['path'].delete_prefix('/')}.html")
-  errors << "Game #{game['slug']} points to a missing page" unless File.file?(output)
+  errors << "Game #{game['slug']} points to a missing page" unless File.file?(generated_page_path(game["path"]))
+end
+
+departments = YAML.safe_load_file(File.join(ROOT, "_data", "departments.yml"))
+departments.each do |key, department|
+  %w[name path staff_department bio].each do |field|
+    errors << "Department #{key} is missing #{field}" if department[field].to_s.strip.empty?
+  end
+  errors << "Department #{key} points to a missing page" unless File.file?(generated_page_path(department["path"]))
 end
 
 staff = YAML.safe_load_file(File.join(ROOT, "_data", "staff.yml"))
