@@ -74,7 +74,8 @@ a:not(.btn):not(.button):not(.no-icon):not(.logo):not(.footer-logo)::after {
   display: inline-block;
   width: 0.5em;
   height: 0.5em;
-  margin-left: 0.5em;
+  margin-left: 0.4em;
+  margin-right: 0.1em;
   background-color: currentColor;
   clip-path: var(--arrow-shape);
   transition: transform 0.2s ease;
@@ -1627,10 +1628,7 @@ button {
 }
 
 .link-yellow-sec {
-  font-family: var(--font-pixel);
-  font-size: 1rem;
   color: var(--secondary);
-  display: inline-block;
   text-decoration: none;
 }
 
