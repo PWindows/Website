@@ -4,7 +4,7 @@
     <a href="{{ '/about' | relative_url }}" class="nav-item btn">
       <img
         class="nav-item-icon"
-        src="/assets/mojang/svg/icons/book.png"
+        src="{{ '/assets/mojang/svg/icons/book.png' | relative_url }}"
         alt="Book icon"
         aria-hidden="true"
       />
@@ -13,7 +13,7 @@
     <a href="{{ '/articles' | relative_url }}" class="nav-item btn">
       <img
         class="nav-item-icon"
-        src="/assets/mojang/Invicon_Map.png"
+        src="{{ '/assets/mojang/Invicon_Map.png' | relative_url }}"
         alt="Map icon"
         aria-hidden="true"
       />
@@ -22,7 +22,7 @@
     <a href="{{ '/games' | relative_url }}" class="nav-item btn">
       <img
         class="nav-item-icon"
-        src="/assets/icons/controller.png"
+        src="{{ '/assets/icons/controller.png' | relative_url }}"
         alt="Controller icon"
         aria-hidden="true"
       />
@@ -31,7 +31,7 @@
     <button class="nav-item btn btn-gold nav-bottom" disabled>
       <img
         class="nav-item-icon"
-        src="/assets/mojang/svg/icons/what-block.svg"
+        src="{{ '/assets/mojang/svg/icons/what-block.svg' | relative_url }}"
         alt="Grass block icon"
         aria-hidden="true"
       />
@@ -40,7 +40,7 @@
     <button class="btn btn-green nav-item nav-item-bottom" disabled>
       <img
         class="nav-item-icon"
-        src="/assets/mojang/svg/icons/color-grass-block.png"
+        src="{{ '/assets/mojang/svg/icons/color-grass-block.png' | relative_url }}"
         alt="Grass block icon"
         aria-hidden="true"
       />
@@ -52,35 +52,35 @@
     <p>Connect with PWindows</p>
     <div class="social-links">
       <a
-        href="https://discord.pwindows.qzz.io/"
+        href="{{ site.data.site.links.discord | escape }}"
         class="social-link no-icon"
         aria-label="PWindows on Discord"
       >
         <img
           class="social-link-img"
-          src="/assets/mojang/svg/icons/discord.png"
+          src="{{ '/assets/mojang/svg/icons/discord.png' | relative_url }}"
           alt=""
         />
       </a>
       <a
-        href="https://www.youtube.com/@PWindows"
+        href="{{ site.data.site.links.youtube | escape }}"
         class="social-link no-icon"
         aria-label="PWindows on YouTube"
       >
         <img
           class="social-link-img"
-          src="/assets/mojang/svg/icons/color-youtube.svg"
+          src="{{ '/assets/mojang/svg/icons/color-youtube.svg' | relative_url }}"
           alt=""
         />
       </a>
       <a
-        href="https://x.com/pwindowsz"
+        href="{{ site.data.site.links.twitter | escape }}"
         class="social-link no-icon"
         aria-label="PWindows on Twitter"
       ><!-- Do not change to X! -->
         <img
           class="social-link-img social-link-img--compact"
-          src="/assets/mojang/svg/icons/color-twitter.svg"
+          src="{{ '/assets/mojang/svg/icons/color-twitter.svg' | relative_url }}"
           alt=""
         />
       </a>
@@ -106,7 +106,11 @@
   </button>
 
   <a class="logo" href="{{ '/' | relative_url }}" aria-label="PWindows home">
-    <img src="/assets/PWindows.png" alt="PWindows" class="logo-img" />
+    <img
+      src="{{ '/assets/PWindows.png' | relative_url }}"
+      alt="PWindows"
+      class="logo-img"
+    />
   </a>
 
   <a href="{{ '/#howtojoin' | relative_url }}" class="launch-btn-top btn-green btn">Join</a>

@@ -14,6 +14,9 @@
   --mc-vanilla-coldgrey-4: #4d5466;
   --mc-vanilla-coldgrey-5: #3d4250;
   --mc-vanilla-coldgrey-6: #2c2f3a;
+  --card-background: rgba(255, 255, 255, 0.96);
+  --card-border: rgba(61, 66, 80, 0.2);
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   --font-display: "Minecraft Ten v2", monospace;
   --font-pixel: "Minecraft Seven v2", monospace;
   --font-body: "Noto Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -91,7 +94,6 @@ a:not(.btn):not(.button):not(.no-icon):not(.logo):not(.footer-logo)::after {
 body {
   font-family: var(--font-body);
   background: url("../mojang/img/bg-wool-white.png");
-  overflow-x: hidden;
 }
 
 body.menu-open {
@@ -351,6 +353,7 @@ button {
   position: relative;
   overflow: hidden;
   margin: 0;
+  width: 100%;
   max-width: 850px;
   transition: all 0.3s ease;
 }
@@ -387,7 +390,6 @@ button {
   position: relative;
   height: 1.3em;
   overflow: hidden;
-  min-width: 500px;
 }
 
 .words-list {
@@ -402,6 +404,9 @@ button {
   padding: 0;
   font-family: var(--font-display);
   text-shadow: 0 4px #967800;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
   animation: perfectWordScroll 9s ease-in-out infinite;
 }
 
@@ -664,9 +669,10 @@ button {
 .flip-card-title {
   font-family: var(--font-display);
   font-size: 1.5rem;
+  line-height: 1.2;
   margin-bottom: 15px;
   text-align: center;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .flip-card-subtitle {
@@ -729,14 +735,15 @@ button {
   padding: 0.4rem 0.8rem;
   font-size: 1rem;
   border-radius: 6px;
+  background: white;
   border: 1px solid #ccc;
 }
 
 .banner {
   height: 180px;
-  background-size: cover;
-  background-position: center;
   width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .article-grid,
@@ -762,24 +769,44 @@ button {
 }
 
 .article-card {
-  background: #f9f9f9; /* light card background */
-  border: 1px solid #ddd; /* subtle border for contrast */
+  min-width: 0;
+  background: var(--card-background);
+  border: 2px solid var(--card-border);
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  box-shadow: var(--card-shadow);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .article-card:hover,
 .article-card:focus-within {
-  transform: translateY(-4px); /* subtle hover lift */
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
 }
 
 .card-content {
-  padding: 1rem; /* dark text for white background */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.25rem;
+}
+
+.card-content h2 {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.card-content p {
+  line-height: 1.6;
 }
 
 .type-label {
   display: inline-block;
+  align-self: flex-start;
   background: #ffd700;
   color: #000;
   font-size: 0.75rem;
@@ -792,7 +819,7 @@ button {
 .sort-controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 5rem;
   margin-right: 2rem;
 }
@@ -810,12 +837,23 @@ button {
 }
 
 .article-card a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
   text-decoration: none;
   color: inherit;
 }
 
+.article-card a:focus-visible {
+  outline-offset: -4px;
+}
+
+article > p {
+  margin: 0.5em 0em;
+}
+
 .sort-controls select {
-  font-family: "Minecraft Seven v2", sans-serif;
   font-size: 1rem;
   line-height: 1.2; /* tighter line height */
   padding: 6px 10px; /* give vertical breathing room */
@@ -849,37 +887,54 @@ button {
 }
 
 .about-grid,
-.projects-grid {
+.projects-grid,
+.departments-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem;
+  width: 100%;
   text-align: left;
 }
 
 .about-grid article,
-.projects-grid article {
+.projects-grid article,
+.departments-grid article {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid rgba(61, 66, 80, 0.2);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  background: var(--card-background);
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
 }
 
-.projects-grid article{
-  min-height: 400px;
-  max-width: 400px;
+.projects-grid article {
+  min-height: 100%;
 }
 
-.about-grid h2
-.projects-grid h2 {
+.about-grid h2,
+.projects-grid h2,
+.departments-grid h2 {
   margin-bottom: 1rem;
   font-family: var(--font-display);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
-.about-grid p
-.projects-grid p {
+.about-grid p,
+.projects-grid p,
+.departments-grid p {
+  flex: 1;
   min-height: 5rem;
   margin-bottom: 1.5rem;
   line-height: 1.6;
+}
+
+.about-grid .btn,
+.projects-grid .btn,
+.departments-grid .btn {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 /* Shared content pages */
@@ -910,14 +965,46 @@ button {
 .games-content-part p,
 .staff-card p {
   line-height: 1.65;
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
-.content-card-grid,
-.staff-grid {
+.content-card-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem;
+}
+
+.staff-container {
+  width: min(900px, 100%);
+  margin-inline: auto;
+}
+
+.staff-container .department-heading {
+  margin: 2.5rem 0 1rem;
+}
+
+.staff-container .department-heading:first-child {
+  margin-top: 0;
+}
+
+.staff-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+
+.department-team {
+  margin: 3rem auto 0;
+}
+
+.department-team-heading {
+  margin-bottom: 1rem;
+}
+
+.staff-empty-state {
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  line-height: 1.6;
 }
 
 .games-content-list {
@@ -926,18 +1013,29 @@ button {
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
 }
 
 .content-card,
 .staff-card {
-  background: rgba(255, 255, 255, 0.96);
-  border: 2px solid rgba(61, 66, 80, 0.2);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  min-width: 0;
+  background: var(--card-background);
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
 }
 
 .content-card {
   padding: 2rem;
+}
+
+.content-card-grid .content-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-card-grid .content-card .btn {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 .games-content-part--even {
@@ -950,6 +1048,12 @@ button {
 
 .game-card-image {
   flex: 1;
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  min-width: 0;
+  padding: 1.5rem;
+  background: rgba(61, 66, 80, 0.05);
   position: relative;
   overflow: hidden;
 }
@@ -957,12 +1061,15 @@ button {
 .game-card-image img {
   width: 100%;
   height: auto;
+  max-height: 420px;
   display: block;
+  object-fit: contain;
 }
 
 .game-card-text {
   flex: 1;
-  padding: 1rem;
+  min-width: 0;
+  padding: 2rem;
 }
 
 .game-card-text .game-title {
@@ -979,9 +1086,14 @@ button {
   pointer-events: none;
   opacity: 0.8;
   z-index: 2;
-  will-change: transform;
   image-rendering: pixelated;
   transform: translateY(20%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .game-debris {
+    will-change: transform;
+  }
 }
 
 .game-status {
@@ -994,6 +1106,37 @@ button {
   margin-bottom: 1rem;
 }
 
+.game-status--in-development {
+  color: #5f4c00;
+  background: #fff4b3;
+}
+
+.game-status--released {
+  color: #1b5e20;
+  background: #e8f5e9;
+}
+
+.game-status--coming-soon {
+  color: #1e3a8a;
+  background: #dbeafe;
+}
+
+.game-meta--unity,
+.game-meta--luau {
+  color: #075985;
+  background: #e0f2fe;
+}
+
+.game-meta--roblox {
+  color: #1e3a8a;
+  background: #e0e7ff;
+}
+
+.game-meta--c {
+  color: #68217a;
+  background: #f3e8ff;
+}
+
 .game-summary {
   font-size: 1rem;
   line-height: 1.6;
@@ -1004,12 +1147,12 @@ button {
 @media (max-width: 768px) {
   .games-content-part {
     flex-direction: column !important;
-    padding: 1.5rem;
-    gap: 1.5rem;
+    gap: 0;
   }
 
   .game-card-text {
-    padding: 0;
+    width: 100%;
+    padding: 1.5rem;
   }
 
   .game-card-text .game-title {
@@ -1020,21 +1163,28 @@ button {
 .content-card h2,
 .staff-card h2 {
   margin-bottom: 0.75rem;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
-.content-card p
+.content-card p,
 .games-content-part p {
   margin-bottom: 1.5rem;
 }
 
 .games-content-part {
   display: flex;
-  gap: 3rem;
+  gap: 0;
   align-items: center;
+  min-width: 0;
+  background: var(--card-background);
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
 }
 
 .content-card--centered {
-  max-width: 720px;
+  margin-inline: auto;
 }
 
 .page-actions {
@@ -1056,7 +1206,7 @@ button {
 
 .staff-card {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
+  grid-template-columns: minmax(220px, 32%) minmax(0, 1fr);
   overflow: hidden;
 }
 
@@ -1064,11 +1214,13 @@ button {
   width: 100%;
   height: 100%;
   min-height: 260px;
+  max-height: 360px;
   object-fit: cover;
   background: var(--mc-vanilla-coldgrey-2);
 }
 
 .staff-card-content {
+  min-width: 0;
   padding: 2rem;
 }
 
@@ -1105,10 +1257,11 @@ button {
 }
 
 .sitemap-section {
+  min-width: 0;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.96);
-  border: 2px solid rgba(61, 66, 80, 0.2);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  background: var(--card-background);
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
 }
 
 .sitemap-section--wide {
@@ -1245,10 +1398,6 @@ button {
     margin-bottom: 0;
   }
 
-  .word-container {
-    min-width: 350px;
-  }
-
   .bottom-content {
     width: 100%;
     margin-top: 16px;
@@ -1293,8 +1442,7 @@ button {
     margin: 0 2rem 1.5rem;
   }
 
-  .article-grid,
-  .featured-grid {
+  .article-grid {
     padding-right: 2rem;
   }
 
@@ -1309,7 +1457,8 @@ button {
   }
 
   .about-grid,
-  .projects-grid {
+  .projects-grid,
+  .departments-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1318,17 +1467,13 @@ button {
     padding: 8rem 1.25rem 4rem;
   }
 
-  .content-card-grid,
-  .staff-grid {
+  .content-card-grid {
     grid-template-columns: 1fr;
   }
 
-  .staff-card {
-    grid-template-columns: 120px minmax(0, 1fr);
-  }
-
   .about-grid p,
-  .projects-grid p {
+  .projects-grid p,
+  .departments-grid p {
     min-height: 0;
   }
 
@@ -1346,10 +1491,6 @@ button {
 
   .btn {
     font-size: 0.8rem;
-  }
-
-  .word-container {
-    min-width: 300px;
   }
 
   .howtojoin-cards {
@@ -1411,12 +1552,15 @@ button {
 .latest-update-section {
   display: flex;
   gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   align-items: stretch;
 }
 
 .latest-image-container {
   flex: 1;
+  min-width: 0;
 }
 
 .latest-image-container img {
@@ -1430,6 +1574,7 @@ button {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0;
   justify-content: space-between;
 }
 
@@ -1450,6 +1595,20 @@ button {
   align-self: flex-start;
 }
 
+@media (max-width: 768px) {
+  .latest-update {
+    padding: 3rem 1.25rem;
+  }
+
+  .latest-update-section {
+    flex-direction: column;
+  }
+
+  .latest-image-container {
+    aspect-ratio: 16 / 9;
+  }
+}
+
 .footer {
   background-color: #161514;
   padding: 4rem 2rem 2rem;
@@ -1463,7 +1622,6 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   flex-wrap: wrap;
-  overflow: hidden;
 }
 
 .footer-column {
@@ -1526,6 +1684,7 @@ button {
 .footer-heading a {
   color: #ffffff;
   text-decoration: none;
+  font-family: var(--font-pixel);
 }
 
 .footer-heading a:hover {
@@ -1584,14 +1743,32 @@ button {
   padding-top: 1rem;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 640px) {
   .staff-card {
     grid-template-columns: 1fr;
   }
 
   .staff-card-image {
-    height: 260px;
+    height: auto;
     min-height: 0;
+    aspect-ratio: 1;
+  }
+
+  .staff-card-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-column {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
   }
 
   .page-actions .btn,
@@ -1602,6 +1779,10 @@ button {
 
 .projects-section {
   background-image: url("../mojang/img/bg-wool-dark.png");
+}
+
+.projects-grid {
+  max-width: 1100px;
 }
 
 .projects-heading {

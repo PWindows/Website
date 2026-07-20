@@ -14,7 +14,7 @@
     {% if person.socials %}
       <ul class="staff-socials" aria-label="{{ person.name | escape }} social links">
         {% for social in person.socials %}
-          <li><a href="{{ social[1] }}">{{ social[0] | capitalize }}</a></li>
+          <li><a href="{{ social[1] | escape }}">{% if social[0] == 'github' %}GitHub{% else %}{{ social[0] | capitalize }}{% endif %}</a></li>
         {% endfor %}
       </ul>
     {% endif %}

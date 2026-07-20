@@ -1,11 +1,17 @@
 minecraft:
   name: Minecraft Department
+  path: /departments/minecraft
+  staff_department: Minecraft
   bio: Responsible for the Minecraft server, including its plugins and configuration. Also responsible for Minecraft Maps, resource packs, and other Minecraft-related content.
 
 unity:
   name: Unity Department
+  path: /departments/unity
+  staff_department: Unity
   bio: Responsible for Unity games and applications such as Sacred Cubes. This includes playtesting, bug reporting, and development of new features.
 
 roblox:
   name: Roblox Department
+  path: /departments/roblox
+  staff_department: Roblox
   bio: Responsible for Roblox games and applications such as Obby of Dominance. This includes playtesting, bug reporting, and development of new features.

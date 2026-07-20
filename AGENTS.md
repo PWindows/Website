@@ -14,8 +14,9 @@ explicitly requires a change.
   `permalink` so reorganizing source files does not change its URL.
 - `_articles/` contains news posts in the `articles` collection.
 - `_layouts/` contains page shells; `_includes/` contains reusable markup.
-- `_data/games.yml` and `_data/staff.yml` are the canonical sources for game
-  and staff information.
+- `_data/games.yml`, `_data/departments.yml`, `_data/staff.yml`, and
+  `_data/site.yml` are the canonical sources for game, department, staff, and
+  shared site-link information.
 - `assets/css/style.css` is the main production stylesheet.
 - `assets/css/news.css` contains article-specific styles.
 - `assets/js/main.js` contains site-wide behavior.
@@ -64,6 +65,10 @@ The following routes are stable and must remain available:
 - `/about`
 - `/articles`
 - `/contact`
+- `/departments/`
+- `/departments/minecraft`
+- `/departments/roblox`
+- `/departments/unity`
 - `/feedback`
 - `/games`
 - `/games/obby-of-dominance`
@@ -87,6 +92,8 @@ they are excluded from the generated site.
 
 - Reuse layouts and includes instead of duplicating shared markup.
 - Use the `page` layout for conventional content pages.
+- Use the `department` layout for department detail pages and set the
+  front-matter `department` value to a valid `_data/departments.yml` key.
 - Every public page must generate a non-empty `<main>`, exactly one `<h1>`, a
   document title, a canonical URL, and a useful unique description.
 - The 404 page must retain `permalink: /404.html` and `sitemap: false`.
@@ -107,20 +114,45 @@ Game records in `_data/games.yml` require:
 - `path`
 - `status`
 - `summary`
+- `image`
+- `engine`
+- `language`
 
-Game paths must point to real public pages. Keep game lists and footer links
-data-driven instead of duplicating them in templates.
+Game paths must point to real public pages. Keep game lists and game footer
+links data-driven instead of duplicating them in templates. Optional debris
+effects use `effect: true` with a tracked root-relative `debris.path`; a
+positive `debris.scale` is optional. Disabled effects may retain placeholder
+debris metadata, but the referenced asset must exist before enabling the effect.
+
+Department records in `_data/departments.yml` require:
+
+- `name`
+- `path`
+- `staff_department`
+- `bio`
+
+Department paths must point to real public pages. `staff_department` must
+match the `department` value used by the corresponding staff records. Keep the
+department overview, detail pages, team listings, and footer links data-driven.
+Department detail pages must reuse the `department` layout, and every
+department in the data file must have a detail page.
 
 Keys in `_data/staff.yml` are stable author identifiers used by articles. Do
 not rename them without updating every article reference. Staff shown on the
-staff page use `aboutpage: true` and require `name`, `pfp`, `role`, and `bio`;
-`socials` is optional. Local image paths must be root-relative and point to
-tracked files.
+staff page or department pages use `aboutpage: true` and require `name`, `pfp`,
+`role`, and `bio`; `socials` is optional. Do not expose placeholder or private
+staff records with `aboutpage: false`. When a department has no public staff
+profiles, preserve the explicit empty-team state. Local image paths must be
+root-relative and point to tracked files.
 
 Articles should use valid staff keys for `author`, retain stable filenames and
 URLs, and provide the front matter required by their layout. Reuse
 `_includes/article-card.html` for article listings and preserve the empty-news
 state.
+
+Shared server and external-link values belong in `_data/site.yml`. Templates
+and JavaScript-facing data attributes must render those values instead of
+duplicating literal URLs or the server address.
 
 ## CSS and responsive behavior
 

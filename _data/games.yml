@@ -9,8 +9,6 @@
   language: C#
   debris:
     path: /assets/img/sacred-cubes-debris.png
-    size: 60
-    travel: 350
     scale: 1.5
 
 - slug: obby-of-dominance
@@ -24,6 +22,4 @@
   language: Luau
   debris:
     path: /assets/img/obby-of-dominance-debris.png
-    size: 60
-    travel: 350
     scale: 1.5

@@ -5,9 +5,17 @@ layout: default
 <article class="news-item">
   <div class="news-banner">
     {% if page.banner %}
-    <img src="{{ page.banner }}" alt="{{ page.title }} Banner" />
+    <img
+      src="{{ page.banner | relative_url }}"
+      alt="{{ page.title | escape }} banner"
+      fetchpriority="high"
+    />
     {% else %}
-    <img src="/assets/mojang/img/bg-grass.png" alt="Default News Banner" />
+    <img
+      src="{{ '/assets/mojang/img/bg-grass.png' | relative_url }}"
+      alt="Default news banner"
+      fetchpriority="high"
+    />
     {% endif %}
   </div>
   <div class="minecraft-box">
@@ -18,7 +26,7 @@ layout: default
     {% assign person = site.data.staff[page.author] %}
     <aside class="author-info">
       <img
-        src="{{ person.pfp }}"
+        src="{{ person.pfp | relative_url }}"
         alt="{{ person.name }} Profile Picture"
         class="author-pfp"
       />

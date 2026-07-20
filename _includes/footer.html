@@ -1,40 +1,67 @@
-<section class="footer">
-    <div class="footer-container">
-        <div class="footer-column footer-column-left">
-            <a href="{{ '/' | relative_url }}" class="footer-logo">
-                <img src="{{ '/assets/PWindows.png' | relative_url }}" alt="PWindows Logo">
-            </a>
-            <p class="footer-copy">
-                &copy; {{ site.time | date: '%Y' }} PWindows. All rights reserved.
-            </p>
-            <p class="footer-disclaimer">
-                Not affiliated with Mojang Studios, Microsoft, or Minecraft.
-            </p>
-            <p class="footer-rules">
-                <a href="{{ '/rules' | relative_url }}">Rules</a>
-            </p>
-        </div>
-        <div class="footer-column footer-column-center">
-        <h3 class="footer-heading">
-            <a href="{{ '/games' | relative_url }}">Games</a>
-        </h3>
-        <ul class="footer-links">
-            {% for game in site.data.games %}
-            <li><a href="{{ game.path | relative_url }}">{{ game.title }}</a></li>
-            {% endfor %}
-        </ul>
-        </div>
-
-        <!-- Column 3: Shop, Support, Feedback, etc. -->
-        <div class="footer-column footer-column-right">
-        <h3 class="footer-heading"><a href="https://shop.pwindows.qzz.io">Shop</a></h3>
-        <h3 class="footer-heading"><a href="https://support.pwindows.qzz.io">Support</a></h3>
-        <ul class="footer-links">
-            <li><a href="{{ '/feedback' | relative_url }}">Feedback</a></li>
-            <li><a href="{{ '/sitemap' | relative_url }}">Site map</a></li>
-            <li><a href="{{ '/contact' | relative_url }}">Contact us</a></li>
-            <li><a href="{{ '/staff' | relative_url }}">Staff</a></li>
-        </ul>
-        </div>
+<footer class="footer">
+  <nav class="footer-container" aria-labelledby="footer-navigation-heading">
+    <h2 class="sr-only" id="footer-navigation-heading">Footer navigation</h2>
+    <div class="footer-column footer-column-left">
+      <a href="{{ '/' | relative_url }}" class="footer-logo">
+        <img
+          src="{{ '/assets/PWindows.png' | relative_url }}"
+          alt="PWindows Logo"
+        />
+      </a>
+      <p class="footer-copy">
+        &copy; {{ site.time | date: '%Y' }} PWindows. All rights reserved.
+      </p>
+      <p class="footer-disclaimer">
+        Not affiliated with Mojang Studios, Microsoft, or Minecraft.
+      </p>
+      <p class="footer-rules">
+        <a href="{{ '/about' | relative_url }}">About us</a>
+      </p>
+      <p class="footer-rules">
+        <a href="{{ '/rules' | relative_url }}">Rules</a>
+      </p>
     </div>
-</section>
+    <div class="footer-column footer-column-center">
+      <h3 class="footer-heading">
+        <a href="{{ '/games' | relative_url }}">Games</a>
+      </h3>
+      <ul class="footer-links">
+        {% for game in site.data.games %}
+        <li><a href="{{ game.path | relative_url }}">{{ game.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="footer-column footer-column-departments">
+      <h3 class="footer-heading">
+        <a href="{{ '/departments/' | relative_url }}">Departments</a>
+      </h3>
+      <ul class="footer-links">
+        {% for department_entry in site.data.departments %} {% assign department
+        = department_entry[1] %}
+        <li>
+          <a href="{{ department.path | relative_url }}">
+            {{ department.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Shop, Support, Feedback, etc. -->
+    <div class="footer-column footer-column-right">
+      <h3 class="footer-heading">
+        <a href="{{ site.data.site.links.shop | escape }}">Shop</a>
+      </h3>
+      <h3 class="footer-heading">
+        <a href="{{ site.data.site.links.support | escape }}">Support</a>
+      </h3>
+      <ul class="footer-links">
+        <li><a href="{{ '/feedback' | relative_url }}">Feedback</a></li>
+        <li><a href="{{ '/sitemap' | relative_url }}">Site map</a></li>
+        <li><a href="{{ '/contact' | relative_url }}">Contact us</a></li>
+        <li><a href="{{ '/staff' | relative_url }}">Staff</a></li>
+      </ul>
+    </div>
+  </nav>
+</footer>

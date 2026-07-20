@@ -1,5 +1,3 @@
-const SERVER_IP = "play.pwindows.qzz.io";
-
 function announce(message) {
   const status = document.getElementById("site-status");
   if (status) status.textContent = message;
@@ -25,15 +23,18 @@ async function copyText(text) {
 
 function setupCopyButtons() {
   document.querySelectorAll("[data-copy-ip]").forEach((button) => {
+    const serverAddress = button.dataset.copyIp;
+    if (!serverAddress) return;
+
     button.addEventListener("click", async () => {
       try {
-        await copyText(SERVER_IP);
+        await copyText(serverAddress);
         button.classList.add("copied");
-        announce(`Server address copied: ${SERVER_IP}`);
+        announce(`Server address copied: ${serverAddress}`);
         window.setTimeout(() => button.classList.remove("copied"), 2000);
       } catch (error) {
         console.error("Failed to copy server address", error);
-        announce(`Could not copy automatically. Server address: ${SERVER_IP}`);
+        announce(`Could not copy automatically. Server address: ${serverAddress}`);
       }
     });
   });
@@ -92,7 +93,7 @@ function setupMenu() {
 
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768 && menuButton.getAttribute("aria-expanded") === "true") {
-      setMenuOpen(false);
+      setMenuOpen(false, true);
     } else if (menuButton.getAttribute("aria-expanded") === "true") {
       document.body.classList.toggle("menu-open", window.innerWidth <= 768);
     }
@@ -261,33 +262,33 @@ function setupArticleSorting() {
   sortArticles();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  setupMenu();
-  setupCopyButtons();
-  setupAnchorScrolling();
-  setupFlipCards();
-  setupArticleSorting();
-});
+function setupDebris() {
+  const debrisElements = document.querySelectorAll("[data-debris]");
+  if (!debrisElements.length) return;
 
-
-document.addEventListener('DOMContentLoaded', function() {
-  const debrisElements = document.querySelectorAll('[data-debris]');
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const startY = 20;
+  const travelDistance = 140;
 
   function updateDebris() {
-    debrisElements.forEach(function(debris) {
-      const card = debris.closest('.games-content-part');
+    debrisElements.forEach((debris) => {
+      const scaleValue = Number.parseFloat(debris.dataset.scale);
+      const scale = Number.isFinite(scaleValue) && scaleValue > 0 ? scaleValue : 1;
+
+      if (reduceMotion.matches) {
+        debris.style.transform = `scale(${scale})`;
+        return;
+      }
+
+      const card = debris.closest(".games-content-part");
       if (!card) return;
 
       const rect = card.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      const progress = Math.min(1, Math.max(0, (windowHeight - rect.top) / (windowHeight + rect.height)));
-
-      const startY = 20;   
-      const endY = -120;   
-      const translateY = startY + (endY - startY) * progress; // = 20 - (progress * 140)
-
-      const scale = parseFloat(debris.dataset.scale) || 1;
+      const progress = Math.min(
+        1,
+        Math.max(0, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)),
+      );
+      const translateY = startY - travelDistance * progress;
 
       debris.style.transform = `translateY(${translateY}%) scale(${scale})`;
     });
@@ -295,17 +296,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let ticking = false;
   function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        updateDebris();
-        ticking = false;
-      });
-      ticking = true;
-    }
+    if (reduceMotion.matches || ticking) return;
+
+    window.requestAnimationFrame(() => {
+      updateDebris();
+      ticking = false;
+    });
+    ticking = true;
   }
 
-  window.addEventListener('scroll', onScroll);
-  window.addEventListener('resize', updateDebris);
-  window.addEventListener('load', updateDebris);
+  window.addEventListener("scroll", onScroll);
+  window.addEventListener("resize", updateDebris);
+  window.addEventListener("load", updateDebris);
+  reduceMotion.addEventListener("change", updateDebris);
   updateDebris();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setupMenu();
+  setupCopyButtons();
+  setupAnchorScrolling();
+  setupFlipCards();
+  setupArticleSorting();
+  setupDebris();
 });
