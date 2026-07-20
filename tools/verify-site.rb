@@ -136,7 +136,12 @@ sitemap_file = File.join(DESTINATION, "sitemap.xml")
 article_locations = []
 if File.file?(sitemap_file)
   sitemap = Nokogiri::XML(File.read(sitemap_file))
-  locations = sitemap.xpath("//*[local-name()='loc']").map { |node| URI(node.text).path }
+  locations = sitemap.xpath("//*[local-name()='loc']").filter_map do |node|
+    URI.parse(node.text).path
+  rescue URI::InvalidURIError
+    errors << "Sitemap contains an invalid location: #{node.text.inspect}"
+    nil
+  end
   errors << "Sitemap contains duplicate locations" unless locations.length == locations.uniq.length
 
   expected_pages = PUBLIC_ROUTES.to_set - ["/404.html"]
