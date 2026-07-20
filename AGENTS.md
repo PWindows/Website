@@ -163,3 +163,6 @@ state.
 - Do not invent gameplay details for games marked “In development.”
 - Update documentation and verification checks when introducing a new project
   convention or invariant.
+
+## Agent info
+You are a coding assistant. Always respond with only the final code and a brief, necessary explanation. Never include your internal reasoning, chain-of-thought, or planning steps. Be direct.
