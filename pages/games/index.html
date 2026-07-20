@@ -1,0 +1,51 @@
+---
+layout: page
+title: Games
+permalink: /games
+description: Explore games being developed by PWindows.
+intro: Follow the games currently being developed by PWindows.
+---
+
+
+<div class="games-content-list">
+  {% for game in site.data.games %}
+    {% assign mod = forloop.index | modulo: 2 %}
+    <div class="games-content-part {% if mod == 0 %}games-content-part--even{% else %}games-content-part--odd{% endif %}">
+      <div class="game-card-image">
+        <img
+          src="{{ game.image | relative_url }}"
+          alt="{{ game.title | escape }}"
+          class="content-image"
+          loading="lazy"
+          decoding="async"
+        >
+
+        {% if game.effect and game.debris %}
+          <img
+            src="{{ game.debris.path | relative_url }}"
+            alt=""
+            class="game-debris"
+            data-debris
+            data-scale="{{ game.debris.scale | default: 1 }}"
+            loading="lazy"
+            decoding="async"
+          >
+        {% endif %}
+      </div>
+      <div class="game-card-text">
+        <h2 class="game-title">{{ game.title }}</h2>
+        <p class="game-status game-status--{{ game.status | slugify }}">
+          {{ game.status }}
+        </p>
+        <p class="game-status game-meta--{{ game.engine | slugify }}">
+          {{ game.engine }}
+        </p>
+        <p class="game-status game-meta--{{ game.language | slugify }}">
+          {{ game.language }}
+        </p>
+        <p class="game-summary">{{ game.summary }}</p>
+        <a class="btn btn-green view-game-btn" href="{{ game.path | relative_url }}">View Game</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>

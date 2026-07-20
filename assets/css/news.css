@@ -4,24 +4,43 @@ body {
     color: #000000;
 }
 
+.news-item {
+    padding-top: 80px;
+}
+
+.news-banner {
+    position: relative;
+}
+
 .news-banner img {
-    height: 670px; /* set a fixed height */
+    height: clamp(280px, 55vw, 670px);
     object-fit: cover; /* crop instead of squish */
     width: 100%; /* keep full width */
     margin-bottom: 1rem;
 }
 
-.news-item h1 h2 h3 {
-    font-family: 'Minecraft Ten v2';
+.article-title {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+}
+
+.news-item :is(h1, h2, h3) {
+    font-family: var(--font-display);
     margin-bottom: 10px;
 }
 
-.minecraft-box {
-    position: absolute; /* overlay on banner */
-    top: 650px; /* distance from bottom */
-    left: 50%; /* center horizontally */
-    transform: translateX(-50%); /* true centering */
+.content > :is(h2, h3) {
+    margin-top: 24px;
+}
 
+.content > p {
+    margin-bottom: 16px;
+}
+
+.minecraft-box {
+    position: relative;
+    width: max-content;
+    margin: -2.5rem auto 0;
     background-color: #171615;
     padding: 12px 20px;
     font-size: 1.2rem;
@@ -33,9 +52,13 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 90px;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
+}
+
+.news-body > * {
+    min-width: 0;
 }
 
 .author-info {
@@ -45,12 +68,10 @@ body {
 
 .author-pfp {
     display: block; /* default for images */
-    margin: 0 auto;
+    margin: 0 auto 10px;
     max-width: 120px; /* sets a max width */
     height: auto; /* keeps natural aspect ratio */
     object-fit: contain; /* ensures the whole image shows */
-    margin-bottom: 10px;
-    display: block;
 }
 
 .author-name {
@@ -64,12 +85,11 @@ body {
 }
 
 .summary {
-    margin-top: 10px;
     margin-bottom: 30px;
 }
 
 .content {
-    line-height: 1.3;
+    line-height: 1.65;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -81,6 +101,10 @@ body {
     .minecraft-box {
         background-color: #ffffff;
         color: #1D1E1E;
+    }
+
+    .author-date {
+        color: #bdbdbd;
     }
 }
 
@@ -99,5 +123,9 @@ body {
 
     .article {
         width: 100%; /* ensure article fills the width */
+    }
+
+    .article-title {
+        font-size: clamp(1.8rem, 9vw, 2.5rem);
     }
 }

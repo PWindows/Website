@@ -1,7 +1,20 @@
 title: PWindows
 description: Discover PWindows, not just a Minecraft server
 url: "https://www.pwindows.qzz.io"
+exclude:
+  - AGENTS.md
+  - README.md
+  - tools/
+  - vendor/
+  - assets/mojang/fonts/*.html
+  - assets/mojang/fonts/*.css
+  - assets/mojang/fonts/*.eot
+  - assets/mojang/fonts/*.svg
+  - assets/mojang/fonts/*.ttf
+  - assets/mojang/fonts/*.otf
 collections:
   articles:
     output: true
     permalink: /article/:name
+plugins:
+  - jekyll-sitemap

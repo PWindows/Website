@@ -2,58 +2,70 @@
 layout: default
 ---
 
-<head>
-    <link rel="stylesheet" href="{{ '/assets/css/news.css?v=' | append: site.github.build_revision | relative_url }}">
-</head>
-
 <article class="news-item">
-    <div class="news-banner">
-        {% if page.banner %}
-        <img src="{{ page.banner }}" alt="{{ page.title }} Banner">
-        {% else %}
-        <img src="/assets/mojang/img/bg-grass.png" alt="Default News Banner">
-        {% endif %}
+  <div class="news-banner">
+    {% if page.banner %}
+    <img
+      src="{{ page.banner | relative_url }}"
+      alt="{{ page.title | escape }} banner"
+      fetchpriority="high"
+    />
+    {% else %}
+    <img
+      src="{{ '/assets/mojang/img/bg-grass.png' | relative_url }}"
+      alt="Default news banner"
+      fetchpriority="high"
+    />
+    {% endif %}
+  </div>
+  <div class="minecraft-box">
+    <p>{{ page.type }}</p>
+  </div>
+
+  <div class="news-body">
+    {% assign person = site.data.staff[page.author] %}
+    <aside class="author-info">
+      <img
+        src="{{ person.pfp | relative_url }}"
+        alt="{{ person.name }} Profile Picture"
+        class="author-pfp"
+      />
+
+      <p class="author-name">
+        <span class="label">Written by</span>
+      </p>
+      <p>{{ person.name }}</p>
+
+      {% if person.role %}
+      <p class="author-role">{{ person.role }}</p>
+      {% endif %}
+
+      <p class="author-date">
+        <span class="label">Published</span>
+      </p>
+      <p>{{ page.date | date: "%B %d, %Y" }}</p>
+    </aside>
+
+    <div class="article">
+      <h1 class="article-title">{{ page.title }}</h1>
+      <p class="summary">{{ page.summary }}</p>
+      <div class="content">{{ content }}</div>
     </div>
-    <div class="minecraft-box">
-        <p>{{ page.type }}</p>
-    </div>
-
-    <div class="news-body">
-        {% assign person = site.data.staff[page.author] %}
-        <aside class="author-info">
-            <img src="{{ person.pfp }}" alt="{{ person.name }} Profile Picture" class="author-pfp">
-
-            <p class="author-name">
-                <span class="label">Written by</span>
-            </p>
-            <p>
-                {{ person.name }}
-            </p>
-
-            {% if person.role %}
-            <p class="author-role">
-                {{ person.role }}
-            </p>
-            {% endif %}
-
-            <p class="author-date">
-                <span class="label">Published</span>
-            </p>
-            <p>
-                {{ page.date | date: "%B %d, %Y" }}
-            </p>
-        </aside>
-
-        <div class="article">
-            <h1>{{ page.title }}</h1>
-            <div class="summary">
-                 {{ page.summary }}
-            </div>
-            <div class="content">
-                {{ content }}
-            </div>
-        </div>
-
-    </div>
-
+  </div>
 </article>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": {{ page.title | jsonify }},
+    "description": {{ page.summary | strip_html | jsonify }},
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    "author": {
+      "@type": "Person",
+      "name": {{ person.name | jsonify }}
+    },
+    "image": "{{ page.banner | default: '/assets/PWindows.png' | absolute_url }}",
+    "mainEntityOfPage": "{{ page.url | absolute_url }}"
+  }
+</script>

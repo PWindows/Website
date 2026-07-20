@@ -1,14 +1,87 @@
+:root {
+  --primary: #ffce02;
+  --secondary: #ffa93e;
+  --secondary-darker: #c07d2b;
+  --mc-vanilla-green-1: #a0e081;
+  --mc-vanilla-green-2: #86d562;
+  --mc-vanilla-green-3: #6cc349;
+  --mc-vanilla-green-4: #52a535;
+  --mc-vanilla-green-5: #3c8527;
+  --mc-vanilla-green-6: #2a641c;
+  --mc-vanilla-coldgrey-1: #8089a2;
+  --mc-vanilla-coldgrey-2: #6c748c;
+  --mc-vanilla-coldgrey-3: #5d647a;
+  --mc-vanilla-coldgrey-4: #4d5466;
+  --mc-vanilla-coldgrey-5: #3d4250;
+  --mc-vanilla-coldgrey-6: #2c2f3a;
+  --card-background: rgba(255, 255, 255, 0.96);
+  --card-border: rgba(61, 66, 80, 0.2);
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --font-display: "Minecraft Ten v2", monospace;
+  --font-pixel: "Minecraft Seven v2", monospace;
+  --font-body: "Noto Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --arrow-shape: polygon(
+    14.29% 0%,
+    14.29% 28.57%,
+    71.43% 28.57%,
+    71.43% 85.71%,
+    100% 85.71%,
+    100% 0,
+    14.29% 0%,
+    14.29% 71.43%,
+    0% 71.43%,
+    0% 100%,
+    28.57% 100%,
+    28.57% 71.43%,
+    57.14% 71.43%,
+    57.14% 42.86%,
+    28.57% 42.86%,
+    28.57% 71.43%,
+    14.29% 71.43%
+  );
+}
+
 /* Fonts */
 @font-face {
   font-family: "Minecraft Ten v2";
-  src: url("../mojang/fonts/Minecraft-Tenv2.ttf") format("truetype");
+  src: url("../mojang/fonts/Minecraft-Tenv2.woff2") format("woff2");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Minecraft Seven v2";
-  src: url("../mojang/fonts/Minecraft-Seven_v2.ttf") format("truetype");
+  src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");
   font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../mojang/fonts/NotoSans-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+:is(h1, h2, h3) {
+  font-family: var(--font-display);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+a:not(.btn):not(.button):not(.no-icon):not(.logo):not(.footer-logo)::after {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-left: 0.4em;
+  margin-right: 0.1em;
+  background-color: currentColor;
+  clip-path: var(--arrow-shape);
+  transition: transform 0.2s ease;
 }
 
 /* Base */
@@ -19,29 +92,38 @@
 }
 
 body {
-  font-family:
-    "Minecraft Seven v2", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url("../mojang/img/bg-wool-white.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: #333333;
-  overflow-x: hidden;
+  font-family: var(--font-body);
+  background: url("../mojang/img/bg-wool-white.png");
 }
 
-html, body {
-  overflow-anchor: none;
+body.menu-open {
+  overflow: hidden;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family:
-    "Minecraft Ten v2", "Impact", "Trebuchet MS", "Segoe UI", sans-serif;
+button {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  overflow: visible;
+  text-transform: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:where(a, button, select):focus-visible {
+  outline: 3px solid #1565c0;
+  outline-offset: 4px;
 }
 
 /* Header and Navigation */
@@ -51,76 +133,78 @@ h6 {
   left: 0;
   right: 0;
   height: 80px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
   z-index: 1003;
-  border-bottom: 1px solid rgba(255, 206, 2, 0.2);
-  box-shadow: 0 4px 20px rgba(255, 206, 2, 0.1);
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
 }
 
 /* Hamburger Menu Styles */
 .hamburger {
   width: 35px;
   height: 35px;
+  cursor: pointer;
+  z-index: 1002;
+  padding: 8px;
+  transition: all 0.4s ease;
+  border: 0;
+  background: transparent;
+}
+
+.hamburger:hover {
+  background: #7771;
+}
+
+.hamburger:hover > .hamburger-lines span {
+  background: var(--mc-vanilla-coldgrey-6);
+  box-shadow: inset -4px 0px 0 var(--mc-vanilla-coldgrey-2);
+}
+
+.hamburger-lines {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 4px;
-  cursor: pointer;
-  z-index: 1002;
-  padding: 8px;
-  border-radius: 8px;
   transform: rotate(0deg);
-  transition:
-    all 0.4s ease,
-    transform 0.4s ease;
-}
-
-.hamburger:hover {
-  background: rgba(255, 206, 2, 0.1);
-  box-shadow: 0 0 20px rgba(255, 206, 2, 0.3);
-}
-
-.hamburger span {
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(45deg, #333, #555);
-  border-radius: 2px;
   transition: all 0.4s ease;
   transform-origin: center;
-  box-shadow: 0 0 6px rgba(255, 206, 2, 0.4);
+}
+
+.hamburger-lines > span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--mc-vanilla-coldgrey-4);
+  box-shadow: inset -4px 0px 0 var(--mc-vanilla-coldgrey-1);
+  transition: all 0.4s ease;
 }
 
 /* Hamburger Animation - Simple 90 degree rotation, keep all 3 lines */
-.hamburger.active {
+.hamburger.active > .hamburger-lines {
   transform: rotate(90deg);
-}
-
-.hamburger.active span {
-  background: linear-gradient(45deg, #ffce02, #e6b800);
-  box-shadow: 0 0 8px rgba(255, 206, 2, 0.6);
 }
 
 /* Mobile Menu Overlay - Desktop sidebar, mobile full screen */
 .menu-overlay {
   position: fixed;
-  top: 0;
+  top: 80px;
   left: -400px;
   width: 400px;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
+  height: calc(100vh - 80px);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 1001;
   transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
   flex-direction: column;
-  padding-top: 100px;
+  padding-top: 20px;
   overflow-y: auto;
-  box-shadow: 0 0 50px rgba(255, 206, 2, 0.2);
 }
 
 .menu-overlay.active {
@@ -133,100 +217,29 @@ h6 {
   flex-direction: column;
   align-items: center;
   gap: 25px;
-  padding: 40px 20px;
+  padding: 0px 20px 40px;
   max-width: 400px;
   margin: 0 auto;
   width: 100%;
 }
 
 .nav-item {
-  text-decoration: none;
-  font-family: "Minecraft Seven v2", monospace;
-  font-size: 1.1rem;
-  color: #333;
-  padding: 18px 35px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 206, 2, 0.2);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-family: var(--font-pixel);
   width: 100%;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  image-rendering: pixelated;
 }
 
-.nav-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 206, 2, 0.3),
-    transparent
-  );
-  transition: left 0.6s;
+.nav-item-icon {
+  width: 1.25em;
+  height: 1.25em;
+  object-fit: contain;
+  vertical-align: -0.2em;
 }
 
-.nav-item:hover::before {
-  left: 100%;
-}
-
-.nav-item:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(255, 206, 2, 0.4);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.1),
-    0 0 20px rgba(255, 206, 2, 0.3);
-}
-
-.nav-item:active {
-  transform: translateY(-1px) scale(1.01);
-}
-
-/* Special styling for different nav items */
-.nav-item.primary {
-  background: linear-gradient(135deg, #ffce02, #ffd93d);
-  color: #333;
-  border-color: #ffce02;
-  box-shadow:
-    0 4px 15px rgba(255, 206, 2, 0.3),
-    0 0 20px rgba(255, 206, 2, 0.2);
-}
-
-.nav-item.primary:hover {
-  background: linear-gradient(135deg, #ffd93d, #ffce02);
-  box-shadow:
-    0 15px 40px rgba(255, 206, 2, 0.4),
-    0 0 30px rgba(255, 206, 2, 0.5);
-  transform: translateY(-4px) scale(1.03);
-}
-
-.nav-item.secondary {
-  background: linear-gradient(
-    135deg,
-    rgba(34, 197, 94, 0.1),
-    rgba(34, 197, 94, 0.2)
-  );
-  border-color: rgba(34, 197, 94, 0.3);
-  color: #22c55e;
-  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
-}
-
-.nav-item.secondary:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(34, 197, 94, 0.2),
-    rgba(34, 197, 94, 0.3)
-  );
-  box-shadow:
-    0 15px 40px rgba(34, 197, 94, 0.2),
-    0 0 30px rgba(34, 197, 94, 0.3);
+.nav-item-no-icon::before {
+  content: " ";
+  padding-left: 1.5em;
 }
 
 /* Menu Footer */
@@ -234,11 +247,11 @@ h6 {
   margin-top: auto;
   padding: 30px 20px;
   text-align: center;
-  border-top: 1px solid rgba(255, 206, 2, 0.2);
+  border-top: 2px solid #7771;
 }
 
 .menu-footer p {
-  font-family: "Minecraft Seven v2", monospace;
+  font-family: var(--font-pixel);
   font-size: 0.7rem;
   color: #666;
   margin-bottom: 20px;
@@ -251,30 +264,26 @@ h6 {
 }
 
 .social-link {
-  width: 45px;
   height: 45px;
-  background: rgba(255, 206, 2, 0.1);
-  border: 1px solid rgba(255, 206, 2, 0.3);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #ffce02;
   font-size: 1.1rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 4px 15px rgba(255, 206, 2, 0.1);
 }
 
-.social-link:hover {
-  background: linear-gradient(135deg, #ffce02, #ffd93d);
-  color: #333;
-  box-shadow: 0 4px 15px rgba(255, 206, 2, 0.3);
+.social-link-img {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
 }
 
-/* Logo with enhanced interactivity */
+.social-link-img--compact {
+  height: 40px;
+}
+
 .logo {
-  height: 27px;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -295,56 +304,20 @@ h6 {
 }
 
 .logo-img {
-  max-width: 400%;
-  max-height: 400%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   transition: all 0.3s ease;
-}
-
-.logo:hover .logo-img {
-  filter: drop-shadow(0 0 10px rgba(255, 206, 2, 0.6));
-}
-
-/* About button with glow */
-.about-btn {
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #333, #555);
-  color: white;
-  text-decoration: none;
-  border-radius: 20px;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: none;
-  cursor: pointer;
-  font-size: 12px;
-  font-family: "Minecraft Seven v2", monospace;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.about-btn:hover {
-  background: linear-gradient(135deg, #555, #777);
-  transform: translateY(-2px) scale(1.05);
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(255, 206, 2, 0.2);
 }
 
 /*Landing Hero*/
 .landing {
   height: 100vh;
-  background-image: url("../mojang/img/bg-grass.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url("../mojang/img/bg-grass.png") center / cover no-repeat;
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-top: 80px;
-  border-radius: 25px;
   margin: 100px 15px 15px;
-  box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.15),
-    0 0 40px rgba(255, 206, 2, 0.1);
   overflow: hidden;
   max-height: 650px;
 }
@@ -352,10 +325,7 @@ h6 {
 .landing::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(45deg, rgba(255, 206, 2, 0.05), transparent);
   opacity: 0.7;
   z-index: 0;
@@ -365,7 +335,7 @@ h6 {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 40px 40px 60px;
   max-width: 1200px;
@@ -375,88 +345,44 @@ h6 {
   z-index: 2;
 }
 
-.hero-card .server-info .launch-btn {
-  transition:
-    opacity 0.6s ease-out,
-    transform 0.6s ease-out;
-}
-
-.hero-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Hero Card with enhanced glow */
 .hero-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 25px;
-  padding: 30px 35px 5px 35px;
-  box-shadow:
-    0 25px 80px rgba(0, 0, 0, 0.15),
-    0 0 40px rgba(255, 206, 2, 0.2),
-    inset 0 1px 1px rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 206, 2, 0.3);
-  background-image: url("../mojang/img/bg-wool-white.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: rgba(255, 255, 255, 0);
+  /*  backdrop-filter: blur(20px);*/
+  padding: 20px 35px 15px 35px;
+  /* border: 1px solid rgba(255, 206, 2, 0.3); */
   position: relative;
   overflow: hidden;
   margin: 0;
+  width: 100%;
   max-width: 850px;
   transition: all 0.3s ease;
 }
 
-.hero-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(255, 206, 2, 0.05),
-    transparent
-  );
-  z-index: -1;
-}
-
-/* Animated Heading with text glow */
 .hero-heading {
   text-align: center;
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(2rem, 6vw, 5rem);
   font-weight: 400;
   color: #333;
   margin-bottom: 0;
   line-height: 1.4;
-  font-family: "Minecraft Ten v2", monospace;
+  font-family: var(--font-display);
   position: relative;
   z-index: 1;
 }
 
 .hero-line-1 {
   display: block;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.hero-line-2 {
-  display: block;
-  color: #ffce02;
-  text-shadow:
-    0 0 20px rgba(255, 206, 2, 0.5),
-    0 0 40px rgba(255, 206, 2, 0.3);
+  color: #ffffff;
+  text-shadow: var(--mc-vanilla-coldgrey-4) 0 4px;
 }
 
 .animated-word {
-  color: #ffce02;
-  display: block;
+  color: var(--primary);
+  display: flex;
+  justify-content: center;
   position: relative;
   text-align: center;
-  margin-top: 0.2em;
-  text-shadow:
-    0 0 20px rgba(255, 206, 2, 0.5),
-    0 0 40px rgba(255, 206, 2, 0.3);
+  margin: 0.2em 0em;
 }
 
 .word-container {
@@ -464,12 +390,10 @@ h6 {
   position: relative;
   height: 1.3em;
   overflow: hidden;
-  min-width: 500px;
 }
 
 .words-list {
   position: relative;
-  animation: perfectWordScroll 9s ease-in-out infinite;
 }
 
 .word {
@@ -478,18 +402,12 @@ h6 {
   line-height: 1.3em;
   text-align: center;
   padding: 0;
-  font-family: "Minecraft Ten v2", monospace;
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px rgba(255, 206, 2, 0.5);
-  }
-
-  to {
-    text-shadow: 0 0 20px rgba(255, 206, 2, 0.7);
-  }
+  font-family: var(--font-display);
+  text-shadow: 0 4px #967800;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  animation: perfectWordScroll 9s ease-in-out infinite;
 }
 
 @keyframes perfectWordScroll {
@@ -522,32 +440,14 @@ h6 {
   margin-top: 45px;
 }
 
-.server-info {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
-  border: none;
-  border-radius: 16px;
-  padding: 18px 28px;
-  font-family: "Minecraft Seven v2", monospace;
-  font-size: 0.9rem;
-  color: #bc9700;
-  font-weight: 400;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    0 0 20px rgba(255, 206, 2, 0.2);
-  border: 1px solid rgba(255, 206, 2, 0.3);
-  cursor: pointer;
-  transition:
-    all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform 0.3s ease;
+.copy-button {
   position: relative;
 }
 
-.server-info::after,
-.flip-card-button::after {
+.copy-button::after {
   content: "Copied!";
   position: absolute;
-  top: -35px;
+  top: -30px;
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(
@@ -557,62 +457,79 @@ h6 {
   );
   color: white;
   padding: 6px 12px;
-  border-radius: 8px;
   font-size: 0.7rem;
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
   white-space: nowrap;
 }
 
-.server-info.copied::after,
-.flip-card-button.copied::after {
+.copy-button.copied::after {
   opacity: 1;
   transform: translateX(-50%) translateY(-5px);
 }
 
-.server-info:active {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow:
-    0 15px 50px rgba(0, 0, 0, 0.15),
-    0 0 30px rgba(255, 206, 2, 0.3);
-}
+.btn {
+  --btn-bg: var(--mc-vanilla-coldgrey-5);
+  --btn-bottom: var(--mc-vanilla-coldgrey-6);
+  --btn-top: var(--mc-vanilla-coldgrey-4);
+  --btn-active-border: var(--mc-vanilla-coldgrey-1);
+  --btn-idle-shade: rgba(0, 0, 0, 0);
+  --btn-hover-shade: rgba(0, 0, 0, 0.1);
 
-.launch-btn {
-  background: rgba(255, 255, 255, 0.95);
-  color: #22c55e;
-  padding: 18px 36px;
-  border: none;
-  border-radius: 16px;
-  font-size: 0.9rem;
-  font-weight: 500;
+  background:
+    linear-gradient(var(--btn-idle-shade), var(--btn-idle-shade)), var(--btn-bg);
+  border: 2px solid var(--btn-bottom);
+  box-shadow:
+    inset 0 -6px 0 var(--btn-bottom),
+    inset 0 6px 0 var(--btn-top);
+  color: white;
+  padding: 15px 28px;
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  font-weight: 800;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    0 0 20px rgba(34, 197, 94, 0.2);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  font-family: "Minecraft Seven v2", monospace;
+  letter-spacing: 0.03em;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
-.launch-btn:hover, .server-info:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    0 15px 50px rgba(0, 0, 0, 0.2),
-    0 0 30px rgba(34, 197, 94, 0.4);
-  background: rgba(255, 255, 255, 1);
+.btn:hover {
+  background:
+    linear-gradient(var(--btn-hover-shade), var(--btn-hover-shade)),
+    var(--btn-bg);
+}
+
+.btn:active {
+  background: var(--btn-bottom);
+  border-color: var(--btn-active-border);
+  box-shadow: none;
+}
+
+.btn-green {
+  --btn-bg: var(--mc-vanilla-green-5);
+  --btn-bottom: var(--mc-vanilla-green-6);
+  --btn-top: var(--mc-vanilla-green-4);
+  --btn-active-border: white;
+}
+
+.btn-gold {
+  --btn-bg: var(--secondary);
+  --btn-bottom: var(--secondary-darker);
+  --btn-top: var(--primary);
+  --btn-active-border: white;
+  --btn-idle-shade: rgba(0, 0, 0, 0.05);
+  --btn-hover-shade: rgba(0, 0, 0, 0.1);
 }
 
 /*About*/
-.transition-section {
-  min-height: 10vh;
-  background-image: url("../mojang/img/bg-wool-white-dark.png");
-  background-size: cover;
-  background-position: center;
+.transition-section,
+.transition-section-reverse {
+  min-height: 110px;
+  image-rendering: pixelated;
+  background-size: 1396px;
   background-repeat: repeat-x;
   display: flex;
   align-items: center;
@@ -621,68 +538,58 @@ h6 {
   overflow: hidden;
 }
 
-.about-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  color: white;
+.transition-section {
+  background-image: url("../mojang/img/bg-wool-white-dark.png");
+  background-position: 0px bottom;
 }
 
-.about-section h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #ffce02;
-  font-weight: 400;
-  font-family: "Minecraft Ten v2", monospace;
-  text-shadow:
-    0 0 20px rgba(255, 206, 2, 0.5),
-    0 0 40px rgba(255, 206, 2, 0.3);
-}
-
-.about-section p {
-  font-size: 0.9rem;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  opacity: 0.9;
-  font-family: "Minecraft Seven v2", monospace;
+.transition-section-reverse {
+  min-height: 98px;
+  background-image: url("../mojang/img/bg-wool-dark-white.png");
+  background-position: 4px top;
 }
 
 /* How to Join Section */
-.howtojoin {
-  min-height: 50vh;
-  background-image: url("../mojang/img/bg-wool-dark.png");
-  background-size: cover;
-  background-position: center;
+.textured-section {
+  min-height: 500px;
+  image-rendering: pixelated;
+  background-size: 800px;
+  background-position: 0 top;
   background-repeat: repeat;
   display: flex;
-  align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
   padding: 80px 40px;
 }
 
-.howtojoin-heading {
-  font-family: "Minecraft Ten v2", monospace;
+.howtojoin {
+  background-image: url("../mojang/img/bg-wool-dark.png");
+  scroll-margin-top: 80px;
+}
+
+.section-heading {
+  font-family: var(--font-display);
   font-size: clamp(2.5rem, 7vw, 4rem);
   font-weight: 400;
-  color: #ffffff;
   text-align: center;
-  text-shadow:
-    0 0 20px rgba(255, 206, 2, 0.5),
-    0 0 40px rgba(255, 206, 2, 0.3);
-  margin-bottom: 60px;
+  text-shadow: 0 4px 0px var(--mc-vanilla-coldgrey-4);
+}
+
+.howtojoin-heading {
+  color: #ffffff;
   padding-right: 20px;
 }
 
-.howtojoin-heading::after {
-  content: "Applies to Minecraft server only";
+.howtojoin-footnote {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #cccccc;
   margin-top: 10px;
-  font-family: "Minecraft Seven v2", monospace;
+  text-align: center;
+  margin-bottom: 60px;
   opacity: 0.8;
+  font-family: var(--font-pixel);
 }
 
 .howtojoin-cards {
@@ -697,7 +604,6 @@ h6 {
 .flip-card {
   perspective: 1000px;
   height: 320px;
-  cursor: pointer;
 }
 
 .flip-card-inner {
@@ -708,9 +614,21 @@ h6 {
   transform-style: preserve-3d;
 }
 
-.flip-card:hover .flip-card-inner {
+.flip-card.is-flipped .flip-card-inner {
   transform: rotateY(180deg);
-  transition: transform 0.4s ease-in-out; /* Reduced duration */
+}
+
+.flip-card.precise-interaction {
+  cursor: default;
+}
+
+.flip-card.precise-interaction :is(.flip-card-toggle, .flip-card-back-toggle) {
+  display: none;
+}
+
+.flip-card:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 6px;
 }
 
 .flip-card-front,
@@ -719,7 +637,6 @@ h6 {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 20px;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -729,36 +646,55 @@ h6 {
 }
 
 .flip-card-front {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(255, 206, 2, 0.3);
+  background: white;
+  border: 2px solid var(--mc-vanilla-coldgrey-4);
 }
 
 .flip-card-back {
-  background: linear-gradient(135deg, #ffce02, #ffd93d);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border: 2px solid var(--secondary-darker);
   transform: rotateY(180deg);
-  border: 2px solid rgba(255, 206, 2, 0.5);
 }
 
 .flip-card-icon {
-  font-size: 4rem;
   margin-bottom: 30px;
+}
+
+.flip-card-icon img {
+  width: 4rem;
+  height: 4rem;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
 
 .flip-card-title {
-  font-family: "Minecraft Ten v2", monospace;
+  font-family: var(--font-display);
   font-size: 1.5rem;
-  color: #333;
+  line-height: 1.2;
   margin-bottom: 15px;
   text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .flip-card-subtitle {
-  font-family: "Minecraft Seven v2", monospace;
   font-size: 0.9rem;
   color: #666;
   text-align: center;
+}
+
+.flip-card-toggle,
+.flip-card-back-toggle {
+  margin-top: 24px;
+  padding: 10px 16px;
+}
+
+.flip-card-back-toggle {
+  display: block;
+  margin-inline: auto;
+}
+
+.flip-card-toggle[hidden],
+.flip-card-back-toggle[hidden] {
+  display: none !important;
 }
 
 .flip-card-back-content {
@@ -767,60 +703,23 @@ h6 {
 }
 
 .flip-card-back-title {
-  font-family: "Minecraft Ten v2", monospace;
+  font-family: var(--font-display);
   font-size: 1.3rem;
-  color: #333;
   margin-bottom: 20px;
 }
 
 .flip-card-back-text {
-  font-family: "Minecraft Seven v2", monospace;
   font-size: 0.85rem;
   color: #333;
   line-height: 1.6;
   margin-bottom: 25px;
 }
 
-.flip-card-button {
-  font-family: "Minecraft Seven v2", monospace;
-  font-size: 0.9rem;
-  color: #333;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 14px 24px;
-  border-radius: 12px;
-  font-weight: bold;
-  border: 2px solid rgba(51, 51, 51, 0.2);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-  position: relative;
-  max-width: 100%;
-  word-wrap: break-word;
-}
-
-.flip-card-button:hover {
-  background: rgba(255, 255, 255, 1);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  border-color: rgba(51, 51, 51, 0.4);
-  animation: pulse 0.3s ease;
-}
-
-.flip-card-button:active {
-  transform: translateY(0);
-}
-
-.flip-card-button.disabled {
+.btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  background: rgba(200, 200, 200, 0.5);
 }
 
-.flip-card-button.disabled:hover {
-  transform: none;
-  box-shadow: none;
-}
 /* Articles */
 .articles-title {
   padding: 6rem 2rem 1rem;
@@ -836,62 +735,83 @@ h6 {
   padding: 0.4rem 0.8rem;
   font-size: 1rem;
   border-radius: 6px;
+  background: white;
   border: 1px solid #ccc;
 }
 
 .banner {
   height: 180px;
-  background-size: cover;
-  background-position: center;
   width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .article-grid,
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 270px));
+.featured-grid,
+.latest-grid {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
+  width: 100%;
+}
+
+.article-grid > *,
+.featured-grid > *,
+.latest-grid > * {
+  flex: 1 1 260px;
+  max-width: 400px;
 }
 
 .article-grid {
   justify-content: start;
-  max-width: 1200px;
-  padding: 0 2rem;
+  padding: 0 2rem 10px;
 }
 
 .article-card {
-  background: #f9f9f9; /* light card background */
-  border: 1px solid #ddd; /* subtle border for contrast */
-  border-radius: 8px;
+  min-width: 0;
+  background: var(--card-background);
+  border: 2px solid var(--card-border);
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  box-shadow: var(--card-shadow);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.article-card:hover {
-  transform: translateY(-4px); /* subtle hover lift */
-}
-
-.article-card img.banner {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
+.article-card:hover,
+.article-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
 }
 
 .card-content {
-  padding: 1rem;
-  color: #333; /* dark text for white background */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.25rem;
+}
+
+.card-content h2 {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.card-content p {
+  line-height: 1.6;
 }
 
 .type-label {
   display: inline-block;
+  align-self: flex-start;
   background: #ffd700;
   color: #000;
   font-size: 0.75rem;
   font-weight: bold;
   padding: 0.3em 0.6em;
-  border-radius: 4px;
   margin-bottom: 0.5em;
   text-transform: uppercase;
 }
@@ -899,26 +819,41 @@ h6 {
 .sort-controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 5rem;
   margin-right: 2rem;
 }
 
 .featured-news {
-  margin: 6rem 0 -4rem 2rem;
+  margin: 6rem 2rem -4rem 2rem;
 }
 
 .featured-title {
   margin-bottom: 1rem;
 }
 
+.articles-section {
+  padding-bottom: 2rem;
+}
+
 .article-card a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
   text-decoration: none;
   color: inherit;
 }
 
+.article-card a:focus-visible {
+  outline-offset: -4px;
+}
+
+article > p {
+  margin: 0.5em 0em;
+}
+
 .sort-controls select {
-  font-family: "Minecraft Seven v2", sans-serif;
   font-size: 1rem;
   line-height: 1.2; /* tighter line height */
   padding: 6px 10px; /* give vertical breathing room */
@@ -931,42 +866,506 @@ h6 {
   margin-top: 5rem;
 }
 
+.about-page {
+  max-width: 1100px;
+  min-height: calc(100vh - 5rem);
+  margin-inline: auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.about-page > h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 4rem);
+}
+
+.about-lead {
+  max-width: 720px;
+  margin: 1rem auto 3rem;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.about-grid,
+.projects-grid,
+.departments-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  width: 100%;
+  text-align: left;
+}
+
+.about-grid article,
+.projects-grid article,
+.departments-grid article {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 2rem;
+  background: var(--card-background);
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+.projects-grid article {
+  min-height: 100%;
+}
+
+.about-grid h2,
+.projects-grid h2,
+.departments-grid h2 {
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.about-grid p,
+.projects-grid p,
+.departments-grid p {
+  flex: 1;
+  min-height: 5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.about-grid .btn,
+.projects-grid .btn,
+.departments-grid .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* Shared content pages */
+.content-page {
+  width: min(1100px, 100%);
+  min-height: calc(100vh - 80px);
+  margin-inline: auto;
+  padding: 10rem 2rem 5rem;
+}
+
+.content-page-header {
+  max-width: 760px;
+  margin-bottom: 2.5rem;
+}
+
+.content-page-header h1 {
+  font-size: clamp(2.5rem, 7vw, 4rem);
+}
+
+.content-page-intro {
+  margin-top: 1rem;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.content-page-body,
+.content-card p,
+.games-content-part p,
+.staff-card p {
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.content-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.staff-container {
+  width: min(900px, 100%);
+  margin-inline: auto;
+}
+
+.staff-container .department-heading {
+  margin: 2.5rem 0 1rem;
+}
+
+.staff-container .department-heading:first-child {
+  margin-top: 0;
+}
+
+.staff-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+
+.department-team {
+  margin: 3rem auto 0;
+}
+
+.department-team-heading {
+  margin-bottom: 1rem;
+}
+
+.staff-empty-state {
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  line-height: 1.6;
+}
+
+.games-content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.content-card,
+.staff-card {
+  min-width: 0;
+  background: var(--card-background);
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+.content-card {
+  padding: 2rem;
+}
+
+.content-card-grid .content-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-card-grid .content-card .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.games-content-part--even {
+  flex-direction: row-reverse;
+}
+
+.games-content-part--odd {
+  flex-direction: row;
+}
+
+.game-card-image {
+  flex: 1;
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  min-width: 0;
+  padding: 1.5rem;
+  background: rgba(61, 66, 80, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card-image img {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  display: block;
+  object-fit: contain;
+}
+
+.game-card-text {
+  flex: 1;
+  min-width: 0;
+  padding: 2rem;
+}
+
+.game-card-text .game-title {
+  margin: 0 0 0.5rem 0;
+}
+
+.game-debris {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0.8;
+  z-index: 2;
+  image-rendering: pixelated;
+  transform: translateY(20%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .game-debris {
+    will-change: transform;
+  }
+}
+
+.game-status {
+  display: inline-block;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.game-status--in-development {
+  color: #5f4c00;
+  background: #fff4b3;
+}
+
+.game-status--released {
+  color: #1b5e20;
+  background: #e8f5e9;
+}
+
+.game-status--coming-soon {
+  color: #1e3a8a;
+  background: #dbeafe;
+}
+
+.game-meta--unity,
+.game-meta--luau {
+  color: #075985;
+  background: #e0f2fe;
+}
+
+.game-meta--roblox {
+  color: #1e3a8a;
+  background: #e0e7ff;
+}
+
+.game-meta--c {
+  color: #68217a;
+  background: #f3e8ff;
+}
+
+.game-summary {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .games-content-part {
+    flex-direction: column !important;
+    gap: 0;
+  }
+
+  .game-card-text {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .game-card-text .game-title {
+    font-size: 1.5rem;
+  }
+}
+
+.content-card h2,
+.staff-card h2 {
+  margin-bottom: 0.75rem;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.content-card p,
+.games-content-part p {
+  margin-bottom: 1.5rem;
+}
+
+.games-content-part {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  min-width: 0;
+  background: var(--card-background);
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+.content-card--centered {
+  margin-inline: auto;
+}
+
+.page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.status-label {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.65rem;
+  border: 2px solid var(--secondary-darker);
+  background: var(--primary);
+  color: #332900;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.staff-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 32%) minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.staff-card-image {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  max-height: 360px;
+  object-fit: cover;
+  background: var(--mc-vanilla-coldgrey-2);
+}
+
+.staff-card-content {
+  min-width: 0;
+  padding: 2rem;
+}
+
+.staff-role {
+  margin-bottom: 0.75rem;
+  color: var(--mc-vanilla-coldgrey-3);
+  font-weight: 700;
+}
+
+.staff-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.empty-state {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.empty-state--dark {
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Site map */
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.sitemap-section {
+  min-width: 0;
+  padding: 2rem;
+  background: var(--card-background);
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+.sitemap-section--wide {
+  grid-column: 1 / -1;
+}
+
+.sitemap-section h2 {
+  margin-bottom: 1.5rem;
+}
+
+.sitemap-links {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sitemap-links--articles {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 2rem;
+}
+
+.sitemap-links li {
+  padding: 1rem 0;
+  border-top: 1px solid rgba(61, 66, 80, 0.2);
+}
+
+.sitemap-links li:first-child,
+.sitemap-links--articles li:nth-child(2) {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.sitemap-links a {
+  font-family: var(--font-pixel);
+  font-weight: 700;
+}
+
+.sitemap-links p {
+  margin-top: 0.4rem;
+  color: var(--mc-vanilla-coldgrey-3);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
 /* Responsive */
 @media (max-width: 1280px) {
   .howtojoin {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 20px 30px 20px;
   }
 
   .howtojoin-heading {
-    margin-bottom: 20px;
     padding-right: 0;
+  }
+
+  .howtojoin-footnote {
+    margin-bottom: 20px;
   }
 
   .howtojoin-cards {
     margin-top: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 
-  .howtojoin-cards > .card {
+  .howtojoin-cards > .flip-card {
     margin: 0 auto;
+    width: 100%;
+  }
+
+  .btn:not(.nav-item) {
+    font-size: 1rem;
+    text-align: center;
   }
 }
 
 @media (max-width: 768px) {
+  .sitemap-grid,
+  .sitemap-links--articles {
+    grid-template-columns: 1fr;
+  }
+
+  .sitemap-section--wide {
+    grid-column: auto;
+  }
+
+  .sitemap-links--articles li:nth-child(2) {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(61, 66, 80, 0.2);
+  }
+
   .topbar {
     padding: 0 20px;
     height: 70px;
   }
 
   .logo {
-    width: 66px;
-    height: 66px;
+    max-width: 200%;
+    max-height: 200%;
   }
 
-  .about-btn {
+  .launch-btn-top {
     display: none;
   }
 
@@ -980,47 +1379,108 @@ h6 {
   .nav-menu {
     max-width: none;
     width: 100%;
-    padding: 100px 25px 40px;
+    padding: 30px 25px 40px;
     gap: 20px;
   }
 
   .landing {
     margin: 80px 8px 8px;
-    border-radius: 20px;
     padding: 0;
   }
 
   .hero-card {
     padding: 25px 20px 15px;
-    border-radius: 20px;
   }
 
   .hero-heading {
-    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    /*font-size: clamp(1.5rem, 8vw, 2.5rem);*/
     line-height: 1.2;
     margin-bottom: 0;
   }
 
-  .word-container {
-    min-width: 350px;
-  }
-
   .bottom-content {
+    width: 100%;
     margin-top: 16px;
     padding: 0 20px;
     gap: 16px;
   }
 
-  .launch-btn {
-    padding: 16px 32px;
-    font-size: 0.8rem;
+  .bottom-content > .btn {
     width: 100%;
     max-width: 300px;
-    text-align: center;
+  }
+
+  .btn:not(.nav-item) {
+    padding: 16px 4px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .topbar > .btn {
+    width: auto;
+    min-width: 0;
+    padding-inline: 16px;
+  }
+
+  .menu-overlay {
+    top: 70px;
+    height: calc(100vh - 70px);
+    height: calc(100dvh - 70px);
+    padding-top: 30px;
   }
 
   .landing-content {
     padding: 40px 20px;
+  }
+
+  .articles-header {
+    display: block;
+  }
+
+  .sort-controls {
+    margin: 0 2rem 1.5rem;
+  }
+
+  .article-grid {
+    padding-right: 2rem;
+  }
+
+  .article-grid > *,
+  .featured-grid > * {
+    flex-basis: 100%;
+    max-width: none;
+  }
+
+  .featured-news {
+    margin-right: 2rem;
+  }
+
+  .about-grid,
+  .projects-grid,
+  .departments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-page {
+    min-height: calc(100vh - 70px);
+    padding: 8rem 1.25rem 4rem;
+  }
+
+  .content-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-grid p,
+  .projects-grid p,
+  .departments-grid p {
+    min-height: 0;
+  }
+
+  .footer-column {
+    max-width: 80vw;
+    width: auto;
+    overflow: hidden;
   }
 }
 
@@ -1029,27 +1489,342 @@ h6 {
     font-size: clamp(1.2rem, 10vw, 2rem);
   }
 
-  .word-container {
-    min-width: 300px;
+  .btn {
+    font-size: 0.8rem;
+  }
+
+  .howtojoin-cards {
+    padding: 0px;
   }
 
   .landing {
     margin: 75px 5px 5px;
-    border-radius: 16px;
   }
 
   .hero-card {
     padding: 20px;
-    border-radius: 16px;
     margin-top: -30px;
   }
 }
 
-@media (pointer: coarse) {
-  .hero-card:hover,
-  .server-info:hover,
-  .flip-card:hover .flip-card-inner {
-    transform: none;
-    box-shadow: none;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
+
+  .words-list {
+    transform: none;
+  }
+}
+
+.news-home-section {
+  background-image: url("../mojang/img/bg-wool-white.png");
+  flex-wrap: wrap;
+}
+
+.news-home-section > div:first-child {
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.news-heading {
+  color: #262423;
+}
+
+.news-link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0 20px;
+}
+
+.latest-update {
+  padding: 4rem 2rem;
+  background-image: url("../mojang/img/bg-wool-white.png");
+  flex-wrap: wrap;
+}
+
+.latest-update-section {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.latest-image-container {
+  flex: 1;
+  min-width: 0;
+}
+
+.latest-image-container img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.latest-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  justify-content: space-between;
+}
+
+.latest-content h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.latest-content p {
+  flex: 1;
+  margin: 0 0 1.5rem 0;
+}
+
+.bottom-button {
+  margin-top: auto;
+  width: auto;
+  padding: 0.75rem 2rem;
+  align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+  .latest-update {
+    padding: 3rem 1.25rem;
+  }
+
+  .latest-update-section {
+    flex-direction: column;
+  }
+
+  .latest-image-container {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.footer {
+  background-color: #161514;
+  padding: 4rem 2rem 2rem;
+  image-rendering: pixelated;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 180px;
+}
+
+.footer-column-left {
+  flex: 1.5;
+}
+
+.footer-column-center {
+  flex: 1;
+}
+
+.footer-column-right {
+  flex: 1;
+}
+
+.footer-logo {
+  display: inline-block;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  width: 100%;
+}
+
+.footer-logo img {
+  max-height: 60px;
+  width: auto;
+  max-width: 100%;
+}
+
+.footer-copy,
+.footer-disclaimer,
+.footer-rules {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.footer-disclaimer {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.footer-rules a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.footer-rules a:hover {
+  text-decoration: underline;
+}
+
+.footer-heading {
+  margin-bottom: 0.5rem;
+}
+
+.footer-heading a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-pixel);
+}
+
+.footer-heading a:hover {
+  color: var(--primary);
+}
+
+.footer-column-right .footer-heading:not(:first-of-type) {
+  margin-top: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.rules-heading {
+  margin-bottom: 1rem;
+}
+
+.rules-section {
+  min-height: 100vh;
+  border-top: 1px solid #333;
+  padding: 10rem 2rem 4rem;
+}
+
+.rules-container {
+  width: min(1000px, 100%);
+  margin-inline: auto;
+}
+
+.rules-container h2 {
+  margin-top: 2rem;
+}
+
+.rules-container h2:first-of-type {
+  margin-top: 0;
+}
+
+.last-updated-rules {
+  padding-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .staff-card {
+    grid-template-columns: 1fr;
+  }
+
+  .staff-card-image {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1;
+  }
+
+  .staff-card-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-column {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .page-actions .btn,
+  .content-card .btn {
+    width: 100%;
+  }
+}
+
+.projects-section {
+  background-image: url("../mojang/img/bg-wool-dark.png");
+}
+
+.projects-grid {
+  max-width: 1100px;
+}
+
+.projects-heading {
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.projects-link-container {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.link-yellow {
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  color: var(--primary);
+  display: inline-block;
+  text-decoration: none;
+}
+
+.link-yellow:hover {
+  text-decoration: underline;
+}
+
+.link-yellow-sec {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.link-yellow-sec:hover {
+  text-decoration: underline;
+}
+
+.link-yellow-sec-darker {
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  color: var(--secondary-darker);
+  display: inline-block;
+  text-decoration: none;
+}
+
+.link-yellow-sec-darker:hover {
+  text-decoration: underline;
 }

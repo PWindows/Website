@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<section class="rules-section">
+    <div class="rules-container">
+        <h1 class="rules-heading">PWindows Server Rules</h1>
+        {{ content }}
+        {% if page.last_updated %}
+        <div class="last-updated-rules">
+          <p><i>Last updated: {{ page.last_updated | date: "%B %-d, %Y at %-I:%M %p" }}</i></p>
+        </div>
+        {% endif %}
+    </div>
+</section>

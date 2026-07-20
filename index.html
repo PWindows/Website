@@ -1,123 +1,296 @@
 ---
 layout: default
 title: Home
+description: Discover PWindows, a Minecraft server, game studio, and community project.
 ---
 
-<!-- Landing Section -->
 <section class="landing" id="home">
-    <div class="landing-content">
-        <!-- Hero Card -->
-        <div class="hero-card">
-            <div class="hero-heading">
-                <div class="hero-line-1">Not just a</div>
-                <div class="hero-line-2">
-                    <div class="animated-word">
-                        <div class="word-container">
-                            <div class="words-list">
-                                <span class="word">Minecraft Server</span>
-                                <span class="word">Roblox Studio</span>
-                                <span class="word">Community</span>
-                                <span class="word">Minecraft Server</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom Content -->
-        <div class="bottom-content">
-            <button class="server-info" onclick="copyIP()" aria-label="Copy server IP">
-                IP: Play.PWindows.qzz.io
-            </button>
-
-            <a href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io" class="launch-btn" aria-label="Launch Minecraft Bedrock">
-                Launch from Minecraft Bedrock
-            </a>
-        </div>
+  <div class="landing-content">
+    <div class="hero-card">
+      <h1 class="hero-heading">
+        <span class="sr-only">
+          Not just a Minecraft server, game studio, and community.
+        </span>
+        <span aria-hidden="true">
+          <span class="hero-line-1">Not just a</span>
+          <span class="hero-line-2">
+            <span class="animated-word">
+              <span class="word-container">
+                <span class="words-list">
+                  <span class="word">Minecraft Server</span>
+                  <span class="word">Game Studio</span>
+                  <span class="word">Community</span>
+                  <span class="word">Minecraft Server</span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </h1>
     </div>
+
+    <!-- Bottom Content -->
+    <div class="bottom-content">
+      <button
+        class="copy-button btn btn-gold"
+        data-copy-ip="{{ site.data.site.server.address | escape }}"
+        aria-label="Copy server IP(Coming Soon)"
+        disabled
+      >
+        IP: {{ site.data.site.server.address }}
+      </button>
+
+      <button class="btn btn-green" aria-label="Go to join section" disabled>
+        Coming Soon
+      </button>
+    </div>
+  </div>
 </section>
 
 <!-- Transition Section -->
-<section class="transition-section"></section>
+<div class="transition-section" aria-hidden="true"></div>
+<section class="howtojoin textured-section" id="howtojoin">
+  <div>
+    <h2 class="howtojoin-heading section-heading">How to join</h2>
+    <div class="howtojoin-footnote">Applies to Minecraft server only</div>
+  </div>
 
-<section class="howtojoin" id="howtojoin">
-    <div class="howtojoin-heading">How to join</div>
-
-    <div class="howtojoin-cards">
-        <!-- Card 1: Minecraft Java & Bedrock - Copy IP -->
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <div class="flip-card-icon">
-                        <img src="./assets/mojang/svg/icons/color-grass-block.svg" alt="Minecraft Grass Block" loading="lazy" style="width: 4rem; height: 4rem; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));">
-                    </div>
-                    <div class="flip-card-title">Minecraft Server</div>
-                    <div class="flip-card-subtitle">Java & Bedrock Edition</div>
-                </div>
-                <div class="flip-card-back">
-                    <div class="flip-card-back-content">
-                        <div class="flip-card-back-title">Server Address</div>
-                        <div class="flip-card-back-text">
-                            Copy the server IP and add it<br>to your Minecraft server list
-                        </div>
-                        <button class="flip-card-button" onclick="copyServerIP(this)" aria-label="Copy server IP">
-                            Play.PWindows.qzz.io
-                        </button>
-                    </div>
-                </div>
-            </div>
+  <div class="howtojoin-cards">
+    <div class="flip-card" data-flip-card>
+      <div class="flip-card-inner">
+        <div class="flip-card-front" id="join-java-front">
+          <div class="flip-card-icon">
+            <img
+              src="{{ '/assets/mojang/svg/icons/color-grass-block.png' | relative_url }}"
+              alt="Minecraft Grass Block"
+              loading="lazy"
+            />
+          </div>
+          <div class="flip-card-title">Server Address</div>
+          <div class="flip-card-subtitle">Java & Bedrock Edition</div>
+          <button
+            class="flip-card-toggle btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="join-java-back"
+          >
+            View instructions
+          </button>
         </div>
-
-        <!-- Card 2: Bedrock Direct Launch -->
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <div class="flip-card-icon">
-                        <img src="./assets/mojang/svg/icons/color-dungeons-launcher.svg" alt="Bedrock Launcher" loading="lazy" style="width: 4rem; height: 4rem; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));">
-                    </div>
-                    <div class="flip-card-title">Quick Launch</div>
-                    <div class="flip-card-subtitle">Bedrock Edition</div>
-                </div>
-                <div class="flip-card-back">
-                    <div class="flip-card-back-content">
-                        <div class="flip-card-back-title">Launch Bedrock</div>
-                        <div class="flip-card-back-text">
-                            Click to open Minecraft Bedrock<br>and join our server instantly
-                        </div>
-                        <a href="minecraft:?addExternalServer=PWindows|Play.PWindows.qzz.io" class="flip-card-button" aria-label="Launch Minecraft Bedrock">
-                            Launch Minecraft
-                        </a>
-                    </div>
-                </div>
+        <div class="flip-card-back" id="join-java-back" inert>
+          <div class="flip-card-back-content">
+            <div class="flip-card-back-title">Server Address</div>
+            <div class="flip-card-back-text">
+              Copy the server IP and add it
+              <br />
+              to your Minecraft server list
             </div>
+            <button
+              class="copy-button btn btn-gold"
+              data-copy-ip="{{ site.data.site.server.address | escape }}"
+              aria-label="Copy server IP(Coming soon)"
+              disabled
+            >
+              Coming Soon
+            </button>
+            <button class="flip-card-back-toggle btn" type="button">
+              Back
+            </button>
+          </div>
         </div>
-
-        <!-- Card 3: Bedrock Realms - Coming Soon -->
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <div class="flip-card-icon">
-                        <img src="./assets/mojang/svg/icons/color-two-players.svg" alt="Bedrock Realms" loading="lazy" style="width: 4rem; height: 4rem; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));">
-                    </div>
-                    <div class="flip-card-title">Bedrock Realms</div>
-                    <div class="flip-card-subtitle">Coming Soon</div>
-                </div>
-                <div class="flip-card-back">
-                    <div class="flip-card-back-content">
-                        <div class="flip-card-back-title">Not Ready Yet</div>
-                        <div class="flip-card-back-text">
-                            Our Bedrock Realms join format<br>is currently under development
-                        </div>
-                        <button class="flip-card-button disabled" disabled aria-label="Coming Soon">
-                            Coming Soon
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <!-- Card 2: Bedrock Direct Launch -->
+    <div class="flip-card" data-flip-card>
+      <div class="flip-card-inner">
+        <div class="flip-card-front" id="join-bedrock-front">
+          <div class="flip-card-icon">
+            <img
+              src="{{ '/assets/mojang/svg/icons/color-dungeons-launcher.svg' | relative_url }}"
+              alt="Bedrock Launcher"
+              loading="lazy"
+            />
+          </div>
+          <div class="flip-card-title">Quick Launch</div>
+          <div class="flip-card-subtitle">Bedrock Edition</div>
+          <button
+            class="flip-card-toggle btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="join-bedrock-back"
+          >
+            View instructions
+          </button>
+        </div>
+        <div class="flip-card-back" id="join-bedrock-back" inert>
+          <div class="flip-card-back-content">
+            <div class="flip-card-back-title">Launch Bedrock</div>
+            <div class="flip-card-back-text">
+              Click to open Minecraft Bedrock
+              <br />
+              and join our server instantly
+            </div>
+            <button
+              class="btn btn-green"
+              aria-label="Launch Minecraft Bedrock"
+              disabled
+            >
+              Coming Soon
+            </button>
+            <button class="flip-card-back-toggle btn" type="button">
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Bedrock Realms - Coming Soon -->
+    <div class="flip-card" data-flip-card>
+      <div class="flip-card-inner">
+        <div class="flip-card-front" id="join-realms-front">
+          <div class="flip-card-icon">
+            <img
+              src="{{ '/assets/mojang/svg/icons/color-two-players.svg' | relative_url }}"
+              alt="Bedrock Realms"
+              loading="lazy"
+            />
+          </div>
+          <div class="flip-card-title">Bedrock Realms</div>
+          <div class="flip-card-subtitle">Coming Soon</div>
+          <button
+            class="flip-card-toggle btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="join-realms-back"
+          >
+            Learn more
+          </button>
+        </div>
+        <div class="flip-card-back" id="join-realms-back" inert>
+          <div class="flip-card-back-content">
+            <div class="flip-card-back-title">Not Ready Yet</div>
+            <div class="flip-card-back-text">
+              Our Bedrock Realms join format
+              <br />
+              is currently under development
+            </div>
+            <button class="btn btn-green" disabled aria-label="Coming Soon">
+              Coming Soon
+            </button>
+            <button class="flip-card-back-toggle btn" type="button">
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<div class="transition-section-reverse" aria-hidden="true"></div>
 
+<section class="latest-update" id="latest-update">
+  <div class="latest-update-section">
+    <div class="latest-image-container">
+      <img
+        src="{{ '/assets/mojang/img/bg-snow.png' | relative_url }}"
+        alt="Snow"
+        loading="lazy"
+      />
+    </div>
+    <div class="latest-content">
+      <h2>PWindows is still in development</h2>
+      <p>
+        We have nothing to show YET, so here's a very nice picture of snowing in
+        Minecraft. Feel free to check the news section for updates.
+      </p>
+      <a
+        class="btn about-link bottom-button"
+        href="{{ '/articles' | relative_url }}"
+      >
+        Read the news
+      </a>
+    </div>
+  </div>
+</section>
 
+<div class="transition-section" aria-hidden="true"></div>
+
+<section class="projects-section textured-section" id="projects-section">
+  <div>
+    <h2 class="projects-heading section-heading">Our projects</h2>
+    <div class="projects-link-container">
+      <a href="{{ '/games' | relative_url }}" class="link-yellow">
+        See our games
+      </a>
+    </div>
+    <div class="projects-grid">
+      <article>
+        <h2>Minecraft Server</h2>
+        <div class="project-image-holder"></div>
+        <p>
+          Our Minecraft server project is still in development. Stay tuned for
+          updates!
+        </p>
+      </article>
+      <article>
+        <h2>Game Studio</h2>
+        <div class="project-image-holder"></div>
+        <p>
+          We have been working on new games as a game studio, such as
+          <a
+            href="{{ '/games/sacred-cubes' | relative_url}}"
+            class="link-yellow-sec"
+          >
+            Sacred Cubes
+          </a>
+          and
+          <a
+            href="{{ '/games/obby-of-dominance' | relative_url}}"
+            class="link-yellow-sec"
+          >
+            Obby Of Dominance
+          </a>
+          . We have many departments including the
+          <a
+            href="{{ '/departments/roblox' | relative_url}}"
+            class="link-yellow-sec"
+          >
+            Roblox department
+          </a>
+          and the
+          <a
+            class="link-yellow-sec"
+            href="{{ '/departments/unity' | relative_url}}"
+          >
+            Unity department
+          </a>
+          .
+        </p>
+        <a class="btn" href="{{ '/departments' | relative_url }}">Learn more</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="transition-section-reverse" aria-hidden="true"></div>
+<section class="news-home-section textured-section" id="news-home-section">
+  <div>
+    <h2 class="news-heading section-heading">Newest News</h2>
+    <div class="news-link-container">
+      <a href="{{ '/articles' | relative_url }}" class="link-yellow-sec">
+        See all news
+      </a>
+    </div>
+  </div>
+  <div class="latest-grid">
+    {% assign sorted_articles = site.articles | sort: "date" | reverse %} {%
+    assign latest_articles = sorted_articles | slice: 0, 4 %} {% for article in
+    latest_articles %} {% include article-card.html article=article %} {% else
+    %}
+    <p class="empty-state empty-state--dark">No news has been published yet.</p>
+    {% endfor %}
+  </div>
+</section>
