@@ -6,6 +6,17 @@ exclude:
   - README.md
   - tools/
   - vendor/
+  - assets/mojang/fonts/*.html
+  - assets/mojang/fonts/*.css
+  - assets/mojang/fonts/*.eot
+  - assets/mojang/fonts/*.svg
+  - assets/mojang/fonts/*.ttf
+  - assets/mojang/fonts/*.otf
+  - assets/mojang/fonts/*.woff
+  - assets/mojang/fonts/MinecraftFive-Regular.woff2
+  - assets/mojang/fonts/NotoSans-Bold.woff2
+  - assets/mojang/fonts/NotoSans-BoldItalic.woff2
+  - assets/mojang/fonts/NotoSans-Italic.woff2
 collections:
   articles:
     output: true
