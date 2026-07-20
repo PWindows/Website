@@ -269,7 +269,7 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
           </a>
           .
         </p>
-        <a class="btn" href="{{ '/departments' | relative_url }}">Learn more</a>
+        <a class="btn" href="{{ '/departments/' | relative_url }}">Learn more</a>
       </article>
     </div>
   </div>
@@ -286,11 +286,12 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
     </div>
   </div>
   <div class="latest-grid">
-    {% assign sorted_articles = site.articles | sort: "date" | reverse %} {%
-    assign latest_articles = sorted_articles | slice: 0, 4 %} {% for article in
-    latest_articles %} {% include article-card.html article=article %} {% else
-    %}
-    <p class="empty-state empty-state--dark">No news has been published yet.</p>
+    {% assign sorted_articles = site.articles | sort: "date" | reverse %}
+    {% assign latest_articles = sorted_articles | slice: 0, 4 %}
+    {% for article in latest_articles %}
+      {% include article-card.html article=article %}
+    {% else %}
+      <p class="empty-state empty-state--dark">No news has been published yet.</p>
     {% endfor %}
   </div>
 </section>
