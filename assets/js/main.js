@@ -93,7 +93,7 @@ function setupMenu() {
 
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768 && menuButton.getAttribute("aria-expanded") === "true") {
-      setMenuOpen(false);
+      setMenuOpen(false, true);
     } else if (menuButton.getAttribute("aria-expanded") === "true") {
       document.body.classList.toggle("menu-open", window.innerWidth <= 768);
     }
