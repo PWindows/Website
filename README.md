@@ -33,3 +33,6 @@ bundle exec ruby tools/verify-site.rb ./_site
 Game records require `slug`, `title`, `path`, `status`, `summary`, `image`, `engine`, and `language`. Optional debris effects may retain placeholder metadata while disabled, require a tracked image before being enabled, and may set a positive scale. Staff record keys are stable author IDs used by news articles; each visible profile uses `name`, `pfp`, `role`, `bio`, optional `socials`, and `aboutpage: true`.
 
 All font files and specimen pages under `assets/mojang/fonts/` are retained for future use. Only the three fonts referenced by production CSS and the font license are published; unused formats and specimen files are excluded from deployment.
+
+## Activity
+![Alt](https://repobeats.axiom.co/api/embed/3d627adb527aaf7280944a459c84a220a43c76a4.svg "Repobeats analytics image")
