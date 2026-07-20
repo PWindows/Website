@@ -6,29 +6,6 @@ exclude:
   - README.md
   - tools/
   - vendor/
-  - assets/mojang/fonts/*.html
-  - assets/mojang/fonts/*.css
-  - assets/mojang/fonts/*.eot
-  - assets/mojang/fonts/*.svg
-  - assets/mojang/fonts/*.ttf
-  - assets/mojang/fonts/*.otf
-  - assets/mojang/fonts/Minecraft-Tenv2.woff
-  - assets/mojang/fonts/MinecraftTen.woff
-  - assets/mojang/fonts/MinecraftFive-Bold.woff
-  - assets/mojang/fonts/MinecraftFive-Regular.woff
-  - assets/mojang/fonts/MinecraftSeven.woff
-  - assets/mojang/fonts/NotoSans-Bold.woff
-  - assets/mojang/fonts/NotoSans-BoldItalic.woff
-  - assets/mojang/fonts/NotoSans-Italic.woff
-  - assets/mojang/fonts/NotoSans-Regular.woff
-  - assets/mojang/fonts/MinecraftFive-Regular.woff2
-  - assets/mojang/fonts/NotoSans-Bold.woff2
-  - assets/mojang/fonts/NotoSans-BoldItalic.woff2
-  - assets/mojang/fonts/NotoSans-Italic.woff2
-include:
-  - assets/mojang/fonts/Minecraft-Tenv2.woff2
-  - assets/mojang/fonts/Minecraft-Seven_v2.woff
-  - assets/mojang/fonts/NotoSans-Regular.woff2
 collections:
   articles:
     output: true
