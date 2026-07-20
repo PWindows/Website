@@ -13,3 +13,13 @@ staff:
   pfp: https://pwindows.qzz.io/assets/staffpfp/staff.png
   aboutpage: false
 
+isaacaxolotl:
+  name: Isaac
+  pfp: /assets/staffpfp/staff.png
+  role: Co-Director of Sacred Cubes
+  bio: The co-director of Sacred Cubes, responsible for this website because Peter asked me to change it.
+  department: "Unity"
+  socials:
+    twitter: https://twitter.com/windows11create
+    github: https://github.com/ilikecereal1
+  aboutpage: true
