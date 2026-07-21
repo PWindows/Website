@@ -201,10 +201,10 @@ button {
   -webkit-backdrop-filter: blur(10px);
   z-index: 1001;
   transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .menu-overlay.active {
@@ -217,10 +217,14 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 25px;
-  padding: 0px 20px 40px;
+  padding: 0px 20px 20px;
   max-width: 400px;
   margin: 0 auto;
   width: 100%;
+
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .nav-item {
@@ -245,9 +249,10 @@ button {
 /* Menu Footer */
 .menu-footer {
   margin-top: auto;
-  padding: 30px 20px;
+  padding: 30px 20px 30px;
   text-align: center;
   border-top: 2px solid #7771;
+  flex-shrink: 0;
 }
 
 .menu-footer p {
