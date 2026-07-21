@@ -26,7 +26,6 @@ body {
 
 .news-item :is(h1, h2, h3) {
     font-family: var(--font-display);
-    margin-bottom: 10px;
 }
 
 .content > :is(h2, h3) {
@@ -246,4 +245,17 @@ body {
     .article-title {
         font-size: clamp(1.8rem, 9vw, 2.5rem);
     }
+}
+
+.mc-seven {
+    font-family: "Minecraft Seven v2", monospace !important;
+    src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");
+}
+
+.mc-seven:is(h1) {
+    font-size: 1.5rem;
+}
+
+.mc-seven:is(h2) {
+    font-size: 1.25rem;
 }

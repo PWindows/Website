@@ -50,7 +50,7 @@
 
 @font-face {
   font-family: "Minecraft Seven v2";
-  src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");
+src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");  
   font-display: swap;
 }
 

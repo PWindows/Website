@@ -19,5 +19,6 @@ collections:
   articles:
     output: true
     permalink: /article/:name
+    markdown: kramdown
 plugins:
   - jekyll-sitemap
