@@ -92,6 +92,120 @@ body {
     line-height: 1.65;
 }
 
+.read-more-divider {
+    max-width: 1100px;
+    margin: 40px auto 0;
+    border: none;
+    border-top: 1px solid rgba(128, 128, 128, 0.4);
+}
+
+.share-story {
+    max-width: 1100px;
+    margin: 30px auto 0;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.share-story-label {
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.share-story-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.share-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+.share-icon:hover {
+    opacity: 0.7;
+}
+
+.share-icon-img {
+    width: 18px;
+    height: 18px;
+    image-rendering: pixelated;
+}
+
+.read-more {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+    text-align: center;
+}
+
+.read-more-heading {
+    text-transform: uppercase;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.read-more-subtitle {
+    margin-bottom: 2rem;
+}
+
+.read-more .article-grid {
+    text-align: left;
+}
+
+.read-more-item.is-hidden {
+    display: none;
+}
+
+.read-more-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 40;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    image-rendering: pixelated;
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background: #171615;
@@ -105,6 +219,10 @@ body {
 
     .author-date {
         color: #bdbdbd;
+    }
+
+    .share-icon-img {
+        filter: brightness(0) invert(1);
     }
 }
 

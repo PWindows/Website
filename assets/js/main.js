@@ -312,11 +312,48 @@ function setupDebris() {
   updateDebris();
 }
 
+function setupReadMore() {
+  const grid = document.getElementById("readMoreGrid");
+  const button = document.getElementById("readMoreBtn");
+  if (!grid || !button) return;
+
+  const step = Number.parseInt(button.dataset.step, 10) || 16;
+
+  function revealNext() {
+    const hidden = Array.from(grid.querySelectorAll(".read-more-item.is-hidden"));
+    hidden.slice(0, step).forEach((item) => item.classList.remove("is-hidden"));
+
+    if (!grid.querySelector(".read-more-item.is-hidden")) {
+      button.hidden = true;
+    }
+  }
+
+  button.addEventListener("click", revealNext);
+}
+
+function setupBackToTop() {
+  const button = document.getElementById("backToTopBtn");
+  if (!button) return;
+
+  function toggleVisibility() {
+    button.classList.toggle("is-visible", window.scrollY > 400);
+  }
+
+  button.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  window.addEventListener("scroll", toggleVisibility);
+  toggleVisibility();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   setupMenu();
   setupCopyButtons();
   setupAnchorScrolling();
   setupFlipCards();
   setupArticleSorting();
+  setupReadMore();
+  setupBackToTop();
   setupDebris();
 });
