@@ -1,6 +1,9 @@
 title: PWindows
 description: Discover PWindows, not just a Minecraft server
 url: "https://www.pwindows.qzz.io"
+markdown: kramdown
+kramdown:
+  input: GFM
 exclude:
   - AGENTS.md
   - README.md

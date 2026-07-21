@@ -794,6 +794,7 @@ button {
 }
 
 .card-content h2 {
+  color: #000000;
   margin-bottom: 0.5rem;
   font-size: clamp(1.5rem, 3vw, 2rem);
   line-height: 1.15;
@@ -801,6 +802,7 @@ button {
 }
 
 .card-content p {
+  color: #000000;
   line-height: 1.6;
 }
 
@@ -1895,4 +1897,14 @@ article > p {
 
 .staff-bio {
   text-align: center;
+}
+
+.content h2 {
+  padding-bottom: none;
+  border-bottom: none;
+  margin-bottom: none;
+}
+
+.mc-seven {
+    font-family: "Minecraft Seven", monospace;
 }
