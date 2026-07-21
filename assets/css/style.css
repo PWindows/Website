@@ -223,7 +223,7 @@ button {
   width: 100%;
 
   flex: 1;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   overscroll-behavior: contain;
 }
 
