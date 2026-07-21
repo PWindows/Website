@@ -28,6 +28,8 @@ PUBLIC_ROUTES = %w[
   /rules
   /sitemap
   /staff
+  /staff/petermazep
+  /staff/isaacaxolotl
 ].freeze
 
 PRODUCTION_FONT_FILES = Set.new(%w[

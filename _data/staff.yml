@@ -4,6 +4,7 @@ petermazep:
   role: Owner of PWindows
   bio: The owner of PWindows, responsible for coding and managing everything.
   department: "Owner"
+  path: /staff/petermazep
   socials:
     twitter: https://twitter.com/petermazep
     github: https://github.com/petermazep
@@ -15,6 +16,7 @@ isaacaxolotl:
   role: Co-Director of Sacred Cubes
   bio: The co-director of Sacred Cubes, responsible for this website 'cause Peter asked me to change it.
   department: "Unity"
+  path: /staff/isaacaxolotl
   socials:
     twitter: https://twitter.com/windows11create
     github: https://github.com/ilikecereal1

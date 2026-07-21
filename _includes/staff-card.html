@@ -1,23 +1,31 @@
 {% assign person = include.person %}
 {% if person.aboutpage %}
 <article class="staff-card">
-  <img
-    class="staff-card-image"
-    src="{{ person.pfp | relative_url }}"
-    alt="{{ person.name | escape }} profile picture"
-    loading="lazy"
-  />
-  <div class="staff-card-content">
-    <h2>{{ person.name }}</h2>
-    <p class="staff-role">{{ person.role }}</p>
-    <p>{{ person.bio }}</p>
-    {% if person.socials %}
+  {% if person.path %}
+  <a class="staff-card-link no-icon" href="{{ person.path | relative_url }}" aria-label="View {{ person.name | escape }}'s profile">
+  {% endif %}
+    <img
+      class="staff-card-image"
+      src="{{ person.pfp | relative_url }}"
+      alt="{{ person.name | escape }} profile picture"
+      loading="lazy"
+    />
+    <div class="staff-card-content">
+      <h2>{{ person.name }}</h2>
+      <p class="staff-role">{{ person.role }}</p>
+      <p>{{ person.bio }}</p>
+    </div>
+  {% if person.path %}
+  </a>
+  {% endif %}
+  {% if person.socials %}
+    <div class="staff-card-socials-wrap">
       <ul class="staff-socials" aria-label="{{ person.name | escape }} social links">
         {% for social in person.socials %}
           <li><a href="{{ social[1] | escape }}">{% if social[0] == 'github' %}GitHub{% else %}{{ social[0] | capitalize }}{% endif %}</a></li>
         {% endfor %}
       </ul>
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 </article>
 {% endif %}
