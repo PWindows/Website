@@ -96,6 +96,11 @@
     {% include header.html %}
     <div class="sr-only" id="site-status" role="status" aria-live="polite"></div>
     <main>{{ content }}</main>
+
+    <button type="button" class="btn btn-gold back-to-top" id="backToTopBtn" aria-label="Back to top">
+      <img class="back-to-top-icon" src="{{ '/assets/mojang/svg/icons/pixel-arrow-up.svg' | relative_url }}" alt="" />
+    </button>
+
     {% include footer.html %}
     <script src="{{ '/assets/js/main.js?v=' | append: asset_revision | relative_url }}"></script>
   </body>

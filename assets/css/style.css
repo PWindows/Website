@@ -529,6 +529,39 @@ button {
   --btn-hover-shade: rgba(0, 0, 0, 0.1);
 }
 
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 40;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    image-rendering: pixelated;
+}
+
 /*About*/
 .transition-section,
 .transition-section-reverse {

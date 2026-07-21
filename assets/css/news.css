@@ -171,40 +171,6 @@ body {
     margin-top: 2rem;
 }
 
-.back-to-top {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 40;
-    width: 56px;
-    height: 56px;
-    padding: 0;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px);
-    transition:
-        opacity 0.2s ease,
-        transform 0.2s ease,
-        visibility 0.2s ease;
-}
-
-.back-to-top.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.back-to-top-icon {
-    width: 20px;
-    height: 20px;
-    filter: brightness(0) invert(1);
-    image-rendering: pixelated;
-}
-
 @media (prefers-color-scheme: dark) {
     body {
         background: #171615;
