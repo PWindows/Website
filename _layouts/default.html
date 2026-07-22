@@ -7,7 +7,7 @@
     {% unless asset_revision %}
       {% assign asset_revision = site.time | date: '%s' %}
     {% endunless %}
-    {% capture page_full_title %}{% if page.url == '/' %}{{ site.title }} — Not just a Minecraft server{% else %}{{ page.title }} | {{ site.title }}{% endif %}{% endcapture %}
+    {% capture page_full_title %}{% if page.url == '/' %}{{ site.title }} - Not just a Minecraft server{% else %}{{ page.title }} | {{ site.title }}{% endif %}{% endcapture %}
     {% if page.url == "/" %} {% include schema-org.html %} {% endif %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
