@@ -9,7 +9,7 @@ explicitly requires a change.
 
 ## Repository structure
 
-- `index.html` is the homepage.
+- `pages/index.html` is the homepage and retains the `/` permalink.
 - `pages/` contains public pages. Every page must declare an explicit
   `permalink` so reorganizing source files does not change its URL.
 - `_articles/` contains news posts in the `articles` collection.
