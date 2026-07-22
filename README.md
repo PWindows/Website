@@ -15,6 +15,7 @@ Detailed setup, editing, testing, and deployment instructions are available in t
 
 ```sh
 git clone https://github.com/PWindows/Website.git
+cd Website
 bundle install
 bundle exec jekyll serve
 ```

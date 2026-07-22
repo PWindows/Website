@@ -83,10 +83,9 @@ When adding or intentionally removing a public route, update
 `/sitemap` as the footer’s readable site-map destination; `sitemap.xml` is for
 search engines.
 
-Do not publish `AGENTS.md`, `README.md`, `tools/`, `vendor/`, or font specimen
-HTML pages. Do not delete fonts or other retained files from
-`assets/mojang/fonts/`; they are intentionally kept for future use even when
-they are excluded from the generated site.
+Do not publish `AGENTS.md`, `README.md`, `tools/`, `vendor/`, or `assets/extra/`.
+Do not delete fonts or other retained files from `assets/extra/`; they are kept
+for future use even though the directory is excluded from the generated site.
 
 ## Pages, templates, and metadata
 

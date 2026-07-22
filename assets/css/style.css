@@ -62,7 +62,7 @@ src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");
 
 @font-face {
   font-family: "Minecraft TwentyOne";
-  src: url("../mojang/fonts/cn/Minecraft-TwentyOne.ttf") format("truetype");
+  src: url("../mojang/fonts/Minecraft-TwentyOne.ttf") format("truetype");
   font-display: swap;
 }
 
