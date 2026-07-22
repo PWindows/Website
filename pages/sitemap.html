@@ -73,7 +73,7 @@ page_class: sitemap-page
         <a href="{{ article.url | relative_url }}">{{ article.title | escape }}</a>
         <p>
           <time datetime="{{ article.date | date_to_xmlschema }}">{{ article.date | date: "%B %-d, %Y" }}</time>
-          {% if article.summary %} — {{ article.summary }}{% endif %}
+          {% if article.summary %} - {{ article.summary }}{% endif %}
         </p>
       </li>
       {% endfor %}
