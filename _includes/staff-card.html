@@ -2,7 +2,7 @@
 {% if person.aboutpage %}
 <article class="staff-card">
   {% if person.path %}
-  <a class="staff-card-link no-icon" href="{{ person.path | relative_url }}" aria-label="View {{ person.name | escape }}'s profile">
+  <a class="staff-card-link no-icon" href="{{ person.path | relative_url }}" aria-label="View {{ person[site.active_lang].name | escape }}'s profile">
   {% endif %}
     <img
       class="staff-card-image"
@@ -20,7 +20,7 @@
   {% endif %}
   {% if person.socials %}
     <div class="staff-card-socials-wrap">
-      <ul class="staff-socials" aria-label="{{ person.name | escape }} social links">
+      <ul class="staff-socials" aria-label="{{ person[site.active_lang].name | escape }} social links">
         {% for social in person.socials %}
           <li><a href="{{ social[1] | escape }}">{% if social[0] == 'github' %}GitHub{% else %}{{ social[0] | capitalize }}{% endif %}</a></li>
         {% endfor %}

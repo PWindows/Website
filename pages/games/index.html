@@ -20,7 +20,7 @@ intro: Follow the games currently being developed by PWindows.
           <div class="game-card-image">
             <img
               src="{{ game.image | relative_url }}"
-              alt="{{ game.title | escape }}"
+              alt="{{ game[site.active_lang].title | escape }}"
               class="content-image"
               loading="lazy"
               decoding="async"
@@ -58,4 +58,3 @@ intro: Follow the games currently being developed by PWindows.
     </div>
   </div>
 </section>
-

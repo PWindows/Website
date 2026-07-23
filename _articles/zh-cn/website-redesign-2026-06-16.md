@@ -1,5 +1,6 @@
 ---
 layout: news
+lang: zh-cn
 
 title: "即将进行的网站改版"
 

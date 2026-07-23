@@ -34,11 +34,11 @@ permalink: /
     <div class="bottom-content">
       <button
         class="copy-button btn btn-gold"
-        data-copy-ip="{{ site.data.site.server.address | escape }}"
+        data-copy-ip="{{ site.data.site.server.address[site.active_lang] | escape }}"
         aria-label="Copy server IP"
         disabled
       >
-        IP: {{ site.data.translations[site.active_lang].ip }}
+        IP: {{ site.data.site.server.address[site.active_lang] }}
       </button>
 
       <button class="btn btn-green" aria-label="Go to join section" disabled>
@@ -86,7 +86,7 @@ permalink: /
             </div>
             <button
               class="copy-button btn btn-gold"
-              data-copy-ip="{{ site.data.translations[site.active_lang].ip | escape }}"
+              data-copy-ip="{{ site.data.site.server.address[site.active_lang] | escape }}"
               aria-label="Copy server IP(Coming soon)"
               disabled
             >

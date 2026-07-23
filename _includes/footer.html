@@ -51,12 +51,19 @@
         </li>
         {% endfor %}
       </ul>
-      <div class="language-switcher">
-        <select id="langSelect" aria-label="Change language" class="btn-select btn-gold">
-          <option value="en-us">English</option>
-          <option value="zh-cn">简体中文</option>
-        </select>
-      </div>
+      <nav class="language-switcher" aria-label="{{ site.data.translations[site.active_lang].site.footer.language }}">
+        {% for lang in site.languages %}
+          {% assign language_path = page.permalink_lang[lang] | default: page.permalink | default: page.url %}
+          {% capture language_url %}{{ site.baseurl }}{% unless lang == site.default_lang %}/{{ lang }}{% endunless %}{{ language_path }}{% endcapture %}
+          <a
+            class="language-link no-icon{% if lang == site.active_lang %} is-active{% endif %}"
+            {% static_href %}href="{{ language_url }}"{% endstatic_href %}
+            lang="{{ lang }}"
+            hreflang="{{ lang }}"
+            {% if lang == site.active_lang %}aria-current="page"{% endif %}
+          >{{ site.data.languages[lang].label }}</a>
+        {% endfor %}
+      </nav>
     </div>
 
     <!-- Shop, Support, Feedback, etc. -->

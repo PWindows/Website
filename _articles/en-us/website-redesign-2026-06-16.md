@@ -1,5 +1,6 @@
 ---
 layout: news
+lang: en-us
 
 title: "Upcoming website redesign"
 
