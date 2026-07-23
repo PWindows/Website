@@ -124,11 +124,11 @@
   </button>
 
   <a class="logo" href="{{ '/' | relative_url }}" aria-label="PWindows home">
-    <img
-      src="{{ '/assets/PWindows.png' | relative_url }}"
-      alt="PWindows"
-      class="logo-img"
-    />
+    {% if site.active_lang == 'zh-cn' %}
+      <img src="{{ '/assets/PWindows-Chinese.svg' | relative_url }}" alt="派视界 Logo" class="logo-img"/>
+    {% else %}
+      <img src="{{ '/assets/PWindows.svg' | relative_url }}" alt="PWindows Logo" class="logo-img"/>
+    {% endif %}
   </a>
 
   <a href="{{ '/#howtojoin' | relative_url }}" class="launch-btn-top btn-green btn">Join</a>

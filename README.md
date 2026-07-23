@@ -4,9 +4,16 @@ The public website for PWindows, built with Jekyll and deployed from the `main` 
 
 ## Local development
 
+### Linux/Mac
 ```sh
 bundle install
-bundle exec jekyll serve
+bundle exec jekyll serve --livereload
+```
+
+### Windows
+```sh
+bundle install
+bundle exec jekyll serve --livereload --config _config.yml,_config.windows.yml
 ```
 
 Open `http://localhost:4000`. Before submitting a change, run the same checks used by CI:

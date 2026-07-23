@@ -9,6 +9,7 @@ gem "webrick"
 
 group :jekyll_plugins do
   gem "jekyll-sitemap"
+  gem "jekyll-polyglot"
 end
 
 gem "html-proofer", "~> 5.0"

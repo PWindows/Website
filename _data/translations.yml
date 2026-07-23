@@ -1,0 +1,22 @@
+en-us:
+  site:
+    name: "PWindows"
+    tagline: "Not just a Minecraft server"
+  index:
+    catchphrase-top: "Not just a"
+    catchphrase-1: "Minecraft server"
+    catchphrase-2: "Game studio"
+    catchphrase-3: "Community"
+    howtojoin:
+      title: "How to join"
+      disclaimer: "Applies to Minecraft server only"
+
+zh-cn:
+  site:
+    name: "派视界"
+    tagline: "不仅是一个我的世界服务器"
+  index:
+    catchphrase-top: "不仅是一个"
+    catchphrase-1: "MC 服务器"
+    catchphrase-2: "游戏开发组"
+    catchphrase-3: "玩家社区"

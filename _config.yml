@@ -4,6 +4,9 @@ url: "https://www.pwindows.qzz.io"
 markdown: kramdown
 kramdown:
   input: GFM
+languages: ["en-us", "zh-cn"]
+lang_from_path: true
+exclude_from_localization: ["assets", "_includes", "_layouts", "_site", "Gemfile", "Gemfile.lock", "README.md", "_config.yml", "_config.windows.yml", "CNAME", "AGENTS.md", "_data"]
 exclude:
   - AGENTS.md
   - README.md
@@ -22,3 +25,4 @@ collections:
     markdown: kramdown
 plugins:
   - jekyll-sitemap
+  - jekyll-polyglot
