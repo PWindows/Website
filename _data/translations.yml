@@ -31,6 +31,20 @@ en-us:
       sitemap: "Site map"
       contact: "Contact us"
       staff: "Staff"
+    page_titles:
+      about: "About PWindows"
+      news: "News"
+      staff: "Staff"
+      departments: "Departments"
+      games: "Games"
+      contact: "Contact us"
+      feedback: "Feedback"
+      rules: "Rules"
+      mcd: "Minecraft Department"
+      rd: "Roblox Department"
+      ud: "Unity Department"
+      oob: "Obby of Dominance"
+      sc: "Sacred Cubes"
   placeholder:
     comingsoon-server: "Coming soon"
   index:
@@ -148,7 +162,12 @@ en-us:
       title: "Community"
       text: "For general conversation and project updates, join the PWindows Discord community."
       btn: "Join Discord"
-
+  feedback:
+    title: "Feedback"
+    intro: "Tell us what is working, what is unclear, or what you would like us to improve."
+    send: "Send your feedback"
+    send-text: "Until a dedicated feedback form is available, submit your suggestion through the support portal."
+    support: "Open support"
 
 zh-cn:
   ip: "cn.play.pwindows.qzz.io"
@@ -183,6 +202,20 @@ zh-cn:
       sitemap: "网站地图"
       contact: "联系我们"
       staff: "工作人员"
+    page_titles:
+      about: "关于派视界"
+      news: "新闻"
+      staff: "工作人员"
+      departments: "部门"
+      games: "游戏"
+      contact: "联系我们"
+      feedback: "反馈"
+      rules: "规则"
+      mcd: "MC部门"
+      rd: "《罗布乐思》部门"
+      ud: "Unity部门"
+      oob: "Obby of Dominance"
+      sc: "Sacred Cubes"
   placeholder:
     comingsoon-server: "即将上线"
   index:
@@ -300,3 +333,9 @@ zh-cn:
       title: "社区"
       text: "如需一般性对话和项目更新，请加入派视界 Discord 社区。"
       btn: "加入 Discord"
+  feedback:
+    title: "反馈"
+    intro: "告诉我们什么工作正常，什么不清楚，或者你希望我们改进什么。"
+    send: "发送你的反馈"
+    send-text: "在有专门的反馈表单之前，请通过支持门户提交你的建议。"
+    support: "打开支持门户"

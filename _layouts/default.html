@@ -9,12 +9,13 @@
     {% endunless %}
     {% assign site_name = site.data.translations[site.active_lang].site.name %}
     {% assign site_tagline = site.data.translations[site.active_lang].site.tagline %}
+    {% assign page_title = site.data.translations[site.active_lang].site.page_titles[page.id] | default: page.title | default: site.title %}
 
     {% capture page_full_title %}
       {% if page.url == '/' %}
         {{ site_name }} - {{ site_tagline }}
       {% else %}
-        {{ page.title }} | {{ site_name }}
+        {{ page_title }} | {{ site_name }}
       {% endif %}
     {% endcapture %}
 
