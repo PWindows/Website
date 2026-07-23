@@ -1,17 +1,32 @@
 minecraft:
-  name: Minecraft Department
+  codename: mcd
   path: /departments/minecraft
   staff_department: Minecraft
-  bio: Responsible for the Minecraft server, including its plugins and configuration. Also responsible for Minecraft Maps, resource packs, and other Minecraft-related content.
+  en-us:
+    name: Minecraft Department
+    bio: Responsible for the Minecraft server, including its plugins and configuration. Also responsible for Minecraft Maps, resource packs, and other Minecraft-related content.
+  zh-cn:
+    name: MC部门
+    bio: 负责MC服务器，包括其插件和配置。还负责MC地图、资源包和其他与MC相关的内容。
 
 unity:
-  name: Unity Department
+  codename: ud
   path: /departments/unity
   staff_department: Unity
-  bio: Responsible for Unity games and applications such as Sacred Cubes. This includes playtesting, bug reporting, and development of new features.
+  en-us:
+    name: Unity Department
+    bio: Responsible for Unity games and applications such as Sacred Cubes. This includes playtesting, bug reporting, and development of new features.
+  zh-cn:
+    name: Unity部门
+    bio: 负责Unity游戏和应用程序，例如Sacred Cubes。这包括游戏测试、错误报告和新功能的开发。
 
 roblox:
-  name: Roblox Department
+  codename: rd
   path: /departments/roblox
   staff_department: Roblox
-  bio: Responsible for Roblox games and applications such as Obby of Dominance. This includes playtesting, bug reporting, and development of new features.
+  en-us:
+    name: Roblox Department
+    bio: Responsible for Roblox games and applications such as Obby of Dominance. This includes playtesting, bug reporting, and development of new features.
+  zh-cn:
+    name: 《罗布乐思》部门
+    bio: 负责《罗布乐思》游戏和应用程序，例如Obby of Dominance。这包括游戏测试、错误报告和新功能的开发。

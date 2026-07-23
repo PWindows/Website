@@ -3,6 +3,34 @@ en-us:
   site:
     name: "PWindows"
     tagline: "Not just a Minecraft server"
+    header:
+      about: "About"
+      news: "Newest News"
+      staff: "Staff"
+      departments: "Departments"
+      games: "Games"
+      join-server: "Join server"
+      launch-bedrock: "Launch Bedrock"
+      connect-with-pwindows: "Connect with PWindows"
+      join: "Join"
+    footer:
+      copy: "PWindows. All rights reserved."
+      disclaimer: "Not affiliated with Mojang Studios, Microsoft, or Minecraft."
+      about: "About us"
+      rules: "Rules"
+      games: "Games"
+      sacred-cubes: "Sacred Cubes"
+      obby-of-dominance: "Obby of Dominance"
+      departments: "Departments"
+      mcd: "Minecraft department"
+      rd: "Roblox department"
+      ud: "Unity department"
+      shop: "Shop"
+      support: "Support"
+      feedback: "Feedback"
+      sitemap: "Site map"
+      contact: "Contact us"
+      staff: "Staff"
   placeholder:
     comingsoon-server: "Coming soon"
   index:
@@ -55,6 +83,71 @@ en-us:
         link-u: "Unity department"
         text-5: "."
       button: "Learn more"
+    news:
+      title: "Newest News"
+      link: "See all news"
+  not-found:
+    text: "That page could not be found."
+    button-home: "Go home"
+    button-news: "Read the news"
+  about:
+    title: "About PWindows"
+    intro: "PWindows is a Minecraft server and community project that aims to provide a fun and engaging experience for players of all ages. Our goal is to create a welcoming environment where players can connect, collaborate, and enjoy the game together."
+    server:
+      title: "Play together!"
+      text: "Join our Minecraft server!"
+      button: "How to join"
+    project:
+      title: "Follow the project!"
+      text: "Read development news, community announcements, and updates about this website, the server, and general news about PWindows."
+      button: "Read the news"
+  news:
+    featured-title: "News"
+    no-news: "No news have been published yet. Please check back later."
+    no-featured: "No featured news has been published yet."
+    title: "Newest News"
+    sort-by:
+      text: "Sort by"
+      date-desc: "Newest first"
+      date-asc: "Oldest first"
+      type: "Type"
+      title: "Title"
+  staff-page:
+    title: "Staff"
+    intro: "Meet the people currently helping build and manage PWindows."
+    owner: "Owner"
+    no-members: "No team members are publicly listed for this department yet."
+    back: "Back to Staff"
+  departments:
+    title: "Departments"
+    intro: "Check out the teams that build PWindows's projects."
+    minecraft-intro: "Learn what the Minecraft team contributes to PWindows."
+    unity-intro: "Learn what the Unity team contributes to PWindows."
+    roblox-intro: "Learn what the Roblox team contributes to PWindows."
+    view-button: "View department"
+    back-button: "Back to departments"
+    team-members: "Team members"
+    no-members: "No team members are publicly listed for this department yet."
+  games:
+    title: "Games"
+    intro: "Follow the games currently being developed by PWindows."
+    view-game: "View game"
+    back-button: "Back to games"
+  game-status:
+    in-development: "In development"
+    released: "Released"
+    coming-soon: "Coming soon"
+  contact:
+    title: "Contact us"
+    intro: "Choose the channel that best matches what you need help with."
+    support: 
+      title: "Support"
+      text: "For account, server, shop, or moderation help, open a request in the support portal."
+      btn: "Open support"
+    community:
+      title: "Community"
+      text: "For general conversation and project updates, join the PWindows Discord community."
+      btn: "Join Discord"
 
 
 zh-cn:
@@ -62,6 +155,34 @@ zh-cn:
   site:
     name: "派视界"
     tagline: "不仅是一个我的世界服务器"
+    header:
+      about: "关于"
+      news: "最新新闻"
+      staff: "工作人员"
+      departments: "部门"
+      games: "游戏"
+      join-server: "加入服务器"
+      launch-bedrock: "启动基岩版"
+      connect-with-pwindows: "与派视界连接"
+      join: "加入"
+    footer:
+      copy: "派视界。保留所有权利。"
+      disclaimer: "与 Mojang Studios、Microsoft 或 Minecraft 无关。"
+      about: "关于我们"
+      rules: "规则"
+      games: "游戏"
+      sacred-cubes: "Sacred Cubes"
+      obby-of-dominance: "Obby of Dominance"
+      departments: "部门"
+      mcd: "MC部门"
+      rd: "《罗布乐思》部门"
+      ud: "Unity部门"
+      shop: "商店"
+      support: "支持"
+      feedback: "反馈"
+      sitemap: "网站地图"
+      contact: "联系我们"
+      staff: "工作人员"
   placeholder:
     comingsoon-server: "即将上线"
   index:
@@ -114,3 +235,68 @@ zh-cn:
         link-u: "Unity部门"
         text-5: "。"
       button: "了解更多"
+    news:
+      title: "最新新闻"
+      link: "查看所有新闻"
+  not-found:
+    text: "该页面无法找到。"
+    button-home: "返回首页"
+    button-news: "阅读新闻"
+  about:
+    title: "关于派视界"
+    intro: "派视界是一个我的世界服务器和社区项目，旨在为各个年龄段的玩家提供有趣且引人入胜的体验。我们的目标是创建一个欢迎玩家连接、协作并共同享受游戏的环境。"
+    server:
+      title: "一起玩吧！"
+      text: "加入我们的我的世界服务器！"
+      button: "如何加入"
+    project:
+      title: "关注项目！"
+      text: "阅读开发新闻、社区公告以及有关本网站、服务器和派视界的一般新闻更新。"
+      button: "阅读新闻"
+  news:
+    featured-title: "新闻"
+    no-news: "尚未发布任何新闻，请稍后再来查看。"
+    no-featured: "尚未发布任何特色新闻。"
+    title: "最新新闻"
+    sort-by:
+      text: "排序方式"
+      date-desc: "最新发布"
+      date-asc: "最早发布"
+      type: "类型"
+      title: "标题"
+  staff-page:
+    title: "工作人员"
+    intro: "认识目前正在帮助构建和管理派视界的人员。"
+    owner: "创始人"
+    no-members: "尚未公开列出该部门的任何团队成员。"
+    back: "返回"
+  departments:
+    title: "部门"
+    intro: "查看构建派视界项目的团队。"
+    minecraft-intro: "了解MC团队为派视界做出的贡献。"
+    unity-intro: "了解Unity团队为派视界做出的贡献。"
+    roblox-intro: "了解《罗布乐思》团队为派视界做出的贡献。"
+    view-button: "查看部门"
+    back-button: "返回"
+    team-members: "团队成员"
+    no-members: "尚未公开列出该部门的任何团队成员。"
+  games:
+    title: "游戏"
+    intro: "关注派视界目前正在开发的游戏。"
+    view-game: "查看游戏"
+    back-button: "返回"
+  game-status:
+    in-development: "开发中"
+    released: "已发布"
+    coming-soon: "即将发布"
+  contact:
+    title: "联系我们"
+    intro: "选择最适合您需要帮助的渠道。"
+    support: 
+      title: "支持"
+      text: "如需账户、服务器、商店或管理帮助，请在支持门户中打开请求。"
+      btn: "打开支持门户"
+    community:
+      title: "社区"
+      text: "如需一般性对话和项目更新，请加入派视界 Discord 社区。"
+      btn: "加入 Discord"

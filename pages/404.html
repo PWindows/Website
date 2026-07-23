@@ -1,13 +1,33 @@
 ---
-layout: page
+layout: default
 title: 404
-description: The requested PWindows page could not be found.
-intro: That page could not be found.
-permalink: /404.html
+permalink: /404
 sitemap: false
 ---
 
-<div class="page-actions">
-  <a class="btn btn-green" href="{{ '/' | relative_url }}">Go home</a>
-  <a class="btn" href="{{ '/articles' | relative_url }}">Read the news</a>
-</div>
+<section class="content-page">
+  <header class="content-page-header">
+    <h1>404</h1>
+    <p class="content-page-intro">{{ site.data.translations[site.active_lang].not-found.text }}</p>
+  </header>
+  <div class="content-page-body">
+    <div class="page-actions">
+      <a class="btn btn-green" href="/en-us/">{{ site.data.translations[site.active_lang].not-found.button-home }}</a>
+      <a class="btn" href="/en-us/articles">{{ site.data.translations[site.active_lang].not-found.button-news }}</a>
+    </div>
+  </div>
+  <script>
+    var path = window.location.pathname;
+
+    var lang = 'en-us';
+    var match = path.match(/^\/([a-z]{2}-[a-z]{2})\//);
+    if (match) {
+      lang = match[1];
+    }
+
+    var target = '/' + lang + '/404';
+    if (path !== target) {
+      window.location.replace(target);
+    }
+  </script>
+</section>

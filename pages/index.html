@@ -271,10 +271,10 @@ permalink: /
 <div class="transition-section-reverse" aria-hidden="true"></div>
 <section class="news-home-section textured-section" id="news-home-section">
   <div>
-    <h2 class="news-heading section-heading">Newest News</h2>
+    <h2 class="news-heading section-heading">{{ site.data.translations[site.active_lang].index.news.title }}</h2>
     <div class="news-link-container">
       <a href="{{ '/articles' | relative_url }}" class="link-yellow-sec">
-        See all news
+        {{ site.data.translations[site.active_lang].index.news.link }}
       </a>
     </div>
   </div>
@@ -284,7 +284,7 @@ permalink: /
     {% for article in latest_articles %}
       {% include article-card.html article=article %}
     {% else %}
-      <p class="empty-state empty-state--dark">No news has been published yet.</p>
+      <p class="empty-state empty-state--dark">{{ site.data.translations[site.active_lang].news.no-news }}</p>
     {% endfor %}
   </div>
 </section>

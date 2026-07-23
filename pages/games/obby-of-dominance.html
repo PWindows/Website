@@ -9,6 +9,6 @@ game: obby-of-dominance
 {% assign game = site.data.games | where: "slug", page.game | first %}
 <div class="content-card content-card--centered">
   <span class="status-label">{{ game.status }}</span>
-  <p>{{ game.summary }}</p>
-  <a class="btn" href="{{ '/games' | relative_url }}">Back to games</a>
+  <p>{{ game[site.active_lang].summary }}</p>
+  <a class="btn" href="{{ '/games' | relative_url }}">{{ site.data.translations[site.active_lang].games.back-button }}</a>
 </div>

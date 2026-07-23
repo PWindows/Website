@@ -1,23 +1,29 @@
 ---
-layout: page
+layout: default
 permalink: /about
 title: About PWindows
 description: Learn about the PWindows Minecraft server, community, and game studio project.
-intro: PWindows is a Minecraft server and community project that aims to provide a fun and engaging experience for players of all ages. Our goal is to create a welcoming environment where players can connect, collaborate, and enjoy the game together.
 ---
 
-<div class="content-card-grid">
-  <article class="content-card">
-    <h2>Play together</h2>
-    <p>Join our Minecraft server!</p>
-    <button class="btn btn-green" disabled>Coming Soon</button>
-  </article>
-  <article class="content-card">
-    <h2>Follow the project</h2>
-    <p>
-      Read development news, community announcements, and updates about this
-      website, the server, and general news about PWindows.
-    </p>
-    <a class="btn" href="{{ '/articles' | relative_url }}">Read the news</a>
-  </article>
-</div>
+<section class="content-page">
+  <header class="content-page-header">
+    <h1>{{ site.data.translations[site.active_lang].about.title }}</h1>
+    <p class="content-page-intro">{{ site.data.translations[site.active_lang].about.intro }}</p>
+  </header>
+  <div class="content-page-body">
+    <div class="content-card-grid">
+      <article class="content-card">
+        <h2>{{ site.data.translations[site.active_lang].about.server.title }}</h2>
+        <p>{{ site.data.translations[site.active_lang].about.server.text }}</p>
+        <button class="btn btn-green" disabled>{{ site.data.translations[site.active_lang].placeholder.comingsoon-server }}</button>
+      </article>
+      <article class="content-card">
+        <h2>{{ site.data.translations[site.active_lang].about.project.title }}</h2>
+        <p>
+          {{ site.data.translations[site.active_lang].about.project.text }}
+        </p>
+        <a class="btn" href="{{ '/articles' | relative_url }}">{{ site.data.translations[site.active_lang].about.project.button }}</a>
+      </article>
+    </div>
+  </div>
+</section>

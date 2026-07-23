@@ -10,9 +10,9 @@ intro: Check out the teams that build PWindows's projects.
   {% for department_entry in site.data.departments %}
     {% assign department = department_entry[1] %}
     <article class="content-card department-card">
-      <h2>{{ department.name }}</h2>
-      <p>{{ department.bio }}</p>
-      <a class="btn" href="{{ department.path | relative_url }}">View department</a>
+      <h2>{{ department[site.active_lang].name }}</h2>
+      <p>{{ department[site.active_lang].bio }}</p>
+      <a class="btn" href="{{ department.path | relative_url }}">{{ site.data.translations[site.active_lang].departments.view-button }}</a>
     </article>
   {% endfor %}
 </div>

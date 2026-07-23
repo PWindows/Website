@@ -7,13 +7,13 @@
     <img
       class="staff-card-image"
       src="{{ person.pfp | relative_url }}"
-      alt="{{ person.name | escape }} profile picture"
+      alt="{{ person[site.active_lang].name | escape }} profile picture"
       loading="lazy"
     />
     <div class="staff-card-content">
-      <h2>{{ person.name }}</h2>
-      <p class="staff-role">{{ person.role }}</p>
-      <p>{{ person.bio }}</p>
+      <h2>{{ person[site.active_lang].name }}</h2>
+      <p class="staff-role">{{ person[site.active_lang].role }}</p>
+      <p>{{ person[site.active_lang].bio }}</p>
     </div>
   {% if person.path %}
   </a>

@@ -7,19 +7,19 @@ layout: page
   <img
     class="staff-detail-image"
     src="{{ person.pfp | relative_url }}"
-    alt="{{ person.name | escape }} profile picture"
+    alt="{{ person[site.active_lang].name | escape }} profile picture"
     loading="lazy"
   />
   <div class="staff-detail-content">
-    <p class="staff-role">{{ person.role }}</p>
-    <p class="staff-bio">{{ person.bio }}</p>
+    <p class="staff-role">{{ person[site.active_lang].role }}</p>
+    <p class="staff-bio">{{ person[site.active_lang].bio }}</p>
     {% if person.socials %}
-      <ul class="staff-socials" aria-label="{{ person.name | escape }} social links">
+      <ul class="staff-socials" aria-label="{{ person[site.active_lang].name | escape }} social links">
         {% for social in person.socials %}
           <li><a href="{{ social[1] | escape }}">{% if social[0] == 'github' %}GitHub{% else %}{{ social[0] | capitalize }}{% endif %}</a></li>
         {% endfor %}
       </ul>
     {% endif %}
   </div>
-  <a class="btn" href="{{ '/staff' | relative_url }}">Back to staff</a>
+  <a class="btn" href="{{ '/staff' | relative_url }}">{{site.data.translations[site.active_lang].staff-page.back}}</a>
 </article>

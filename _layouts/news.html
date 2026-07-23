@@ -23,7 +23,7 @@ layout: default
   </div>
 
   <div class="news-body">
-    {% assign person = site.data.staff[page.author] %}
+    {% assign person = site.data.staff[page.author][site.active_lang] %}
     <aside class="author-info">
       <img
         src="{{ person.pfp | relative_url }}"

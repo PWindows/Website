@@ -1,41 +1,59 @@
 petermazep:
-  name: PeterMaZep
-  pfp: /assets/staffpfp/PeterMaZep.png
-  role: Owner of PWindows
-  bio: The owner of PWindows, responsible for coding and managing everything.
   department: "Owner"
+  aboutpage: true
+  pfp: /assets/staffpfp/PeterMaZep.png
   path: /staff/petermazep
   socials:
     twitter: https://twitter.com/petermazep
     github: https://github.com/petermazep
-  aboutpage: true
-
+  en-us:
+    name: PeterMaZep
+    role: Owner of PWindows
+    bio: The owner of PWindows, responsible for coding and managing everything.
+  zh-cn:
+    name: PeterMaZep
+    role: 派视界的创始人
+    bio: 派视界的创始人，负责编码和管理所有事务。
 isaacaxolotl:
-  name: Isaac
-  pfp: /assets/staffpfp/staff.png
-  role: Co-Director of Sacred Cubes
-  bio: The co-director of Sacred Cubes, responsible for this website 'cause Peter asked me to change it.
+  aboutpage: true
   department: "Unity"
+  pfp: /assets/staffpfp/staff.png
   path: /staff/isaacaxolotl
   socials:
     twitter: https://twitter.com/windows11create
     github: https://github.com/ilikecereal1
-  aboutpage: true
+  en-us:
+    name: Isaac
+    role: Co-Director of Sacred Cubes
+    bio: The co-director of Sacred Cubes, responsible for this website 'cause Peter asked me to change it.
+  zh-cn:
+    name: Isaac
+    role: Sacred Cubes的联合总监
+    bio: Sacred Cubes的联合总监，负责这个网站，因为Peter让我改一下。
 
 staff-minecraft:
-  name: Staff
-  pfp: /assets/staffpfp/staff.png
   department: "Minecraft"
   aboutpage: false
+  pfp: /assets/staffpfp/staff.png
+  en-us:
+    name: Staff
+  zh-cn:
+    name: 工作人员
 
 staff-unity:
-  name: Staff
-  pfp: /assets/staffpfp/staff.png
-  department: "Unity"
   aboutpage: false
+  department: "Unity"
+  pfp: /assets/staffpfp/staff.png
+  en-us:
+    name: Staff
+  zh-cn:
+    name: 工作人员
 
 staff-roblox:
-  name: Staff
-  pfp: /assets/staffpfp/staff.png
-  department: "Roblox"
   aboutpage: false
+  department: "Roblox"
+  pfp: /assets/staffpfp/staff.png
+  en-us:
+    name: Staff
+  zh-cn:
+    name: 工作人员

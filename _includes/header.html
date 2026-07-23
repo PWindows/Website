@@ -8,7 +8,7 @@
         alt="Book icon"
         aria-hidden="true"
       />
-      About
+      {{ site.data.translations[site.active_lang].site.header.about }}
     </a>
     <a href="{{ '/articles' | relative_url }}" class="nav-item btn">
       <img
@@ -17,7 +17,7 @@
         alt="Map icon"
         aria-hidden="true"
       />
-      Newest News
+      {{ site.data.translations[site.active_lang].site.header.news }}
     </a>
     <a href="{{ '/staff' | relative_url }}" class="nav-item btn">
       <img
@@ -26,7 +26,7 @@
         alt="Map icon"
         aria-hidden="true"
       />
-      Staff
+      {{ site.data.translations[site.active_lang].site.header.staff }}
     </a>
     <a href="{{ '/departments' | relative_url }}" class="nav-item btn">
       <img
@@ -35,7 +35,7 @@
         alt="Map icon"
         aria-hidden="true"
       />
-      Departments
+      {{ site.data.translations[site.active_lang].site.header.departments }}
     </a>
     <a href="{{ '/games' | relative_url }}" class="nav-item btn">
       <img
@@ -44,7 +44,7 @@
         alt="Controller icon"
         aria-hidden="true"
       />
-      Games
+      {{ site.data.translations[site.active_lang].site.header.games }}
     </a>
     <button class="nav-item btn btn-gold nav-bottom" disabled>
       <img
@@ -53,7 +53,7 @@
         alt="Grass block icon"
         aria-hidden="true"
       />
-      Join Server
+      {{ site.data.translations[site.active_lang].site.header.join-server }}
     </button>
     <button class="btn btn-green nav-item nav-item-bottom" disabled>
       <img
@@ -62,10 +62,10 @@
         alt="Grass block icon"
         aria-hidden="true"
       />
-      Launch Bedrock
+      {{ site.data.translations[site.active_lang].site.header.launch-bedrock }}
     </button>
     <div class="menu-footer">
-    <p>Connect with PWindows</p>
+    <p>{{ site.data.translations[site.active_lang].site.header.connect-with-pwindows }}</p>
     <div class="social-links">
       <a
         href="{{ site.data.site.links.discord | escape }}"
@@ -132,5 +132,5 @@
     {% endif %}
   </a>
 
-  <a href="{{ '/#howtojoin' | relative_url }}" class="launch-btn-top btn-green btn">Join</a>
+  <a href="{{ '/#howtojoin' | relative_url }}" class="launch-btn-top btn-green btn">{{ site.data.translations[site.active_lang].site.header.join }}</a>
 </nav>

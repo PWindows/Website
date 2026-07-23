@@ -2,13 +2,22 @@
 <html lang="en">
   <head>
     {% assign page_description = page.summary | default: page.description | default: site.description %}
-    {% assign page_image = page.banner | default: '/assets/PWindows.png' %}
+    {% assign page_image = page.banner | default: '/assets/PWindows.svg' %}
     {% assign asset_revision = site.github.build_revision %}
     {% unless asset_revision %}
       {% assign asset_revision = site.time | date: '%s' %}
     {% endunless %}
-    {% capture page_full_title %}{% if page.url == '/' %}{{ site.title }} - Not just a Minecraft server{% else %}{{ page.title }} | {{ site.title }}{% endif %}{% endcapture %}
-    {% if page.url == "/" %} {% include schema-org.html %} {% endif %}
+    {% assign site_name = site.data.translations[site.active_lang].site.name %}
+    {% assign site_tagline = site.data.translations[site.active_lang].site.tagline %}
+
+    {% capture page_full_title %}
+      {% if page.url == '/' %}
+        {{ site_name }} - {{ site_tagline }}
+      {% else %}
+        {{ page.title }} | {{ site_name }}
+      {% endif %}
+    {% endcapture %}
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page_full_title | strip }}</title>

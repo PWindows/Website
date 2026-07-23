@@ -1,15 +1,21 @@
 ---
-layout: page
+layout: default
 title: Staff
 permalink: /staff
 description: Meet the people working on PWindows projects and its community.
 intro: Meet the people currently helping build and manage PWindows.
 ---
 
-<div class="staff-container">
-  {% assign owner = site.data.staff | where: "department", "Owner" | first %}
+<section class="content-page">
+  <header class="content-page-header">
+    <h1>{{ site.data.translations[site.active_lang].staff-page.title }}</h1>
+    <p class="content-page-intro">{{ site.data.translations[site.active_lang].staff-page.intro }}</p>
+  </header>
+  <div class="content-page-body">
+    <div class="staff-container">
+    {% assign owner = site.data.staff | where: "department", "Owner" | first %}
     {% if owner %}
-      <h2 class="department-heading">Owner</h2>
+      <h2 class="department-heading">{{ site.data.translations[site.active_lang].staff-page.owner }}</h2>
       <div class="staff-grid">
         {% include staff-card.html person=owner %}
       </div>
@@ -18,7 +24,7 @@ intro: Meet the people currently helping build and manage PWindows.
     {% for department_entry in site.data.departments %}
       {% assign department = department_entry[1] %}
       {% assign department_members = site.data.staff | where: "department", department.staff_department | where: "aboutpage", true %}
-      <h2 class="department-heading">{{ department.name }}</h2>
+      <h2 class="department-heading">{{ department[site.active_lang].name }}</h2>
       {% if department_members.size > 0 %}
         <div class="staff-grid">
           {% for person in department_members %}
@@ -26,7 +32,10 @@ intro: Meet the people currently helping build and manage PWindows.
           {% endfor %}
         </div>
       {% else %}
-        <p class="empty-state staff-empty-state">No team members are publicly listed for this department yet.</p>
+        <p class="empty-state staff-empty-state">{{ site.data.translations[site.active_lang].staff-page.no-members }}</p>
       {% endif %}
     {% endfor %}
-</div>
+    </div>
+  </div>
+</section>
+

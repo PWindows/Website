@@ -1,20 +1,30 @@
 ---
-layout: page
+layout: default
 title: Contact Us
 permalink: /contact
 description: Contact the PWindows team through the support portal or community Discord.
 intro: Choose the channel that best matches what you need help with.
 ---
 
-<div class="content-card-grid">
-  <article class="content-card">
-    <h2>Support</h2>
-    <p>For account, server, shop, or moderation help, open a request in the support portal.</p>
-    <a class="btn btn-green" href="{{ site.data.site.links.support | escape }}">Open support</a>
-  </article>
-  <article class="content-card">
-    <h2>Community</h2>
-    <p>For general conversation and project updates, join the PWindows Discord community.</p>
-    <a class="btn" href="{{ site.data.site.links.discord | escape }}">Join Discord</a>
-  </article>
-</div>
+<section class="content-page">
+  <header class="content-page-header">
+    <h1>{{ site.data.translations[site.active_lang].contact.title }}</h1>
+    <p class="content-page-intro">{{ site.data.translations[site.active_lang].contact.intro }}</p>
+  </header>
+  <div class="content-page-body">
+    <div class="content-card-grid">
+      <article class="content-card">
+        <h2>{{ site.data.translations[site.active_lang].contact.support.title }}</h2>
+        <p>{{ site.data.translations[site.active_lang].contact.support.text }}</p>
+        <a class="btn btn-green" href="{{ site.data.site.links.support | escape }}">{{ site.data.translations[site.active_lang].contact.support.btn }}</a>
+      </article>
+      <article class="content-card">
+        <h2>{{ site.data.translations[site.active_lang].contact.community.title }}</h2>
+        <p>{{ site.data.translations[site.active_lang].contact.community.text }}</p>
+        <a class="btn" href="{{ site.data.site.links.discord | escape }}">{{ site.data.translations[site.active_lang].contact.community.btn }}</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
