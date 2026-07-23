@@ -1778,7 +1778,7 @@ article > p {
 .footer-logo {
   display: inline-block;
   margin-bottom: 1rem;
-  max-width: 100%;
+  width: 100%;
 }
 
 .footer-logo img {
