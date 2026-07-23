@@ -35,14 +35,14 @@ permalink: /
       <button
         class="copy-button btn btn-gold"
         data-copy-ip="{{ site.data.site.server.address | escape }}"
-        aria-label="Copy server IP (coming soon)"
+        aria-label="Copy server IP"
         disabled
       >
-        IP: {{ site.data.site.server.address }}
+        IP: {{ site.data.translations[site.active_lang].ip }}
       </button>
 
       <button class="btn btn-green" aria-label="Go to join section" disabled>
-        Coming Soon
+        {{ site.data.translations[site.active_lang].placeholder.comingsoon-server }}
       </button>
     </div>
   </div>
@@ -52,8 +52,8 @@ permalink: /
 <div class="transition-section" aria-hidden="true"></div>
 <section class="howtojoin textured-section" id="howtojoin">
   <div>
-    <h2 class="howtojoin-heading section-heading">How to join</h2>
-    <div class="howtojoin-footnote">Applies to Minecraft server only</div>
+    <h2 class="howtojoin-heading section-heading">{{ site.data.translations[site.active_lang].index.howtojoin.title }}</h2>
+    <div class="howtojoin-footnote">{{ site.data.translations[site.active_lang].index.howtojoin.disclaimer }}</div>
   </div>
 
   <div class="howtojoin-cards">

@@ -3,10 +3,11 @@
     <h2 class="sr-only" id="footer-navigation-heading">Footer navigation</h2>
     <div class="footer-column footer-column-left">
       <a href="{{ '/' | relative_url }}" class="footer-logo">
-        <img
-          src="{{ '/assets/PWindows.png' | relative_url }}"
-          alt="PWindows Logo"
-        />
+        {% if site.active_lang == 'zh-cn' %}
+          <img src="{{ '/assets/PWindows-Chinese.svg' | relative_url }}" alt="派视界">
+        {% else %}
+          <img src="{{ '/assets/PWindows.svg' | relative_url }}" alt="PWindows">
+        {% endif %}
       </a>
       <p class="footer-copy">
         &copy; {{ site.time | date: '%Y' }} PWindows. All rights reserved.

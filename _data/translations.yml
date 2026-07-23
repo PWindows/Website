@@ -1,7 +1,10 @@
 en-us:
+  ip: "play.pwindows.qzz.io"
   site:
     name: "PWindows"
     tagline: "Not just a Minecraft server"
+  placeholder:
+    comingsoon-server: "Coming soon"
   index:
     catchphrase-top: "Not just a"
     catchphrase-1: "Minecraft server"
@@ -12,11 +15,17 @@ en-us:
       disclaimer: "Applies to Minecraft server only"
 
 zh-cn:
+  ip: "cn.play.pwindows.qzz.io"
   site:
     name: "派视界"
     tagline: "不仅是一个我的世界服务器"
+  placeholder:
+    comingsoon-server: "即将上线"
   index:
     catchphrase-top: "不仅是一个"
     catchphrase-1: "MC 服务器"
     catchphrase-2: "游戏开发组"
     catchphrase-3: "玩家社区"
+    howtojoin:
+      title: "如何加入"
+      disclaimer: "仅适用于我的世界服务器"
