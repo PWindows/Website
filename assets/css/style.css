@@ -17,7 +17,7 @@
   --card-background: rgba(255, 255, 255, 0.96);
   --card-border: rgba(61, 66, 80, 0.2);
   --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --font-display: "Minecraft Ten v2", monospace;
+  --font-display: "Minecraft TwentyOne", "Minecraft Ten v2", monospace;
   --font-pixel: "Minecraft Seven v2", monospace;
   --font-body: "Noto Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --arrow-shape: polygon(
@@ -57,6 +57,12 @@ src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");
 @font-face {
   font-family: "Noto Sans";
   src: url("../mojang/fonts/NotoSans-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Minecraft TwentyOne";
+  src: url("../mojang/fonts/Minecraft-TwentyOne.ttf") format("truetype");
   font-display: swap;
 }
 

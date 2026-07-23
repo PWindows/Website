@@ -12,12 +12,7 @@ exclude:
   - README.md
   - tools/
   - vendor/
-  - assets/mojang/fonts/*.html
-  - assets/mojang/fonts/*.css
-  - assets/mojang/fonts/*.eot
-  - assets/mojang/fonts/*.svg
-  - assets/mojang/fonts/*.ttf
-  - assets/mojang/fonts/*.otf
+  - assets/extra/
 collections:
   articles:
     output: true

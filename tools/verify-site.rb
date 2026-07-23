@@ -180,7 +180,8 @@ end
 forbidden_outputs = [
   File.join(DESTINATION, "AGENTS.md"),
   File.join(DESTINATION, "README.md"),
-  File.join(DESTINATION, "tools")
+  File.join(DESTINATION, "tools"),
+  File.join(DESTINATION, "assets", "extra")
 ]
 forbidden_outputs.each do |path|
   errors << "Excluded source was published: #{path.delete_prefix("#{DESTINATION}/")}" if File.exist?(path)
