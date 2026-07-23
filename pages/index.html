@@ -67,35 +67,33 @@ permalink: /
               loading="lazy"
             />
           </div>
-          <div class="flip-card-title">Server Address</div>
-          <div class="flip-card-subtitle">Java & Bedrock Edition</div>
+          <div class="flip-card-title">{{ site.data.translations[site.active_lang].index.howtojoin.server-address.label }}</div>
+          <div class="flip-card-subtitle">{{ site.data.translations[site.active_lang].index.howtojoin.server-address.text }}</div>
           <button
             class="flip-card-toggle btn"
             type="button"
             aria-expanded="false"
             aria-controls="join-java-back"
           >
-            View instructions
+            {{ site.data.translations[site.active_lang].index.howtojoin.button-text }}
           </button>
         </div>
         <div class="flip-card-back" id="join-java-back" inert>
           <div class="flip-card-back-content">
-            <div class="flip-card-back-title">Server Address</div>
+            <div class="flip-card-back-title">{{ site.data.translations[site.active_lang].index.howtojoin.server-address.label }}</div>
             <div class="flip-card-back-text">
-              Copy the server IP and add it
-              <br />
-              to your Minecraft server list
+              {{ site.data.translations[site.active_lang].index.howtojoin.server-address.text-back }}
             </div>
             <button
               class="copy-button btn btn-gold"
-              data-copy-ip="{{ site.data.site.server.address | escape }}"
+              data-copy-ip="{{ site.data.translations[site.active_lang].ip | escape }}"
               aria-label="Copy server IP(Coming soon)"
               disabled
             >
-              Coming Soon
+              {{ site.data.translations[site.active_lang].index.howtojoin.server-address.button-text }}
             </button>
             <button class="flip-card-back-toggle btn" type="button">
-              Back
+              {{ site.data.translations[site.active_lang].index.howtojoin.button-back }}
             </button>
           </div>
         </div>
@@ -113,34 +111,32 @@ permalink: /
               loading="lazy"
             />
           </div>
-          <div class="flip-card-title">Quick Launch</div>
-          <div class="flip-card-subtitle">Bedrock Edition</div>
+          <div class="flip-card-title">{{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.label }}</div>
+          <div class="flip-card-subtitle">{{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.text }}</div>
           <button
             class="flip-card-toggle btn"
             type="button"
             aria-expanded="false"
             aria-controls="join-bedrock-back"
           >
-            View instructions
+            {{ site.data.translations[site.active_lang].index.howtojoin.button-text }}
           </button>
         </div>
         <div class="flip-card-back" id="join-bedrock-back" inert>
           <div class="flip-card-back-content">
-            <div class="flip-card-back-title">Launch Bedrock</div>
+            <div class="flip-card-back-title">{{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.label-back }}</div>
             <div class="flip-card-back-text">
-              Click to open Minecraft Bedrock
-              <br />
-              and join our server instantly
+              {{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.text-back }}
             </div>
             <button
               class="btn btn-green"
               aria-label="Launch Minecraft Bedrock"
               disabled
             >
-              Coming Soon
+              {{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.button-text }}
             </button>
             <button class="flip-card-back-toggle btn" type="button">
-              Back
+              {{ site.data.translations[site.active_lang].index.howtojoin.button-back }}
             </button>
           </div>
         </div>
@@ -158,30 +154,28 @@ permalink: /
               loading="lazy"
             />
           </div>
-          <div class="flip-card-title">Bedrock Realms</div>
-          <div class="flip-card-subtitle">Coming Soon</div>
+          <div class="flip-card-title">{{ site.data.translations[site.active_lang].index.howtojoin.realms.label }}</div>
+          <div class="flip-card-subtitle">{{ site.data.translations[site.active_lang].index.howtojoin.realms.text }}</div>
           <button
             class="flip-card-toggle btn"
             type="button"
             aria-expanded="false"
             aria-controls="join-realms-back"
           >
-            Learn more
+            {{ site.data.translations[site.active_lang].index.howtojoin.button-text-learnmore }}
           </button>
         </div>
         <div class="flip-card-back" id="join-realms-back" inert>
           <div class="flip-card-back-content">
-            <div class="flip-card-back-title">Not Ready Yet</div>
+            <div class="flip-card-back-title">{{ site.data.translations[site.active_lang].index.howtojoin.realms.label-back }}</div>
             <div class="flip-card-back-text">
-              Our Bedrock Realms join format
-              <br />
-              is currently under development
+              {{ site.data.translations[site.active_lang].index.howtojoin.realms.text-back }}
             </div>
             <button class="btn btn-green" disabled aria-label="Coming Soon">
-              Coming Soon
+              {{ site.data.translations[site.active_lang].index.howtojoin.realms.button-text }}
             </button>
             <button class="flip-card-back-toggle btn" type="button">
-              Back
+              {{ site.data.translations[site.active_lang].index.howtojoin.button-back }}
             </button>
           </div>
         </div>
@@ -202,16 +196,15 @@ permalink: /
       />
     </div>
     <div class="latest-content">
-      <h2>PWindows is still in development</h2>
+      <h2>{{ site.data.translations[site.active_lang].index.latest-content.title }}</h2>
       <p>
-        We have nothing to show YET, so here's a very nice picture of snowing in
-        Minecraft. Feel free to check the news section for updates.
+        {{ site.data.translations[site.active_lang].index.latest-content.text }}
       </p>
       <a
         class="btn about-link bottom-button"
         href="{{ '/articles' | relative_url }}"
       >
-        Read the news
+        {{ site.data.translations[site.active_lang].index.latest-content.button }}
       </a>
     </div>
   </div>
@@ -221,56 +214,55 @@ permalink: /
 
 <section class="projects-section textured-section" id="projects-section">
   <div>
-    <h2 class="projects-heading section-heading">Our projects</h2>
+    <h2 class="projects-heading section-heading">{{ site.data.translations[site.active_lang].index.projects.title }}</h2>
     <div class="projects-link-container">
       <a href="{{ '/games' | relative_url }}" class="link-yellow">
-        See our games
+        {{ site.data.translations[site.active_lang].index.projects.link }}
       </a>
     </div>
     <div class="projects-grid">
       <article>
-        <h2>Minecraft Server</h2>
+        <h2>{{ site.data.translations[site.active_lang].index.projects.server.title }}</h2>
         <div class="project-image-holder"></div>
         <p>
-          Our Minecraft server project is still in development. Stay tuned for
-          updates!
+          {{ site.data.translations[site.active_lang].index.projects.server.text }}
         </p>
       </article>
       <article>
-        <h2>Game Studio</h2>
+        <h2>{{ site.data.translations[site.active_lang].index.projects.game-studio.title }}</h2>
         <div class="project-image-holder"></div>
         <p>
-          We have been working on new games as a game studio, such as
+          {{ site.data.translations[site.active_lang].index.projects.game-studio.text-1 }}
           <a
             href="{{ '/games/sacred-cubes' | relative_url}}"
             class="link-yellow-sec"
           >
-            Sacred Cubes
+            {{site.data.translations[site.active_lang].index.projects.game-studio.link-sc}}
           </a>
-          and
+          {{ site.data.translations[site.active_lang].index.projects.game-studio.text-2 }}
           <a
             href="{{ '/games/obby-of-dominance' | relative_url}}"
             class="link-yellow-sec"
           >
-            Obby Of Dominance
+            {{site.data.translations[site.active_lang].index.projects.game-studio.link-ood}}
           </a>
-          . We have many departments including the
+          {{ site.data.translations[site.active_lang].index.projects.game-studio.text-3 }}
           <a
             href="{{ '/departments/roblox' | relative_url}}"
             class="link-yellow-sec"
           >
-            Roblox department
+            {{ site.data.translations[site.active_lang].index.projects.game-studio.link-r }}
           </a>
-          and the
+          {{ site.data.translations[site.active_lang].index.projects.game-studio.text-4 }}
           <a
             class="link-yellow-sec"
             href="{{ '/departments/unity' | relative_url}}"
           >
-            Unity department
+            {{ site.data.translations[site.active_lang].index.projects.game-studio.link-u }}
           </a>
-          .
+          {{ site.data.translations[site.active_lang].index.projects.game-studio.text-5 }}
         </p>
-        <a class="btn" href="{{ '/departments/' | relative_url }}">Learn more</a>
+        <a class="btn" href="{{ '/departments/' | relative_url }}">{{ site.data.translations[site.active_lang].index.projects.button }}</a>
       </article>
     </div>
   </div>

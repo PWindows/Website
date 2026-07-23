@@ -13,6 +13,49 @@ en-us:
     howtojoin:
       title: "How to join"
       disclaimer: "Applies to Minecraft server only"
+      button-text: "View instructions"
+      button-text-learnmore: "Learn more"
+      button-back: "Back"
+      server-address:
+        label: "Server address"
+        text: "Java & Bedrock edition"
+        text-back: "Copy the server IP and add it to your Minecraft server list"
+        button-text: "Coming soon"
+      quick-launch:
+        label: "Quick Launch"
+        label-back: "Launch bedrock"
+        text: "Bedrock edition"
+        text-back: "Click to open Minecraft Bedrock and join our server instantly"
+        button-text: "Coming soon"
+      realms:
+        label: "Bedrock realms"
+        label-back: "Not ready yet"
+        text: "Coming soon"
+        text-back: "Our Bedrock Realms join format is currently under development"
+        button-text: "Coming soon"
+    latest-content:
+      title: "PWindows is still in development"
+      text: "We have nothing to show YET, so here's a very nice picture of snowing in Minecraft. Feel free to check the news section for updates."
+      button: "Read the news"
+    projects:
+      title: "Our Projects"
+      link: "See our games"
+      server:
+        title: "Minecraft server"
+        text: "Our Minecraft server project is still in development. Stay tuned for updates!"
+      game-studio:
+        title: "Game studio"
+        text-1: "We have been working on new games as a game studio, such as "
+        link-sc: "Sacred Cubes"
+        text-2: " and "
+        link-ood: "Obby of Dominance"
+        text-3: ". We have many departments including the "
+        link-r: "Roblox department"
+        text-4: " and the "
+        link-u: "Unity department"
+        text-5: "."
+      button: "Learn more"
+
 
 zh-cn:
   ip: "cn.play.pwindows.qzz.io"
@@ -29,3 +72,45 @@ zh-cn:
     howtojoin:
       title: "如何加入"
       disclaimer: "仅适用于我的世界服务器"
+      button-text: "查看教程"
+      button-text-learnmore: "了解更多"
+      button-back: "返回"
+      server-address:
+        label: "服务器地址"
+        text: "Java和基岩版"
+        text-back: "将IP地址复制到MC服务器列表上"
+        button-text: "即将上线"
+      quick-launch:
+        label: "快速启动"
+        label-back: "启动基岩版"
+        text: "基岩版"
+        text-back: "点击打开MC基岩版并立即加入我们的服务器"
+        button-text: "即将上线"
+      realms:
+        label: "基岩版我的山头"
+        label-back: "尚未准备好"
+        text: "即将上线"
+        text-back: "我们的基岩版我的山头加入格式正在开发中"
+        button-text: "即将上线"
+    latest-content:
+      title: "派视界仍在开发中"
+      text: "我们还没有什么可以展示的内容，所以这里有一张非常漂亮MC下雪的图片。欢迎查看新闻板块以获取最新动态。"
+      button: "阅读新闻"
+    projects:
+      title: "我们的项目"
+      link: "查看我们的游戏"
+      server:
+        title: "我的世界服务器"
+        text: "我们的我的世界服务器项目仍在开发中，敬请期待！"
+      game-studio:
+        title: "游戏开发组"
+        text-1: "我们作为一个游戏开发组一直在开发新游戏，比如"
+        link-sc: "《Sacred Cubes》"
+        text-2: "和"
+        link-ood: "《Obby of Dominance》"
+        text-3: "。我们有许多部门，例如"
+        link-r: "我们的《罗布乐思》部门"
+        text-4: "和"
+        link-u: "Unity部门"
+        text-5: "。"
+      button: "了解更多"
