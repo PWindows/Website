@@ -4,7 +4,7 @@ platform :windows do
   gem 'wdm', '>= 0.1.0'
 end
 
-gem "pwindows-theme", git: "https://github.com/PWindows/Website-Common.git"
+gem "pwindows-theme", git: "git@github.com:PWindows/Website-Common.git"
 gem "jekyll", "~> 4.4"
 gem "webrick"
 

@@ -1,0 +1,36 @@
+{% assign person = include.person %}
+{% assign localized_person = person[site.active_lang] %}
+{% assign default_person = person[site.default_lang] %}
+{% assign person_name = localized_person.name | default: default_person.name %}
+{% assign person_role = localized_person.role | default: default_person.role %}
+{% assign person_bio = localized_person.bio | default: default_person.bio %}
+{% if person.aboutpage %}
+<article class="staff-card">
+  {% if person.path %}
+  <a class="staff-card-link no-icon" href="{{ person.path | relative_url }}" aria-label="View {{ person_name | escape }}'s profile">
+  {% endif %}
+    <img
+      class="staff-card-image"
+      src="{{ person.pfp | relative_url }}"
+      alt="{{ person_name | escape }} profile picture"
+      loading="lazy"
+    />
+    <div class="staff-card-content">
+      <h2>{{ person_name }}</h2>
+      <p class="staff-role">{{ person_role }}</p>
+      <p>{{ person_bio }}</p>
+    </div>
+  {% if person.path %}
+  </a>
+  {% endif %}
+  {% if person.socials %}
+    <div class="staff-card-socials-wrap">
+      <ul class="staff-socials" aria-label="{{ person_name | escape }} social links">
+        {% for social in person.socials %}
+          <li><a href="{{ social[1] | escape }}">{% if social[0] == 'github' %}GitHub{% else %}{{ social[0] | capitalize }}{% endif %}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</article>
+{% endif %}
