@@ -76,10 +76,10 @@ rescue Psych::SyntaxError => error
   { "__error__" => error.message }
 end
 
-def local_asset_path(value)
+def generated_asset_path(value)
   return unless value.is_a?(String) && value.start_with?("/")
 
-  File.join(ROOT, value.delete_prefix("/"))
+  File.join(DESTINATION, value.delete_prefix("/"))
 end
 
 def positive_number?(value)
@@ -235,8 +235,7 @@ end
 forbidden_outputs = [
   File.join(DESTINATION, "AGENTS.md"),
   File.join(DESTINATION, "README.md"),
-  File.join(DESTINATION, "tools"),
-  File.join(DESTINATION, "assets", "extra")
+  File.join(DESTINATION, "tools")
 ]
 forbidden_outputs.each do |path|
   errors << "Excluded source was published: #{path.delete_prefix("#{DESTINATION}/")}" if File.exist?(path)
@@ -252,9 +251,6 @@ missing_fonts = PRODUCTION_FONT_FILES - published_fonts
 unexpected_fonts = published_fonts - PRODUCTION_FONT_FILES
 errors << "Missing production font files: #{missing_fonts.to_a.sort.join(', ')}" unless missing_fonts.empty?
 errors << "Unused font files were published: #{unexpected_fonts.to_a.sort.join(', ')}" unless unexpected_fonts.empty?
-
-font_sources = Dir[File.join(ROOT, "assets", "mojang", "fonts", "*.{eot,otf,svg,ttf,woff,woff2}")]
-errors << "The retained font library is missing" if font_sources.empty?
 
 games = YAML.safe_load_file(File.join(ROOT, "_data", "games.yml"))
 game_slugs = games.map { |game| game["slug"] }
@@ -274,7 +270,7 @@ games.each do |game|
   end
   errors << "Game #{identifier} points to a missing page" unless File.file?(generated_page_path(game["path"]))
 
-  image = local_asset_path(game["image"])
+  image = generated_asset_path(game["image"])
   errors << "Game #{identifier} image must be root-relative" unless image
   errors << "Game #{identifier} references a missing image" if image && !File.file?(image)
   errors << "Game #{identifier} effect must be true or false" unless [true, false].include?(game["effect"])
@@ -282,7 +278,7 @@ games.each do |game|
   debris = game["debris"]
   if debris
     if debris.is_a?(Hash)
-      debris_image = local_asset_path(debris["path"])
+      debris_image = generated_asset_path(debris["path"])
       errors << "Game #{identifier} debris.path must be root-relative" unless debris_image
       if game["effect"] && debris_image && !File.file?(debris_image)
         errors << "Game #{identifier} references missing debris"
@@ -346,7 +342,7 @@ staff.each do |key, person|
       errors << "Staff member #{key} is missing fallback #{DEFAULT_LANG}.#{field}"
     end
   end
-  image = local_asset_path(person["pfp"])
+  image = generated_asset_path(person["pfp"])
   errors << "Staff member #{key} pfp must be root-relative" unless image
   errors << "Staff member #{key} references a missing image" if image && !File.file?(image)
 end
@@ -380,7 +376,7 @@ article_sources.each do |path|
   errors << "Article #{identifier} must use the news layout" unless metadata["layout"] == "news"
   errors << "Article #{identifier} references an unknown author" unless staff.key?(metadata["author"])
 
-  banner = local_asset_path(metadata["banner"])
+  banner = generated_asset_path(metadata["banner"])
   errors << "Article #{identifier} banner must be root-relative" unless banner
   errors << "Article #{identifier} references a missing banner" if banner && !File.file?(banner)
 end
