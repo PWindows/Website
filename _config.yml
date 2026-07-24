@@ -4,8 +4,38 @@ url: "https://www.pwindows.qzz.io"
 markdown: kramdown
 kramdown:
   input: GFM
-languages: ["en-us", "zh-cn"]
 default_lang: "en-us"
+languages:
+  [
+    "en-us",
+    "zh-cn",
+    "en-gb",
+    "es-es",
+    "fr-fr",
+    "de-de",
+    "it-it",
+    "pt-pt",
+    "pt-br",
+    "ja-jp",
+    "ko-kr",
+    "ru-ru",
+    "nl-nl",
+    "pl-pl",
+    "sv-se",
+    "da-dk",
+    "no-no",
+    "fi-fi",
+    "es-mx",
+    "fr-ca",
+    "tr-tr",
+    "ar-sa",
+    "he-il",
+    "hi-in",
+    "th-th",
+    "vi-vn",
+    "id-id",
+    "ms-my",
+  ]
 lang_from_path: true
 parallel_localization: false
 exclude_from_localization:

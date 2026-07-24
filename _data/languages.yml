@@ -1,4 +1,54 @@
 en-us:
-  label: English
+  label: "English (United States)"
+en-gb:
+  label: "English (United Kingdom)"
 zh-cn:
-  label: 简体中文
+  label: "简体中文"
+es-es:
+  label: "Español (España)"
+es-mx:
+  label: "Español (México)"
+fr-fr:
+  label: "Français (France)"
+fr-ca:
+  label: "Français (Canada)"
+de-de:
+  label: "Deutsch (Deutschland)"
+it-it:
+  label: "Italiano (Italia)"
+pt-pt:
+  label: "Português (Portugal)"
+pt-br:
+  label: "Português (Brasil)"
+ko-kr:
+  label: "한국어"
+ru-ru:
+  label: "Русский"
+nl-nl:
+  label: "Nederlands (Nederland)"
+pl-pl:
+  label: "Polski (Polska)"
+sv-se:
+  label: "Svenska (Sverige)"
+da-dk:
+  label: "Dansk (Danmark)"
+no-no:
+  label: "Norsk (Norge)"
+fi-fi:
+  label: "Suomi (Suomi)"
+tr-tr:
+  label: "Türkçe (Türkiye)"
+ar-sa:
+  label: "العربية (المملكة العربية السعودية)"
+he-il:
+  label: "עברית (ישראל)"
+hi-in:
+  label: "हिन्दी (भारत)"
+th-th:
+  label: "ไทย (ประเทศไทย)"
+vi-vn:
+  label: "Tiếng Việt (Việt Nam)"
+id-id:
+  label: "Bahasa Indonesia (Indonesia)"
+ms-my:
+  label: "Bahasa Melayu (Malaysia)"
