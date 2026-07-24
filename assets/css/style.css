@@ -17,8 +17,8 @@
   --card-background: rgba(255, 255, 255, 0.96);
   --card-border: rgba(61, 66, 80, 0.2);
   --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --font-display: "Minecraft Ten v2", "Alibaba PuTiHui Black", monospace;
-  --font-pixel: "Minecraft Seven v2", monospace;
+  --font-display: "Minecraft Ten v2", "Alibaba PuHuiTi Black", monospace;
+  --font-pixel: "Minecraft Seven v2", "Alibaba PuHuiTi Regular", monospace;
   --font-body: "Noto Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --arrow-shape: polygon(
     14.29% 0%,
@@ -50,8 +50,8 @@
 
 @font-face {
   font-family: "Alibaba PuTiHui Black";
-  src: url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.ttf") format("TrueType")
-       url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff") format("woff")
+  src: url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.ttf") format("truetype"),
+       url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff") format("woff"),
        url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff2") format("woff2");
   font-display: swap;
 }
@@ -59,6 +59,14 @@
 @font-face {
   font-family: "Minecraft Seven v2";
 src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");  
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alibaba PuTiHui Regular";
+  src: url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.ttf") format("truetype"),
+       url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff") format("woff"),
+       url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff2") format("woff2");
   font-display: swap;
 }
 
