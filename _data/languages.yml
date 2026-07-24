@@ -20,6 +20,8 @@ pt-pt:
   label: "Português (Portugal)"
 pt-br:
   label: "Português (Brasil)"
+ja-jp:
+  label: "日本語"
 ko-kr:
   label: "한국어"
 ru-ru:

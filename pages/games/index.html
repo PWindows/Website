@@ -15,12 +15,16 @@ intro: Follow the games currently being developed by PWindows.
   <div class="content-page-body">
     <div class="games-content-list">
       {% for game in site.data.games %}
+        {% assign localized_game = game[site.active_lang] %}
+        {% assign default_game = game[site.default_lang] %}
+        {% assign game_title = localized_game.title | default: default_game.title %}
+        {% assign game_summary = localized_game.summary | default: default_game.summary %}
         {% assign mod = forloop.index | modulo: 2 %}
         <div class="games-content-part {% if mod == 0 %}games-content-part--even{% else %}games-content-part--odd{% endif %}">
           <div class="game-card-image">
             <img
               src="{{ game.image | relative_url }}"
-              alt="{{ game[site.active_lang].title | escape }}"
+              alt="{{ game_title | escape }}"
               class="content-image"
               loading="lazy"
               decoding="async"
@@ -39,7 +43,7 @@ intro: Follow the games currently being developed by PWindows.
             {% endif %}
           </div>
           <div class="game-card-text">
-            <h2 class="game-title">{{ game[site.active_lang].title }}</h2>
+            <h2 class="game-title">{{ game_title }}</h2>
             {% assign status_key = game.status | slugify %}
             <p class="game-status game-status--{{ status_key }}">
               {{ site.data.translations[site.active_lang].game-status[status_key] | default: game.status }}
@@ -50,7 +54,7 @@ intro: Follow the games currently being developed by PWindows.
             <p class="game-status game-meta--{{ game.language | slugify }}">
               {{ game.language }}
             </p>
-            <p class="game-summary">{{ game[site.current_lang].summary }}</p>
+            <p class="game-summary">{{ game_summary }}</p>
             <a class="btn btn-green view-game-btn" href="{{ game.path | relative_url }}">{{ site.data.translations[site.active_lang].games.view-game }}</a>
           </div>
         </div>

@@ -31,20 +31,23 @@ layout: default
   <div class="news-body">
     {% assign staff_member = site.data.staff[page.author] %}
     {% assign person = staff_member[site.active_lang] %}
+    {% assign default_person = staff_member[site.default_lang] %}
+    {% assign person_name = person.name | default: default_person.name %}
+    {% assign person_role = person.role | default: default_person.role %}
     <aside class="author-info">
       <img
         src="{{ staff_member.pfp | relative_url }}"
-        alt="{{ person.name }} Profile Picture"
+        alt="{{ person_name }} Profile Picture"
         class="author-pfp"
       />
 
       <p class="author-name">
         <span class="label">Written by</span>
       </p>
-      <p>{{ person.name }}</p>
+      <p>{{ person_name }}</p>
 
-      {% if person.role %}
-      <p class="author-role">{{ person.role }}</p>
+      {% if person_role %}
+      <p class="author-role">{{ person_role }}</p>
       {% endif %}
 
       <p class="author-date">
@@ -136,7 +139,7 @@ layout: default
     "datePublished": "{{ page.date | date_to_xmlschema }}",
     "author": {
       "@type": "Person",
-      "name": {{ person.name | jsonify }}
+      "name": {{ person_name | jsonify }}
     },
     "image": "{{ page.banner | default: '/assets/PWindows.png' | absolute_url }}",
     "mainEntityOfPage": "{{ localized_article_url }}"

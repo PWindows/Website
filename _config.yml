@@ -8,8 +8,8 @@ default_lang: "en-us"
 languages:
   [
     "en-us",
-    "zh-cn",
     "en-gb",
+    "zh-cn",
     "es-es",
     "fr-fr",
     "de-de",

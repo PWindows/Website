@@ -3,16 +3,20 @@ layout: default
 ---
 
 {% assign department = site.data.departments[page.department] %}
+{% assign localized_department = department[site.active_lang] %}
+{% assign default_department = department[site.default_lang] %}
+{% assign department_name = localized_department.name | default: default_department.name %}
+{% assign department_bio = localized_department.bio | default: default_department.bio %}
 {% assign department_intro = page.department | append: "-intro" %}
 
 <section class="content-page">
   <header class="content-page-header">
-    <h1>{{ department[site.active_lang].name }}</h1>
+    <h1>{{ department_name }}</h1>
     <p class="content-page-intro">{{ site.data.translations[site.active_lang].departments[department_intro] }}</p>
   </header>
   <div class="content-page-body">
     <div class="content-card content-card--centered">
-      <p>{{ department[site.active_lang].bio }}</p>
+      <p>{{ department_bio }}</p>
       <a class="btn" href="{{ '/departments/' | relative_url }}">{{ site.data.translations[site.active_lang].departments.back-button }}</a>
     </div>
 

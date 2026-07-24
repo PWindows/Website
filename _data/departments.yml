@@ -8,6 +8,9 @@ minecraft:
   zh-cn:
     name: MC部门
     bio: 负责MC服务器，包括其插件和配置。还负责MC地图、资源包和其他与MC相关的内容。
+  ja-jp:
+    name: Minecraft部門
+    bio: Minecraftサーバーのプラグインや設定を含む運営・開発を担当しています。また、Minecraftのマップ、リソースパック、その他の関連コンテンツも担当します。
 
 unity:
   codename: ud
@@ -19,6 +22,9 @@ unity:
   zh-cn:
     name: Unity部门
     bio: 负责Unity游戏和应用程序，例如Sacred Cubes。这包括游戏测试、错误报告和新功能的开发。
+  ja-jp:
+    name: Unity部門
+    bio: Sacred CubesなどのUnityゲームやアプリケーションを担当しています。プレイテスト、不具合報告、新機能の開発などを行います。
 
 roblox:
   codename: rd
@@ -30,3 +36,6 @@ roblox:
   zh-cn:
     name: 《罗布乐思》部门
     bio: 负责《罗布乐思》游戏和应用程序，例如Obby of Dominance。这包括游戏测试、错误报告和新功能的开发。
+  ja-jp:
+    name: Roblox部門
+    bio: Obby of DominanceなどのRobloxゲームやアプリケーションを担当しています。プレイテスト、不具合報告、新機能の開発などを行います。

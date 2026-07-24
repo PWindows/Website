@@ -13,7 +13,7 @@
         &copy; {{ site.time | date: '%Y' }} {{ site.data.translations[site.active_lang].site.footer.copy }}
       </p>
       <p class="footer-disclaimer">
-        {{ site.data.translations[site.active_lang].footer.disclaimer }}
+        {{ site.data.translations[site.active_lang].site.footer.disclaimer }}
       </p>
       <p class="footer-rules">
         <a href="{{ '/about' | relative_url }}">{{ site.data.translations[site.active_lang].site.footer.about }}</a>
@@ -51,19 +51,22 @@
         </li>
         {% endfor %}
       </ul>
-      <nav class="language-switcher" aria-label="{{ site.data.translations[site.active_lang].site.footer.language }}">
-        {% for lang in site.languages %}
-          {% assign language_path = page.permalink_lang[lang] | default: page.permalink | default: page.url %}
-          {% capture language_url %}{{ site.baseurl }}{% unless lang == site.default_lang %}/{{ lang }}{% endunless %}{{ language_path }}{% endcapture %}
-          <a
-            class="language-link no-icon{% if lang == site.active_lang %} is-active{% endif %}"
-            {% static_href %}href="{{ language_url }}"{% endstatic_href %}
-            lang="{{ lang }}"
-            hreflang="{{ lang }}"
-            {% if lang == site.active_lang %}aria-current="page"{% endif %}
-          >{{ site.data.languages[lang].label }}</a>
-        {% endfor %}
-      </nav>
+      <div class="language-switcher">
+        <label class="sr-only" for="language-select">
+          {{ site.data.translations[site.active_lang].site.footer.language }}
+        </label>
+        <select class="language-select" id="language-select" data-language-select>
+          {% for lang in site.languages %}
+            {% assign language_path = page.permalink_lang[lang] | default: page.permalink | default: page.url %}
+            {% capture language_url %}{{ site.baseurl }}{% unless lang == site.default_lang %}/{{ lang }}{% endunless %}{{ language_path }}{% endcapture %}
+            <option
+              value="{{ language_url | escape }}"
+              lang="{{ lang }}"
+              {% if lang == site.active_lang %}selected{% endif %}
+            >{{ site.data.languages[lang].label }}</option>
+          {% endfor %}
+        </select>
+      </div>
     </div>
 
     <!-- Shop, Support, Feedback, etc. -->

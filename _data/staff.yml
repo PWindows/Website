@@ -14,6 +14,10 @@ petermazep:
     name: PeterMaZep
     role: 派视界的创始人
     bio: 派视界的创始人，负责编码和管理所有事务。
+  ja-jp:
+    name: PeterMaZep
+    role: PWindowsのオーナー
+    bio: PWindowsのオーナーとして、コーディングと全体の運営を担当しています。
 isaacaxolotl:
   aboutpage: true
   department: "Unity"
@@ -30,6 +34,10 @@ isaacaxolotl:
     name: Isaac
     role: Sacred Cubes的联合总监
     bio: Sacred Cubes的联合总监，负责这个网站，因为Peter让我改一下。
+  ja-jp:
+    name: Isaac
+    role: Sacred Cubes共同ディレクター
+    bio: Sacred Cubesの共同ディレクターです。Peterに頼まれたため、このウェブサイトを担当しています。
 
 staff-minecraft:
   department: "Minecraft"
@@ -39,6 +47,8 @@ staff-minecraft:
     name: Staff
   zh-cn:
     name: 工作人员
+  ja-jp:
+    name: スタッフ
 
 staff-unity:
   aboutpage: false
@@ -48,6 +58,8 @@ staff-unity:
     name: Staff
   zh-cn:
     name: 工作人员
+  ja-jp:
+    name: スタッフ
 
 staff-roblox:
   aboutpage: false
@@ -57,3 +69,5 @@ staff-roblox:
     name: Staff
   zh-cn:
     name: 工作人员
+  ja-jp:
+    name: スタッフ

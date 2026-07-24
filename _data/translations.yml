@@ -1879,6 +1879,177 @@ pt-br:
     send-text: "Até que um formulário de feedback dedicado esteja disponível, envie sua sugestão através do portal de suporte."
     support: "Abrir suporte"
 
+ja-jp:
+  site:
+    name: "PWindows"
+    tagline: "Minecraftサーバーだけじゃない"
+    header:
+      about: "PWindowsについて"
+      news: "最新ニュース"
+      staff: "スタッフ"
+      departments: "部門"
+      games: "ゲーム"
+      join-server: "サーバーに参加"
+      launch-bedrock: "Bedrock版を起動"
+      connect-with-pwindows: "PWindowsとつながる"
+      join: "参加する"
+    footer:
+      copy: "PWindows. 無断転載を禁じます."
+      disclaimer: "Mojang Studios、Microsoft、Minecraftとは提携していません。"
+      about: "私たちについて"
+      rules: "ルール"
+      games: "ゲーム"
+      sacred-cubes: "Sacred Cubes"
+      obby-of-dominance: "Obby of Dominance"
+      departments: "部門"
+      mcd: "Minecraft部門"
+      rd: "Roblox部門"
+      ud: "Unity部門"
+      shop: "ショップ"
+      support: "サポート"
+      feedback: "フィードバック"
+      sitemap: "サイトマップ"
+      contact: "お問い合わせ"
+      staff: "スタッフ"
+      language: "言語"
+    page_titles:
+      about: "PWindowsについて"
+      news: "ニュース"
+      staff: "スタッフ"
+      departments: "部門"
+      games: "ゲーム"
+      contact: "お問い合わせ"
+      feedback: "フィードバック"
+      rules: "ルール"
+      mcd: "Minecraft部門"
+      rd: "Roblox部門"
+      ud: "Unity部門"
+      oob: "Obby of Dominance"
+      sc: "Sacred Cubes"
+  placeholder:
+    comingsoon-server: "近日公開"
+  index:
+    catchphrase-top: "ただの"
+    catchphrase-1: "Minecraftサーバーじゃない"
+    catchphrase-2: "ゲームスタジオじゃない"
+    catchphrase-3: "コミュニティじゃない"
+    howtojoin:
+      title: "参加方法"
+      disclaimer: "Minecraftサーバーにのみ適用されます"
+      button-text: "手順を見る"
+      button-text-learnmore: "詳しく見る"
+      button-back: "戻る"
+      server-address:
+        label: "サーバーアドレス"
+        text: "Java版・Bedrock版"
+        text-back: "サーバーIPをコピーし、Minecraftのサーバーリストに追加してください"
+        button-text: "近日公開"
+      quick-launch:
+        label: "クイック起動"
+        label-back: "Bedrock版を起動"
+        text: "Bedrock版"
+        text-back: "クリックしてMinecraft Bedrock版を開き、すぐにサーバーへ参加できます"
+        button-text: "近日公開"
+      realms:
+        label: "Bedrock Realms"
+        label-back: "準備中"
+        text: "近日公開"
+        text-back: "Bedrock Realmsへの参加機能は現在開発中です"
+        button-text: "近日公開"
+    latest-content:
+      title: "PWindowsは現在開発中です"
+      text: "まだお見せできるものがないので、代わりにMinecraftで雪が降っている素敵な画像をご覧ください。最新情報はニュースをご確認ください。"
+      button: "ニュースを読む"
+    projects:
+      title: "プロジェクト"
+      link: "ゲームを見る"
+      server:
+        title: "Minecraftサーバー"
+        text: "Minecraftサーバープロジェクトは現在開発中です。今後の更新をお楽しみに！"
+      game-studio:
+        title: "ゲームスタジオ"
+        text-1: "私たちはゲームスタジオとして、"
+        link-sc: "Sacred Cubes"
+        text-2: "や"
+        link-ood: "Obby of Dominance"
+        text-3: "などの新しいゲームを開発しています。PWindowsには、"
+        link-r: "Roblox部門"
+        text-4: "や"
+        link-u: "Unity部門"
+        text-5: "をはじめとするさまざまな部門があります。"
+      button: "詳しく見る"
+    news:
+      title: "最新ニュース"
+      link: "すべてのニュースを見る"
+  not-found:
+    text: "ページが見つかりませんでした。"
+    button-home: "ホームへ戻る"
+    button-news: "ニュースを読む"
+  about:
+    title: "PWindowsについて"
+    intro: "PWindowsは、あらゆる年齢のプレイヤーに楽しく魅力的な体験を提供することを目指すMinecraftサーバー兼コミュニティプロジェクトです。プレイヤー同士がつながり、協力し、一緒にゲームを楽しめる居心地のよい環境づくりを目指しています。"
+    server:
+      title: "一緒に遊ぼう！"
+      text: "Minecraftサーバーに参加しよう！"
+      button: "参加方法"
+    project:
+      title: "プロジェクトをフォロー！"
+      text: "開発ニュース、コミュニティのお知らせ、このウェブサイトやサーバー、PWindows全般に関する最新情報をご覧ください。"
+      button: "ニュースを読む"
+  news:
+    featured-title: "ニュース"
+    no-news: "まだニュースは公開されていません。後でもう一度ご確認ください。"
+    no-featured: "注目ニュースはまだ公開されていません。"
+    title: "最新ニュース"
+    sort-by:
+      text: "並び順"
+      date-desc: "新しい順"
+      date-asc: "古い順"
+      type: "種類"
+      title: "タイトル"
+  staff-page:
+    title: "スタッフ"
+    intro: "PWindowsの開発と運営を支えるメンバーをご紹介します。"
+    owner: "オーナー"
+    no-members: "この部門には現在、公開されているチームメンバーがいません。"
+    back: "戻る"
+  departments:
+    title: "部門"
+    intro: "PWindowsのプロジェクトを支えるチームをご紹介します。"
+    minecraft-intro: "MinecraftチームがPWindowsにどのように貢献しているかをご覧ください。"
+    unity-intro: "UnityチームがPWindowsにどのように貢献しているかをご覧ください。"
+    roblox-intro: "RobloxチームがPWindowsにどのように貢献しているかをご覧ください。"
+    view-button: "部門を見る"
+    back-button: "戻る"
+    team-members: "チームメンバー"
+    no-members: "この部門には現在、公開されているチームメンバーがいません。"
+  games:
+    title: "ゲーム"
+    intro: "PWindowsが現在開発しているゲームをご紹介します。"
+    view-game: "ゲームを見る"
+    back-button: "戻る"
+  game-status:
+    in-development: "開発中"
+    released: "リリース済み"
+    coming-soon: "近日公開"
+  contact:
+    title: "お問い合わせ"
+    intro: "お問い合わせ内容に合った窓口をお選びください。"
+    support:
+      title: "サポート"
+      text: "アカウント、サーバー、ショップ、モデレーションに関するサポートが必要な場合は、サポートポータルからリクエストを送信してください。"
+      btn: "サポートを開く"
+    community:
+      title: "コミュニティ"
+      text: "交流やプロジェクトの最新情報については、PWindowsのDiscordコミュニティにご参加ください。"
+      btn: "Discordに参加"
+  feedback:
+    title: "フィードバック"
+    intro: "正常に動作している点、分かりにくい点、改善してほしい点をお知らせください。"
+    send: "フィードバックを送る"
+    send-text: "専用フォームが用意されるまでは、サポートポータルからご意見をお送りください。"
+    support: "サポートを開く"
+
 ko-kr:
   site:
     name: "PWindows"

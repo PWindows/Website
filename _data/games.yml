@@ -15,6 +15,9 @@
   zh-cn:
     title: Sacred Cubes
     summary: 随着开发的进行，将发布有关 Sacred Cubes 的更多信息。
+  ja-jp:
+    title: Sacred Cubes
+    summary: 開発の進捗に合わせて、Sacred Cubesの詳細情報を公開します。
 
 - slug: obby-of-dominance
   codetitle: obby-of-dominance
@@ -33,3 +36,6 @@
   zh-cn:
     title: Obby of Dominance
     summary: 随着开发的进行，将发布有关 Obby of Dominance 的更多信息。
+  ja-jp:
+    title: Obby of Dominance
+    summary: 開発の進捗に合わせて、Obby of Dominanceの詳細情報を公開します。

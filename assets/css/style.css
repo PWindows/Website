@@ -50,23 +50,31 @@
 
 @font-face {
   font-family: "Alibaba PuHuiTi Black";
-  src: url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.ttf") format("truetype"),
-       url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff") format("woff"),
-       url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff2") format("woff2");
+  src:
+    url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.ttf")
+      format("truetype"),
+    url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff")
+      format("woff"),
+    url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff2")
+      format("woff2");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Minecraft Seven v2";
-src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");  
+  src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Alibaba PuHuiTi Regular";
-  src: url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.ttf") format("truetype"),
-       url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff") format("woff"),
-       url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff2") format("woff2");
+  src:
+    url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.ttf")
+      format("truetype"),
+    url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff")
+      format("woff"),
+    url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff2")
+      format("woff2");
   font-display: swap;
 }
 
@@ -546,36 +554,36 @@ button {
 }
 
 .back-to-top {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 40;
-    width: 56px;
-    height: 56px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px);
-    transition:
-        opacity 0.2s ease,
-        transform 0.2s ease,
-        visibility 0.2s ease;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 40;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
 }
 
 .back-to-top.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .back-to-top-icon {
-    width: 20px;
-    height: 20px;
-    filter: brightness(0) invert(1);
-    image-rendering: pixelated;
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  image-rendering: pixelated;
 }
 
 /*About*/
@@ -1829,30 +1837,27 @@ article > p {
 }
 
 .language-switcher {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
   margin-top: 1.5rem;
 }
 
-.language-link {
-  padding: 0.55rem 0.75rem;
+.language-select {
+  width: 100%;
+  max-width: 16rem;
+  padding: 0.55rem 2rem 0.55rem 0.75rem;
   border: 2px solid var(--secondary-darker);
-  color: #ffffff;
+  border-radius: 0;
+  background: transparent;
+  color: white;
   font-size: 0.8rem;
-  font-weight: 800;
-  line-height: 1;
-  text-decoration: none;
+  line-height: 1.2;
+  cursor: pointer;
 }
 
-.language-link:hover {
+.language-select:hover {
   border-color: var(--primary);
-  color: var(--primary);
 }
 
-.language-link.is-active {
-  color: #161514;
-  background: var(--primary);
+.language-select:focus {
   border-color: var(--primary);
 }
 
@@ -1990,5 +1995,5 @@ article > p {
 }
 
 .mc-seven {
-    font-family: "Minecraft Seven", monospace;
+  font-family: "Minecraft Seven", monospace;
 }

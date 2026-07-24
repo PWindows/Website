@@ -36,9 +36,11 @@ page_class: sitemap-page
         <p>Explore games being developed by PWindows.</p>
       </li>
       {% for game in site.data.games %}
+      {% assign localized_game = game[site.active_lang] %}
+      {% assign default_game = game[site.default_lang] %}
       <li>
-        <a href="{{ game.path | relative_url }}">{{ game[site.active_lang].title | escape }}</a>
-        <p>{{ game[site.active_lang].summary }}</p>
+        <a href="{{ game.path | relative_url }}">{{ localized_game.title | default: default_game.title | escape }}</a>
+        <p>{{ localized_game.summary | default: default_game.summary }}</p>
       </li>
       {% endfor %}
     </ul>
@@ -53,9 +55,11 @@ page_class: sitemap-page
       </li>
       {% for department_entry in site.data.departments %}
         {% assign department = department_entry[1] %}
+        {% assign localized_department = department[site.active_lang] %}
+        {% assign default_department = department[site.default_lang] %}
       <li>
-        <a href="{{ department.path | relative_url }}">{{ department[site.active_lang].name | escape }}</a>
-        <p>{{ department[site.active_lang].bio }}</p>
+        <a href="{{ department.path | relative_url }}">{{ localized_department.name | default: default_department.name | escape }}</a>
+        <p>{{ localized_department.bio | default: default_department.bio }}</p>
       </li>
       {% endfor %}
     </ul>

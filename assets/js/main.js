@@ -262,6 +262,15 @@ function setupArticleSorting() {
   sortArticles();
 }
 
+function setupLanguageSelect() {
+  const select = document.querySelector("[data-language-select]");
+  if (!select) return;
+
+  select.addEventListener("change", () => {
+    if (select.value) window.location.assign(select.value);
+  });
+}
+
 function setupDebris() {
   const debrisElements = document.querySelectorAll("[data-debris]");
   if (!debrisElements.length) return;
@@ -353,6 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupAnchorScrolling();
   setupFlipCards();
   setupArticleSorting();
+  setupLanguageSelect();
   setupReadMore();
   setupBackToTop();
   setupDebris();

@@ -5,6 +5,8 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
 permalink: /
 ---
 
+{% assign server_address = site.data.site.server.address[site.active_lang] | default: site.data.site.server.address[site.default_lang] %}
+
 <section class="landing" id="home">
   <div class="landing-content">
     <div class="hero-card">
@@ -34,11 +36,11 @@ permalink: /
     <div class="bottom-content">
       <button
         class="copy-button btn btn-gold"
-        data-copy-ip="{{ site.data.site.server.address[site.active_lang] | escape }}"
+        data-copy-ip="{{ server_address | escape }}"
         aria-label="Copy server IP"
         disabled
       >
-        IP: {{ site.data.site.server.address[site.active_lang] }}
+        IP: {{ server_address }}
       </button>
 
       <button class="btn btn-green" aria-label="Go to join section" disabled>
@@ -86,7 +88,7 @@ permalink: /
             </div>
             <button
               class="copy-button btn btn-gold"
-              data-copy-ip="{{ site.data.site.server.address[site.active_lang] | escape }}"
+              data-copy-ip="{{ server_address | escape }}"
               aria-label="Copy server IP(Coming soon)"
               disabled
             >

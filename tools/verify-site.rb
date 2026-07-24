@@ -39,6 +39,7 @@ PRODUCTION_FONT_FILES = Set.new(%w[
   Minecraft-Seven_v2.woff
   Minecraft-Tenv2.woff2
   NotoSans-Regular.woff2
+  Minecraft-TwentyOne.ttf
 ]).freeze
 
 def generated_page_path(path)
@@ -138,12 +139,20 @@ end
 site_data_path = File.join(ROOT, "_data", "site.yml")
 if File.file?(site_data_path)
   site_data = YAML.safe_load_file(site_data_path)
-  LANGUAGES.each do |lang|
-    server_address = site_data.dig("server", "address", lang).to_s
-    errors << "Site data is missing server.address.#{lang}" if server_address.empty?
-    unless server_address.match?(/\A[a-z0-9.-]+\z/i)
-      errors << "Site server.address.#{lang} is invalid: #{server_address.inspect}"
+  server_addresses = site_data.dig("server", "address")
+  if server_addresses.is_a?(Hash)
+    default_server_address = server_addresses[DEFAULT_LANG].to_s
+    errors << "Site data is missing server.address.#{DEFAULT_LANG}" if default_server_address.empty?
+    server_addresses.each do |lang, value|
+      errors << "Site data has an unsupported server language: #{lang}" unless LANGUAGES.include?(lang)
+      server_address = value.to_s
+      errors << "Site data has an empty server.address.#{lang}" if server_address.empty?
+      unless server_address.match?(/\A[a-z0-9.-]+\z/i)
+        errors << "Site server.address.#{lang} is invalid: #{server_address.inspect}"
+      end
     end
+  else
+    errors << "Site data is missing server.address"
   end
 
   %w[support shop discord youtube twitter].each do |name|
@@ -241,11 +250,11 @@ published_fonts = if Dir.exist?(font_output_directory)
                   end
 missing_fonts = PRODUCTION_FONT_FILES - published_fonts
 unexpected_fonts = published_fonts - PRODUCTION_FONT_FILES
-#errors << "Missing production font files: #{missing_fonts.to_a.sort.join(', ')}" unless missing_fonts.empty?
-#errors << "Unused font files were published: #{unexpected_fonts.to_a.sort.join(', ')}" unless unexpected_fonts.empty?
+errors << "Missing production font files: #{missing_fonts.to_a.sort.join(', ')}" unless missing_fonts.empty?
+errors << "Unused font files were published: #{unexpected_fonts.to_a.sort.join(', ')}" unless unexpected_fonts.empty?
 
 font_sources = Dir[File.join(ROOT, "assets", "mojang", "fonts", "*.{eot,otf,svg,ttf,woff,woff2}")]
-#errors << "The retained font library is missing" if font_sources.empty?
+errors << "The retained font library is missing" if font_sources.empty?
 
 games = YAML.safe_load_file(File.join(ROOT, "_data", "games.yml"))
 game_slugs = games.map { |game| game["slug"] }
@@ -258,9 +267,9 @@ games.each do |game|
   %w[slug path status image engine language].each do |field|
     errors << "Game #{identifier} is missing #{field}" if game[field].to_s.strip.empty?
   end
-  LANGUAGES.each do |lang|
-    %w[title summary].each do |field|
-      errors << "Game #{identifier} is missing #{lang}.#{field}" if game.dig(lang, field).to_s.strip.empty?
+  %w[title summary].each do |field|
+    if game.dig(DEFAULT_LANG, field).to_s.strip.empty?
+      errors << "Game #{identifier} is missing fallback #{DEFAULT_LANG}.#{field}"
     end
   end
   errors << "Game #{identifier} points to a missing page" unless File.file?(generated_page_path(game["path"]))
@@ -304,9 +313,9 @@ departments.each do |key, department|
   %w[path staff_department].each do |field|
     errors << "Department #{key} is missing #{field}" if department[field].to_s.strip.empty?
   end
-  LANGUAGES.each do |lang|
-    %w[name bio].each do |field|
-      errors << "Department #{key} is missing #{lang}.#{field}" if department.dig(lang, field).to_s.strip.empty?
+  %w[name bio].each do |field|
+    if department.dig(DEFAULT_LANG, field).to_s.strip.empty?
+      errors << "Department #{key} is missing fallback #{DEFAULT_LANG}.#{field}"
     end
   end
   errors << "Department #{key} points to a missing page" unless File.file?(generated_page_path(department["path"]))
@@ -332,9 +341,9 @@ staff.each do |key, person|
   %w[pfp path].each do |field|
     errors << "Staff member #{key} is missing #{field}" if person[field].to_s.strip.empty?
   end
-  LANGUAGES.each do |lang|
-    %w[name role bio].each do |field|
-      errors << "Staff member #{key} is missing #{lang}.#{field}" if person.dig(lang, field).to_s.strip.empty?
+  %w[name role bio].each do |field|
+    if person.dig(DEFAULT_LANG, field).to_s.strip.empty?
+      errors << "Staff member #{key} is missing fallback #{DEFAULT_LANG}.#{field}"
     end
   end
   image = local_asset_path(person["pfp"])
