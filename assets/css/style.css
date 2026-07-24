@@ -1653,6 +1653,7 @@ article > p {
 
 .news-heading {
   color: #262423;
+  text-shadow: 0 4px 0px #4d546664;
 }
 
 .news-link-container {
