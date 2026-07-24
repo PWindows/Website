@@ -11,7 +11,7 @@
     {% assign site_tagline = site.data.translations[site.active_lang].site.tagline %}
     {% assign page_title = site.data.translations[site.active_lang].site.page_titles[page.id] | default: page.title | default: site.title %}
     {% assign localized_page_path = page.url %}
-    {% if site.active_lang %}
+    {% if site.active_lang != site.default_lang %}
       {% capture localized_page_path %}/{{ site.active_lang }}{{ page.url }}{% endcapture %}
     {% endif %}
 
@@ -139,85 +139,4 @@
     {% include footer.html %}
     <script src="{{ '/assets/js/main.js?v=' | append: asset_revision | relative_url }}"></script>
   </body>
-  <script>
-    (function() {
-      var supportedLangs = ['en-us', 'zh-cn'];
-      var defaultLang = 'en-us';
-      var cookieName = 'preferred_lang';
-
-      function getCookie(name) {
-        var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-        return match ? decodeURIComponent(match[2]) : null;
-      }
-
-      function setCookie(name, value) {
-        var date = new Date();
-        date.setTime(date.getTime() + 10 * 365 * 24 * 60 * 60 * 1000);
-        document.cookie = name + '=' + encodeURIComponent(value) +
-                          '; expires=' + date.toUTCString() +
-                          '; path=/';
-      }
-
-      function getLanguageFromPath(path) {
-        for (var i = 0; i < supportedLangs.length; i++) {
-          var prefix = '/' + supportedLangs[i];
-          if (path.indexOf(prefix) === 0) {
-            return supportedLangs[i];
-          }
-        }
-        return null;
-      }
-
-      function removeLanguageFromPath(path) {
-        var lang = getLanguageFromPath(path);
-        if (lang) {
-          return path.replace('/' + lang, '');
-        }
-        return path;
-      }
-
-      (function redirect() {
-        var path = window.location.pathname;
-        var lang = getCookie(cookieName);
-
-        if (!lang) {
-          var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-          for (var i = 0; i < supportedLangs.length; i++) {
-            if (browserLang === supportedLangs[i] || browserLang.startsWith(supportedLangs[i].split('-')[0])) {
-              lang = supportedLangs[i];
-              break;
-            }
-          }
-        }
-
-        if (!lang || supportedLangs.indexOf(lang) === -1) {
-          lang = defaultLang;
-        }
-
-        if (!getCookie(cookieName)) {
-          setCookie(cookieName, lang);
-        }
-
-        var hasLangPrefix = getLanguageFromPath(path) !== null;
-
-        if (!hasLangPrefix) {
-          var newPath = (path === '/' || path === '') 
-            ? '/' + lang + '/' 
-            : '/' + lang + path;
-          window.location.replace(newPath);
-        }
-      })();
-
-      document.addEventListener('DOMContentLoaded', function() {
-        var links = document.querySelectorAll('.language-link[data-lang]');
-        links.forEach(function(link) {
-          link.addEventListener('click', function(e) {
-            // Allow the link to navigate naturally (no e.preventDefault)
-            var lang = this.getAttribute('data-lang');
-            setCookie(cookieName, lang);
-          });
-        });
-      });
-    })();
-  </script>
 </html>
