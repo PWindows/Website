@@ -49,7 +49,7 @@
 }
 
 @font-face {
-  font-family: "Alibaba PuTiHui Black";
+  font-family: "Alibaba PuHuiTi Black";
   src: url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.ttf") format("truetype"),
        url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff") format("woff"),
        url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff2") format("woff2");
@@ -63,7 +63,7 @@ src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");
 }
 
 @font-face {
-  font-family: "Alibaba PuTiHui Regular";
+  font-family: "Alibaba PuHuiTi Regular";
   src: url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.ttf") format("truetype"),
        url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff") format("woff"),
        url("../fonts/AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff2") format("woff2");
