@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/PWindows/website-common.git
+  revision: 905d373d8bda9eea8fa09ee273bc085d6588bf40
+  specs:
+    pwindows-theme (1.0.0)
+      jekyll (~> 4.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -205,6 +212,7 @@ DEPENDENCIES
   jekyll (~> 4.4)
   jekyll-polyglot
   nokogiri (~> 1.19)
+  pwindows-theme!
   wdm (>= 0.1.0)
   webrick
 
