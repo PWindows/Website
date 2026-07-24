@@ -17,7 +17,7 @@
   --card-background: rgba(255, 255, 255, 0.96);
   --card-border: rgba(61, 66, 80, 0.2);
   --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --font-display: "Minecraft Ten v2", monospace;
+  --font-display: "Minecraft Ten v2", "Alibaba PuTiHui Black", monospace;
   --font-pixel: "Minecraft Seven v2", monospace;
   --font-body: "Noto Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   --arrow-shape: polygon(
@@ -45,6 +45,14 @@
 @font-face {
   font-family: "Minecraft Ten v2";
   src: url("../mojang/fonts/Minecraft-Tenv2.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alibaba PuTiHui Black";
+  src: url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.ttf") format("TrueType")
+       url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff") format("woff")
+       url("../fonts/AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff2") format("woff2");
   font-display: swap;
 }
 
