@@ -5,7 +5,6 @@ markdown: kramdown
 kramdown:
   input: GFM
 languages: ["en-us", "zh-cn"]
-default_lang: "en-us"
 lang_from_path: true
 parallel_localization: false
 exclude_from_localization:

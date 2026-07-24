@@ -54,10 +54,11 @@
       <nav class="language-switcher" aria-label="{{ site.data.translations[site.active_lang].site.footer.language }}">
         {% for lang in site.languages %}
           {% assign language_path = page.permalink_lang[lang] | default: page.permalink | default: page.url %}
-          {% capture language_url %}{{ site.baseurl }}{% unless lang == site.default_lang %}/{{ lang }}{% endunless %}{{ language_path }}{% endcapture %}
+          {% capture language_url %}/{{ lang }}{{ language_path }}{% endcapture %}
           <a
             class="language-link no-icon{% if lang == site.active_lang %} is-active{% endif %}"
-            {% static_href %}href="{{ language_url }}"{% endstatic_href %}
+            href="{{ language_url }}"
+            data-lang="{{ lang }}"
             lang="{{ lang }}"
             hreflang="{{ lang }}"
             {% if lang == site.active_lang %}aria-current="page"{% endif %}

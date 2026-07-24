@@ -16,4 +16,18 @@ sitemap: false
       <a class="btn" href="{{ '/articles' | relative_url }}">{{ site.data.translations[site.active_lang].not-found.button-news }}</a>
     </div>
   </div>
+  <script>
+    var path = window.location.pathname;
+
+    var lang = 'en-us';
+    var match = path.match(/^\/([a-z]{2}-[a-z]{2})\//);
+    if (match) {
+      lang = match[1];
+    }
+
+    var target = '/' + lang + '/404';
+    if (path !== target) {
+      window.location.replace(target);
+    }
+  </script>
 </section>
