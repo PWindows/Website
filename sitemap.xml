@@ -1,0 +1,25 @@
+---
+layout: null
+permalink: /sitemap.xml
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {% assign sitemap_nodes = site.pages | concat: site.articles %}
+  {% for node in sitemap_nodes %}
+    {% if node.layout and node.sitemap != false %}
+      {% for lang in site.languages %}
+  <url>
+    <loc>{% if lang == site.default_lang %}{{ node.url | absolute_url }}{% else %}{{ node.url | prepend: lang | prepend: '/' | absolute_url }}{% endif %}</loc>
+        {% if node.last_updated or node.date %}
+    <lastmod>{{ node.last_updated | default: node.date | date_to_xmlschema }}</lastmod>
+        {% endif %}
+        {% for alternate_lang in site.languages %}
+    <xhtml:link rel="alternate" hreflang="{{ alternate_lang }}" href="{% if alternate_lang == site.default_lang %}{{ node.url | absolute_url }}{% else %}{{ node.url | prepend: alternate_lang | prepend: '/' | absolute_url }}{% endif %}" />
+        {% endfor %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ node.url | absolute_url }}" />
+  </url>
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+</urlset>

@@ -1,5 +1,6 @@
 ---
 layout: news
+lang: zh-cn
 
 title: "派视界网站已上线！"
 

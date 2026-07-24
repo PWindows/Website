@@ -1,5 +1,6 @@
 ---
 layout: news
+lang: en-us
 
 title: "PWindows' website is working!"
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ site.active_lang }}">
   <head>
     {% assign page_description = page.summary | default: page.description | default: site.description %}
     {% assign page_image = page.banner | default: '/assets/PWindows.svg' %}
@@ -10,6 +10,10 @@
     {% assign site_name = site.data.translations[site.active_lang].site.name %}
     {% assign site_tagline = site.data.translations[site.active_lang].site.tagline %}
     {% assign page_title = site.data.translations[site.active_lang].site.page_titles[page.id] | default: page.title | default: site.title %}
+    {% assign localized_page_path = page.url %}
+    {% if site.active_lang != site.default_lang %}
+      {% capture localized_page_path %}/{{ site.active_lang }}{{ page.url }}{% endcapture %}
+    {% endif %}
 
     {% capture page_full_title %}
       {% if page.url == '/' %}
@@ -22,7 +26,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page_full_title | strip }}</title>
-    <link rel="canonical" href="{{ page.url | absolute_url }}" />
+    {% I18n_Headers %}
     <meta name="title" content="{{ page_full_title | strip | escape }}" />
     <meta name="application-name" content="PWindows" />
     <meta property="og:site_name" content="PWindows" />
@@ -35,7 +39,7 @@
       name="keywords"
       content="PWindows, Minecraft, Server, Community, Roblox, Roblox Studio, Studio, Games, MC, PeterMaZep"
     />
-    <meta name="author" content="{% if page.layout == 'news' %}{{ site.data.staff[page.author].name | escape }}{% else %}PWindows{% endif %}" />
+    <meta name="author" content="{% if page.layout == 'news' %}{{ site.data.staff[page.author][site.active_lang].name | escape }}{% else %}PWindows{% endif %}" />
 
     <meta
       property="og:title"
@@ -46,11 +50,11 @@
       property="og:image"
       content="{{ page_image | absolute_url }}"
     />
-    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:url" content="{{ localized_page_path | strip | absolute_url }}" />
     <meta property="og:type" content="{% if page.layout == 'news' %}article{% else %}website{% endif %}" />
     {% if page.layout == "news" %}
     <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
-    <meta property="article:author" content="{{ site.data.staff[page.author].name | escape }}" />
+    <meta property="article:author" content="{{ site.data.staff[page.author][site.active_lang].name | escape }}" />
     {% endif %}
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -122,97 +126,6 @@
     {% if page.extra_css %} {% for css_file in page.extra_css %}
     <link rel="stylesheet" href="{{ css_file | relative_url }}" />
     {% endfor %} {% endif %}
-    <script>
-      (function() {
-        var supportedLangs = ['en-us', 'zh-cn'];
-        var defaultLang = 'en-us';
-        var cookieName = 'preferred_lang';
-
-        function getCookie(name) {
-          var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-          return match ? decodeURIComponent(match[2]) : null;
-        }
-
-        function setCookie(name, value) {
-          var date = new Date();
-          date.setTime(date.getTime() + 10 * 365 * 24 * 60 * 60 * 1000);
-          document.cookie = name + '=' + encodeURIComponent(value) +
-                            '; expires=' + date.toUTCString() +
-                            '; path=/';
-        }
-
-        function getLanguageFromPath(path) {
-          for (var i = 0; i < supportedLangs.length; i++) {
-            var prefix = '/' + supportedLangs[i];
-            if (path.indexOf(prefix) === 0) {
-              return supportedLangs[i];
-            }
-          }
-          return null;
-        }
-
-        function removeLanguageFromPath(path) {
-          var lang = getLanguageFromPath(path);
-          if (lang) {
-            return path.replace('/' + lang, '');
-          }
-          return path;
-        }
-
-        (function redirect() {
-          var path = window.location.pathname;
-          var lang = getCookie(cookieName);
-
-          if (!lang) {
-            var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-            for (var i = 0; i < supportedLangs.length; i++) {
-              if (browserLang === supportedLangs[i] || browserLang.startsWith(supportedLangs[i].split('-')[0])) {
-                lang = supportedLangs[i];
-                break;
-              }
-            }
-          }
-
-          if (!lang || supportedLangs.indexOf(lang) === -1) {
-            lang = defaultLang;
-          }
-
-          if (!getCookie(cookieName)) {
-            setCookie(cookieName, lang);
-          }
-
-          var hasLangPrefix = getLanguageFromPath(path) !== null;
-
-          if (!hasLangPrefix) {
-            var newPath = (path === '/' || path === '') 
-              ? '/' + lang + '/' 
-              : '/' + lang + path;
-            window.location.replace(newPath);
-          }
-        })();
-
-        document.addEventListener('DOMContentLoaded', function() {
-          var select = document.getElementById('langSelect');
-          if (select) {
-            var currentLang = getCookie(cookieName) || defaultLang;
-            select.value = currentLang;
-
-            select.addEventListener('change', function() {
-              var newLang = this.value;
-              setCookie(cookieName, newLang);
-
-              var path = window.location.pathname;
-              var cleanPath = removeLanguageFromPath(path);
-              if (cleanPath === '') cleanPath = '/';
-
-              var newPath = '/' + newLang + cleanPath;
-              window.location.href = newPath;
-            });
-          }
-        });
-
-      })();
-    </script>
   </head>
   <body>
     {% include header.html %}

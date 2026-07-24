@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 404
-permalink: /404
+permalink: /404.html
 sitemap: false
 ---
 
@@ -12,22 +12,8 @@ sitemap: false
   </header>
   <div class="content-page-body">
     <div class="page-actions">
-      <a class="btn btn-green" href="/en-us/">{{ site.data.translations[site.active_lang].not-found.button-home }}</a>
-      <a class="btn" href="/en-us/articles">{{ site.data.translations[site.active_lang].not-found.button-news }}</a>
+      <a class="btn btn-green" href="{{ '/' | relative_url }}">{{ site.data.translations[site.active_lang].not-found.button-home }}</a>
+      <a class="btn" href="{{ '/articles' | relative_url }}">{{ site.data.translations[site.active_lang].not-found.button-news }}</a>
     </div>
   </div>
-  <script>
-    var path = window.location.pathname;
-
-    var lang = 'en-us';
-    var match = path.match(/^\/([a-z]{2}-[a-z]{2})\//);
-    if (match) {
-      lang = match[1];
-    }
-
-    var target = '/' + lang + '/404';
-    if (path !== target) {
-      window.location.replace(target);
-    }
-  </script>
 </section>

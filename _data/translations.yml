@@ -1,5 +1,4 @@
 en-us:
-  ip: "play.pwindows.qzz.io"
   site:
     name: "PWindows"
     tagline: "Not just a Minecraft server"
@@ -31,6 +30,7 @@ en-us:
       sitemap: "Site map"
       contact: "Contact us"
       staff: "Staff"
+      language: "Language"
     page_titles:
       about: "About PWindows"
       news: "News"
@@ -170,7 +170,6 @@ en-us:
     support: "Open support"
 
 zh-cn:
-  ip: "cn.play.pwindows.qzz.io"
   site:
     name: "派视界"
     tagline: "不仅是一个我的世界服务器"
@@ -202,6 +201,7 @@ zh-cn:
       sitemap: "网站地图"
       contact: "联系我们"
       staff: "工作人员"
+      language: "语言"
     page_titles:
       about: "关于派视界"
       news: "新闻"

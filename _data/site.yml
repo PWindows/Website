@@ -1,3 +1,7 @@
+server:
+  address:
+    en-us: play.pwindows.qzz.io
+    zh-cn: cn.play.pwindows.qzz.io
 links:
   support: https://support.pwindows.qzz.io
   shop: https://shop.pwindows.qzz.io

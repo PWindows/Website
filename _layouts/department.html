@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+{% assign department = site.data.departments[page.department] %}
+{% assign department_intro = page.department | append: "-intro" %}
+
+<section class="content-page">
+  <header class="content-page-header">
+    <h1>{{ department[site.active_lang].name }}</h1>
+    <p class="content-page-intro">{{ site.data.translations[site.active_lang].departments[department_intro] }}</p>
+  </header>
+  <div class="content-page-body">
+    <div class="content-card content-card--centered">
+      <p>{{ department[site.active_lang].bio }}</p>
+      <a class="btn" href="{{ '/departments/' | relative_url }}">{{ site.data.translations[site.active_lang].departments.back-button }}</a>
+    </div>
+
+    <section class="department-team" aria-labelledby="department-team-heading">
+      <h2 class="department-team-heading" id="department-team-heading">{{ site.data.translations[site.active_lang].departments.team-members }}</h2>
+      {% assign department_members = site.data.staff | where: "department", department.staff_department | where: "aboutpage", true %}
+      {% if department_members.size > 0 %}
+        <div class="staff-grid">
+          {% for person in department_members %}
+            {% include staff-card.html person=person %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty-state staff-empty-state">{{ site.data.translations[site.active_lang].departments.no-members }}</p>
+      {% endif %}
+    </section>
+  </div>
+</section>

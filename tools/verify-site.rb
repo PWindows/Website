@@ -10,6 +10,8 @@ ROOT = File.expand_path("..", __dir__)
 DESTINATION = File.expand_path(ARGV.fetch(0, "_site"), ROOT)
 SITE_CONFIG = YAML.safe_load_file(File.join(ROOT, "_config.yml"))
 SITE_URL = SITE_CONFIG.fetch("url", "").to_s.delete_suffix("/")
+LANGUAGES = SITE_CONFIG.fetch("languages")
+DEFAULT_LANG = SITE_CONFIG.fetch("default_lang")
 
 PUBLIC_ROUTES = %w[
   /
@@ -54,6 +56,12 @@ def generated_page_path(path)
   File.join(DESTINATION, relative_file)
 end
 
+def localized_route(route, lang)
+  return route if lang == DEFAULT_LANG
+
+  "/#{lang}#{route == "/" ? "/" : route}"
+end
+
 def front_matter(path)
   match = File.read(path).match(/\A---\s*\n(.*?)\n---\s*\n/m)
   return {} unless match
@@ -79,7 +87,7 @@ rescue ArgumentError, TypeError
   false
 end
 
-def verify_generated_page(route, errors)
+def verify_generated_page(route, lang, errors)
   file = generated_page_path(route)
   unless File.file?(file)
     errors << "Missing generated route #{route} (#{file.delete_prefix("#{DESTINATION}/")})"
@@ -87,6 +95,7 @@ def verify_generated_page(route, errors)
   end
 
   document = Nokogiri::HTML5(File.read(file))
+  errors << "#{route} has an unexpected document language" unless document.at_css("html")&.[]("lang") == lang
   main = document.at_css("main")
   errors << "#{route} has an empty <main>" if main.nil? || main.text.strip.empty?
   errors << "#{route} must contain exactly one <h1>" unless document.css("main h1").length == 1
@@ -102,6 +111,23 @@ end
 
 errors = []
 
+errors << "default_lang must be included in languages" unless LANGUAGES.include?(DEFAULT_LANG)
+errors << "The first configured language must be default_lang" unless LANGUAGES.first == DEFAULT_LANG
+unless SITE_CONFIG.fetch("exclude_from_localization", []).include?("sitemap.xml")
+  errors << "sitemap.xml must be excluded from localization"
+end
+errors << "The default language must not generate a prefixed directory" if Dir.exist?(File.join(DESTINATION, DEFAULT_LANG))
+LANGUAGES.reject { |lang| lang == DEFAULT_LANG }.each do |lang|
+  if File.exist?(File.join(DESTINATION, lang, "sitemap.xml"))
+    errors << "Only the root sitemap.xml should be generated"
+  end
+end
+
+language_data = YAML.safe_load_file(File.join(ROOT, "_data", "languages.yml"))
+LANGUAGES.each do |lang|
+  errors << "Language #{lang} is missing a display label" if language_data.dig(lang, "label").to_s.strip.empty?
+end
+
 begin
   site_uri = URI.parse(SITE_URL)
   errors << "_config.yml url must be an absolute HTTPS URL" unless site_uri.is_a?(URI::HTTPS) && site_uri.host
@@ -112,9 +138,13 @@ end
 site_data_path = File.join(ROOT, "_data", "site.yml")
 if File.file?(site_data_path)
   site_data = YAML.safe_load_file(site_data_path)
-  server_address = site_data.dig("server", "address").to_s
-  errors << "Site data is missing server.address" if server_address.empty?
-  errors << "Site server.address is invalid: #{server_address.inspect}" unless server_address.match?(/\A[a-z0-9.-]+\z/i)
+  LANGUAGES.each do |lang|
+    server_address = site_data.dig("server", "address", lang).to_s
+    errors << "Site data is missing server.address.#{lang}" if server_address.empty?
+    unless server_address.match?(/\A[a-z0-9.-]+\z/i)
+      errors << "Site server.address.#{lang} is invalid: #{server_address.inspect}"
+    end
+  end
 
   %w[support shop discord youtube twitter].each do |name|
     value = site_data.dig("links", name).to_s
@@ -146,9 +176,18 @@ if File.file?(sitemap_file)
   end
   errors << "Sitemap contains duplicate locations" unless locations.length == locations.uniq.length
 
-  expected_pages = PUBLIC_ROUTES.to_set - ["/404.html"]
-  article_locations = locations.select { |path| path.start_with?("/article/") }
-  unexpected = locations.reject { |path| expected_pages.include?(path) || path.start_with?("/article/") }
+  expected_pages = LANGUAGES.each_with_object(Set.new) do |lang, routes|
+    (PUBLIC_ROUTES - ["/404.html"]).each { |route| routes << localized_route(route, lang) }
+  end
+  article_prefixes = LANGUAGES.map do |lang|
+    lang == DEFAULT_LANG ? "/article/" : "/#{lang}/article/"
+  end
+  article_locations = locations.select do |path|
+    article_prefixes.any? { |prefix| path.start_with?(prefix) }
+  end
+  unexpected = locations.reject do |path|
+    expected_pages.include?(path) || article_prefixes.any? { |prefix| path.start_with?(prefix) }
+  end
   missing = expected_pages - locations.to_set
   errors << "Unexpected sitemap locations: #{unexpected.join(', ')}" unless unexpected.empty?
   errors << "Missing sitemap locations: #{missing.to_a.join(', ')}" unless missing.empty?
@@ -156,15 +195,22 @@ else
   errors << "Missing generated sitemap.xml"
 end
 
-(PUBLIC_ROUTES + article_locations).uniq.each do |route|
-  verify_generated_page(route, errors)
+LANGUAGES.each do |lang|
+  PUBLIC_ROUTES.each do |route|
+    verify_generated_page(localized_route(route, lang), lang, errors)
+  end
+end
+article_locations.each do |route|
+  lang = LANGUAGES.find { |candidate| route.start_with?("/#{candidate}/") } || DEFAULT_LANG
+  verify_generated_page(route, lang, errors)
 end
 
 human_sitemap_file = File.join(DESTINATION, "sitemap.html")
 if File.file?(human_sitemap_file)
   human_sitemap = Nokogiri::HTML5(File.read(human_sitemap_file))
   human_links = human_sitemap.css("main a[href]").map { |link| URI(link["href"]).path }.to_set
-  expected_human_links = (PUBLIC_ROUTES.to_set - ["/404.html", "/sitemap"]) | article_locations.to_set
+  default_article_locations = article_locations.select { |path| path.start_with?("/article/") }
+  expected_human_links = (PUBLIC_ROUTES.to_set - ["/404.html", "/sitemap"]) | default_article_locations.to_set
   missing_human_links = expected_human_links - human_links
   unless missing_human_links.empty?
     errors << "Human-readable site map is missing: #{missing_human_links.to_a.join(', ')}"
@@ -209,8 +255,13 @@ errors << "Game paths must be unique" unless game_paths.length == game_paths.uni
 
 games.each do |game|
   identifier = game["slug"] || "(unknown)"
-  %w[slug title path status summary image engine language].each do |field|
+  %w[slug path status image engine language].each do |field|
     errors << "Game #{identifier} is missing #{field}" if game[field].to_s.strip.empty?
+  end
+  LANGUAGES.each do |lang|
+    %w[title summary].each do |field|
+      errors << "Game #{identifier} is missing #{lang}.#{field}" if game.dig(lang, field).to_s.strip.empty?
+    end
   end
   errors << "Game #{identifier} points to a missing page" unless File.file?(generated_page_path(game["path"]))
 
@@ -250,8 +301,13 @@ department_sources = Dir[File.join(ROOT, "pages", "departments", "*.{md,markdown
 end
 
 departments.each do |key, department|
-  %w[name path staff_department bio].each do |field|
+  %w[path staff_department].each do |field|
     errors << "Department #{key} is missing #{field}" if department[field].to_s.strip.empty?
+  end
+  LANGUAGES.each do |lang|
+    %w[name bio].each do |field|
+      errors << "Department #{key} is missing #{lang}.#{field}" if department.dig(lang, field).to_s.strip.empty?
+    end
   end
   errors << "Department #{key} points to a missing page" unless File.file?(generated_page_path(department["path"]))
 
@@ -273,17 +329,27 @@ staff = YAML.safe_load_file(File.join(ROOT, "_data", "staff.yml"))
 staff.each do |key, person|
   next unless person["aboutpage"]
 
-  %w[name pfp role bio].each do |field|
+  %w[pfp path].each do |field|
     errors << "Staff member #{key} is missing #{field}" if person[field].to_s.strip.empty?
+  end
+  LANGUAGES.each do |lang|
+    %w[name role bio].each do |field|
+      errors << "Staff member #{key} is missing #{lang}.#{field}" if person.dig(lang, field).to_s.strip.empty?
+    end
   end
   image = local_asset_path(person["pfp"])
   errors << "Staff member #{key} pfp must be root-relative" unless image
   errors << "Staff member #{key} references a missing image" if image && !File.file?(image)
 end
 
-article_sources = Dir[File.join(ROOT, "_articles", "*.{md,markdown,html}")]
-expected_article_locations = article_sources.map do |path|
-  "/article/#{File.basename(path, File.extname(path))}"
+article_sources = Dir[File.join(ROOT, "_articles", "**", "*.{md,markdown,html}")]
+article_slugs = article_sources.map do |path|
+  File.basename(path, File.extname(path))
+end.uniq
+expected_article_locations = LANGUAGES.each_with_object(Set.new) do |lang, locations|
+  article_slugs.each do |slug|
+    locations << localized_route("/article/#{slug}", lang)
+  end
 end.to_set
 actual_article_locations = article_locations.to_set
 errors << "Sitemap article URLs do not match _articles" unless actual_article_locations == expected_article_locations
@@ -299,6 +365,9 @@ article_sources.each do |path|
   %w[layout title date author banner summary type].each do |field|
     errors << "Article #{identifier} is missing #{field}" if metadata[field].to_s.strip.empty?
   end
+  errors << "Article #{identifier} has an unsupported language" unless LANGUAGES.include?(metadata["lang"])
+  source_lang = File.basename(File.dirname(path))
+  errors << "Article #{identifier} language does not match its directory" unless metadata["lang"] == source_lang
   errors << "Article #{identifier} must use the news layout" unless metadata["layout"] == "news"
   errors << "Article #{identifier} references an unknown author" unless staff.key?(metadata["author"])
 
