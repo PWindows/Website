@@ -1847,7 +1847,7 @@ article > p {
   padding: 0.55rem 2rem 0.55rem 0.75rem;
   border: 2px solid var(--secondary-darker);
   border-radius: 0;
-  background: transparent;
+  background: var(--mc-vanilla-coldgrey-6);
   color: white;
   font-size: 0.8rem;
   line-height: 1.2;
