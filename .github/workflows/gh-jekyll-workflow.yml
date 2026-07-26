@@ -33,6 +33,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          token: ${{ secrets.PAT_TOKEN_WEBSITE_COMMON }}
+      - name: Configure git to use PAT
+        run: |
+          git config --global url."https://${{ secrets.PAT_TOKEN_WEBSITE_COMMON }}@github.com/PWindows/Website-Common.git".insteadOf "https://github.com/PWindows/Website-Common.git"
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
