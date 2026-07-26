@@ -1,10 +1,3 @@
-GIT
-  remote: git@github.com:PWindows/Website-Common.git
-  revision: a91521f4688c4c24b050ccf02206f0830b73029f
-  specs:
-    pwindows-theme (1.0.0)
-      jekyll (~> 4.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
