@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/PWindows/Website-Common.git/
+  remote: https://github.com/PWindows/Website-Common.git
   revision: bec7b3da2b4cd2541139cdcac7a3d13e0b5363ca
   specs:
     pwindows-theme (1.0.0)
