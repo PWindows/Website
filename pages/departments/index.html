@@ -13,12 +13,19 @@ intro: Check out the teams that build PWindows's projects.
     <p class="content-page-intro">{{ site.data.translations[site.active_lang].departments.intro }}</p>
   </header>
   <div class="content-page-body">
+    {% assign departments_fallback = false %}
+    {% if site.active_lang != site.default_lang %}
+      {% for department_entry in site.data.departments %}
+        {% unless department_entry[1][site.active_lang] %}{% assign departments_fallback = true %}{% endunless %}
+      {% endfor %}
+    {% endif %}
+    {% include fallback-notice.html show=departments_fallback %}
     <div class="departments-grid">
       {% for department_entry in site.data.departments %}
         {% assign department = department_entry[1] %}
         {% assign localized_department = department[site.active_lang] %}
         {% assign default_department = department[site.default_lang] %}
-        <article class="content-card department-card">
+        <article class="content-card department-card"{% unless localized_department %}{% if site.active_lang != site.default_lang %} lang="{{ site.default_lang }}"{% endif %}{% endunless %}>
           <h2>{{ localized_department.name | default: default_department.name }}</h2>
           <p>{{ localized_department.bio | default: default_department.bio }}</p>
           <a class="btn" href="{{ department.path | relative_url }}">{{ site.data.translations[site.active_lang].departments.view-button }}</a>

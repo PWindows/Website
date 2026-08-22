@@ -3,6 +3,8 @@
   path: /games/sacred-cubes
   status: In development
   image: /assets/img/sacred-cubes.png
+  image_width: 500
+  image_height: 421
   effect: false
   engine: Unity
   language: C#
@@ -24,6 +26,8 @@
   path: /games/obby-of-dominance
   status: In development
   image: /assets/img/obby-of-dominance.png
+  image_width: 300
+  image_height: 300
   effect: false
   engine: Roblox
   language: Luau

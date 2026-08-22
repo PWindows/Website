@@ -8,6 +8,11 @@ description: Read the latest news, development updates, and announcements from P
 
 <section class="featured-news">
     <h1 class="featured-title">{{ site.data.translations[site.active_lang].news.featured-title }}</h1>
+    {% assign articles_fallback = false %}
+    {% if site.active_lang != site.default_lang and site.active_lang != 'zh-cn' and site.active_lang != 'ja-jp' %}
+      {% assign articles_fallback = true %}
+    {% endif %}
+    {% include fallback-notice.html show=articles_fallback %}
     <div class="featured-grid">
         {% assign featured_news = site.articles | where: "featured", true | sort: "date" | reverse %}
         {% for article in featured_news %}

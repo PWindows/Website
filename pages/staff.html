@@ -13,6 +13,11 @@ intro: Meet the people currently helping build and manage PWindows.
     <p class="content-page-intro">{{ site.data.translations[site.active_lang].staff-page.intro }}</p>
   </header>
   <div class="content-page-body">
+    {% assign staff_fallback = false %}
+    {% if site.active_lang != site.default_lang and site.active_lang != 'zh-cn' and site.active_lang != 'ja-jp' %}
+      {% assign staff_fallback = true %}
+    {% endif %}
+    {% include fallback-notice.html show=staff_fallback %}
     <div class="staff-container">
     {% assign owner = site.data.staff | where: "department", "Owner" | first %}
     {% if owner %}

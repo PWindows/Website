@@ -57,3 +57,4 @@ collections:
     markdown: kramdown
 plugins:
   - jekyll-polyglot
+  - pwindows-theme

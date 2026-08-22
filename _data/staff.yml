@@ -2,6 +2,8 @@ petermazep:
   department: "Owner"
   aboutpage: true
   pfp: /assets/staffpfp/PeterMaZep.png
+  pfp_width: 672
+  pfp_height: 672
   path: /staff/petermazep
   socials:
     twitter: https://twitter.com/petermazep
@@ -22,6 +24,8 @@ isaacaxolotl:
   aboutpage: true
   department: "Unity"
   pfp: /assets/staffpfp/staff.png
+  pfp_width: 201
+  pfp_height: 298
   path: /staff/isaacaxolotl
   socials:
     twitter: https://twitter.com/windows11create
@@ -43,6 +47,8 @@ staff-minecraft:
   department: "Minecraft"
   aboutpage: false
   pfp: /assets/staffpfp/staff.png
+  pfp_width: 201
+  pfp_height: 298
   en-us:
     name: Staff
   zh-cn:
@@ -54,6 +60,8 @@ staff-unity:
   aboutpage: false
   department: "Unity"
   pfp: /assets/staffpfp/staff.png
+  pfp_width: 201
+  pfp_height: 298
   en-us:
     name: Staff
   zh-cn:
@@ -65,6 +73,8 @@ staff-roblox:
   aboutpage: false
   department: "Roblox"
   pfp: /assets/staffpfp/staff.png
+  pfp_width: 201
+  pfp_height: 298
   en-us:
     name: Staff
   zh-cn:

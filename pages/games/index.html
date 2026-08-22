@@ -13,6 +13,13 @@ intro: Follow the games currently being developed by PWindows.
     <p class="content-page-intro">{{ site.data.translations[site.active_lang].games.intro }}</p>
   </header>
   <div class="content-page-body">
+    {% assign games_fallback = false %}
+    {% if site.active_lang != site.default_lang %}
+      {% for game in site.data.games %}
+        {% unless game[site.active_lang] %}{% assign games_fallback = true %}{% endunless %}
+      {% endfor %}
+    {% endif %}
+    {% include fallback-notice.html show=games_fallback %}
     <div class="games-content-list">
       {% for game in site.data.games %}
         {% assign localized_game = game[site.active_lang] %}
@@ -28,6 +35,8 @@ intro: Follow the games currently being developed by PWindows.
               class="content-image"
               loading="lazy"
               decoding="async"
+              width="{{ game.image_width }}"
+              height="{{ game.image_height }}"
             >
 
             {% if game.effect and game.debris %}
@@ -43,6 +52,7 @@ intro: Follow the games currently being developed by PWindows.
             {% endif %}
           </div>
           <div class="game-card-text">
+            <div{% if localized_game == nil and site.active_lang != site.default_lang %} lang="{{ site.default_lang }}"{% endif %}>
             <h2 class="game-title">{{ game_title }}</h2>
             {% assign status_key = game.status | slugify %}
             <p class="game-status game-status--{{ status_key }}">
@@ -55,6 +65,7 @@ intro: Follow the games currently being developed by PWindows.
               {{ game.language }}
             </p>
             <p class="game-summary">{{ game_summary }}</p>
+            </div>
             <a class="btn btn-green view-game-btn" href="{{ game.path | relative_url }}">{{ site.data.translations[site.active_lang].games.view-game }}</a>
           </div>
         </div>

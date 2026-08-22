@@ -11,8 +11,11 @@ game: obby-of-dominance
 {% assign localized_game = game[site.active_lang] %}
 {% assign game_summary = localized_game.summary | default: game[site.default_lang].summary %}
 {% assign status_key = game.status | slugify %}
+{% assign game_fallback = false %}
+{% unless localized_game %}{% if site.active_lang != site.default_lang %}{% assign game_fallback = true %}{% endif %}{% endunless %}
+{% include fallback-notice.html show=game_fallback %}
 <div class="content-card content-card--centered">
   <span class="status-label">{{ site.data.translations[site.active_lang].game-status[status_key] | default: game.status }}</span>
-  <p>{{ game_summary }}</p>
+  <p{% if game_fallback %} lang="{{ site.default_lang }}"{% endif %}>{{ game_summary }}</p>
   <a class="btn" href="{{ '/games' | relative_url }}">{{ site.data.translations[site.active_lang].games.back-button }}</a>
 </div>

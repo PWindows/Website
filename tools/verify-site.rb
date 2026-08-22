@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "date"
+require "json"
 require "nokogiri"
 require "set"
 require "uri"
@@ -40,6 +41,28 @@ PRODUCTION_FONT_FILES = Set.new(%w[
   Minecraft-Tenv2.woff2
   NotoSans-Regular.woff2
   Minecraft-TwentyOne.ttf
+]).freeze
+
+PRODUCTION_ALIBABA_FONTS = Set.new(%w[
+  AlibabaPuHuiTi-3-115-Black/AlibabaPuHuiTi-3-115-Black.woff2
+  AlibabaPuHuiTi-3-55-Regular/AlibabaPuHuiTi-3-55-Regular.woff2
+]).freeze
+
+RTL_LANGUAGES = Set.new(%w[ar-sa he-il]).freeze
+FALLBACK_ROUTES = Set.new(%w[
+  /articles
+  /departments/
+  /departments/minecraft
+  /departments/roblox
+  /departments/unity
+  /games
+  /games/obby-of-dominance
+  /games/sacred-cubes
+  /rules
+  /sitemap
+  /staff
+  /staff/isaacaxolotl
+  /staff/petermazep
 ]).freeze
 
 def generated_page_path(path)
@@ -96,7 +119,10 @@ def verify_generated_page(route, lang, errors)
   end
 
   document = Nokogiri::HTML5(File.read(file))
-  errors << "#{route} has an unexpected document language" unless document.at_css("html")&.[]("lang") == lang
+  html = document.at_css("html")
+  errors << "#{route} has an unexpected document language" unless html&.[]("lang") == lang
+  expected_direction = RTL_LANGUAGES.include?(lang) ? "rtl" : "ltr"
+  errors << "#{route} has an unexpected text direction" unless html&.[]("dir") == expected_direction
   main = document.at_css("main")
   errors << "#{route} has an empty <main>" if main.nil? || main.text.strip.empty?
   errors << "#{route} must contain exactly one <h1>" unless document.css("main h1").length == 1
@@ -108,6 +134,20 @@ def verify_generated_page(route, lang, errors)
   expected_canonical = "#{SITE_URL}#{route == "/" ? "/" : route}"
   canonical = document.at_css('link[rel="canonical"]')&.[]("href")
   errors << "#{route} has an unexpected canonical URL: #{canonical.inspect}" unless canonical == expected_canonical
+
+  document.css('script[type="application/ld+json"]').each do |node|
+    JSON.parse(node.text)
+  rescue JSON::ParserError => error
+    errors << "#{route} has invalid JSON-LD: #{error.message}"
+  end
+
+  base_route = route.delete_prefix("/#{lang}")
+  base_route = "/" if base_route.empty?
+  if lang != DEFAULT_LANG && !%w[zh-cn ja-jp].include?(lang) && FALLBACK_ROUTES.include?(base_route)
+    unless document.at_css("[data-english-fallback]")
+      errors << "#{route} is missing its explicit English fallback notice"
+    end
+  end
 end
 
 errors = []
@@ -181,6 +221,9 @@ if File.file?(site_data_path)
       errors << "Site link #{name} is invalid: #{value.inspect}"
     end
   end
+  unless site_data.dig("links", "support") == site_data.dig("links", "discord")
+    errors << "Support must use the working Discord fallback"
+  end
 else
   errors << "Missing _data/site.yml"
 end
@@ -247,7 +290,8 @@ end
 forbidden_outputs = [
   File.join(DESTINATION, "AGENTS.md"),
   File.join(DESTINATION, "README.md"),
-  File.join(DESTINATION, "tools")
+  File.join(DESTINATION, "tools"),
+  File.join(DESTINATION, "assets", "extra")
 ]
 forbidden_outputs.each do |path|
   errors << "Excluded source was published: #{path.delete_prefix("#{DESTINATION}/")}" if File.exist?(path)
@@ -263,6 +307,45 @@ missing_fonts = PRODUCTION_FONT_FILES - published_fonts
 unexpected_fonts = published_fonts - PRODUCTION_FONT_FILES
 errors << "Missing production font files: #{missing_fonts.to_a.sort.join(', ')}" unless missing_fonts.empty?
 errors << "Unused font files were published: #{unexpected_fonts.to_a.sort.join(', ')}" unless unexpected_fonts.empty?
+
+alibaba_directory = File.join(DESTINATION, "assets", "fonts")
+published_alibaba_fonts = if Dir.exist?(alibaba_directory)
+                            Dir.glob(File.join(alibaba_directory, "**", "*")).select { |path| File.file?(path) }
+                              .map { |path| path.delete_prefix("#{alibaba_directory}/") }.to_set
+                          else
+                            Set.new
+                          end
+missing_alibaba_fonts = PRODUCTION_ALIBABA_FONTS - published_alibaba_fonts
+unexpected_alibaba_fonts = published_alibaba_fonts - PRODUCTION_ALIBABA_FONTS
+errors << "Missing production Alibaba fonts: #{missing_alibaba_fonts.to_a.sort.join(', ')}" unless missing_alibaba_fonts.empty?
+errors << "Unused Alibaba fonts were published: #{unexpected_alibaba_fonts.to_a.sort.join(', ')}" unless unexpected_alibaba_fonts.empty?
+
+manifest_path = File.join(DESTINATION, "assets", "manifest.json")
+if File.file?(manifest_path)
+  manifest_text = File.read(manifest_path)
+  errors << "Manifest contains unresolved Liquid" if manifest_text.include?("{{") || manifest_text.include?("{%")
+  begin
+    manifest = JSON.parse(manifest_text)
+    errors << "Manifest start_url must resolve to /" unless manifest["start_url"] == "/"
+    Array(manifest["icons"]).each do |icon|
+      icon_path = generated_asset_path(icon["src"])
+      errors << "Manifest icon is missing: #{icon['src']}" unless icon_path && File.file?(icon_path)
+    end
+  rescue JSON::ParserError => error
+    errors << "Manifest is invalid JSON: #{error.message}"
+  end
+else
+  errors << "Missing generated assets/manifest.json"
+end
+
+text_extensions = Set.new(%w[.css .html .js .json .md .txt .xml])
+Dir.glob(File.join(DESTINATION, "**", "*")).select { |path| File.file?(path) && text_extensions.include?(File.extname(path)) }.each do |path|
+  content = File.read(path)
+
+  relative = path.delete_prefix("#{DESTINATION}/")
+  errors << "Unresolved Liquid was published in #{relative}" if content.include?("{{") || content.include?("{%")
+  errors << "Conflict marker was published in #{relative}" if content.match?(/^(?:<<<<<<<|=======|>>>>>>>)/)
+end
 
 games = YAML.safe_load_file(File.join(ROOT, "_data", "games.yml"))
 game_slugs = games.map { |game| game["slug"] }
@@ -387,6 +470,9 @@ article_sources.each do |path|
   errors << "Article #{identifier} language does not match its directory" unless metadata["lang"] == source_lang
   errors << "Article #{identifier} must use the news layout" unless metadata["layout"] == "news"
   errors << "Article #{identifier} references an unknown author" unless staff.key?(metadata["author"])
+  if identifier == "website-redesign-2026-06-16.md" && metadata["date"].to_s != "2026-06-16"
+    errors << "Article #{identifier} date must match its stable filename"
+  end
 
   banner = generated_asset_path(metadata["banner"])
   errors << "Article #{identifier} banner must be root-relative" unless banner

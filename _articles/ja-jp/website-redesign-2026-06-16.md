@@ -4,7 +4,7 @@ lang: ja-jp
 
 title: "ウェブサイトのリニューアル予定"
 
-date: 2026-06-15
+date: 2026-06-16
 
 author: isaacaxolotl
 
