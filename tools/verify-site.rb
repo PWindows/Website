@@ -124,9 +124,21 @@ LANGUAGES.reject { |lang| lang == DEFAULT_LANG }.each do |lang|
   end
 end
 
-language_data = YAML.safe_load_file(File.join(ROOT, "_data", "languages.yml"))
-LANGUAGES.each do |lang|
-  errors << "Language #{lang} is missing a display label" if language_data.dig(lang, "label").to_s.strip.empty?
+default_page_file = generated_page_path("/")
+if File.file?(default_page_file)
+  default_page = Nokogiri::HTML5(File.read(default_page_file))
+  language_options = default_page.css("[data-language-select] option").group_by { |option| option["lang"] }
+  LANGUAGES.each do |lang|
+    options = language_options.fetch(lang, [])
+    errors << "Language #{lang} is missing from the language selector" if options.empty?
+    errors << "Language #{lang} appears more than once in the language selector" if options.length > 1
+    errors << "Language #{lang} is missing a display label" if options.first&.text.to_s.strip.empty?
+  end
+
+  unexpected_languages = language_options.keys.compact - LANGUAGES
+  unless unexpected_languages.empty?
+    errors << "Language selector contains unsupported languages: #{unexpected_languages.join(', ')}"
+  end
 end
 
 begin
