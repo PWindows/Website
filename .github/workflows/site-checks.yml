@@ -17,6 +17,8 @@ jobs:
         with:
           bundler-cache: false
           ruby-version: '3.3'
+      - name: Install dependencies
+        run: bundle install
       - name: Build site
         run: bundle exec jekyll build
       - name: Check generated HTML and internal links
