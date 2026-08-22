@@ -4,7 +4,7 @@ platform :windows do
   gem 'wdm', '>= 0.1.0'
 end
 
-if ENV['GITHUB_ACTIONS'] == 'true'
+if ENV['GITHUB_ACTIONS'] == 'true' && !ENV['GITHUB_TOKEN'].to_s.empty?
   gem "pwindows-theme", git: "https://#{ENV['GITHUB_TOKEN']}@github.com/PWindows/Website-Common.git"
 elsif File.exist?(File.expand_path("~/.ssh/id_ed25519")) || File.exist?(File.expand_path("~/.ssh/id_rsa"))
   gem "pwindows-theme", git: "git@github.com:PWindows/Website-Common.git"

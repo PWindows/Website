@@ -215,7 +215,6 @@ body {
 
 .mc-seven {
     font-family: "Minecraft Seven v2", monospace !important;
-    src: url("../mojang/fonts/Minecraft-Seven_v2.woff") format("woff");
 }
 
 .mc-seven:is(h1) {

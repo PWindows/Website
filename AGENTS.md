@@ -19,7 +19,7 @@ explicitly requires a change.
   shared site-link information.
 - `assets/css/style.css` is the main production stylesheet.
 - `assets/css/news.css` contains article-specific styles.
-- `assets/js/main.js` contains site-wide behavior.
+- `assets/js/extra.js` contains site-wide behavior.
 - `tools/verify-site.rb` enforces public routes, metadata, sitemap contents,
   source-data integrity, and publishing exclusions.
 - `_site/` and `.jekyll-cache/` are generated. Never edit them directly.
@@ -50,7 +50,7 @@ bundle exec ruby tools/verify-site.rb ./_site
 For JavaScript changes, also run:
 
 ```sh
-node --check assets/js/main.js
+node --check assets/js/extra.js
 ```
 
 Run `git diff --check` after editing. Fix failures caused by the current change;
