@@ -148,36 +148,34 @@ function setupArticleSorting() {
 }
 
 function setupDebris() {
-  const debrisElements = document.querySelectorAll("[data-debris]");
-  if (!debrisElements.length) return;
+    const debrisElements = document.querySelectorAll("[data-debris]");
+    if (!debrisElements.length) return;
 
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const startY = 20;
-  const travelDistance = 140;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  function updateDebris() {
-    debrisElements.forEach((debris) => {
-      const scaleValue = Number.parseFloat(debris.dataset.scale);
-      const scale = Number.isFinite(scaleValue) && scaleValue > 0 ? scaleValue : 1;
+    function updateDebris() {
+        debrisElements.forEach((debris) => {
+            const scale = parseFloat(debris.dataset.scale);
+            const startY = parseFloat(debris.dataset.startY);
+            const endY = parseFloat(debris.dataset.endY);
 
-      if (reduceMotion.matches) {
-        debris.style.transform = `scale(${scale})`;
-        return;
-      }
+            if (reduceMotion.matches) {
+                debris.style.transform = `scale(${scale})`;
+                return;
+            }
 
-      const card = debris.closest(".games-content-part");
-      if (!card) return;
+            const card = debris.closest(".games-content-part");
+            if (!card) return;
 
-      const rect = card.getBoundingClientRect();
-      const progress = Math.min(
-        1,
-        Math.max(0, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)),
-      );
-      const translateY = startY - travelDistance * progress;
+            const rect = card.getBoundingClientRect();
+            const scrollY = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = maxScroll > 0 ? scrollY / maxScroll : 0;
+            const translateY = startY + (endY - startY) * (progress);
 
-      debris.style.transform = `translateY(${translateY}%) scale(${scale})`;
-    });
-  }
+            debris.style.transform = `translateY(${translateY}%) scale(${scale})`;
+        });
+    }
 
   let ticking = false;
   function onScroll() {

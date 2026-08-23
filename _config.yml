@@ -50,6 +50,8 @@ exclude:
   - tools/
   - vendor/
   - assets/extra/
+  - .vs/
+  - .vscode/
 collections:
   articles:
     output: true

@@ -46,6 +46,8 @@ intro: Follow the games currently being developed by PWindows.
                 class="game-debris"
                 data-debris
                 data-scale="{{ game.debris.scale | default: 1 }}"
+                data-start-y="{{ game.debris.start-y | default: -100 }}"
+                data-end-y="{{ game.debris.end-y | default: 0 }}"
                 loading="lazy"
                 decoding="async"
               >

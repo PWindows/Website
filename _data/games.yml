@@ -3,14 +3,16 @@
   path: /games/sacred-cubes
   status: In development
   image: /assets/img/sacred-cubes.png
-  image_width: 500
-  image_height: 421
+  image_width: 1920
+  image_height: 1920
   effect: true
   engine: Unity
   language: C#
   debris:
     path: /assets/img/sacred-cubes-debris.png
     scale: 1.5
+    start-y: 30
+    end-y: -20
   en-us:
     title: Sacred Cubes
     summary: More information about Sacred Cubes will be published as development progresses.
