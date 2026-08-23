@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/PWindows/website-common.git
-  revision: 59473a273ba9070d501b80a95bf0f4b09255ba30
+  revision: dabc9cdf24a4418a18c4425ca79f3e589d7a8bd5
   branch: main
   specs:
     pwindows-theme (1.0.0)

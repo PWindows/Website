@@ -19,6 +19,8 @@ jobs:
           ruby-version: '3.3'
       - name: Install dependencies
         run: bundle install
+      - name: Update dependencies
+        run: bundle update
       - name: Build site
         run: bundle exec jekyll build
       - name: Check generated HTML and internal links
