@@ -11,8 +11,8 @@
   debris:
     path: /assets/img/sacred-cubes-debris.png
     scale: 1.5
-    start-y: 30
-    end-y: -20
+    start-y: 20
+    end-y: -10
   en-us:
     title: Sacred Cubes
     summary: More information about Sacred Cubes will be published as development progresses.
