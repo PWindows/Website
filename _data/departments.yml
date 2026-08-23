@@ -18,13 +18,13 @@ unity:
   staff_department: Unity
   en-us:
     name: Unity Department
-    bio: Responsible for Unity games and applications such as Sacred Cubes. This includes playtesting, bug reporting, and development of new features.
+    bio: Responsible for Unity games and applications such as Sacred Remains. This includes playtesting, bug reporting, and development of new features.
   zh-cn:
     name: Unity部门
-    bio: 负责Unity游戏和应用程序，例如Sacred Cubes。这包括游戏测试、错误报告和新功能的开发。
+    bio: 负责Unity游戏和应用程序，例如Sacred Remains。这包括游戏测试、错误报告和新功能的开发。
   ja-jp:
     name: Unity部門
-    bio: Sacred CubesなどのUnityゲームやアプリケーションを担当しています。プレイテスト、不具合報告、新機能の開発などを行います。
+    bio: Sacred RemainsなどのUnityゲームやアプリケーションを担当しています。プレイテスト、不具合報告、新機能の開発などを行います。
 
 roblox:
   codename: rd

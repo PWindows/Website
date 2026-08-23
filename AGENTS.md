@@ -72,7 +72,7 @@ The following routes are stable and must remain available:
 - `/feedback`
 - `/games`
 - `/games/obby-of-dominance`
-- `/games/sacred-cubes`
+- `/games/sacred-remains`
 - `/rules`
 - `/sitemap`
 - `/staff`

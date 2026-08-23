@@ -32,16 +32,16 @@ isaacaxolotl:
     github: https://github.com/ilikecereal1
   en-us:
     name: Isaac
-    role: Co-Director of Sacred Cubes
-    bio: The co-director of Sacred Cubes, responsible for this website 'cause Peter asked me to change it.
+    role: Co-Director of Sacred Remains
+    bio: The co-director of Sacred Remains, responsible for this website 'cause Peter asked me to change it.
   zh-cn:
     name: Isaac
-    role: Sacred Cubes的联合总监
-    bio: Sacred Cubes的联合总监，负责这个网站，因为Peter让我改一下。
+    role: Sacred Remains的联合总监
+    bio: Sacred Remains的联合总监，负责这个网站，因为Peter让我改一下。
   ja-jp:
     name: Isaac
-    role: Sacred Cubes共同ディレクター
-    bio: Sacred Cubesの共同ディレクターです。Peterに頼まれたため、このウェブサイトを担当しています。
+    role: Sacred Remains共同ディレクター
+    bio: Sacred Remainsの共同ディレクターです。Peterに頼まれたため、このウェブサイトを担当しています。
 
 staff-minecraft:
   department: "Minecraft"

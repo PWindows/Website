@@ -1,27 +1,27 @@
-- slug: sacred-cubes
-  codetitle: sacred-cubes
-  path: /games/sacred-cubes
+- slug: sacred-remains
+  codetitle: sacred-remains
+  path: /games/sacred-remains
   status: In development
-  image: /assets/img/sacred-cubes.png
+  image: /assets/img/sacred-remains.png
   image_width: 1920
   image_height: 1920
   effect: true
   engine: Unity
   language: C#
   debris:
-    path: /assets/img/sacred-cubes-debris.png
+    path: /assets/img/sacred-remains-debris.png
     scale: 1.5
     start-y: 20
     end-y: -10
   en-us:
-    title: Sacred Cubes
-    summary: More information about Sacred Cubes will be published as development progresses.
+    title: Sacred Remains
+    summary: More information about Sacred Remains will be published as development progresses.
   zh-cn:
-    title: Sacred Cubes
-    summary: 随着开发的进行，将发布有关 Sacred Cubes 的更多信息。
+    title: Sacred Remains
+    summary: 随着开发的进行，将发布有关 Sacred Remains 的更多信息。
   ja-jp:
-    title: Sacred Cubes
-    summary: 開発の進捗に合わせて、Sacred Cubesの詳細情報を公開します。
+    title: Sacred Remains
+    summary: 開発の進捗に合わせて、Sacred Remainsの詳細情報を公開します。
 
 - slug: obby-of-dominance
   codetitle: obby-of-dominance

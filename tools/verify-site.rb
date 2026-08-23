@@ -27,7 +27,7 @@ PUBLIC_ROUTES = %w[
   /feedback
   /games
   /games/obby-of-dominance
-  /games/sacred-cubes
+  /games/sacred-remains
   /rules
   /sitemap
   /staff
@@ -57,7 +57,7 @@ FALLBACK_ROUTES = Set.new(%w[
   /departments/unity
   /games
   /games/obby-of-dominance
-  /games/sacred-cubes
+  /games/sacred-remains
   /rules
   /sitemap
   /staff
