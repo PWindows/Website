@@ -1,0 +1,45 @@
+- slug: sacred-cubes
+  codetitle: sacred-cubes
+  path: /games/sacred-cubes
+  status: In development
+  image: /assets/img/sacred-cubes.png
+  image_width: 500
+  image_height: 421
+  effect: false
+  engine: Unity
+  language: C#
+  debris:
+    path: /assets/img/sacred-cubes-debris.png
+    scale: 1.5
+  en-us:
+    title: Sacred Cubes
+    summary: More information about Sacred Cubes will be published as development progresses.
+  zh-cn:
+    title: Sacred Cubes
+    summary: 随着开发的进行，将发布有关 Sacred Cubes 的更多信息。
+  ja-jp:
+    title: Sacred Cubes
+    summary: 開発の進捗に合わせて、Sacred Cubesの詳細情報を公開します。
+
+- slug: obby-of-dominance
+  codetitle: obby-of-dominance
+  path: /games/obby-of-dominance
+  status: In development
+  image: /assets/img/obby-of-dominance.png
+  image_width: 300
+  image_height: 300
+  effect: false
+  engine: Roblox
+  language: Luau
+  debris:
+    path: /assets/img/obby-of-dominance-debris.png
+    scale: 1.5
+  en-us:
+    title: Obby of Dominance
+    summary: More information about Obby of Dominance will be published as development progresses.
+  zh-cn:
+    title: Obby of Dominance
+    summary: 随着开发的进行，将发布有关 Obby of Dominance 的更多信息。
+  ja-jp:
+    title: Obby of Dominance
+    summary: 開発の進捗に合わせて、Obby of Dominanceの詳細情報を公開します。

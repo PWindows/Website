@@ -1,0 +1,87 @@
+---
+layout: page
+title: Site Map
+permalink: /sitemap
+description: Browse every public page, game, department, and news article on the PWindows website.
+intro: Find your way around PWindows with this automatically updated list of public content.
+page_class: sitemap-page
+english_fallback: true
+---
+
+{% assign articles = site.articles | sort: "date" | reverse %}
+
+<div class="sitemap-grid">
+  <section class="sitemap-section" aria-labelledby="sitemap-pages-heading">
+    <h2 id="sitemap-pages-heading">Pages</h2>
+    <ul class="sitemap-links">
+      {% for public_page in site.pages %}
+        {% if public_page.title and public_page.sitemap != false %}
+          {% unless public_page.url == '/games' or public_page.url contains '/games/' or public_page.url == '/departments' or public_page.url contains '/departments/' or public_page.url == '/articles' or public_page.url == page.url %}
+          <li>
+            <a href="{{ public_page.url | relative_url }}">{{ public_page.title | escape }}</a>
+            {% if public_page.description %}
+            <p>{{ public_page.description }}</p>
+            {% endif %}
+          </li>
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="sitemap-section" aria-labelledby="sitemap-games-heading">
+    <h2 id="sitemap-games-heading">Games</h2>
+    <ul class="sitemap-links">
+      <li>
+        <a href="{{ '/games' | relative_url }}">All games</a>
+        <p>Explore games being developed by PWindows.</p>
+      </li>
+      {% for game in site.data.games %}
+      {% assign localized_game = game[site.active_lang] %}
+      {% assign default_game = game[site.default_lang] %}
+      <li>
+        <a href="{{ game.path | relative_url }}">{{ localized_game.title | default: default_game.title | escape }}</a>
+        <p>{{ localized_game.summary | default: default_game.summary }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="sitemap-section" aria-labelledby="sitemap-departments-heading">
+    <h2 id="sitemap-departments-heading">Departments</h2>
+    <ul class="sitemap-links">
+      <li>
+        <a href="{{ '/departments/' | relative_url }}">All departments</a>
+        <p>Meet the teams responsible for PWindows projects.</p>
+      </li>
+      {% for department_entry in site.data.departments %}
+        {% assign department = department_entry[1] %}
+        {% assign localized_department = department[site.active_lang] %}
+        {% assign default_department = department[site.default_lang] %}
+      <li>
+        <a href="{{ department.path | relative_url }}">{{ localized_department.name | default: default_department.name | escape }}</a>
+        <p>{{ localized_department.bio | default: default_department.bio }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="sitemap-section" aria-labelledby="sitemap-news-heading">
+    <h2 id="sitemap-news-heading">News</h2>
+    <ul class="sitemap-links sitemap-links--articles">
+      <li>
+        <a href="{{ '/articles' | relative_url }}">All news</a>
+        <p>Read the latest updates and announcements from PWindows.</p>
+      </li>
+      {% for article in articles %}
+      <li>
+        <a href="{{ article.url | relative_url }}">{{ article.title | escape }}</a>
+        <p>
+          <time datetime="{{ article.date | date_to_xmlschema }}">{{ article.date | date: "%B %-d, %Y" }}</time>
+          {% if article.summary %} - {{ article.summary }}{% endif %}
+        </p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+</div>

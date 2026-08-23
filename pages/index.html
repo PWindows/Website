@@ -1,0 +1,300 @@
+---
+layout: default
+title: Home
+description: Discover PWindows, a Minecraft server, game studio, and community project.
+permalink: /
+---
+
+{% assign server_address = site.data.site.server.address[site.active_lang] | default: site.data.site.server.address[site.default_lang] %}
+
+<section class="landing" id="home">
+  <div class="landing-content">
+    <div class="hero-card">
+      <h1 class="hero-heading">
+        <span class="sr-only">
+          Not just a Minecraft server, game studio, and community.
+        </span>
+        <span aria-hidden="true">
+          <span class="hero-line-1">{{ site.data.translations[site.active_lang].index.catchphrase-top }}</span>
+          <span class="hero-line-2">
+            <span class="animated-word">
+              <span class="word-container">
+                <span class="words-list">
+                  <span class="word">{{ site.data.translations[site.active_lang].index.catchphrase-1 }}</span>
+                  <span class="word">{{ site.data.translations[site.active_lang].index.catchphrase-2 }}</span>
+                  <span class="word">{{ site.data.translations[site.active_lang].index.catchphrase-3 }}</span>
+                  <span class="word">{{ site.data.translations[site.active_lang].index.catchphrase-1 }}</span>
+                </span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </h1>
+    </div>
+
+    <!-- Bottom Content -->
+    <div class="bottom-content">
+      <button
+        class="copy-button btn btn-gold"
+        data-copy-ip="{{ server_address | escape }}"
+        aria-label="Copy server IP"
+        disabled
+      >
+        IP: {{ server_address }}
+      </button>
+
+      <button class="btn btn-green" aria-label="Go to join section" disabled>
+        {{ site.data.translations[site.active_lang].placeholder.comingsoon-server }}
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Transition Section -->
+<div class="transition-section" aria-hidden="true"></div>
+<section class="howtojoin textured-section" id="howtojoin">
+  <div>
+    <h2 class="howtojoin-heading section-heading">{{ site.data.translations[site.active_lang].index.howtojoin.title }}</h2>
+    <div class="howtojoin-footnote">{{ site.data.translations[site.active_lang].index.howtojoin.disclaimer }}</div>
+  </div>
+
+  <div class="howtojoin-cards">
+    <div class="flip-card" data-flip-card>
+      <div class="flip-card-inner">
+        <div class="flip-card-front" id="join-java-front">
+          <div class="flip-card-icon">
+            <img
+              src="{{ '/assets/mojang/svg/icons/color-grass-block.png' | relative_url }}"
+              alt="Minecraft Grass Block"
+              loading="lazy"
+              width="1024"
+              height="1024"
+            />
+          </div>
+          <div class="flip-card-title">{{ site.data.translations[site.active_lang].index.howtojoin.server-address.label }}</div>
+          <div class="flip-card-subtitle">{{ site.data.translations[site.active_lang].index.howtojoin.server-address.text }}</div>
+          <button
+            class="flip-card-toggle btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="join-java-back"
+          >
+            {{ site.data.translations[site.active_lang].index.howtojoin.button-text }}
+          </button>
+        </div>
+        <div class="flip-card-back" id="join-java-back" inert>
+          <div class="flip-card-back-content">
+            <div class="flip-card-back-title">{{ site.data.translations[site.active_lang].index.howtojoin.server-address.label }}</div>
+            <div class="flip-card-back-text">
+              {{ site.data.translations[site.active_lang].index.howtojoin.server-address.text-back }}
+            </div>
+            <button
+              class="copy-button btn btn-gold"
+              data-copy-ip="{{ server_address | escape }}"
+              aria-label="Copy server IP(Coming soon)"
+              disabled
+            >
+              {{ site.data.translations[site.active_lang].index.howtojoin.server-address.button-text }}
+            </button>
+            <button class="flip-card-back-toggle btn" type="button">
+              {{ site.data.translations[site.active_lang].index.howtojoin.button-back }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Bedrock Direct Launch -->
+    <div class="flip-card" data-flip-card>
+      <div class="flip-card-inner">
+        <div class="flip-card-front" id="join-bedrock-front">
+          <div class="flip-card-icon">
+            <img
+              src="{{ '/assets/mojang/svg/icons/color-dungeons-launcher.svg' | relative_url }}"
+              alt="Bedrock Launcher"
+              loading="lazy"
+              width="32"
+              height="32"
+            />
+          </div>
+          <div class="flip-card-title">{{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.label }}</div>
+          <div class="flip-card-subtitle">{{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.text }}</div>
+          <button
+            class="flip-card-toggle btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="join-bedrock-back"
+          >
+            {{ site.data.translations[site.active_lang].index.howtojoin.button-text }}
+          </button>
+        </div>
+        <div class="flip-card-back" id="join-bedrock-back" inert>
+          <div class="flip-card-back-content">
+            <div class="flip-card-back-title">{{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.label-back }}</div>
+            <div class="flip-card-back-text">
+              {{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.text-back }}
+            </div>
+            <button
+              class="btn btn-green"
+              aria-label="Launch Minecraft Bedrock"
+              disabled
+            >
+              {{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.button-text }}
+            </button>
+            <button class="flip-card-back-toggle btn" type="button">
+              {{ site.data.translations[site.active_lang].index.howtojoin.button-back }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Bedrock Realms - Coming Soon -->
+    <div class="flip-card" data-flip-card>
+      <div class="flip-card-inner">
+        <div class="flip-card-front" id="join-realms-front">
+          <div class="flip-card-icon">
+            <img
+              src="{{ '/assets/mojang/svg/icons/color-two-players.svg' | relative_url }}"
+              alt="Bedrock Realms"
+              loading="lazy"
+              width="32"
+              height="32"
+            />
+          </div>
+          <div class="flip-card-title">{{ site.data.translations[site.active_lang].index.howtojoin.realms.label }}</div>
+          <div class="flip-card-subtitle">{{ site.data.translations[site.active_lang].index.howtojoin.realms.text }}</div>
+          <button
+            class="flip-card-toggle btn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="join-realms-back"
+          >
+            {{ site.data.translations[site.active_lang].index.howtojoin.button-text-learnmore }}
+          </button>
+        </div>
+        <div class="flip-card-back" id="join-realms-back" inert>
+          <div class="flip-card-back-content">
+            <div class="flip-card-back-title">{{ site.data.translations[site.active_lang].index.howtojoin.realms.label-back }}</div>
+            <div class="flip-card-back-text">
+              {{ site.data.translations[site.active_lang].index.howtojoin.realms.text-back }}
+            </div>
+            <button class="btn btn-green" disabled aria-label="Coming Soon">
+              {{ site.data.translations[site.active_lang].index.howtojoin.realms.button-text }}
+            </button>
+            <button class="flip-card-back-toggle btn" type="button">
+              {{ site.data.translations[site.active_lang].index.howtojoin.button-back }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="transition-section-reverse" aria-hidden="true"></div>
+
+<section class="latest-update" id="latest-update">
+  <div class="latest-update-section">
+    <div class="latest-image-container">
+      <img
+        src="{{ '/assets/mojang/img/bg-snow.png' | relative_url }}"
+        alt="Snow"
+        loading="lazy"
+        width="1408"
+        height="702"
+      />
+    </div>
+    <div class="latest-content">
+      <h2>{{ site.data.translations[site.active_lang].index.latest-content.title }}</h2>
+      <p>
+        {{ site.data.translations[site.active_lang].index.latest-content.text }}
+      </p>
+      <a
+        class="btn about-link bottom-button"
+        href="{{ '/articles' | relative_url }}"
+      >
+        {{ site.data.translations[site.active_lang].index.latest-content.button }}
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="transition-section" aria-hidden="true"></div>
+
+<section class="projects-section textured-section" id="projects-section">
+  <div>
+    <h2 class="projects-heading section-heading">{{ site.data.translations[site.active_lang].index.projects.title }}</h2>
+    <div class="projects-link-container">
+      <a href="{{ '/games' | relative_url }}" class="link-yellow">
+        {{ site.data.translations[site.active_lang].index.projects.link }}
+      </a>
+    </div>
+    <div class="projects-grid">
+      <article>
+        <h2>{{ site.data.translations[site.active_lang].index.projects.server.title }}</h2>
+        <div class="project-image-holder"></div>
+        <p>
+          {{ site.data.translations[site.active_lang].index.projects.server.text }}
+        </p>
+      </article>
+      <article>
+        <h2>{{ site.data.translations[site.active_lang].index.projects.game-studio.title }}</h2>
+        <div class="project-image-holder"></div>
+        <p>
+          {{ site.data.translations[site.active_lang].index.projects.game-studio.text-1 }}
+          <a
+            href="{{ '/games/sacred-cubes' | relative_url}}"
+            class="link-yellow-sec"
+          >
+            {{site.data.translations[site.active_lang].index.projects.game-studio.link-sc}}
+          </a>
+          {{ site.data.translations[site.active_lang].index.projects.game-studio.text-2 }}
+          <a
+            href="{{ '/games/obby-of-dominance' | relative_url}}"
+            class="link-yellow-sec"
+          >
+            {{site.data.translations[site.active_lang].index.projects.game-studio.link-ood}}
+          </a>
+          {{ site.data.translations[site.active_lang].index.projects.game-studio.text-3 }}
+          <a
+            href="{{ '/departments/roblox' | relative_url}}"
+            class="link-yellow-sec"
+          >
+            {{ site.data.translations[site.active_lang].index.projects.game-studio.link-r }}
+          </a>
+          {{ site.data.translations[site.active_lang].index.projects.game-studio.text-4 }}
+          <a
+            class="link-yellow-sec"
+            href="{{ '/departments/unity' | relative_url}}"
+          >
+            {{ site.data.translations[site.active_lang].index.projects.game-studio.link-u }}
+          </a>
+          {{ site.data.translations[site.active_lang].index.projects.game-studio.text-5 }}
+        </p>
+        <a class="btn" href="{{ '/departments/' | relative_url }}">{{ site.data.translations[site.active_lang].index.projects.button }}</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="transition-section-reverse" aria-hidden="true"></div>
+<section class="news-home-section textured-section" id="news-home-section">
+  <div>
+    <h2 class="news-heading section-heading">{{ site.data.translations[site.active_lang].index.news.title }}</h2>
+    <div class="news-link-container">
+      <a href="{{ '/articles' | relative_url }}" class="link-yellow-sec">
+        {{ site.data.translations[site.active_lang].index.news.link }}
+      </a>
+    </div>
+  </div>
+  <div class="latest-grid">
+    {% assign sorted_articles = site.articles | sort: "date" | reverse %}
+    {% assign latest_articles = sorted_articles | slice: 0, 4 %}
+    {% for article in latest_articles %}
+      {% include article-card.html article=article %}
+    {% else %}
+      <p class="empty-state empty-state--dark">{{ site.data.translations[site.active_lang].news.no-news }}</p>
+    {% endfor %}
+  </div>
+</section>
