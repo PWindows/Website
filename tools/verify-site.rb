@@ -13,6 +13,7 @@ SITE_CONFIG = YAML.safe_load_file(File.join(ROOT, "_config.yml"))
 SITE_URL = SITE_CONFIG.fetch("url", "").to_s.delete_suffix("/")
 LANGUAGES = SITE_CONFIG.fetch("languages")
 DEFAULT_LANG = SITE_CONFIG.fetch("default_lang")
+SITE_META = YAML.safe_load_file(File.join(ROOT, "_data", "site_meta.yml"))
 
 PUBLIC_ROUTES = %w[
   /
@@ -27,6 +28,7 @@ PUBLIC_ROUTES = %w[
   /feedback
   /games
   /games/obby-of-dominance
+  /games/sacred-cubes
   /games/sacred-remains
   /rules
   /sitemap
@@ -34,6 +36,30 @@ PUBLIC_ROUTES = %w[
   /staff/petermazep
   /staff/isaacaxolotl
 ].freeze
+
+NOINDEX_ROUTES = Set.new(%w[/404.html /games/sacred-cubes]).freeze
+
+ROUTE_IDS = {
+  "/" => "home",
+  "/404.html" => "not-found",
+  "/about" => "about",
+  "/articles" => "news",
+  "/contact" => "contact",
+  "/departments/" => "departments",
+  "/departments/minecraft" => "mcd",
+  "/departments/roblox" => "rd",
+  "/departments/unity" => "ud",
+  "/feedback" => "feedback",
+  "/games" => "games",
+  "/games/obby-of-dominance" => "ood",
+  "/games/sacred-cubes" => "sacred-cubes-compat",
+  "/games/sacred-remains" => "sr",
+  "/rules" => "rules",
+  "/sitemap" => "sitemap",
+  "/staff" => "staff",
+  "/staff/petermazep" => "staff-petermazep",
+  "/staff/isaacaxolotl" => "staff-isaacaxolotl"
+}.freeze
 
 PRODUCTION_FONT_FILES = Set.new(%w[
   LICENSE_OFL.txt
@@ -57,6 +83,7 @@ FALLBACK_ROUTES = Set.new(%w[
   /departments/unity
   /games
   /games/obby-of-dominance
+  /games/sacred-cubes
   /games/sacred-remains
   /rules
   /sitemap
@@ -132,8 +159,48 @@ def verify_generated_page(route, lang, errors)
   end
 
   expected_canonical = "#{SITE_URL}#{route == "/" ? "/" : route}"
-  canonical = document.at_css('link[rel="canonical"]')&.[]("href")
+  canonicals = document.css('link[rel="canonical"]')
+  errors << "#{route} must contain exactly one canonical link" unless canonicals.length == 1
+  canonical = canonicals.first&.[]("href")
   errors << "#{route} has an unexpected canonical URL: #{canonical.inspect}" unless canonical == expected_canonical
+
+  base_route = lang == DEFAULT_LANG ? route : route.delete_prefix("/#{lang}")
+  base_route = "/" if base_route.empty?
+  expected_alternates = LANGUAGES.to_h do |alternate_lang|
+    alternate_route = localized_route(base_route, alternate_lang)
+    [alternate_lang, "#{SITE_URL}#{alternate_route == "/" ? "/" : alternate_route}"]
+  end
+  expected_alternates["x-default"] = "#{SITE_URL}#{base_route == "/" ? "/" : base_route}"
+  alternate_nodes = document.css('link[rel="alternate"][hreflang]')
+  alternate_values = alternate_nodes.group_by { |node| node["hreflang"] }
+  expected_alternates.each do |alternate_lang, expected_url|
+    nodes = alternate_values.fetch(alternate_lang, [])
+    errors << "#{route} must contain exactly one #{alternate_lang} alternate" unless nodes.length == 1
+    if nodes.first && nodes.first["href"] != expected_url
+      errors << "#{route} has an unexpected #{alternate_lang} alternate: #{nodes.first['href'].inspect}"
+    end
+  end
+  unexpected_alternates = alternate_values.keys.compact - expected_alternates.keys
+  errors << "#{route} has unsupported alternates: #{unexpected_alternates.join(', ')}" unless unexpected_alternates.empty?
+
+  route_id = ROUTE_IDS[base_route]
+  localized_meta = SITE_META[lang] || SITE_META[DEFAULT_LANG]
+  expected_description = localized_meta.dig("descriptions", route_id) if route_id
+  actual_description = document.at_css('meta[name="description"]')&.[]("content")
+  if expected_description && actual_description != expected_description
+    errors << "#{route} does not use its localized metadata description"
+  end
+
+  document.css("img").each do |image|
+    unless positive_number?(image["width"]) && positive_number?(image["height"])
+      errors << "#{route} image lacks positive intrinsic dimensions: #{image['src'].inspect}"
+    end
+  end
+
+  if NOINDEX_ROUTES.include?(base_route)
+    robots = document.at_css('meta[name="robots"]')&.[]("content").to_s.downcase.delete(" ")
+    errors << "#{route} must be noindex,follow" unless robots == "noindex,follow"
+  end
 
   document.css('script[type="application/ld+json"]').each do |node|
     JSON.parse(node.text)
@@ -141,8 +208,6 @@ def verify_generated_page(route, lang, errors)
     errors << "#{route} has invalid JSON-LD: #{error.message}"
   end
 
-  base_route = route.delete_prefix("/#{lang}")
-  base_route = "/" if base_route.empty?
   if lang != DEFAULT_LANG && !%w[zh-cn ja-jp].include?(lang) && FALLBACK_ROUTES.include?(base_route)
     unless document.at_css("[data-english-fallback]")
       errors << "#{route} is missing its explicit English fallback notice"
@@ -241,7 +306,7 @@ if File.file?(sitemap_file)
   errors << "Sitemap contains duplicate locations" unless locations.length == locations.uniq.length
 
   expected_pages = LANGUAGES.each_with_object(Set.new) do |lang, routes|
-    (PUBLIC_ROUTES - ["/404.html"]).each { |route| routes << localized_route(route, lang) }
+    (PUBLIC_ROUTES - NOINDEX_ROUTES.to_a).each { |route| routes << localized_route(route, lang) }
   end
   article_prefixes = LANGUAGES.map do |lang|
     lang == DEFAULT_LANG ? "/article/" : "/#{lang}/article/"
@@ -274,7 +339,7 @@ if File.file?(human_sitemap_file)
   human_sitemap = Nokogiri::HTML5(File.read(human_sitemap_file))
   human_links = human_sitemap.css("main a[href]").map { |link| URI(link["href"]).path }.to_set
   default_article_locations = article_locations.select { |path| path.start_with?("/article/") }
-  expected_human_links = (PUBLIC_ROUTES.to_set - ["/404.html", "/sitemap"]) | default_article_locations.to_set
+  expected_human_links = (PUBLIC_ROUTES.to_set - NOINDEX_ROUTES - ["/sitemap"]) | default_article_locations.to_set
   missing_human_links = expected_human_links - human_links
   unless missing_human_links.empty?
     errors << "Human-readable site map is missing: #{missing_human_links.to_a.join(', ')}"
@@ -368,6 +433,8 @@ games.each do |game|
   image = generated_asset_path(game["image"])
   errors << "Game #{identifier} image must be root-relative" unless image
   errors << "Game #{identifier} references a missing image" if image && !File.file?(image)
+  errors << "Game #{identifier} image width must be positive" unless positive_number?(game["image_width"])
+  errors << "Game #{identifier} image height must be positive" unless positive_number?(game["image_height"])
   errors << "Game #{identifier} effect must be true or false" unless [true, false].include?(game["effect"])
 
   debris = game["debris"]
@@ -377,6 +444,10 @@ games.each do |game|
       errors << "Game #{identifier} debris.path must be root-relative" unless debris_image
       if game["effect"] && debris_image && !File.file?(debris_image)
         errors << "Game #{identifier} references missing debris"
+      end
+      if game["effect"]
+        errors << "Game #{identifier} debris width must be positive" unless positive_number?(debris["width"])
+        errors << "Game #{identifier} debris height must be positive" unless positive_number?(debris["height"])
       end
       if debris.key?("scale") && !positive_number?(debris["scale"])
         errors << "Game #{identifier} debris.scale must be positive"
@@ -477,6 +548,40 @@ article_sources.each do |path|
   banner = generated_asset_path(metadata["banner"])
   errors << "Article #{identifier} banner must be root-relative" unless banner
   errors << "Article #{identifier} references a missing banner" if banner && !File.file?(banner)
+end
+
+root_markers = Dir[File.join(ROOT, "*.txt")]
+errors << "Unexpected root development markers: #{root_markers.map { |path| File.basename(path) }.join(', ')}" unless root_markers.empty?
+
+source_pngs = %w[sacred-remains.png sacred-remains-debris.png]
+source_pngs.each do |filename|
+  path = File.join(ROOT, "assets", "extra", "img", filename)
+  errors << "Missing retained Sacred Remains source asset: #{filename}" unless File.file?(path)
+end
+%w[sacred-remains.webp sacred-remains-debris.webp obby-of-dominance.png].each do |filename|
+  path = File.join(DESTINATION, "assets", "img", filename)
+  errors << "Missing Website-owned production game asset: #{filename}" unless File.file?(path)
+end
+
+gemfile = File.read(File.join(ROOT, "Gemfile"))
+lockfile = File.read(File.join(ROOT, "Gemfile.lock"))
+theme_revision = "195c156f79457b6761e8e0c1ec00161bfe5e5a2c"
+errors << "Gemfile must pin the exact shared-theme commit" unless gemfile.include?(%{ref: "#{theme_revision}"})
+errors << "Gemfile.lock must pin the exact shared-theme commit" unless lockfile.include?("revision: #{theme_revision}")
+errors << "Theme dependency URL must not contain credentials" if gemfile.match?(%r{https://[^/\s]+@github\.com})
+
+workflow_files = Dir[File.join(ROOT, ".github", "workflows", "*.yml")]
+workflow_files.each do |path|
+  workflow = File.read(path)
+  errors << "#{File.basename(path)} must use Ruby 3.4.10" unless workflow.include?("3.4.10")
+  errors << "#{File.basename(path)} must not update dependencies" if workflow.include?("bundle update")
+  errors << "#{File.basename(path)} must not deploy or check redesign" if workflow.match?(/branches:\s*\[[^\]]*redesign/)
+end
+
+if File.file?(default_page_file)
+  default_page = Nokogiri::HTML5(File.read(default_page_file))
+  shop_link = default_page.at_css(%{a[href="https://shop.pwindows.qzz.io"]})
+  errors << "Website footer is missing the canonical Shop cross-link" unless shop_link
 end
 
 if errors.empty?

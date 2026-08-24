@@ -2,14 +2,16 @@
   codetitle: sacred-remains
   path: /games/sacred-remains
   status: In development
-  image: /assets/img/sacred-remains.png
+  image: /assets/img/sacred-remains.webp
   image_width: 1920
   image_height: 1920
   effect: true
   engine: Unity
   language: C#
   debris:
-    path: /assets/img/sacred-remains-debris.png
+    path: /assets/img/sacred-remains-debris.webp
+    width: 1920
+    height: 1920
     scale: 1.5
     start-y: 20
     end-y: -10

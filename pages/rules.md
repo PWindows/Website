@@ -2,6 +2,7 @@
 layout: rules
 permalink: /rules
 title: Rules
+id: rules
 description: Read the rules for the PWindows Minecraft server and community.
 last_updated: 2026-07-19T00:00:00+08:00
 ---

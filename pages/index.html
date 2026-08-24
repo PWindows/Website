@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Home
+id: home
 description: Discover PWindows, a Minecraft server, game studio, and community project.
 permalink: /
 ---
@@ -12,7 +13,7 @@ permalink: /
     <div class="hero-card">
       <h1 class="hero-heading">
         <span class="sr-only">
-          Not just a Minecraft server, game studio, and community.
+          {{ site.data.site_meta[site.active_lang].home_heading | default: site.data.site_meta[site.default_lang].home_heading }}
         </span>
         <span aria-hidden="true">
           <span class="hero-line-1">{{ site.data.translations[site.active_lang].index.catchphrase-top }}</span>
@@ -37,13 +38,13 @@ permalink: /
       <button
         class="copy-button btn btn-gold"
         data-copy-ip="{{ server_address | escape }}"
-        aria-label="Copy server IP"
+        aria-label="{{ site.data.site_meta[site.active_lang].accessibility.copy_server | default: site.data.site_meta[site.default_lang].accessibility.copy_server }}"
         disabled
       >
         IP: {{ server_address }}
       </button>
 
-      <button class="btn btn-green" aria-label="Go to join section" disabled>
+      <button class="btn btn-green" aria-label="{{ site.data.site_meta[site.active_lang].accessibility.join_section | default: site.data.site_meta[site.default_lang].accessibility.join_section }}" disabled>
         {{ site.data.translations[site.active_lang].placeholder.comingsoon-server }}
       </button>
     </div>
@@ -65,7 +66,7 @@ permalink: /
           <div class="flip-card-icon">
             <img
               src="{{ '/assets/mojang/svg/icons/color-grass-block.png' | relative_url }}"
-              alt="Minecraft Grass Block"
+              alt=""
               loading="lazy"
               width="1024"
               height="1024"
@@ -91,7 +92,7 @@ permalink: /
             <button
               class="copy-button btn btn-gold"
               data-copy-ip="{{ server_address | escape }}"
-              aria-label="Copy server IP(Coming soon)"
+              aria-label="{{ site.data.site_meta[site.active_lang].accessibility.copy_server_coming_soon | default: site.data.site_meta[site.default_lang].accessibility.copy_server_coming_soon }}"
               disabled
             >
               {{ site.data.translations[site.active_lang].index.howtojoin.server-address.button-text }}
@@ -111,7 +112,7 @@ permalink: /
           <div class="flip-card-icon">
             <img
               src="{{ '/assets/mojang/svg/icons/color-dungeons-launcher.svg' | relative_url }}"
-              alt="Bedrock Launcher"
+              alt=""
               loading="lazy"
               width="32"
               height="32"
@@ -136,7 +137,7 @@ permalink: /
             </div>
             <button
               class="btn btn-green"
-              aria-label="Launch Minecraft Bedrock"
+              aria-label="{{ site.data.site_meta[site.active_lang].accessibility.launch_bedrock | default: site.data.site_meta[site.default_lang].accessibility.launch_bedrock }}"
               disabled
             >
               {{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.button-text }}
@@ -156,7 +157,7 @@ permalink: /
           <div class="flip-card-icon">
             <img
               src="{{ '/assets/mojang/svg/icons/color-two-players.svg' | relative_url }}"
-              alt="Bedrock Realms"
+              alt=""
               loading="lazy"
               width="32"
               height="32"
@@ -179,7 +180,7 @@ permalink: /
             <div class="flip-card-back-text">
               {{ site.data.translations[site.active_lang].index.howtojoin.realms.text-back }}
             </div>
-            <button class="btn btn-green" disabled aria-label="Coming Soon">
+            <button class="btn btn-green" disabled aria-label="{{ site.data.site_meta[site.active_lang].accessibility.coming_soon | default: site.data.site_meta[site.default_lang].accessibility.coming_soon }}">
               {{ site.data.translations[site.active_lang].index.howtojoin.realms.button-text }}
             </button>
             <button class="flip-card-back-toggle btn" type="button">
