@@ -3,7 +3,7 @@ name: Site checks
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, redesign]
 
 permissions:
   contents: read

@@ -2,7 +2,7 @@
 name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes targeting either publishable branch
   push:
     branches: ["main", "redesign"]
 
@@ -51,6 +51,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
 
   deploy:
+    if: ${{ needs.build.result == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

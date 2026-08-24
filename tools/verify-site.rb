@@ -564,10 +564,9 @@ end
 end
 
 gemfile = File.read(File.join(ROOT, "Gemfile"))
-lockfile = File.read(File.join(ROOT, "Gemfile.lock"))
-theme_revision = "195c156f79457b6761e8e0c1ec00161bfe5e5a2c"
-errors << "Gemfile must pin the exact shared-theme commit" unless gemfile.include?(%{ref: "#{theme_revision}"})
-errors << "Gemfile.lock must pin the exact shared-theme commit" unless lockfile.include?("revision: #{theme_revision}")
+unless gemfile.match?(/gem "pwindows-theme".*branch: "main"/)
+  errors << "Gemfile must use the shared theme's main branch"
+end
 errors << "Theme dependency URL must not contain credentials" if gemfile.match?(%r{https://[^/\s]+@github\.com})
 
 workflow_files = Dir[File.join(ROOT, ".github", "workflows", "*.yml")]
@@ -575,7 +574,29 @@ workflow_files.each do |path|
   workflow = File.read(path)
   errors << "#{File.basename(path)} must use Ruby 3.4.10" unless workflow.include?("3.4.10")
   errors << "#{File.basename(path)} must not update dependencies" if workflow.include?("bundle update")
-  errors << "#{File.basename(path)} must not deploy or check redesign" if workflow.match?(/branches:\s*\[[^\]]*redesign/)
+end
+
+deployment_workflow = File.read(File.join(ROOT, ".github", "workflows", "gh-jekyll-workflow.yml"))
+unless deployment_workflow.match?(/branches:\s*\[[^\]]*main[^\]]*redesign[^\]]*\]/)
+  errors << "Deployment workflow must publish main and redesign"
+end
+required_deployment_checks = [
+  "bundle exec jekyll build --trace",
+  "bundle exec htmlproofer ./_site",
+  "bundle exec ruby tools/verify-site.rb ./_site",
+  "node --check assets/js/extra.js"
+]
+missing_deployment_checks = required_deployment_checks.reject { |check| deployment_workflow.include?(check) }
+unless missing_deployment_checks.empty?
+  errors << "Deployment workflow is missing checks: #{missing_deployment_checks.join(', ')}"
+end
+unless deployment_workflow.include?("needs: build") && deployment_workflow.include?("if: ${{ needs.build.result == 'success' }}")
+  errors << "Deployment must require a successful build job"
+end
+
+checks_workflow = File.read(File.join(ROOT, ".github", "workflows", "site-checks.yml"))
+unless checks_workflow.match?(/branches:\s*\[[^\]]*main[^\]]*redesign[^\]]*\]/)
+  errors << "Site checks must run on main and redesign"
 end
 
 if File.file?(default_page_file)
