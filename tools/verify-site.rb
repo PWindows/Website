@@ -590,13 +590,14 @@ missing_deployment_checks = required_deployment_checks.reject { |check| deployme
 unless missing_deployment_checks.empty?
   errors << "Deployment workflow is missing checks: #{missing_deployment_checks.join(', ')}"
 end
+if deployment_workflow.include?("pull_request:")
+  errors << "Deployment workflow must not duplicate redesign push checks with pull-request checks"
+end
 unless deployment_workflow.include?("needs: build") && deployment_workflow.include?("if: ${{ needs.build.result == 'success' }}")
   errors << "Deployment must require a successful build job"
 end
-
-checks_workflow = File.read(File.join(ROOT, ".github", "workflows", "site-checks.yml"))
-unless checks_workflow.match?(/branches:\s*\[[^\]]*main[^\]]*redesign[^\]]*\]/)
-  errors << "Site checks must run on main and redesign"
+if File.exist?(File.join(ROOT, ".github", "workflows", "site-checks.yml"))
+  errors << "Separate site-check workflow would duplicate pull-request checks"
 end
 
 if File.file?(default_page_file)
