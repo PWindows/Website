@@ -1,0 +1,92 @@
+---
+layout: none
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Indexed Pages Monitor</title>
+  <!-- Load Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer onload="gisLoaded()"></script>
+</head>
+<body>
+  <h1>Indexed Pages Count</h1>
+  <button id="authBtn" type="button">Authorize & Fetch</button>
+  <pre id="output"></pre>
+
+  <script>
+    let tokenClient;
+
+    // Initialize GIS client
+    function gisLoaded() {
+      tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: '830015351192-38tmspassocrp65dok2mo83d54g9gtav.apps.googleusercontent.com',
+        scope: 'https://www.googleapis.com/auth/webmasters.readonly',
+        callback: (tokenResponse) => {
+          if (tokenResponse && tokenResponse.access_token) {
+            fetchSitemaps(tokenResponse.access_token);
+          } else {
+            showError('Token error', tokenResponse);
+          }
+        },
+      });
+    }
+
+    // Trigger authorization
+    function authorizeAndFetch() {
+      if (!tokenClient) {
+        document.getElementById('output').innerText =
+          'Google authorization is still loading. Please try again.';
+        return;
+      }
+      tokenClient.requestAccessToken();
+    }
+
+    // Fetch sitemap data directly via REST API
+    async function fetchSitemaps(accessToken) {
+      try {
+        const siteUrl = encodeURIComponent('https://www.pwindows.qzz.io/');
+        const resp = await fetch(
+          `https://www.googleapis.com/webmasters/v3/sites/${siteUrl}/sitemaps`,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        );
+        const data = await resp.json();
+
+        if (!resp.ok) {
+          throw new Error(data.error?.message || `Request failed (${resp.status})`);
+        }
+
+        if (data.sitemap && data.sitemap.length > 0) {
+          let output = '';
+          data.sitemap.forEach((smap) => {
+            const contents = smap.contents?.[0];
+            const submitted = contents?.submitted ?? 'n/a';
+            const indexed = contents?.indexed ?? 'n/a';
+            output += `Sitemap: ${smap.path}\nSubmitted: ${submitted}, Indexed: ${indexed}\n\n`;
+          });
+          document.getElementById('output').innerText = output.trim();
+        } else {
+          document.getElementById('output').innerText = 'No sitemap data found.';
+        }
+      } catch (err) {
+        showError('Fetch error', err);
+      }
+    }
+
+    // Error handler
+    function showError(label, err) {
+      console.error(label, err);
+      document.getElementById('output').innerText =
+        `${label}: ${JSON.stringify(err, null, 2)}`;
+    }
+
+    document
+      .getElementById('authBtn')
+      .addEventListener('click', authorizeAndFetch);
+  </script>
+</body>
+</html>
