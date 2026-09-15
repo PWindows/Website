@@ -1,7 +1,62 @@
 title: PWindows
 description: Discover PWindows, not just a Minecraft server
 url: "https://www.pwindows.qzz.io"
+theme: pwindows-theme
+markdown: kramdown
+kramdown:
+  input: GFM
+default_lang: "en-us"
+languages:
+  [
+    "en-us",
+    "en-gb",
+    "zh-cn",
+    "es-es",
+    "fr-fr",
+    "de-de",
+    "it-it",
+    "pt-pt",
+    "pt-br",
+    "ja-jp",
+    "ko-kr",
+    "ru-ru",
+    "nl-nl",
+    "pl-pl",
+    "sv-se",
+    "da-dk",
+    "no-no",
+    "fi-fi",
+    "es-mx",
+    "fr-ca",
+    "tr-tr",
+    "ar-sa",
+    "he-il",
+    "hi-in",
+    "th-th",
+    "vi-vn",
+    "id-id",
+    "ms-my",
+  ]
+lang_from_path: true
+parallel_localization: false
+exclude_from_localization:
+  - assets
+  - sitemap.xml
+  - pages/robots.txt
+  - CNAME
+exclude:
+  - AGENTS.md
+  - README.md
+  - tools/
+  - vendor/
+  - assets/extra/
+  - .vs/
+  - .vscode/
 collections:
   articles:
     output: true
     permalink: /article/:name
+    markdown: kramdown
+plugins:
+  - jekyll-polyglot
+  - pwindows-theme

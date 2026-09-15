@@ -1,0 +1,12 @@
+server:
+  address:
+    en-us: play.pwindows.qzz.io
+    zh-cn: cn.play.pwindows.qzz.io
+    ja-jp: play.pwindows.qzz.io
+links:
+  support: https://discord.pwindows.qzz.io/
+  shop: https://shop.pwindows.qzz.io
+  discord: https://discord.pwindows.qzz.io/
+  youtube: https://www.youtube.com/@PWindows
+  twitter: https://x.com/pwindowsz
+  site_logo: /assets/PWindows.svg
