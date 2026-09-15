@@ -6,6 +6,7 @@ description: Discover PWindows, a Minecraft server, game studio, and community p
 permalink: /
 ---
 
+{% assign ui = site.data.ui[site.active_lang] | default: site.data.ui[site.default_lang] %}
 {% assign server_address = site.data.site.server.address[site.active_lang] | default: site.data.site.server.address[site.default_lang] %}
 
 <section class="landing" id="home">
@@ -13,14 +14,14 @@ permalink: /
     <div class="hero-card">
       <h1 class="hero-heading">
         <span class="sr-only">
-          {{ site.data.site_meta[site.active_lang].home_heading | default: site.data.site_meta[site.default_lang].home_heading }}
+          {{ ui.home_heading | escape }}
         </span>
         <span aria-hidden="true">
           <span class="hero-line-1">{{ site.data.translations[site.active_lang].index.catchphrase-top }}</span>
           <span class="hero-line-2">
             <span class="animated-word">
               <span class="word-container">
-                <span class="words-list">
+                <span class="words-list" id="hero-words">
                   <span class="word">{{ site.data.translations[site.active_lang].index.catchphrase-1 }}</span>
                   <span class="word">{{ site.data.translations[site.active_lang].index.catchphrase-2 }}</span>
                   <span class="word">{{ site.data.translations[site.active_lang].index.catchphrase-3 }}</span>
@@ -31,6 +32,7 @@ permalink: /
           </span>
         </span>
       </h1>
+      <button type="button" class="hero-motion-toggle btn" data-hero-motion-toggle aria-controls="hero-words" hidden>{{ ui.pause_animation | escape }}</button>
     </div>
 
     <!-- Bottom Content -->
@@ -38,13 +40,13 @@ permalink: /
       <button
         class="copy-button btn btn-gold"
         data-copy-ip="{{ server_address | escape }}"
-        aria-label="{{ site.data.site_meta[site.active_lang].accessibility.copy_server | default: site.data.site_meta[site.default_lang].accessibility.copy_server }}"
+        aria-label="{{ ui.copy_server | escape }}"
         disabled
       >
         IP: {{ server_address }}
       </button>
 
-      <button class="btn btn-green" aria-label="{{ site.data.site_meta[site.active_lang].accessibility.join_section | default: site.data.site_meta[site.default_lang].accessibility.join_section }}" disabled>
+      <button class="btn btn-green" aria-label="{{ ui.join_section | escape }}" disabled>
         {{ site.data.translations[site.active_lang].placeholder.comingsoon-server }}
       </button>
     </div>
@@ -92,7 +94,7 @@ permalink: /
             <button
               class="copy-button btn btn-gold"
               data-copy-ip="{{ server_address | escape }}"
-              aria-label="{{ site.data.site_meta[site.active_lang].accessibility.copy_server_coming_soon | default: site.data.site_meta[site.default_lang].accessibility.copy_server_coming_soon }}"
+              aria-label="{{ ui.copy_server_coming_soon | escape }}"
               disabled
             >
               {{ site.data.translations[site.active_lang].index.howtojoin.server-address.button-text }}
@@ -137,7 +139,7 @@ permalink: /
             </div>
             <button
               class="btn btn-green"
-              aria-label="{{ site.data.site_meta[site.active_lang].accessibility.launch_bedrock | default: site.data.site_meta[site.default_lang].accessibility.launch_bedrock }}"
+              aria-label="{{ ui.launch_bedrock | escape }}"
               disabled
             >
               {{ site.data.translations[site.active_lang].index.howtojoin.quick-launch.button-text }}
@@ -180,7 +182,7 @@ permalink: /
             <div class="flip-card-back-text">
               {{ site.data.translations[site.active_lang].index.howtojoin.realms.text-back }}
             </div>
-            <button class="btn btn-green" disabled aria-label="{{ site.data.site_meta[site.active_lang].accessibility.coming_soon | default: site.data.site_meta[site.default_lang].accessibility.coming_soon }}">
+            <button class="btn btn-green" disabled aria-label="{{ ui.coming_soon | escape }}">
               {{ site.data.translations[site.active_lang].index.howtojoin.realms.button-text }}
             </button>
             <button class="flip-card-back-toggle btn" type="button">

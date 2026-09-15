@@ -2,6 +2,7 @@
 name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 
 on:
+  pull_request:
   # Runs on pushes targeting either publishable branch
   push:
     branches: ["main", "redesign"]
@@ -16,7 +17,7 @@ permissions:
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.event_name }}-${{ github.ref }}"
   cancel-in-progress: false
 
 jobs:
@@ -27,6 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -42,14 +44,31 @@ jobs:
       - name: Check generated HTML and internal links
         run: bundle exec htmlproofer ./_site --disable-external --ignore-urls '/minecraft:/'
       - name: Verify public pages, sitemap, and source data
-        run: bundle exec ruby tools/verify-site.rb ./_site
+        run: |
+          bundle exec ruby tools/verify-site.rb ./_site
+          bundle exec ruby tools/verify-localization.rb ./_site
       - name: Check JavaScript syntax
-        run: node --check assets/js/extra.js
+        run: |
+          node --check assets/js/extra.js
+          node tools/tests/flip-cards-test.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check browser behavior
+        run: |
+          THEME_ROOT=$(bundle show pwindows-theme)
+          npm ci --prefix "$THEME_ROOT/tools/browser"
+          npm exec --prefix "$THEME_ROOT/tools/browser" -- playwright install --with-deps chromium
+          BROWSER_SITE=website WEBSITE_SITE_DIR="$PWD/_site" npm --prefix "$THEME_ROOT/tools/browser" test
       - name: Upload artifact
+        if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/redesign')
         uses: actions/upload-pages-artifact@v3
 
   deploy:
-    if: ${{ needs.build.result == 'success' }}
+    if: ${{ needs.build.result == 'success' && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/redesign') }}
+    concurrency:
+      group: pages-production
+      cancel-in-progress: false
     permissions:
       pages: write
       id-token: write

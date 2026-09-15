@@ -145,12 +145,14 @@ def verify_generated_page(route, lang, errors)
     return
   end
 
-  document = Nokogiri::HTML5(File.read(file))
+  document = Nokogiri::HTML5(File.read(file), max_errors: 100)
+  document.errors.each { |error| errors << "#{route} has invalid HTML: #{error.message.lines.first.strip}" }
   html = document.at_css("html")
   errors << "#{route} has an unexpected document language" unless html&.[]("lang") == lang
   expected_direction = RTL_LANGUAGES.include?(lang) ? "rtl" : "ltr"
   errors << "#{route} has an unexpected text direction" unless html&.[]("dir") == expected_direction
   main = document.at_css("main")
+  errors << "#{route} skip target must be focusable" unless main&.[]("tabindex") == "-1"
   errors << "#{route} has an empty <main>" if main.nil? || main.text.strip.empty?
   errors << "#{route} must contain exactly one <h1>" unless document.css("main h1").length == 1
   errors << "#{route} is missing a document title" if document.at_css("title")&.text.to_s.strip.empty?
@@ -334,22 +336,20 @@ article_locations.each do |route|
   verify_generated_page(route, lang, errors)
 end
 
-human_sitemap_file = File.join(DESTINATION, "sitemap.html")
-if File.file?(human_sitemap_file)
+LANGUAGES.each do |lang|
+  sitemap_route = localized_route("/sitemap", lang)
+  human_sitemap_file = generated_page_path(sitemap_route)
+  next unless File.file?(human_sitemap_file) # Route validation already reports missing pages.
+
   human_sitemap = Nokogiri::HTML5(File.read(human_sitemap_file))
   human_links = human_sitemap.css("main a[href]").map { |link| URI(link["href"]).path }.to_set
-  default_article_locations = article_locations.select { |path| path.start_with?("/article/") }
-  expected_human_links = (PUBLIC_ROUTES.to_set - NOINDEX_ROUTES - ["/sitemap"]) | default_article_locations.to_set
-  missing_human_links = expected_human_links - human_links
-  unless missing_human_links.empty?
-    errors << "Human-readable site map is missing: #{missing_human_links.to_a.join(', ')}"
-  end
-
+  localized_articles = article_locations.select { |route| lang == DEFAULT_LANG ? route.start_with?("/article/") : route.start_with?("/#{lang}/article/") }
+  expected_links = (PUBLIC_ROUTES.to_set - NOINDEX_ROUTES - ["/sitemap"]).map { |route| localized_route(route, lang) }.to_set | localized_articles.to_set
+  missing = expected_links - human_links
+  errors << "#{sitemap_route} is missing: #{missing.to_a.join(', ')}" unless missing.empty?
   footer_links = human_sitemap.css(".footer a[href]").map { |link| URI(link["href"]).path }
-  errors << "Footer must link to /sitemap" unless footer_links.include?("/sitemap")
-  errors << "Footer still exposes sitemap.xml" if footer_links.include?("/sitemap.xml")
-else
-  errors << "Missing generated sitemap.html"
+  errors << "Footer must link to #{sitemap_route}" unless footer_links.include?(sitemap_route)
+  errors << "Footer still exposes sitemap.xml" if footer_links.any? { |route| route.end_with?("sitemap.xml") }
 end
 
 forbidden_outputs = [
@@ -584,20 +584,26 @@ required_deployment_checks = [
   "bundle exec jekyll build --trace",
   "bundle exec htmlproofer ./_site",
   "bundle exec ruby tools/verify-site.rb ./_site",
+  "bundle exec ruby tools/verify-localization.rb ./_site",
   "node --check assets/js/extra.js"
 ]
 missing_deployment_checks = required_deployment_checks.reject { |check| deployment_workflow.include?(check) }
 unless missing_deployment_checks.empty?
   errors << "Deployment workflow is missing checks: #{missing_deployment_checks.join(', ')}"
 end
-if deployment_workflow.include?("pull_request:")
-  errors << "Deployment workflow must not duplicate redesign push checks with pull-request checks"
+unless deployment_workflow.include?("pull_request:")
+  errors << "Website pull requests must run validation"
 end
-unless deployment_workflow.include?("needs: build") && deployment_workflow.include?("if: ${{ needs.build.result == 'success' }}")
-  errors << "Deployment must require a successful build job"
+workflow_data = YAML.safe_load(deployment_workflow)
+deploy_guard = workflow_data.dig("jobs", "deploy", "if").to_s
+unless workflow_data.dig("jobs", "deploy", "needs") == "build" &&
+       deploy_guard.include?("needs.build.result == 'success'") &&
+       deploy_guard.include?("github.event_name != 'pull_request'") &&
+       %w[main redesign].all? { |branch| deploy_guard.include?("github.ref == 'refs/heads/#{branch}'") }
+  errors << "Deployment must require successful checks and a publishable branch, excluding pull requests"
 end
-if File.exist?(File.join(ROOT, ".github", "workflows", "site-checks.yml"))
-  errors << "Separate site-check workflow would duplicate pull-request checks"
+unless deployment_workflow.include?("BROWSER_SITE=website") && deployment_workflow.include?("node tools/tests/flip-cards-test.js")
+  errors << "Website CI must run browser and flip-card regression checks"
 end
 
 if File.file?(default_page_file)

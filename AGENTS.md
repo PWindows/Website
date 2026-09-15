@@ -3,7 +3,7 @@
 ## Project overview
 
 This repository contains the public PWindows website. It is a static Jekyll
-site deployed from the `main` branch. Preserve the current visual identity,
+site deployed from the `main` and `redesign` branches after validation. Preserve the current visual identity,
 public URLs, accessibility behavior, and data-driven templates unless a task
 explicitly requires a change.
 
@@ -13,11 +13,11 @@ explicitly requires a change.
 - `pages/` contains public pages. Every page must declare an explicit
   `permalink` so reorganizing source files does not change its URL.
 - `_articles/` contains news posts in the `articles` collection.
-- `_layouts/` contains page shells; `_includes/` contains reusable markup.
+- The `pwindows-theme` dependency in `website-common` owns `_layouts/`, `_includes/`, shared styles, scripts, and UI translations. Consumer overrides live in this repository only when site-specific.
 - `_data/games.yml`, `_data/departments.yml`, `_data/staff.yml`, and
   `_data/site.yml` are the canonical sources for game, department, staff, and
   shared site-link information.
-- `assets/css/style.css` is the main production stylesheet.
+- `website-common/assets/css/style.css` is the shared production stylesheet; this site owns `assets/css/extra.css` overrides.
 - `assets/css/news.css` contains article-specific styles.
 - `assets/js/extra.js` contains site-wide behavior.
 - `tools/verify-site.rb` enforces public routes, metadata, sitemap contents,
@@ -45,13 +45,26 @@ Before completing a change, run the same checks as CI:
 bundle exec jekyll build
 bundle exec htmlproofer ./_site --disable-external --ignore-urls '/minecraft:/'
 bundle exec ruby tools/verify-site.rb ./_site
+bundle exec ruby tools/verify-localization.rb ./_site
 ```
 
 For JavaScript changes, also run:
 
 ```sh
 node --check assets/js/extra.js
+node tools/tests/flip-cards-test.js
 ```
+
+Browser regression tests live in the Git theme checkout under `tools/browser` and are excluded from published assets. After building:
+
+```sh
+THEME_ROOT=$(bundle show pwindows-theme)
+npm ci --prefix "$THEME_ROOT/tools/browser"
+npm exec --prefix "$THEME_ROOT/tools/browser" -- playwright install chromium
+BROWSER_SITE=website WEBSITE_SITE_DIR="$PWD/_site" npm --prefix "$THEME_ROOT/tools/browser" test
+```
+
+Pull requests run validation without deployment. Successful pushes or manual runs on `main` or `redesign` may deploy; other branches must never deploy. Retain this policy in the workflow and verifier.
 
 Run `git diff --check` after editing. Fix failures caused by the current change;
 do not rewrite unrelated code merely to silence pre-existing issues.
@@ -106,7 +119,7 @@ for future use even though the directory is excluded from the generated site.
 
 ## Data conventions
 
-Game records in `_data/games.yml` require:
+Game records in `_data/games.yml` use stable shared fields plus localized `title` and `summary` mappings keyed by locale (with `en-us` required). They require:
 
 - `slug`
 - `title`
@@ -123,7 +136,7 @@ effects use `effect: true` with a tracked root-relative `debris.path`; a
 positive `debris.scale` is optional. Disabled effects may retain placeholder
 debris metadata, but the referenced asset must exist before enabling the effect.
 
-Department records in `_data/departments.yml` require:
+Department records in `_data/departments.yml` use shared `path` and `staff_department` fields and localized `name`/`bio` mappings (with `en-us` required). They require:
 
 - `name`
 - `path`
@@ -139,7 +152,7 @@ department in the data file must have a detail page.
 Keys in `_data/staff.yml` are stable author identifiers used by articles. Do
 not rename them without updating every article reference. Staff shown on the
 staff page or department pages use `aboutpage: true` and require `name`, `pfp`,
-`role`, and `bio`; `socials` is optional. Do not expose placeholder or private
+`role`, and `bio`; localized `name`, `role`, and `bio` live under locale keys with `en-us` required. `socials` is optional. Do not expose placeholder or private
 staff records with `aboutpage: false`. When a department has no public staff
 profiles, preserve the explicit empty-team state. Local image paths must be
 root-relative and point to tracked files.

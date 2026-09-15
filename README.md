@@ -29,6 +29,14 @@ bundle exec jekyll serve --livereload --config _config.yml,_config.windows.yml
 
 Open <http://localhost:4000>. See [Local Setup](https://github.com/PWindows/Website/wiki/Local-Setup) for requirements and troubleshooting.
 
+## Shared theme and verification
+
+Layouts, navigation, common styles, and interface translations come from the pinned `pwindows-theme` Git dependency. Website content and localized game, department, and staff records stay in this repository. Substantive content may fall back to English with an explicit language annotation.
+
+Run the Jekyll build, HTMLProofer, `tools/verify-site.rb`, `tools/verify-localization.rb`, and `tools/tests/flip-cards-test.js` before review. Browser setup and execution are documented in `AGENTS.md`. Theme changes must be tested against both consumers, then pinned in Website's lockfile and Shop's Gemfile and lockfile.
+
+Pull requests validate only. Successful `main` and `redesign` builds can publish to GitHub Pages. Support and feedback use the community Discord; server and checkout launch features remain disabled.
+
 ## Contributing
 
 Read [CONTRIBUTING.md](.github/CONTRIBUTING.md) before submitting a change. The wiki also provides a step-by-step [pull request guide](https://github.com/PWindows/Website/wiki/Making-a-Pull-Request).

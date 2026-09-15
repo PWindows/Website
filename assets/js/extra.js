@@ -28,44 +28,56 @@ function setupFlipCards() {
       if (!front || !back || !openButton || !closeButton) return null;
 
       const cardTitle = card.querySelector(".flip-card-title")?.textContent.trim();
+      let touchMode = false;
+      let updating = false;
+
+      const focus = (element) => element.focus({ preventScroll: true });
 
       function setFlipped(flipped, moveFocus = false) {
+        updating = true;
+        const visibleFace = flipped ? back : front;
+        const hiddenFace = flipped ? front : back;
+        visibleFace.removeAttribute("inert");
+        visibleFace.setAttribute("aria-hidden", "false");
         card.classList.toggle("is-flipped", flipped);
         openButton.setAttribute("aria-expanded", String(flipped));
-        front.toggleAttribute("inert", flipped);
-        back.toggleAttribute("inert", !flipped);
-        front.setAttribute("aria-hidden", String(flipped));
-        back.setAttribute("aria-hidden", String(!flipped));
-        if (moveFocus) (flipped ? closeButton : openButton).focus();
+        if (moveFocus || hiddenFace.contains(document.activeElement)) {
+          focus(card.classList.contains("precise-interaction") ? card : flipped ? closeButton : openButton);
+        }
+        hiddenFace.setAttribute("inert", "");
+        hiddenFace.setAttribute("aria-hidden", "true");
+        updating = false;
       }
 
       function setPreciseMode(enabled) {
-        card.classList.toggle("precise-interaction", enabled);
+        updating = true;
         if (enabled) {
+          card.tabIndex = 0;
+          card.setAttribute("role", "group");
+          card.setAttribute("aria-label", (document.body.dataset.flipCardDetails || "{title}").replaceAll("{title}", cardTitle || ""));
+          if (document.activeElement === openButton || document.activeElement === closeButton) focus(card);
           openButton.setAttribute("tabindex", "-1");
           openButton.setAttribute("aria-hidden", "true");
         } else {
           openButton.removeAttribute("tabindex");
           openButton.removeAttribute("aria-hidden");
         }
+        openButton.hidden = enabled;
         closeButton.disabled = enabled;
         closeButton.hidden = enabled;
         closeButton.setAttribute("aria-hidden", String(enabled));
-      }
-
-      function configureKeyboardAccess() {
-        if (preciseInput.matches) {
-          card.tabIndex = 0;
-          card.setAttribute("role", "group");
-          card.setAttribute("aria-label", `${cardTitle || "Join option"} details`);
-          card.setAttribute("aria-controls", back.id);
-        } else {
+        card.classList.toggle("precise-interaction", enabled);
+        if (!enabled) {
+          if (document.activeElement === card) focus(card.classList.contains("is-flipped") ? closeButton : openButton);
           card.removeAttribute("tabindex");
           card.removeAttribute("role");
           card.removeAttribute("aria-label");
-          card.removeAttribute("aria-controls");
         }
-        setPreciseMode(preciseInput.matches);
+        updating = false;
+      }
+
+      function configureKeyboardAccess() {
+        setPreciseMode(preciseInput.matches && !touchMode);
         setFlipped(false);
       }
 
@@ -73,26 +85,28 @@ function setupFlipCards() {
       closeButton.addEventListener("click", () => setFlipped(false, true));
 
       card.addEventListener("pointerenter", (event) => {
-        if (event.pointerType === "mouse") {
+        if (event.pointerType === "mouse" && preciseInput.matches) {
+          touchMode = false;
           setPreciseMode(true);
           setFlipped(true);
         }
       });
 
       card.addEventListener("pointerdown", (event) => {
-        if (event.pointerType !== "mouse") setPreciseMode(false);
+        if (event.pointerType !== "mouse") {
+          touchMode = true;
+          setPreciseMode(false);
+        }
       });
 
       card.addEventListener("pointerleave", (event) => {
-        if (event.pointerType === "mouse" && !card.contains(document.activeElement)) {
+        if (event.pointerType === "mouse" && card.classList.contains("precise-interaction") && !card.contains(document.activeElement)) {
           setFlipped(false);
-          setPreciseMode(preciseInput.matches);
         }
       });
 
       card.addEventListener("focusin", () => {
-        if (keyboardNavigation && preciseInput.matches) {
-          setPreciseMode(true);
+        if (!updating && keyboardNavigation && preciseInput.matches && !touchMode) {
           setFlipped(true);
         }
       });
@@ -101,7 +115,6 @@ function setupFlipCards() {
         window.requestAnimationFrame(() => {
           if (!card.contains(document.activeElement)) {
             setFlipped(false);
-            setPreciseMode(preciseInput.matches);
           }
         });
       });

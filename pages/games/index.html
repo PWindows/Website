@@ -59,7 +59,7 @@ intro: Follow the games currently being developed by PWindows.
             <div{% if localized_game == nil and site.active_lang != site.default_lang %} lang="{{ site.default_lang }}"{% endif %}>
             <h2 class="game-title">{{ game_title }}</h2>
             {% assign status_key = game.status | slugify %}
-            <p class="game-status game-status--{{ status_key }}">
+            <p class="game-status game-status--{{ status_key }}" lang="{{ site.active_lang }}">
               {{ site.data.translations[site.active_lang].game-status[status_key] | default: game.status }}
             </p>
             <p class="game-status game-meta--{{ game.engine | slugify }}">

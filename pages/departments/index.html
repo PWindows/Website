@@ -28,7 +28,7 @@ intro: Check out the teams that build PWindows's projects.
         <article class="content-card department-card"{% unless localized_department %}{% if site.active_lang != site.default_lang %} lang="{{ site.default_lang }}"{% endif %}{% endunless %}>
           <h2>{{ localized_department.name | default: default_department.name }}</h2>
           <p>{{ localized_department.bio | default: default_department.bio }}</p>
-          <a class="btn" href="{{ department.path | relative_url }}">{{ site.data.translations[site.active_lang].departments.view-button }}</a>
+          <a class="btn" href="{{ department.path | relative_url }}" lang="{{ site.active_lang }}">{{ site.data.translations[site.active_lang].departments.view-button }}</a>
         </article>
       {% endfor %}
     </div>
