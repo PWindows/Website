@@ -1,30 +1,25 @@
 ---
-layout: none
+layout: null
+permalink: /sitemap.xml
+sitemap: false
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {% assign sitemap_nodes = site.pages | concat: site.articles %}
+  {% for node in sitemap_nodes %}
+    {% if node.layout and node.sitemap != false %}
+      {% for lang in site.languages %}
   <url>
-    <loc>https://www.pwindows.qzz.io/</loc>
-    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <loc>{% if lang == site.default_lang %}{{ node.url | absolute_url }}{% else %}{{ node.url | prepend: lang | prepend: '/' | absolute_url }}{% endif %}</loc>
+        {% if node.last_updated or node.date %}
+    <lastmod>{{ node.last_updated | default: node.date | date_to_xmlschema }}</lastmod>
+        {% endif %}
+        {% for alternate_lang in site.languages %}
+    <xhtml:link rel="alternate" hreflang="{{ alternate_lang }}" href="{% if alternate_lang == site.default_lang %}{{ node.url | absolute_url }}{% else %}{{ node.url | prepend: alternate_lang | prepend: '/' | absolute_url }}{% endif %}" />
+        {% endfor %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ node.url | absolute_url }}" />
   </url>
-  {% for page in site.pages %}
-    {% if page.url != "/" and page.url != "/sitemap.xml" %}
-      {% unless page.url contains ".css" or page.url contains ".js" or page.url contains ".png" or page.url contains ".jpg"  or page.url contains "scm" %}
-        <url>
-          <loc>{{ site.url }}{{ page.url }}</loc>
-          <lastmod>{{ page.date | default: site.time | date_to_xmlschema }}</lastmod>
-        </url>
-      {% endunless %}
+      {% endfor %}
     {% endif %}
-  {% endfor %}
-  {% for article in site.articles %}
-    <url>
-      <loc>{{ site.url }}{{ article.url }}</loc>
-      <lastmod>{{ article.date | date_to_xmlschema }}</lastmod>
-      <changefreq>never</changefreq>
-      <priority>0.7</priority>
-    </url>
   {% endfor %}
 </urlset>

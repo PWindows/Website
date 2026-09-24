@@ -1,0 +1,107 @@
+en-us:
+  name: PWindows
+  tagline: Discover PWindows, not just a Minecraft server
+  home_heading: Not just a Minecraft server, game studio, and community.
+  page_titles:
+    sacred-cubes-compat: Sacred Cubes has moved
+  descriptions:
+    home: Discover PWindows, a Minecraft server, game studio, and community project.
+    about: Learn about the PWindows Minecraft server, community, and game studio project.
+    news: Read the latest news, development updates, and announcements from PWindows.
+    contact: Contact the PWindows team through its community Discord.
+    departments: Explore the teams building PWindows projects across Unity, Roblox, and Minecraft.
+    mcd: Learn about the Minecraft department at PWindows.
+    rd: Learn about the Roblox department at PWindows.
+    ud: Learn about the Unity department at PWindows.
+    feedback: Share feedback and suggestions with the PWindows team.
+    games: Explore games being developed by PWindows.
+    ood: Follow development information for Obby of Dominance by PWindows.
+    sr: Follow development information for Sacred Remains by PWindows.
+    sacred-cubes-compat: Sacred Cubes is now Sacred Remains; continue to the current PWindows game page.
+    rules: Read the rules for the PWindows Minecraft server and community.
+    sitemap: Browse every public page, game, department, and news article on the PWindows website.
+    staff: Meet the people working on PWindows projects and its community.
+    staff-petermazep: Meet PeterMaZep, the owner of PWindows.
+    staff-isaacaxolotl: Meet Isaac, the co-director of Sacred Remains and a PWindows website contributor.
+    not-found: The requested PWindows page could not be found; return home or browse the latest news.
+  accessibility:
+    copy_server: Copy server address
+    join_section: Go to the joining instructions
+    copy_server_coming_soon: Copy server address, coming soon
+    launch_bedrock: Launch Minecraft Bedrock, coming soon
+    coming_soon: Coming soon
+  compatibility:
+    sacred_cubes: Sacred Cubes has been renamed Sacred Remains. This address is retained for compatibility.
+    continue: Continue to Sacred Remains
+
+zh-cn:
+  name: 派视界
+  tagline: 探索派视界——不止是 Minecraft 服务器
+  home_heading: 不止是 Minecraft 服务器、游戏工作室和社区。
+  page_titles:
+    sacred-cubes-compat: Sacred Cubes 已迁移
+  descriptions:
+    home: 探索派视界，一个 Minecraft 服务器、游戏工作室与社区项目。
+    about: 了解派视界的 Minecraft 服务器、社区与游戏工作室项目。
+    news: 阅读派视界的最新新闻、开发进展与公告。
+    contact: 通过社区 Discord 联系派视界团队。
+    departments: 探索派视界负责 Unity、Roblox 与 Minecraft 项目的团队。
+    mcd: 了解派视界的 Minecraft 部门。
+    rd: 了解派视界的 Roblox 部门。
+    ud: 了解派视界的 Unity 部门。
+    feedback: 向派视界团队提交反馈与建议。
+    games: 探索派视界正在开发的游戏。
+    ood: 关注派视界 Obby of Dominance 的开发信息。
+    sr: 关注派视界 Sacred Remains 的开发信息。
+    sacred-cubes-compat: Sacred Cubes 现已更名为 Sacred Remains；请前往当前游戏页面。
+    rules: 阅读派视界 Minecraft 服务器与社区规则。
+    sitemap: 浏览派视界网站的所有公开页面、游戏、部门与新闻文章。
+    staff: 认识参与派视界项目与社区工作的成员。
+    staff-petermazep: 认识派视界的创始人 PeterMaZep。
+    staff-isaacaxolotl: 认识 Sacred Remains 联合总监兼派视界网站贡献者 Isaac。
+    not-found: 找不到请求的派视界页面；请返回首页或浏览最新新闻。
+  accessibility:
+    copy_server: 复制服务器地址
+    join_section: 前往加入说明
+    copy_server_coming_soon: 复制服务器地址，即将推出
+    launch_bedrock: 启动 Minecraft 基岩版，即将推出
+    coming_soon: 即将推出
+  compatibility:
+    sacred_cubes: Sacred Cubes 已更名为 Sacred Remains。此地址为兼容性而保留。
+    continue: 前往 Sacred Remains
+
+ja-jp:
+  name: PWindows
+  tagline: MinecraftサーバーだけではないPWindowsを発見しよう
+  home_heading: Minecraftサーバー、ゲームスタジオ、コミュニティだけではありません。
+  page_titles:
+    sacred-cubes-compat: Sacred Cubes は移動しました
+  descriptions:
+    home: Minecraftサーバー、ゲームスタジオ、コミュニティプロジェクトであるPWindowsをご覧ください。
+    about: PWindowsのMinecraftサーバー、コミュニティ、ゲームスタジオについて紹介します。
+    news: PWindowsの最新ニュース、開発情報、お知らせを掲載しています。
+    contact: コミュニティDiscordからPWindowsチームにお問い合わせください。
+    departments: Unity、Roblox、MinecraftのPWindows開発チームを紹介します。
+    mcd: PWindowsのMinecraft部門について紹介します。
+    rd: PWindowsのRoblox部門について紹介します。
+    ud: PWindowsのUnity部門について紹介します。
+    feedback: PWindowsチームへご意見やご提案をお寄せください。
+    games: PWindowsが開発中のゲームをご覧ください。
+    ood: PWindowsのObby of Dominance開発情報をご覧ください。
+    sr: PWindowsのSacred Remains開発情報をご覧ください。
+    sacred-cubes-compat: Sacred Cubes は Sacred Remains に名称変更されました。現在のゲームページへ進んでください。
+    rules: PWindows Minecraftサーバーとコミュニティのルールをご確認ください。
+    sitemap: PWindowsサイトの公開ページ、ゲーム、部門、ニュース記事を一覧できます。
+    staff: PWindowsのプロジェクトとコミュニティを支えるメンバーを紹介します。
+    staff-petermazep: PWindowsオーナーのPeterMaZepを紹介します。
+    staff-isaacaxolotl: Sacred Remains共同ディレクター兼サイト担当のIsaacを紹介します。
+    not-found: お探しのPWindowsページは見つかりませんでした。ホームまたは最新ニュースをご覧ください。
+  accessibility:
+    copy_server: サーバーアドレスをコピー
+    join_section: 参加方法へ移動
+    copy_server_coming_soon: サーバーアドレスをコピー、近日公開
+    launch_bedrock: Minecraft Bedrockを起動、近日公開
+    coming_soon: 近日公開
+  compatibility:
+    sacred_cubes: Sacred Cubes は Sacred Remains に名称変更されました。このアドレスは互換性のため保持されています。
+    continue: Sacred Remains へ進む

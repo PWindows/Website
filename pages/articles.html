@@ -1,0 +1,47 @@
+---
+layout: default
+title: News
+id: news
+permalink: /articles
+description: Read the latest news, development updates, and announcements from PWindows.
+---
+
+<section class="featured-news">
+    <h1 class="featured-title">{{ site.data.translations[site.active_lang].news.featured-title }}</h1>
+    {% assign articles_fallback = false %}
+    {% if site.active_lang != site.default_lang and site.active_lang != 'zh-cn' and site.active_lang != 'ja-jp' %}
+      {% assign articles_fallback = true %}
+    {% endif %}
+    {% include fallback-notice.html show=articles_fallback %}
+    <div class="featured-grid">
+        {% assign featured_news = site.articles | where: "featured", true | sort: "date" | reverse %}
+        {% for article in featured_news %}
+          {% include article-card.html article=article %}
+        {% else %}
+          <p class="empty-state">{{ site.data.translations[site.active_lang].news.no-featured }}</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="articles-section">
+    <div class="articles-header">
+        <h2 class="articles-title">{{ site.data.translations[site.active_lang].news.title }}</h2>
+        <div class="sort-controls">
+            <label for="sort-select">{{ site.data.translations[site.active_lang].news.sort-by.text }}</label>
+            <select id="sort-select">
+                <option value="date-desc">{{ site.data.translations[site.active_lang].news.sort-by.date-desc }}</option>
+                <option value="date-asc">{{ site.data.translations[site.active_lang].news.sort-by.date-asc }}</option>
+                <option value="type">{{ site.data.translations[site.active_lang].news.sort-by.type }}</option>
+                <option value="title">{{ site.data.translations[site.active_lang].news.sort-by.title }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="article-grid" id="articleGrid">
+        {% for article in site.articles %}
+          {% include article-card.html article=article %}
+        {% else %}
+          <p class="empty-state">{{ site.data.translations[site.active_lang].news.no-news }}</p>
+        {% endfor %}
+    </div>
+</section>

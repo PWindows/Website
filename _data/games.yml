@@ -1,0 +1,49 @@
+- slug: sacred-remains
+  codetitle: sacred-remains
+  path: /games/sacred-remains
+  status: In development
+  image: /assets/img/sacred-remains.webp
+  image_width: 1920
+  image_height: 1920
+  effect: true
+  engine: Unity
+  language: C#
+  debris:
+    path: /assets/img/sacred-remains-debris.webp
+    width: 1920
+    height: 1920
+    scale: 1.5
+    start-y: 20
+    end-y: -10
+  en-us:
+    title: Sacred Remains
+    summary: More information about Sacred Remains will be published as development progresses.
+  zh-cn:
+    title: Sacred Remains
+    summary: 随着开发的进行，将发布有关 Sacred Remains 的更多信息。
+  ja-jp:
+    title: Sacred Remains
+    summary: 開発の進捗に合わせて、Sacred Remainsの詳細情報を公開します。
+
+- slug: obby-of-dominance
+  codetitle: obby-of-dominance
+  path: /games/obby-of-dominance
+  status: In development
+  image: /assets/img/obby-of-dominance.png
+  image_width: 300
+  image_height: 300
+  effect: false
+  engine: Roblox
+  language: Luau
+  debris:
+    path: /assets/img/obby-of-dominance-debris.png
+    scale: 1.5
+  en-us:
+    title: Obby of Dominance
+    summary: More information about Obby of Dominance will be published as development progresses.
+  zh-cn:
+    title: Obby of Dominance
+    summary: 随着开发的进行，将发布有关 Obby of Dominance 的更多信息。
+  ja-jp:
+    title: Obby of Dominance
+    summary: 開発の進捗に合わせて、Obby of Dominanceの詳細情報を公開します。

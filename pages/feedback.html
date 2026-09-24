@@ -1,0 +1,22 @@
+---
+layout: default
+title: Feedback
+id: feedback
+permalink: /feedback
+description: Share feedback and suggestions with the PWindows team.
+intro: Tell us what is working, what is unclear, or what you would like us to improve.
+---
+
+<section class="content-page{% if page.page_class %} {{ page.page_class }}{% endif %}">
+  <header class="content-page-header">
+    <h1>{{ site.data.translations[site.active_lang].feedback.title }}</h1>
+    <p class="content-page-intro">{{ site.data.translations[site.active_lang].feedback.intro }}</p>
+  </header>
+  <div class="content-page-body">
+    <div class="content-card content-card--centered">
+      <h2>{{ site.data.translations[site.active_lang].feedback.send }}</h2>
+      <p>{{ site.data.translations[site.active_lang].feedback.send-text }}</p>
+      <a class="btn btn-green" href="{{ site.data.site.links.support | escape }}">{{ site.data.translations[site.active_lang].feedback.support }}</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+---
+layout: page
+title: Sacred Cubes
+id: sacred-cubes-compat
+permalink: /games/sacred-cubes
+description: Sacred Cubes is now Sacred Remains; continue to the current PWindows game page.
+robots: noindex,follow
+sitemap: false
+---
+
+{% assign localized_compatibility = site.data.site_meta[site.active_lang].compatibility %}
+{% assign compatibility = localized_compatibility | default: site.data.site_meta[site.default_lang].compatibility %}
+{% assign compatibility_fallback = false %}
+{% unless localized_compatibility %}{% if site.active_lang != site.default_lang %}{% assign compatibility_fallback = true %}{% endif %}{% endunless %}
+{% include fallback-notice.html show=compatibility_fallback %}
+<div class="content-card content-card--centered"{% if compatibility_fallback %} lang="{{ site.default_lang }}"{% endif %}>
+  <p>{{ compatibility.sacred_cubes }}</p>
+  <a class="btn btn-green" href="{{ '/games/sacred-remains' | relative_url }}">{{ compatibility.continue }}</a>
+</div>

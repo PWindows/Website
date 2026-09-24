@@ -1,0 +1,22 @@
+---
+layout: default
+title: 404
+id: not-found
+description: The requested PWindows page could not be found; return home or browse the latest news.
+permalink: /404.html
+sitemap: false
+robots: noindex,follow
+---
+
+<section class="content-page">
+  <header class="content-page-header">
+    <h1>404</h1>
+    <p class="content-page-intro">{{ site.data.translations[site.active_lang].not-found.text }}</p>
+  </header>
+  <div class="content-page-body">
+    <div class="page-actions">
+      <a class="btn btn-green" href="{{ '/' | relative_url }}">{{ site.data.translations[site.active_lang].not-found.button-home }}</a>
+      <a class="btn" href="{{ '/articles' | relative_url }}">{{ site.data.translations[site.active_lang].not-found.button-news }}</a>
+    </div>
+  </div>
+</section>

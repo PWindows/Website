@@ -1,0 +1,30 @@
+---
+layout: default
+permalink: /about
+id: about
+title: About PWindows
+description: Learn about the PWindows Minecraft server, community, and game studio project.
+---
+
+<section class="content-page">
+  <header class="content-page-header">
+    <h1>{{ site.data.translations[site.active_lang].about.title }}</h1>
+    <p class="content-page-intro">{{ site.data.translations[site.active_lang].about.intro }}</p>
+  </header>
+  <div class="content-page-body">
+    <div class="content-card-grid">
+      <article class="content-card">
+        <h2>{{ site.data.translations[site.active_lang].about.server.title }}</h2>
+        <p>{{ site.data.translations[site.active_lang].about.server.text }}</p>
+        <button class="btn btn-green" disabled>{{ site.data.translations[site.active_lang].placeholder.comingsoon-server }}</button>
+      </article>
+      <article class="content-card">
+        <h2>{{ site.data.translations[site.active_lang].about.project.title }}</h2>
+        <p>
+          {{ site.data.translations[site.active_lang].about.project.text }}
+        </p>
+        <a class="btn" href="{{ '/articles' | relative_url }}">{{ site.data.translations[site.active_lang].about.project.button }}</a>
+      </article>
+    </div>
+  </div>
+</section>
